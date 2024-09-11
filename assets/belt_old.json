@@ -1,0 +1,1086 @@
+{
+  "tail_section_foot_assembly": {
+    "leg_condition": {
+      "ok": "",
+      "worn": "The manlift legs are showing wear and will require further monitoring.",
+      "replace_damaged": "The manlift legs are damaged and must be replaced.",
+      "replace_worn": "The manlift legs are worn and must be replaced."
+    },
+    "leg_anchors": {
+      "yes": "",
+      "no": "No leg anchors were present during the time of inspection."
+    },
+    "leg_anchors_condition": {
+      "ok_good": "",
+      "missing": "The leg anchors are missing and must be installed.",
+      "replace_damaged": "The leg anchors are damaged and must be replaced.",
+      "replace_worn": "The leg anchors are worn and must be replaced."
+    },
+    "legs_anchored_to": {
+      "concrete": "",
+      "steel": ""
+    },
+    "bottom_circle_type": {
+      "bands": "",
+      "cast": "",
+      "none": ""
+    },
+    "bottom_circle_condition": {
+      "ok": "",
+      "worn_but_ok": "The bottom circles are showing wear and will require further monitoring.",
+      "replace_damaged": "The bottom circles are damaged and must be replaced.",
+      "replace_worn": "The bottom circles are worn and must be replaced."
+    },
+    "bottom_bearings": {
+      "yes": "",
+      "no": "",
+      "bushings": ""
+    },
+    "bottom_bearings_condition": {
+      "ok": "",
+      "worn_but_ok": "The bottom bearings are showing wear and will require further monitoring.",
+      "replace_damaged": "The bottom bearings are damaged and must be replaced.",
+      "replace_worn": "The bottom bearings are worn and must be replaced."
+    },
+    "bearing_housing_condition": {
+      "ok": "",
+      "worn_but_ok": "The bearing housings are showing wear and will require further monitoring.",
+      "replace_damaged": "The bearing housing is damaged and must be replaced.",
+      "replace_worn": "The bearing housing is worn and must be replaced."
+    },
+    "foot_shaft_diameter_length": {
+      "foot_shaft_diameter": "",
+      "length": ""
+    },
+    "foot_shaft_condition": {
+      "ok": "",
+      "worn_but_ok": "The foot shaft is showing wear and will require further monitoring.",
+      "replace_damaged": "The foot shaft is damaged and must be replaced.",
+      "replace_worn": "The foot shaft is worn and must be replaced."
+    },
+    "does_foot_shaft_have": {
+      "key": "",
+      "bushing": "",
+      "set_screws": ""
+    },
+    "distance_from_floor_to_centerline_of_foot_shaft": "",
+    "foot_pulley_condition": {
+      "ok": "",
+      "worn_but_ok": "The foot pulley is showing wear and will require further monitoring.",
+      "replace_damaged": "The foot pulley is damaged and must be replaced.",
+      "replace_worn": "The foot pulley is worn and must be replaced."
+    },
+    "type_of_belt_adjustment": {
+      "floating": "",
+      "manual": ""
+    },
+    "is_foot_pulley_centered": {
+      "yes": "",
+      "no": "The foot pulley was not centered during the time of inspection. It is required that the foot pulley be centered."
+    },
+    "belt_tracking": {
+      "ok": "",
+      "off": "The belt is tracking off and must be adjusted."
+    },
+    "debris_deflector": {
+      "yes": "",
+      "no": "No debris deflector was found to be present at the time of inspection. It is required that a debris deflector be installed."
+    },
+    "debris_deflector_condition": {
+      "replace_damaged": "The debris deflector is damaged and must be replaced.",
+      "replace_worn": "The debris deflector is worn and must be replaced."
+    },
+    "rope_sheaves": {
+      "yes": "",
+      "no": "No rope sheaves were found to be present at the time of inspection. It is required that rope sheaves be installed."
+    },
+    "rope_sheaves_condition": {
+      "ok": "",
+      "replace_damaged": "The rope sheaves are damaged and must be replaced.",
+      "replace_worn": "The rope sheaves are worn and must be replaced."
+    },
+    "yoke_assembly": {
+      "yes": "Rope sheave must be provided to restrict lateral movement.",
+      "no": ""
+    },
+    "tail_section_foot_assembly_comments": ""
+  },
+  "bottom_landing_safeties": {
+    "type_1": {
+      "treadle": "",
+      "photo_eye": ""
+    },
+    "type_1_condition": {
+      "ok": "",
+      "inoperative": "The bottom treadle safety switch is inoperable and must be replaced.",
+      "replace_switch": "The bottom treadle safety switch is inoperable and must be replaced.",
+      "replace_whole_assembly": "The bottom treadle safety assembly must be replaced."
+    },
+    "type_2": {
+      "photo_eye": "",
+      "in_track": "",
+      "split_rail": ""
+    },
+    "type_2_location": "",
+    "type_2_condition": {
+      "ok": "",
+      "inoperative": "The bottom photo eye/ in-rail safety is inoperable and must be repaired or replaced.",
+      "replace_switch": "The bottom photo eye/ in-track switch must be replaced.",
+      "replace_whole_assembly": "The bottom photo eye/ in-track assembly must be replaced."
+    },
+    "type_3": {
+      "photo_eye": "",
+      "in_track": "",
+      "split_rail": ""
+    },
+    "type_3_location": "",
+    "type_3_condition": {
+      "ok": "",
+      "inoperative": "The bottom photo eye is inoperable and must be repaired or replaced.",
+      "replace_switch": "The bottom in-rail or photo eye switch must be replaced.",
+      "replace_whole_assembly": "The bottom in-rail or photo eye assembly must be replaced."
+    },
+    "bottom_reset": {
+      "yes": "",
+      "no": "There was no bottom reset found during inspection. It is required that a bottom reset be installed."
+    },
+    "bottom_reset_location": {
+      "good": "",
+      "relocated": "The bottom reset is non-compliant and must be relocated."
+    },
+    "bottom_reset_compliant": {
+      "yes": "",
+      "no": "The bottom reset is non-compliant and must be relocated."
+    },
+    "bottom_reset_condition": {
+      "ok": "",
+      "inoperative": "The bottom reset was inoperable and must be repaired or replaced."
+    },
+    "visual_audible_alerting_system": {
+      "yes": "",
+      "no": "There was no visual or audible alerting system found on landing [#] at the time of inspection. It is required that one be installed."
+    },
+    "bottom_safeties_comments": ""
+  },
+  "bottom_landing": {
+    "authorized_personnel_only_sign": {
+      "yes": "",
+      "no": "There is no 'Authorized Personnel Only' sign on landing  {i}.",
+      "non_compliant": "The 'Authorized Personnel Only' sign on landing {i} is/are non-compliant and must be replaced."
+    },
+    "instruction_sign": {
+      "yes": "",
+      "no": "There is no instruction sign on landing {i}.",
+      "non_compliant": "The instruction sign on landing {i} is/are non-compliant and must be replaced."
+    },
+    "bottom_floor_get_off_sign": {
+      "yes": "",
+      "no": "A 'BOTTOM FLOOR - GET OFF' sign must be placed on landing #1.",
+      "non_compliant": "The 'BOTTOM FLOOR - GET OFF' sign is non-compliant"
+    },
+    "bottom_floor_get_off_sign_location": {
+      "ok": "",
+      "relocate": "The 'BOTTOM FLOOR - GET OFF' sign must be in a location that is easily visible by all parties operating the belt manlift."
+    },
+    "red_warning_light": {
+      "yes": "",
+      "no": "The red warning light on the top landing was not observed during the time of inspection. It is required that a Red Warning Light be installed.",
+      "inoperable": "The red warning light on the bottom landing is inoperable and must be repaired or replaced."
+    },
+    "light_location": {
+      "ok": "",
+      "relocate": "It is required that the Red Warning Light be relocated within 24\" of the ceiling below the landing."
+    },
+    "is_manlift_in_a_below_grade_pit": {
+      "yes": "",
+      "non_compliant": "The pit is not compliant."
+    },
+    "manlift_clean": {
+      "yes": "",
+      "no": "The manlift was found to be not clean at the time of inspection, the manlift should remain clean and free of debris at all times."
+    },
+    "does_manlift_use_up_side_platform": {
+      "yes": "",
+      "non_compliant": "Mount/dismount platform is not compliant."
+    },
+    "describe_opening": {
+      "compliant": "",
+      "non_compliant": "The mounting/dismounting platforms are non-compliant for shape. The openings for the mounting and dismounting platforms at the bottom of the manlift are required to be approximately circular in shape."
+    },
+    "is_step_level_after_completing_turn": {
+      "yes": "",
+      "no": "The steps are not level where they reach the mounting surface of the platform, as required."
+    },
+    "distance_from_floor_opening_to_guard_rail_up_side": {
+      "compliant": "",
+      "non_compliant": "When guard railing is more than 24\" away from the floor opening, it must be at least 42\" in height. When the guard rail is less than 24\" from the opening, it must be at least 66\" in height."
+    },
+    "does_manlift_use_down_side_platform": {
+      "yes": "",
+      "non_compliant": "Mount/dismount platform is not compliant."
+    },
+    "is_there_a_wall_in_front_of_dismount_platform_within_48_from_face_of_belt": {
+      "yes": "Forty-eight inches of clear space to the rear of the belt must be provided.",
+      "no": ""
+    },
+    "distance_from_floor_opening_to_guard_rail_down_side": {
+      "compliant": "",
+      "non_compliant": "When guard railing is more than 24\" away from the floor opening, it must be at least 42\" in height. When the guard rail is less than 24\" from the opening, it must be at least 66\" in height."
+    },
+    "ladder_rungs": {
+      "yes": "",
+      "no": "Ladder rungs at the top landing were not observed during the time of inspection. It is required that ladder rungs be installed."
+    },
+    "distance_between_rungs": {
+      "12_in": "",
+      "other": "The ladder rungs must be spaced evenly at approximately 12\" centers to be code compliant."
+    },
+    "ladder_rungs_condition": {
+      "replace_damaged": "The ladder rungs are damaged and must be replaced.",
+      "replace_worn": "The ladder rungs are worn and must be replaced."
+    },
+    "maze": {
+      "yes": "",
+      "no": "A maze guardrail configuration or self-closing gate must be provided on all landings.",
+      "na": ""
+    },
+    "self_closing_gates": {
+      "yes": "",
+      "no": "A maze guardrail configuration or self-closing gate must be provided on all landings.",
+      "na": ""
+    },
+    "are_gates_self_closing": {
+      "yes": "",
+      "no": "Outward opening self-closing gates are required."
+    },
+    "open_outward": {
+      "yes": "",
+      "no": "All manlift gates must open outward."
+    },
+    "are_gates_missing": {
+      "yes": "____ additional gates are missing on the bottom landing.",
+      "no": ""
+    },
+    "toeboard": {
+      "yes": "",
+      "no": "Toeboard was not observed during the time of inspection. It is required that a Toeboard be installed."
+    },
+    "add_toeboard_required": {
+      "yes": "An additional 4\" of Toeboard is required.",
+      "no": ""
+    },
+    "toeboard_height": {
+      "4_in": "",
+      "other": "New guard railing must be installed to meet minimum requirements."
+    },
+    "distance_from_face_of_belt_to_back_edge_of_floor_opening": {
+      "compliant": "",
+      "non_compliant": "The distance from the belt to the leading edge of the mounting platform is non-compliant on all landings must be 24\" to meet minimum requirements."
+    },
+    "bottom_landing_notes_comments": ""
+  },
+  "bottom_landing_hood": {
+    "type_of_hood": {
+      "stationary": "",
+      "moveable": "",
+      "moveable_mini": "",
+      "none": "Under floor hoods are required below the floor opening on the 'UP' travel side."
+    },
+    "hood_condition": {
+      "ok": "",
+      "damaged,_but_ok": "",
+      "replace_damaged": "The hood is damaged and must be replaced",
+      "replace_worn": "The hood is worn and must be replaced."
+    },
+    "hood_clearance": {
+      "compliant": "",
+      "non-compliant": "The hood clearance is non-compliant at the first landing."
+    },
+    "if_stationary,_distance_from_face_of_belt": "",
+    "angle_of_slope": "",
+    "shape": {
+      "circular": "",
+      "square": ""
+    },
+    "if_moveable,_what_type_of_switch": {
+      "mercury": "",
+      "micro-switch": ""
+    },
+    "location_of_hinges": {
+      "6\"": "",
+      "more_than_6\"_with_obstruction": "",
+      "other": ""
+    },
+    "counterweighted": {
+      "yes": "",
+      "no": ""
+    },
+    "does_hood_have_a_rolled_edge": {
+      "yes": "",
+      "no": "The hood does not have a rolled edge and must be repaired or replaced."
+    },
+    "if_moveable,_does_the_switch_work": {
+      "yes": "",
+      "no": "The switch on the bottom landing hood was inoperable at the time of inspection, it is required that it be repaired or replaced."
+    },
+    "condition_of_rolled_edge": {
+      "ok": "",
+      "damaged,_but_ok": "",
+      "replace_damaged": "The rolled edge is damaged and must be replaced",
+      "replace_worn": "The rolled edge is worn and must be replaced."
+    },
+    "bottom_hood_comments": ""
+  },
+  "belting": {
+    "belting_type": {
+      "pvc": "",
+      "cotton": "",
+      "rubber": ""
+    },
+    "belting_condition": {
+      "ok": "",
+      "cuts": "The belting has cuts and will require further monitoring.",
+      "frayed_edges": "The belting has frayed edges and will require further monitoring.",
+      "replace_damaged": "The belting is damaged and must be replaced."
+    },
+    "width": {
+      "12\"": "",
+      "14\"": "",
+      "16\"": ""
+    },
+    "color": {
+      "black": "",
+      "yellow": "",
+      "other": ""
+    },
+    "splice_type": {
+      "lap": "",
+      "butt": ""
+    },
+    "splice_length": "",
+    "number_of_bolts": "",
+    "missing_bolts": {
+      "yes": "{{missing_bolts_number}} splice bolts are missing and must be replaced.",
+      "no": ""
+    },
+    "missing_bolts_number": "",
+    "splice_bolt_condition": {
+      "ok": "",
+      "worn_but_ok": "The splice bolts are showing wear and will require further monitoring.",
+      "replace_damaged": "The splice bolts are damaged and must be replaced.",
+      "replace_worn": "The belt splice bolts are worn and must be replaced."
+    },
+    "instructions_stenciled_on_the_belt": {
+      "ok": "",
+      "non-compliant": "The instructions stenciled on the belt are non-compliant and must be re-stenciled",
+      "faded": "The stenciled instructions on the belt are faded and must be re-stenciled."
+    },
+    "directional_arrows_stenciled_on_the_belt": {
+      "yes": "",
+      "no": "There are no directional arrows stenciled on the belt and must be re-stenciled.",
+      "faded": "The stenciled directional arrows on the belt are faded and must be re-stenciled."
+    },
+    "compressive_flex_failure": {
+      "no": true,
+      "slight": "The belt has slight compressive flex failure and must be monitored.",
+      "extreme": "The belt compressive flex failure is extreme and the belt must be replaced."
+    },
+    "tension_of_belt": {
+      "good": "",
+      "needs_to_be_adjusted": "The belt tension needs to be adjusted."
+    },
+    "belt_condition_comments": ""
+  },
+  "handholds": {
+    "handhold_type": {
+      "l55": "",
+      "cup": "",
+      "open": ""
+    },
+    "handhold_color": {
+      "blue": "The handholds are required to be in high contrasting color to the belt. It is recommended painting the existing handholds safety yellow.",
+      "yellow": "",
+      "other": "The handholds are required to be in high contrasting color to the belt. It is recommended painting the existing handholds safety yellow."
+    },
+    "number_of_handholds": "",
+    "depth": {
+      "ok": "",
+      "non-compliant": "Depth is Non-Compliant. The handholds must be replaced."
+    },
+    "distance_from_belt": {
+      "ok": "",
+      "non-compliant": "Distance from Belt is Non-Compliant. The handholds must be replaced."
+    },
+    "distance_from_step": {
+      "ok": "",
+      "non-compliant": "Distance from Step is Non-Compliant. The steps and handholds must be relocated."
+    },
+    "punching_pattern": {
+      "8_7/8\"": "",
+      "9\"": "",
+      "other": ""
+    },
+    "condition_of_bolts": {
+      "ok": "",
+      "worn_but_ok": "The bolts on the handholds are showing wear and will require further monitoring.",
+      "replace_damaged": "The bolts on the handholds are damaged and must be replaced.",
+      "replace_worn": "The bolts on the handholds are worn and must be replaced."
+    },
+    "handhold_comments": ""
+  },
+  "steps": {
+    "step_description": "",
+    "#_of_steps": "",
+    "steps_missing": {
+      "yes": "{{missing_steps_number}} Steps were missing.",
+      "no": ""
+    },
+    "missing_steps_number": "",
+    "tread_color": {
+      "blue": "The step treads are required to be in high contrasting color to the belt. It is recommended painting the existing handholds safety yellow.",
+      "yellow": "",
+      "other": "The step treads are required to be in high contrasting color to the belt. It is recommended painting the existing steps safety yellow."
+    },
+    "#_of_step_bar_bolts": {
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": ""
+    },
+    "condition_of_elevator_bolts": {
+      "ok": "",
+      "worn_but_ok": "The step elevator bolts are showing wear and will require further monitoring.",
+      "replace_damaged": "The step elevator bolts are damaged and must be replaced.",
+      "replace_worn": "The step elevator bolts are worn and must be replaced."
+    },
+    "missing_bolts": {
+      "yes": "{{missing_step_bolts}} step bolts missing",
+      "no": ""
+    },
+    "missing_step_bolts": "",
+    "step_bar_bolt_hole_pattern": "",
+    "step_bar_to_step_bar_centers": "",
+    "step_roller_type": "",
+    "step_roller_condition": {
+      "ok": "",
+      "worn_but_ok": "The step rollers are showing wear and will require further monitoring",
+      "replace_damaged": "The step rollers are damaged and must be replaced.",
+      "replace_worn": "The step rollers are worn and must be replaced."
+    },
+    "step_rollers_bolts": {
+      "ok": "",
+      "worn_but_ok": "The step roller bolts are showing wear and will require further monitoring.",
+      "replace_damaged": "The step roller bolts are damaged and must be replaced.",
+      "replace_worn": "The step roller bolts are worn and must be replaced."
+    },
+    "step_tread_material": "",
+    "condition_of_step_treads": {
+      "ok": "",
+      "worn_but_ok": "The step treads are showing wear and will require further monitoring.",
+      "replace_damaged": "The step treads are damaged and must be replaced",
+      "replace_worn": "The step treads are worn and must be replaced."
+    },
+    "anti-skid": {
+      "yes": "",
+      "no": "No Anti Skid was found to be present at the time of the inspection. Anti-skid must be provided on all step surfaces."
+    },
+    "condition_of_anti-skid": {
+      "ok": "",
+      "worn_but_ok": "The anti skid is showing wear and will require further monitoring.",
+      "replace_damaged": " The anti skid for the steps is damaged and must be replaced.",
+      "replace_worn": "The anti-skid for the steps is worn and must be replaced."
+    },
+    "step_pins_and_x-y_washer": {
+      "yes": "",
+      "no": ""
+    },
+    "condition_of_step_pins_and_x-y_washer": {
+      "ok": "",
+      "worn_but_ok": "The step pins and X-Y washers are worn and will require further monitoring.",
+      "replace_damaged": "The step pins and X-Y washers are damaged and must be replaced.",
+      "replace_worn": "The step pins and X-Y washers are worn and must be replaced."
+    },
+    "step_brackets_condition": {
+      "ok": "",
+      "worn_but_ok": "The step brackets are showing wear and will require further monitoring.",
+      "replace_damaged": "The step brackets are damaged and must be replaced.",
+      "replace_worn": "The step brackets are worn and must be replaced."
+    },
+    "step_bars_condition": {
+      "ok": "",
+      "worn_but_ok": "The step bars are showing wear and will require further monitoring.",
+      "replace_damaged": "The step bars are damaged and must be replaced. ",
+      "replace_worn": "The step bars are worn and must be replaced."
+    },
+    "step_comments": ""
+  },
+  "intermediate_landing": {
+    "intermediatelandingnumber": null,
+    "authorizedpersonnelsign": {
+      "yes": "",
+      "no": "There is no 'Authorized Personnel Only' sign on landing {i}.",
+      "non-compliant": "The 'Authorized Personnel Only' sign on landing {i} is/are non-compliant and must be replaced."
+    },
+    "instructionsign": {
+      "yes": "",
+      "no": "There is no instruction sign on landing {i}.",
+      "non-compliant": "The instruction sign on landing {i} is/are non-compliant and must be replaced."
+    },
+    "flooropeningshape": {
+      "circular": "",
+      "square": "",
+      "compliant": "",
+      "non-compliant": "The mounting/dismounting platforms are non- compliant for shape, The openings for the mountain and dismounting platforms at the bottom of the manlift are required to be approximately circular in shape."
+    },
+    "distancefromflooropeningtoguardrailupsideback": {
+      "compliant": "",
+      "non-compliant": "When guard railing is more than 24\" away from the floor opening, it must be at least 42\" in height. When the guard rail is less than 24\" from the opening, it must be at least 66\" in height."
+    },
+    "distancefromflooropeningtoguardrailupsideleft": {
+      "compliant": "",
+      "non-compliant": "When guard railing is more than 24\" away from the floor opening, it must be at least 42\" in height. When the guard rail is less than 24\" from the opening, it must be at least 66\" in height."
+    },
+    "distancefromflooropeningtoguardrailupsideright": {
+      "compliant": "",
+      "non-compliant": "When guard railing is more than 24\" away from the floor opening, it must be at least 42\" in height. When the guard rail is less than 24\" from the opening, it must be at least 66\" in height."
+    },
+    "distancefromflooropeningtoguardraildownsideback": {
+      "compliant": "",
+      "non-compliant": "When guard railing is more than 24\" away from the floor opening, it must be at least 42\" in height. When the guard rail is less than 24\" from the opening, it must be at least 66\" in height."
+    },
+    "distancefromflooropeningtoguardraildownsideleft": {
+      "compliant": "",
+      "non-compliant": "When guard railing is more than 24\" away from the floor opening, it must be at least 42\" in height. When the guard rail is less than 24\" from the opening, it must be at least 66\" in height."
+    },
+    "distancefromflooropeningtoguardraildownsideright": {
+      "compliant": "",
+      "non-compliant": "When guard railing is more than 24\" away from the floor opening, it must be at least 42\" in height. When the guard rail is less than 24\" from the opening, it must be at least 66\" in height."
+    },
+    "maze": {
+      "yes": "",
+      "no": "A maze guardrail configuration or self-closing gate must be provided on all landings."
+    },
+    "selfclosinggates": {
+      "yes": "",
+      "no": "A maze guardrail configuration or self-closing gate must be provided on all landings.",
+      "na": ""
+    },
+    "aregatesselfclosing": {
+      "yes": "",
+      "no": "Outward opening self-closing gates are required."
+    },
+    "openoutward": {
+      "yes": "",
+      "no": "All manlift gates must open outward."
+    },
+    "aregatesmissing": {
+      "yes": "____ additional gates are missing on the bottom landing.",
+      "no": ""
+    },
+    "toeboard": {
+      "yes": "",
+      "no": "Toeboard was not observed during the time of inspection. It is required that a Toeboard be installed."
+    },
+    "addltoeboardrequired": {
+      "yes": "An Additional _____\" of Toeboard is required.",
+      "no": ""
+    },
+    "hoodcondition": {
+      "ok": "",
+      "replace_damaged": "Hood is damaged and must be replaced.",
+      "replace_worn": "Hood is worn and must be replaced."
+    },
+    "hoodclearance": {
+      "ok": "",
+      "non-compliant": "Hood clearance is non-compliant and must be replaced."
+    },
+    "angleofslope": {
+      "45": "",
+      "less_than_45": "New underfloor hood must be installed to meet requirements."
+    },
+    "doeshoodhaverollededge": {
+      "yes": "",
+      "no": "The hood does not have a rolled edge and must be repaired or replaced."
+    },
+    "conditionofrollededge": {
+      "ok": "",
+      "replace_damaged": "The Rolled Edge is damaged and must be replaced.",
+      "replace_worn": "Rolled Edge is worn and must be replaced."
+    },
+    "ladderrungs": {
+      "yes": "",
+      "no": "Ladder rungs at the top landing were not observed during the time of inspection. It is required that ladder rungs be installed."
+    },
+    "tensionofbelt": {
+      "ok": "",
+      "loose": "The belt tension is loose and must be adjusted.",
+      "tight": "The belt tension is tight and must be worked."
+    },
+    "conditionofropeguides": {
+      "ok": "",
+      "replace_damaged": "Rope Guides are damaged and must be replaced.",
+      "replace_worn": "The rope guides are worn and must be replaced."
+    },
+    "needaddlropeguides": {
+      "yes": "Rope guides must be furnished at approximately 15' intervals the entire run of the manlift to restrict lateral movement.",
+      "no": ""
+    },
+    "lighting": {
+      "ok": "",
+      "poor": "The lighting is poor on landing {i}. It is required that additional lighting be added."
+    },
+    "islandingclean": {
+      "yes": "",
+      "no": "Landing {i}  is not clean.  It is required that each landing remain clean and free of debris at all times."
+    },
+    "lateralbracing": {
+      "ok": "",
+      "needs_add'l": "Additional bracing must be installed."
+    },
+    "checkattachmentbolts": {
+      "yes": "",
+      "no": ""
+    },
+    "areattachmentsinplace": {
+      "yes": "",
+      "no": "Hardware attachments were not in place. It is required that hardware attachments be installed."
+    }
+  },
+  "top_landing": {
+    "intermediatelandingnumber": null,
+    "authorizedpersonnelsign": {
+      "yes": "",
+      "no": "There is no 'Authorized Personnel Only' sign on landing {i}.",
+      "non-compliant": "The 'Authorized Personnel Only' sign on landing {i} is/are non-compliant and must be replaced."
+    },
+    "instructionsign": {
+      "yes": "",
+      "no": "There is no instruction sign on landing {i}.",
+      "non-compliant": "The instruction sign on landing {i} is/are non-compliant and must be replaced."
+    },
+    "flooropeningshape": {
+      "circular": "",
+      "square": "",
+      "compliant": "",
+      "non-compliant": "The mounting/dismounting platforms are non- compliant for shape, The openings for the mountain and dismounting platforms at the bottom of the manlift are required to be approximately circular in shape."
+    },
+    "distancefromflooropeningtoguardrailupsideback": {
+      "compliant": "",
+      "non-compliant": "When guard railing is more than 24\" away from the floor opening, it must be at least 42\" in height. When the guard rail is less than 24\" from the opening, it must be at least 66\" in height."
+    },
+    "distancefromflooropeningtoguardrailupsideleft": {
+      "compliant": "",
+      "non-compliant": "When guard railing is more than 24\" away from the floor opening, it must be at least 42\" in height. When the guard rail is less than 24\" from the opening, it must be at least 66\" in height."
+    },
+    "distancefromflooropeningtoguardrailupsideright": {
+      "compliant": "",
+      "non-compliant": "When guard railing is more than 24\" away from the floor opening, it must be at least 42\" in height. When the guard rail is less than 24\" from the opening, it must be at least 66\" in height."
+    },
+    "distancefromflooropeningtoguardraildownsideback": {
+      "compliant": "",
+      "non-compliant": "When guard railing is more than 24\" away from the floor opening, it must be at least 42\" in height. When the guard rail is less than 24\" from the opening, it must be at least 66\" in height."
+    },
+    "distancefromflooropeningtoguardraildownsideleft": {
+      "compliant": "",
+      "non-compliant": "When guard railing is more than 24\" away from the floor opening, it must be at least 42\" in height. When the guard rail is less than 24\" from the opening, it must be at least 66\" in height."
+    },
+    "distancefromflooropeningtoguardraildownsideright": {
+      "compliant": "",
+      "non-compliant": "When guard railing is more than 24\" away from the floor opening, it must be at least 42\" in height. When the guard rail is less than 24\" from the opening, it must be at least 66\" in height."
+    },
+    "maze": {
+      "yes": "",
+      "no": "A maze guardrail configuration or self-closing gate must be provided on all landings."
+    },
+    "selfclosinggates": {
+      "yes": "",
+      "no": "A maze guardrail configuration or self-closing gate must be provided on all landings.",
+      "na": ""
+    },
+    "aregatesselfclosing": {
+      "yes": "",
+      "no": "Outward opening self-closing gates are required."
+    },
+    "openoutward": {
+      "yes": "",
+      "no": "All manlift gates must open outward."
+    },
+    "aregatesmissing": {
+      "yes": "____ additional gates are missing on the bottom landing.",
+      "no": ""
+    },
+    "toeboard": {
+      "yes": "",
+      "no": "Toeboard was not observed during the time of inspection. It is required that a Toeboard be installed."
+    },
+    "addltoeboardrequired": {
+      "yes": "An Additional _____\" of Toeboard is required.",
+      "no": ""
+    },
+    "hoodcondition": {
+      "ok": "",
+      "replace_damaged": "Hood is damaged and must be replaced.",
+      "replace_worn": "Hood is worn and must be replaced."
+    },
+    "hoodclearance": {
+      "ok": "",
+      "non-compliant": "Hood clearance is non-compliant and must be replaced."
+    },
+    "angleofslope": {
+      "45": "",
+      "less_than_45": "New underfloor hood must be installed to meet requirements."
+    },
+    "doeshoodhaverollededge": {
+      "yes": "",
+      "no": "The hood does not have a rolled edge and must be repaired or replaced."
+    },
+    "conditionofrollededge": {
+      "ok": "",
+      "replace_damaged": "The Rolled Edge is damaged and must be replaced.",
+      "replace_worn": "Rolled Edge is worn and must be replaced."
+    },
+    "ladderrungs": {
+      "yes": "",
+      "no": "Ladder rungs at the top landing were not observed during the time of inspection. It is required that ladder rungs be installed."
+    },
+    "tensionofbelt": {
+      "ok": "",
+      "loose": "The belt tension is loose and must be adjusted.",
+      "tight": "The belt tension is tight and must be worked."
+    },
+    "conditionofropeguides": {
+      "ok": "",
+      "replace_damaged": "Rope Guides are damaged and must be replaced.",
+      "replace_worn": "The rope guides are worn and must be replaced."
+    },
+    "needaddlropeguides": {
+      "yes": "Rope guides must be furnished at approximately 15' intervals the entire run of the manlift to restrict lateral movement.",
+      "no": ""
+    },
+    "lighting": {
+      "ok": "",
+      "poor": "The lighting is poor on landing {i}. It is required that additional lighting be added."
+    },
+    "islandingclean": {
+      "yes": "",
+      "no": "Landing {i}  is not clean.  It is required that each landing remain clean and free of debris at all times."
+    },
+    "lateralbracing": {
+      "ok": "",
+      "needs_add'l": "Additional bracing must be installed."
+    },
+    "checkattachmentbolts": {
+      "yes": "",
+      "no": ""
+    },
+    "areattachmentsinplace": {
+      "yes": "",
+      "no": "Hardware attachments were not in place. It is required that hardware attachments be installed."
+    }
+  },
+  "driveassembly": {
+    "headcircletype": {
+      "cast": "",
+      "bands": "",
+      "none": ""
+    },
+    "circlecondition": {
+      "ok": "",
+      "wornbutok": "The head circles are showing wear and will require further monitoring",
+      "replacedamaged": "The head circles are damaged and must be replaced",
+      "replaceworn": "The head circles are worn and must be replaced.",
+      "no": ""
+    },
+    "belttracking": {
+      "ok": "",
+      "off": "The belt tracking is off",
+      "uparrow": "",
+      "downarrow": "",
+      "rightarrow": "",
+      "leftarrow": "",
+      "measurement": ""
+    },
+    "laggingcondition": {
+      "ok": "",
+      "wornbutok": "The lagging is showing wear and will require further monitoring.",
+      "replacedamaged": "The lagging is damaged and must be replaced",
+      "replaceworn": "The lagging is worn and must be replaced."
+    },
+    "fasteningmethod": {
+      "bolt": "",
+      "drivescrews": ""
+    },
+    "headshaftbearing": {
+      "number": 0,
+      "type": {
+        "pillowblock": "",
+        "highbox": ""
+      },
+      "size": ""
+    },
+    "bearingcondition": {
+      "ok": "",
+      "wornbutok": "The head shaft bearings are showing wear and will require further monitoring",
+      "dry": "The head shaft is dry and needs to be lubricated.",
+      "replacedamaged": "Head Shaft Bearings are damaged and must be replaced.",
+      "replaceworn": "Head Shaft Bearings are worn and must be replaced."
+    },
+    "headshaftdiameter": "",
+    "headshaftlength": "",
+    "key": {
+      "yes": "",
+      "no": ""
+    },
+    "bushings": {
+      "yes": "",
+      "no": ""
+    },
+    "setscrews": {
+      "yes": "",
+      "no": ""
+    },
+    "shaftcondition": {
+      "ok": "",
+      "wornbutok": "The head shaft is showing wear and will require further monitoring.",
+      "replacedamaged": "The Head Shaft is damaged and must be replaced.",
+      "replaceworn": "The Head Shaft is worn and must be replaced."
+    },
+    "headpulleytype": {
+      "spoked": "",
+      "solid": ""
+    },
+    "pulleysize": {
+      "20inch": "",
+      "21inch": ""
+    },
+    "pulleycondition": {
+      "ok": "",
+      "wornbutok": "The head pulley is showing wear and will require further monitoring.",
+      "replacedamaged": "Pulley is damaged and must be replaced.",
+      "replaceworn": "Pulley is worn and must be replaced."
+    },
+    "isheadpulleycentered": {
+      "yes": "",
+      "no": "The Head Pulley was not centered at time of the inspection. It is required that the Head Pulley be centered."
+    },
+    "isheadpulleylevel": {
+      "yes": "",
+      "no": "The head pulley was not level at the time of inspection. It is recommended that the head pulley be properly leveled."
+    },
+    "couplertype": {
+      "oldstyle": "",
+      "flender": "",
+      "highspeed": "",
+      "davidbrown": "",
+      "other": ""
+    },
+    "couplercondition": {
+      "ok": "",
+      "worn": "The coupler is showing wear and will require further monitoring.",
+      "replaceinserts": "The coupler inserts are worn and must be replaced.",
+      "replacedamaged": "The coupler is damaged and must be replaced.",
+      "replaceworn": "The coupler is worn and must be replaced."
+    },
+    "gearboxtype": {
+      "reliance": "",
+      "dodge": "",
+      "falk": "",
+      "ehrsam": "",
+      "other": ""
+    },
+    "gearboxcondition": {
+      "ok": "",
+      "worn": "The gearbox is showing wear and will require further monitoring.",
+      "sealleaks": "The gearbox seals were observed to be leaking at the time of the inspection and must be repaired.",
+      "replacedamaged": "The gearbox is damaged and must be replaced.",
+      "replaceworn": "The gearbox is worn and must be repaired or replaced."
+    },
+    "motortype": {
+      "reliance": "",
+      "dodge": "",
+      "usmotors": "",
+      "ge": "",
+      "other": ""
+    },
+    "motorid": "",
+    "hp": "",
+    "voltage": {
+      "208": "",
+      "230/240": "",
+      "460/480": ""
+    },
+    "braketype": {
+      "reliance": "",
+      "dodge": "",
+      "dings": "",
+      "sterns": "",
+      "bandclamptype": "",
+      "other": ""
+    },
+    "brakeid": "",
+    "ftlbs": "",
+    "isdriveskip": {
+      "yes": "There was a skip in the drive due to {{skipReason}}, it is recommended that the coupler, washer and set screws be replaced.",
+      "no": ""
+    },
+    "skipreason": {
+      "couplerplay": "A skip in the drive was observed at the time of inspection, due to play in the coupler.",
+      "worngearbox": "A skip in the drive was observed at the time of inspection due the gearbox being worn.",
+      "keyway": "A skip in the drive was observed at the time of inspection due to key way wear.",
+      "loosesetscrews": "A skip in the drive was observed at the time of inspection due to loose set screws in the coupler."
+    },
+    "saftstopbrake": {
+      "yes": "",
+      "no": "Saf-T-Stop Brake was not observed at the time of inspection."
+    },
+    "saftstoplinkage": {
+      "ok": "",
+      "replacedamaged": "The Saf-T-Stop Linkage is damaged and must be replaced.",
+      "replaceworn": "The Saf-T-Stop linkage is worn and must be replaced."
+    },
+    "overallsaftstopcondition": {
+      "ok": "",
+      "monitor": "The Saf-T-Stop Brake needs further monitoring.",
+      "replacedamage": "The Saf-T-Stop Brake is damaged and must be replaced.",
+      "replaceworn": "The Saf-T-Stop Brake is worn and must be replaced."
+    },
+    "drivesupporttype": {
+      "aframe": "",
+      "beam": "",
+      "other": ""
+    },
+    "drivecomments": "",
+    "toplandingsafeties": {
+      "type1": {
+        "knockoutbar": "",
+        "photoeye": "",
+        "condition": {
+          "ok": "",
+          "inoperative": "Top landing overhead safety is inoperative and must be repaired or replaced.",
+          "replaceswitch": "The top overhead safety switch must be replaced.",
+          "replacewholeassembly": "The whole assembly of the top landing safety must be replaced."
+        }
+      },
+      "type2": {
+        "photoeye": "",
+        "intrack": "",
+        "splitrail": "",
+        "location": {
+          "right": "",
+          "left": ""
+        },
+        "condition": {
+          "ok": "",
+          "inoperative": "The top landing safety is inoperable and must be repaired or replaced.",
+          "replaceswitch": "The top landing safety switch must be replaced.",
+          "replacewholeassembly": "The whole assembly of the top landing must be replaced."
+        }
+      },
+      "type3": {
+        "photoeye": "",
+        "intrack": "",
+        "splitrail": "",
+        "location": {
+          "right": "",
+          "left": ""
+        },
+        "condition": {
+          "ok": "",
+          "inoperative": "Top landing safety is inoperable and must be repaired or replaced.",
+          "replaceswitch": "Top in-rail limit switches must be replaced.",
+          "replacewholeassembly": "The whole assembly of top landing safety needs to be replaced."
+        }
+      },
+      "type4": {
+        "photoeye": "",
+        "intrack": "",
+        "splitrail": "",
+        "location": {
+          "right": "",
+          "left": ""
+        },
+        "condition": {
+          "ok": "",
+          "inoperative": "Top landing safety is inoperable and must be repaired or replaced.",
+          "replaceswitch": "Top landing safety switch must be replaced.",
+          "replacewholeassembly": "The whole assembly of top landing safety must be replaced."
+        }
+      },
+      "topreset": {
+        "yes": "",
+        "no": "The Top Reset was not observed at the time of inspection. It is required that a Top Reset be installed",
+        "location": {
+          "good": "",
+          "relocated": "The top reset is non-compliant and must be relocated."
+        }
+      },
+      "compliant": {
+        "yes": "",
+        "no": "The top reset button is non-compliant and must be relocated."
+      },
+      "topresetcondition": {
+        "ok": "",
+        "inoperative": "Top Reset is inoperable and must be replaced."
+      },
+      "safetydeviceswitches": {
+        "manual": "",
+        "selfresetting": "",
+        "both": ""
+      },
+      "hasalertingsystem": {
+        "yes": "",
+        "no": "No Visual and/or Audible Alerting System was found to be present at the time of inspection. It is required that a Visual and/or Audible Alerting System be installed."
+      },
+      "topsafetiescomments": ""
+    }
+  },
+  "electrical": {
+    "nematype": {
+      "4": "",
+      "7": "",
+      "9": ""
+    },
+    "voltage": {
+      "208": "",
+      "230/240": "",
+      "460/480": ""
+    },
+    "hascontrolpanel": {
+      "yes": "",
+      "no": "A Manlift Control Panel was not observed at the time of inspection. It is recommended a Manlift Control Panel be installed.",
+      "location": {
+        "bymanlift": "",
+        "inmccroom": ""
+      }
+    },
+    "individualcontrollocation": {
+      "bymanlift": "",
+      "inmccroom": ""
+    },
+    "hasstarter": {
+      "yes": "",
+      "no": " A starter was not observed at the time of inspection. It is required that a Starter be installed."
+    },
+    "hascontrolrelay": {
+      "yes": "",
+      "no": "A control relay was not observed at the time of inspection. It is required that a control relay be installed."
+    },
+    "hasphasereversalrelay": {
+      "yes": "",
+      "no": "The phase reversal relay was not observed at the time of inspection. It is required that a phase reversal relay be installed."
+    },
+    "has3polecontactor": {
+      "yes": "",
+      "no": "A 3-pole contactor was not observed at the time of inspection. It is required that a 3-pole contactor be installed."
+    }
+  },
+  "loadtest": {
+    "testresult": {
+      "pass": "The unit did pass a full load test.",
+      "fail": "This unit did not pass a full load test."
+    },
+    "weightused": "",
+    "stoppingdistance": "",
+    "beltmanliftspeed": ""
+  }
+}

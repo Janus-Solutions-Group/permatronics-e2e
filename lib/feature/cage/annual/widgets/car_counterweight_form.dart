@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manlift_app/feature/cage/widgets/section_title.dart';
+import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
@@ -23,77 +23,67 @@ class _AnnualCageCarCounterWeightFormState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          buildSectionTitle('CAR & COUNTERWEIGHT FASTENING'),
+          FormHeaderTitle(title: "CAR & COUNTERWEIGHT FASTENING"),
           CustomRadioTile(
             title: 'Hoist Cable Fasteners to Car:',
             values: const [
               "Poured Babbit",
               "Cable Clamps",
               "Fistgrips",
-              "Widget Socket",
+              "Wedge Socket",
               "Other"
             ],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
             isTextField: true,
             fieldTitle: "Other",
           ),
           CustomRadioTile(
             title: 'Number of Fasteners Per Cable::',
             values: const ["1", "2", "3"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
+          ),
+          CustomRadioTile(
+            title: 'Hoist Cable Fasteners to CW:',
+            values: const [
+              "Poured Babbit",
+              "Cable Clamps",
+              "Fistgrips",
+              "Wedge Socket",
+              "Other"
+            ],
+            onChangeValue: (value) {},
+            isTextField: true,
+            fieldTitle: "Other",
+          ),
+          CustomRadioTile(
+            title: 'Number of Fasteners Per Cable::',
+            values: const ["1", "2", "3"],
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Hoist Cable Number:',
             values: const ["2", "3"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Size',
             values: ["3/8”", "1/2”"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Condition',
             values: ["OK", "Replace", "Monitor"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Governor Cable Size:',
             values: ["3/8”", "1/2”"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Condition',
             values: ["OK", "Replace", "Monitor"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Governor Cable Fasteners:',
@@ -101,39 +91,27 @@ class _AnnualCageCarCounterWeightFormState
               "Poured Babbit",
               "Cable Clamps",
               "Fistgrips",
-              "Widget Socket",
+              "Wedge Socket",
               "Other"
             ],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
             isTextField: true,
             fieldTitle: "Other",
           ),
           CustomRadioTile(
-            title: 'Governor Releas Type:',
+            title: 'Governor Release Type:',
             values: const [
               "Ball & Socket",
               "T-Arm",
               "Fistgrips",
               "Pull Arm",
             ],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Location',
             values: const ['Left', 'Right'],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

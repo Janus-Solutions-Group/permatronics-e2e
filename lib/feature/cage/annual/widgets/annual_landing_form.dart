@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:manlift_app/feature/cage/annual/model/annnual_landing.dart';
 
-import 'package:manlift_app/feature/cage/widgets/section_title.dart';
+import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/custom_title.dart';
-import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
 class AnnualLandingForm extends StatefulWidget {
-  const AnnualLandingForm({super.key, required this.pageController});
+  const AnnualLandingForm(
+      {super.key, required this.model, required this.onSubmit});
 
-  final PageController pageController;
+  final CageAnnualLanding model;
+  final ValueChanged<CageAnnualLanding> onSubmit;
 
   @override
   State<AnnualLandingForm> createState() => _AnnualLandingFormState();
 }
 
 class _AnnualLandingFormState extends State<AnnualLandingForm> {
-  String? cleanVal;
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -25,121 +26,129 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          buildSectionTitle('Landing'),
+          const FormHeaderTitle(title: "LANDING"),
           CustomRadioTile(
             title: 'Hoistway Controls',
             values: const ["OK", "Inoperable", "None"],
+            type: widget.model.hoistwayControls,
             onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
+              widget.model.hoistwayControls = value;
             },
           ),
-          CustomTextField(title: "Hoistway Door"),
+          CustomTextField(
+            title: "Hoistway Door",
+            controller: widget.model.hoistwayDoor,
+          ),
           CustomRadioTile(
             title: 'Hoistway Door Unlocking Device:',
             values: const ["Yes", "No"],
+            type: widget.model.hoistwayDoorUnlockingDevice,
             onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
+              widget.model.hoistwayDoorUnlockingDevice = value;
             },
           ),
-          CustomTextField(title: "Hoistway Door Interlock Type:"),
+          CustomTextField(
+            title: "Hoistway Door Interlock Type:",
+            controller: widget.model.hoistwayDoorInterlockType,
+          ),
           CustomRadioTile(
             title: 'Location:',
+            type: widget.model.hoistwayDoorInterlockLocation,
             values: const ["Left", "Right ", "Top", "Middle"],
             isTextField: true,
             fieldTitle: 'Other',
             onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
+              widget.model.hoistwayDoorInterlockLocation = value;
             },
           ),
           CustomRadioTile(
             title: 'Hoistway Door Interlock Condition:',
             values: const ["OK", "Replace ", "Other"],
+            type: widget.model.hoistwayDoorInterlockCondition,
             isTextField: true,
             fieldTitle: 'Other',
             onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
+              widget.model.hoistwayDoorInterlockCondition = value;
             },
           ),
-          CustomTextField(title: "Hoistway Door Electric Contact Type:"),
+          CustomTextField(
+            title: "Hoistway Door Electric Contact Type:",
+            controller: widget.model.electricContactType,
+          ),
           CustomRadioTile(
             title: 'Door Electric Contact Location:',
             values: const ["Left", "Right ", "Top", "Middle"],
-            isTextField: true,
-            fieldTitle: 'Other',
+            type: widget.model.hoistwayDoorElectricContactLocation,
             onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
+              widget.model.hoistwayDoorElectricContactLocation = value;
             },
           ),
           CustomRadioTile(
             title: 'Hoistway Door Electric Contact Condition:',
             values: const ["OK", "Replace", "Other"],
+            type: widget.model.hoistwayDoorElectricContactCondition,
             onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
+              widget.model.hoistwayDoorElectricContactCondition = value;
             },
           ),
           CustomRadioTile(
             title: 'Hoistway Door Hinge:',
             values: const ["Left", "Right"],
+            type: widget.model.hoistwayDoorHinge,
             onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
+              widget.model.hoistwayDoorHinge = value;
             },
           ),
           CustomRadioTile(
             title: 'Hoistway Door Self Closer:',
             values: const ["Yes", "No", "Inoperable", "N/A"],
+            type: widget.model.hoistwayDoorSelfCloser,
             onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
+              widget.model.hoistwayDoorSelfCloser = value;
             },
           ),
           CustomRadioTile(
             title: 'Hoistway Door Signs:',
             values: const ["Yes", "No"],
+            type: widget.model.hoistwayDoorSigns,
             onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
+              widget.model.hoistwayDoorSigns = value;
             },
           ),
           const CustomTitle(title: "Enclosure:"),
           Row(
             children: [
-              Expanded(child: CustomTextField(title: "Height")),
-              Expanded(child: CustomTextField(title: "Width")),
-              Expanded(child: CustomTextField(title: "Depth")),
+              Expanded(
+                  child: CustomTextField(
+                title: "Height",
+                controller: widget.model.enclosureHeight,
+              )),
+              Expanded(
+                  child: CustomTextField(
+                title: "Width",
+                controller: widget.model.enclosureWidth,
+              )),
+              Expanded(
+                  child: CustomTextField(
+                title: "Depth",
+                controller: widget.model.enclosureWidth,
+              )),
             ],
           ),
           CustomRadioTile(
             title: 'Enclosure Material:',
             values: const ["Expanded Metal", "Solid Panels", "Concrete"],
+            type: widget.model.enclosureMaterial,
             onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
+              widget.model.enclosureMaterial = value;
             },
           ),
           CustomRadioTile(
             title: 'Enclosure Panels:',
             values: const ["2", "3", "4", "Other"],
+            type: widget.model.enclosurePanels,
             onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
+              widget.model.enclosurePanels = value;
             },
             isTextField: true,
             fieldTitle: "Other",
@@ -147,35 +156,29 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
           CustomRadioTile(
             title: 'Landing Zone Switch:',
             values: const ["Yes", "No", "N/A"],
+            type: widget.model.landingZoneSwitch,
             onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
+              widget.model.landingZoneSwitch = value;
             },
           ),
           CustomRadioTile(
             title: 'Condition',
             values: const ["Ok", "Inoperable"],
+            type: widget.model.landingZoneSwitchCondition,
             onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
+              widget.model.landingZoneSwitchCondition = value;
             },
           ),
-          CustomTextField(title: "Landing Comments"),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              PageNavigationButton(
-                pageController: widget.pageController,
-                right: false,
-              ),
-              PageNavigationButton(
-                pageController: widget.pageController,
-                right: true,
-              ),
-            ],
-          )
+          CustomTextField(
+            title: "Landing Comments",
+            controller: widget.model.landingComments,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Save'),
+          ),
         ],
       ),
     );

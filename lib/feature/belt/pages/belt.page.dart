@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:manlift_app/feature/belt/quaterly/pages/belt_quaterly.dart';
+import 'package:manlift_app/feature/belt/annual/pages/belt_annual.dart';
+import 'package:manlift_app/feature/belt/quarterly/pages/belt_quaterly.dart';
 import 'package:manlift_app/util/navigate.dart';
 
 class BeltPage extends StatelessWidget {
   BeltPage({super.key});
 
-  final List<String> type = ["Quaterly", "Monthly", "Yearly"];
+  final List<String> type = ["Monthly", "Quarterly", "Yearly"];
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,18 @@ class BeltPage extends StatelessWidget {
                   mainAxisExtent: MediaQuery.of(context).size.height * 0.25,
                 ),
                 itemBuilder: (context, index) => GestureDetector(
-                  onTap: () => moveTo(context, BeltQuaterlyPage()),
+                  onTap: () {
+                    if (index == 0) {
+                      moveTo(context,
+                          BeltQuaterlyPage(title: "Belt Monthly Form"));
+                    } else if (index == 1) {
+                      moveTo(context,
+                          BeltQuaterlyPage(title: "Belt Quaterly Form"));
+                    } else if (index == 2) {
+                      moveTo(
+                          context, BeltAnnualPage(title: "Belt Yearly Form"));
+                    }
+                  },
                   child: Card(
                     child: Center(
                         child: Text(

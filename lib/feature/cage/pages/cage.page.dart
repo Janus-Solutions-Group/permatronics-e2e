@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:manlift_app/feature/belt/quaterly/pages/belt_quaterly.dart';
-import 'package:manlift_app/feature/cage/quaterly/cage_quaterly.dart';
+import 'package:manlift_app/feature/cage/quarterly/cage_quaterly.dart';
 import 'package:manlift_app/feature/cage/annual/pages/cage_annual.dart';
 import 'package:manlift_app/util/navigate.dart';
 
 class CagePage extends StatelessWidget {
   CagePage({super.key});
 
-  final List<String> type = ["Quaterly", "Monthly", "Yearly"];
+  final List<String> type = ["Monthly", "Quarterly", "Yearly"];
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +29,12 @@ class CagePage extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) => GestureDetector(
                   onTap: () {
-                    if (index == 0 || index == 1) {
-                      moveTo(context, CageQuaterlyPage());
+                    if (index == 0) {
+                      moveTo(context,
+                          CageQuaterlyPage(title: "Cage Monthly Form"));
+                    } else if (index == 1) {
+                      moveTo(context,
+                          CageQuaterlyPage(title: "Cage Quaterly Form"));
                     } else if (index == 2) {
                       moveTo(context, CageAnnualyPage());
                     }

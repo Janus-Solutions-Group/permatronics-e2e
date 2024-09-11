@@ -1,0 +1,110 @@
+import 'package:flutter/material.dart';
+import 'package:manlift_app/feature/common/widgets/form_header.dart';
+import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
+import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
+import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
+
+class BottomLandingHood extends StatelessWidget {
+  const BottomLandingHood({super.key, required this.pageController});
+
+  final PageController pageController;
+
+  @override
+  Widget build(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16.0),
+      child: Form(
+        key: formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            FormHeaderTitle(title: "BOTTOM LANDING HOOD"),
+            CustomRadioTile(
+              title: 'Type of Hood',
+              values: const [
+                "Stationary",
+                "Moveable",
+                "Moverable Mini",
+                'None'
+              ],
+              onChangeValue: (value) {},
+            ),
+            CustomRadioTile(
+              title: 'Hood Condition',
+              values: const [
+                "OK",
+                "Damaged, but OK",
+                "Replace Damaged",
+                'Replace Worn'
+              ],
+              onChangeValue: (value) {},
+            ),
+            CustomRadioTile(
+              title: 'Hood Clearance:',
+              values: const ['(Minimum 7’6”)', 'Compliant', 'Non-Compliant'],
+              onChangeValue: (value) {},
+            ),
+            CustomTextField(
+                title: 'If Stationary, Distance from Face of Belt:'),
+            CustomTextField(title: 'Angle of Slope:'),
+            CustomRadioTile(
+              title: 'Shape',
+              values: const ['Circular', 'Square'],
+              onChangeValue: (value) {},
+            ),
+            CustomRadioTile(
+              title: 'If Moveable, What Type of Switch:',
+              values: const ['Yes', 'No'],
+              onChangeValue: (value) {},
+            ),
+            CustomRadioTile(
+              title: 'Location of Hinges',
+              values: const ['6”', 'More than 6” with obstruction', 'Other'],
+              onChangeValue: (value) {},
+            ),
+            CustomRadioTile(
+              title: 'Counterweighted',
+              values: const ['Yes', 'No'],
+              onChangeValue: (value) {},
+            ),
+            CustomRadioTile(
+              title: 'Does Hood have a Rolled Edge',
+              values: const ['Yes', 'No'],
+              onChangeValue: (value) {},
+            ),
+            CustomRadioTile(
+              title: 'If moveable, does the Switch Work:',
+              values: const ['Yes', 'No'],
+              onChangeValue: (value) {},
+            ),
+            CustomRadioTile(
+              title: 'Condition of Rolled Edge:',
+              values: const [
+                'OK',
+                'Damaged, but OK',
+                'Replaced Damaged',
+                'Replace Worn'
+              ],
+              onChangeValue: (value) {},
+            ),
+            CustomTextField(title: 'Bottom Hood Comments:'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                PageNavigationButton(
+                  pageController: pageController,
+                  right: false,
+                ),
+                PageNavigationButton(
+                  pageController: pageController,
+                  right: true,
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

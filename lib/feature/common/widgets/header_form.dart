@@ -2,6 +2,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:manlift_app/data/models/customer.dart';
+import 'package:manlift_app/data/models/new_units.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/custom_title.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
@@ -18,22 +19,39 @@ class HeaderForm extends StatefulWidget {
 class _HeaderFormState extends State<HeaderForm> {
   final _formKey = GlobalKey<FormState>();
   List<CustomerDetail> customer = [];
+  List<NewUnitsModel> units = [];
+  List<NewUnitsModel> filteredUnits = [];
 
   @override
   void initState() {
     super.initState();
     getLocalCustomers();
+    getLocalUnits();
   }
 
   Future<List<CustomerDetail>> getLocalCustomers() async {
     var input = await rootBundle.loadString('assets/customers.json');
-    customer = customerDetailFromJson(input);
-    setState(() {});
+    if (mounted) {
+      customer = customerDetailFromJson(input);
+      setState(() {});
+    }
     return customer;
+  }
+
+  Future<List<NewUnitsModel>> getLocalUnits() async {
+    var input = await rootBundle.loadString('assets/test.json');
+    if (mounted) {
+      units = newUnitsModelFromJson(input);
+      filteredUnits = units;
+      setState(() {});
+    }
+
+    return units;
   }
 
   DateTime? _selectedDate;
   CustomerDetail? selectedCustomer;
+  NewUnitsModel? selectedUnit;
 
   List<TextEditingController> fieldControllers =
       List.generate(18, (_) => TextEditingController());
@@ -91,6 +109,13 @@ class _HeaderFormState extends State<HeaderForm> {
                 popupProps: const PopupProps.menu(showSearchBox: true),
                 onChanged: (val) {
                   setState(() {
+                    selectedUnit = null;
+                    filteredUnits = units
+                        .where((e) => e.customerName != null
+                            ? e.customerName!.id == val!.id
+                            : false)
+                        .toList();
+
                     selectedCustomer = val;
                   });
                 },
@@ -99,14 +124,35 @@ class _HeaderFormState extends State<HeaderForm> {
                       InputDecoration(hintText: 'Select Customer'),
                 ),
               ),
-              CustomTextField(
-                title: "Customer#",
-                controller: fieldControllers[0],
+              // CustomTextField(
+              //   title: "Customer#",
+              //   controller: fieldControllers[0],
+              // ),
+              const SizedBox(height: 15),
+              const Text(
+                "Unit",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
-              CustomTextField(
-                title: "Unit#",
-                controller: fieldControllers[1],
+
+              DropdownSearch<NewUnitsModel>(
+                items: filteredUnits,
+                itemAsString: (item) => item.name!,
+                selectedItem: selectedUnit,
+                popupProps: const PopupProps.menu(showSearchBox: true),
+                onChanged: (val) {
+                  setState(() {
+                    selectedUnit = val;
+                  });
+                },
+                dropdownDecoratorProps: const DropDownDecoratorProps(
+                  dropdownSearchDecoration:
+                      InputDecoration(hintText: 'Select Unit'),
+                ),
               ),
+              // CustomTextField(
+              //   title: "Unit#",
+              //   controller: fieldControllers[1],
+              // ),
               CustomTextField(
                 title: "Manufacturer",
                 controller: fieldControllers[2],

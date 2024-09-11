@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manlift_app/feature/cage/widgets/section_title.dart';
+import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
@@ -16,7 +16,7 @@ class AnnualCageElectricalControlForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          buildSectionTitle('Electrical Control Panel'),
+          FormHeaderTitle(title: 'Electrical Control Panel'),
           CustomRadioTile(
             title: 'NEMA',
             values: ["4-Dust Tight", "9-Explosive Dust"],
@@ -29,7 +29,7 @@ class AnnualCageElectricalControlForm extends StatelessWidget {
           ),
           CustomRadioTile(
             title: 'Controls',
-            values: ["Panel", "Individual Controls", "440"],
+            values: ["Panel", "Individual Controls"],
             onChangeValue: (val) {},
           ),
           CustomRadioTile(

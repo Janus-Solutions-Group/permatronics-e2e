@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manlift_app/feature/cage/widgets/section_title.dart';
+import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
@@ -16,7 +16,7 @@ class AnnualCageLoadTests extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          buildSectionTitle('Load Tests'),
+          FormHeaderTitle(title: 'Load Tests'),
           CustomRadioTile(
             title: 'Pounds Used During Tests:',
             values: ["300", "500", "650", "1000", "Other"],
@@ -33,6 +33,12 @@ class AnnualCageLoadTests extends StatelessWidget {
             children: [
               Expanded(child: CustomTextField(title: 'Speed, Empty Up:')),
               Expanded(child: CustomTextField(title: 'Loaded Up:')),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(child: CustomTextField(title: 'Speed, Empty DN:')),
+              Expanded(child: CustomTextField(title: 'Loaded DN:')),
             ],
           ),
           CustomTextField(title: 'Governor Tripped @:'),

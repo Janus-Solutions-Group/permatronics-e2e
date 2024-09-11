@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
-      {super.key, required this.title, this.keyboard, this.controller});
+      {super.key,
+      required this.title,
+      this.keyboard,
+      this.controller,
+      this.subtitle});
 
   final String title;
+  final String? subtitle;
   final TextInputType? keyboard;
   final TextEditingController? controller;
 
@@ -24,6 +29,11 @@ class CustomTextField extends StatelessWidget {
             maxLines: null,
             keyboardType: keyboard,
           ),
+          if (subtitle != null)
+            Text(
+              subtitle!,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            ),
         ],
       ),
     );

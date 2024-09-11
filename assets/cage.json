@@ -1,0 +1,661 @@
+{
+  "bottom_platform": {
+    "yes": "",
+    "no": "A defined pit or mounting platform is required at the bottom of the hoistway for locating elevator equipment.",
+    "na": ""
+  },
+  "pit": {
+    "yes": "",
+    "no": "A defined pit or mounting platform is required at the bottom of the hoistway for locating elevator equipment.",
+    "na": ""
+  },
+  "clean": {
+    "yes": "",
+    "no": "The pit area is not clean. It is required that the pit be clean and free of debris at all times."
+  },
+  "pit_switch": {
+    "yes": "",
+    "no": "A pit switch is required in the pit and must be mounted in a specific location.",
+    "inoperable": "The switch is inoperable and must be repaired or replaced."
+  },
+  "switch_location": {
+    "ok": "",
+    "relocate": "The pit disconnect switch needs to be relocated to a specific location to be code compliant."
+  },
+  "pit_light": {
+    "yes": "",
+    "no": "A pit light is required in the pit and must be mounted in a specific location.",
+    "inoperable": "The pit light is inoperable and must be repaired or replaced."
+  },
+  "pit_light_switch": {
+    "yes": "",
+    "no": "The unit does not have the required pit light switch.",
+    "inoperable": "The pit light switch is inoperable and must be repaired or replaced."
+  },
+  "car_buffers": {
+    "yes": "",
+    "no": "There are no car buffers as required."
+  },
+  "runby_car_buffers": {
+    "compliant": "",
+    "non_compliant": "Currently the car runby does not meet minimum requirements. Corrective measures must be completed to obtain the required runby."
+  },
+  "counterweight_buffers": {
+    "yes": "",
+    "no": "The car and counterweight buffer springs are required in the pit."
+  },
+  "runby_counterweight_buffers": {
+    "compliant": "",
+    "non_compliant": "Currently the car runby does not meet minimum requirements. Corrective measures must be completed to obtain the required runby."
+  },
+  "governor_cable_tensioner": {
+    "weighted": "",
+    "spring": "",
+    "screw": ""
+  },
+  "condition_governor_cable_tensioner": {
+    "ok": "",
+    "replace": "The governor cable tensioner is showing wear and must be replaced or The governor cable takeup needs to be cleaned and lubricated."
+  },
+  "bottom_normal_terminal": {
+    "ok": "",
+    "inoperable": "The bottom normal terminal is inoperable and must be replaced.",
+    "replace": "The bottom normal terminal must be replaced.",
+    "none": "There was no bottom normal terminal observed at the time of inspection. It is required that one be installed."
+  },
+  "bottom_final_terminal": {
+    "ok": "",
+    "inoperable": "The bottom final terminal is inoperable and must be repaired or replaced.",
+    "replace": "The bottom final terminal is damaged and must be replaced.",
+    "none": "There is no bottom final terminal as required; one must be installed in a specific location to meet code compliance."
+  },
+  "pit_comments": {
+    "default": ""
+  },
+  "under_car_size": {
+    "measurement_from": {
+      "default": ""
+    },
+    "front_back": {
+      "default": ""
+    },
+    "right_left": {
+      "default": ""
+    }
+  },
+  "travel_cable_connection_and_condition": {
+    "ok": "",
+    "replace": "The travel cable is showing excessive wear or damage and must be replaced."
+  },
+  "safety_type": {
+    "type_a": "",
+    "slack": ""
+  },
+  "safety_location": {
+    "top_of_car": "",
+    "bottom_of_car": ""
+  },
+  "safety_condition": {
+    "ok": "",
+    "frozen": "The car safeties are frozen and must be lubricated and exercised, or the switch on the safety is inoperable and must be replaced.",
+    "replace": "The _____ on/in the safety are damaged/broken and must be replaced. (Insert the reason on the form)",
+    "no": "The unit currently has no car safeties present. It is required that safeties be installed."
+  },
+  "switch_on_safeties": {
+    "yes": "",
+    "no": "Type A safeties must have a safety switch and be in proper working condition.",
+    "ok": "",
+    "inoperable": "The switch on the car safeties must be repaired or replaced."
+  },
+  "car_guide_rails_type": {
+    "t_rail": "",
+    "angle": "",
+    "wood": ""
+  },
+  "car_guide_rails_size": {
+    "default": ""
+  },
+  "car_guide_rails_condition": {
+    "ok": "",
+    "worn": "The car guard rails are showing wear and will require further monitoring.",
+    "replace": "The car guard rails are ____ and need to be replaced. (if \u201cbroken\u201d or \u201cworn\u201d, that word needs to be inserted in above space)"
+  },
+  "car_guide_rails_why": {
+    "broken": "",
+    "worn": "",
+    "bolted": "",
+    "welded": ""
+  },
+  "car_guide_rails_dbg": {
+    "default": ""
+  },
+  "car_guide_rail_brackets": {
+    "wooden": "",
+    "steel": "",
+    "bolted": "",
+    "welded": ""
+  },
+  "car_guide_type": {
+    "steel": "",
+    "uhmw_inserts": "",
+    "rollers": ""
+  },
+  "car_guide_condition": {
+    "ok": "",
+    "worn": "The car guide rails are showing wear and will require further monitoring.",
+    "replace": "The car guard rails are ____ and need to be replaced. (if \u201cbroken\u201d or \u201cworn\u201d, that word needs to be inserted in above space)"
+  },
+  "counterweight_location_facing_car": {
+    "left": "",
+    "right": "",
+    "rear": ""
+  },
+  "counterweight_guide_rail_type": {
+    "t_rail": "",
+    "angle": "",
+    "box": "",
+    "enclosed": "",
+    "c_channel": ""
+  },
+  "counterweight_guide_rail_size": {
+    "default": ""
+  },
+  "counterweight_guide_rail_dbg": {
+    "default": ""
+  },
+  "counterweight_guide_rail_condition": {
+    "ok": "",
+    "other": "The counterweight guide rails are____ and need to be replaced. (insert the reason in the form)",
+    "enclosed": "The size of the guide rail is unknown due to enclosure around areas specified for measurement."
+  },
+  "counterweight_guide_rail_brackets": {
+    "wooden": "",
+    "steel": "",
+    "bolted": "",
+    "welded": ""
+  },
+  "cw_dimension": {
+    "default": ""
+  },
+  "cw_material": {
+    "cast": "",
+    "steel": "",
+    "solid": "",
+    "plates": "",
+    "bolted": "",
+    "welded": "",
+    "enclosed": "A means of accessing the counterweight at the pit level must be provided."
+  },
+  "cw_guide_type": {
+    "steel": "",
+    "uhmw_inserts": "",
+    "rollers": ""
+  },
+  "cw_condition": {
+    "ok": "",
+    "worn": "The counter weight guide inserts are showing wear and will require further monitoring.",
+    "replace": "The counterweight guide inserts are worn or damaged and must be replaced. Or The car guide inserts are not code compliant and must be replaced."
+  },
+  "hoistway_ladder": {
+    "yes": "",
+    "no": "It is required that a hoistway ladder be provided the entire run of the hoistway and must be accessible from the car."
+  },
+  "hoistway_controls": {
+    "ok": "",
+    "inoperable": "The call station is inoperable on landing {i}, and must be repaired or replaced.",
+    "none": "A hoistway call station must be installed to be code compliant."
+  },
+  "hoistway_door": {
+    "comments": "Write what is on form."
+  },
+  "hoistway_door_unlocking_device": {
+    "yes": "",
+    "no": "There are no hoistway door unlocking devices on the bottom and top landing, it is required that one be provided at both landings."
+  },
+  "hoistway_door_interlock_type": {
+    "default": "",
+    "no": "All elevators must have electro mechanical interlocks on the hoistway doors."
+  },
+  "hoistway_door_interlock_location": {
+    "left": "",
+    "right": "",
+    "top": "",
+    "middle": ""
+  },
+  "hoistway_door_interlock_condition": {
+    "ok": "",
+    "replace": "The hoistway door interlock on landing______ must be replaced. (landing # or #\u2019s need to be inserted)",
+    "other": "Write whatever it says on the form"
+  },
+  "hoistway_door_electric_contact_type": {
+    "default": "",
+    "no": "All elevators must have an electro mechanical interlock."
+  },
+  "hoistway_door_electric_contact_location": {
+    "left": "",
+    "right": "",
+    "top": "",
+    "middle": ""
+  },
+  "hoistway_door_electric_contact_condition": {
+    "ok": "",
+    "replace": "The hoistway door electric contact on landing #____ is damaged/ worn and must be replaced.",
+    "other": "The hoistway door electric contact allows the car to run without the car being there and must be replaced or repaired."
+  },
+  "hoistway_door_hinge": {
+    "left": "",
+    "right": ""
+  },
+  "hoistway_door_self_closer": {
+    "yes": "",
+    "no": "The hoistway door self-closer was not observed at the time of inspection. It is required that one be installed.",
+    "inoperable": "The hoistway door self-closer is inoperable and must be replaced."
+  },
+  "hoistway_door_signs": {
+    "yes": "",
+    "no": "The hoistway warning signs must be posted on each landing, they were missing at landing {i} at the time of inspection."
+  },
+  "enclosure": {
+    "height": "",
+    "width": "",
+    "depth": ""
+  },
+  "enclosure_material": {
+    "expanded_metal": "",
+    "solid_panels": "",
+    "concrete": ""
+  },
+  "enclosure_panels": {
+    "2": "",
+    "3": "",
+    "4": "",
+    "other": ""
+  },
+  "landing_zone_switch": {
+    "yes": "",
+    "no": "The landing zone switch on landing {i} was not found at the time of inspection. It is required that one be installed.",
+    "n_a": ""
+  },
+  "landing_zone_switch_condition": {
+    "ok": "",
+    "inoperable": "The landing zone switch is inoperable and must be replaced."
+  },
+  "landing_comments": {
+    "comments": "Include comments on form."
+  },
+  "car_condition_and_description": {
+    "cam": {
+      "retiring": "",
+      "stationary": "",
+      "not_present": "There is no cam present on the cab to activate the interlocks for the hoistway doors."
+    },
+    "location": {
+      "left": "",
+      "right": ""
+    },
+    "condition": {
+      "ok": "",
+      "replace": "The retiring cam is inoperable and must be replaced."
+    }
+  },
+  "car_door_type": {
+    "bi_fold": "",
+    "scissor": "",
+    "2_pc": ""
+  },
+  "car_door_material": {
+    "expanded_metal": "",
+    "solid_panel": ""
+  },
+  "car_door_condition": {
+    "ok": "",
+    "replace": "The car door does not meet code requirements and must be replaced."
+  },
+  "car_door_limit": {
+    "yes": "",
+    "no": "The car door limit was not found at the time of inspection. It is required that one be installed.",
+    "inoperable": "The car door limit is inoperable and must be replaced."
+  },
+  "car_operation_controls": {
+    "up": {
+      "ok": "",
+      "inoperable": "The UP operation control is inoperable and must be repaired or replaced."
+    },
+    "dn": {
+      "ok": "",
+      "inoperable": "The DN operation control is inoperable and must be repaired or replaced."
+    }
+  },
+  "car_light": {
+    "yes": "",
+    "no": "The car light was not found at the time of inspection. It is required that one be installed.",
+    "inoperable": "The car light is inoperable and must be repaired or replaced."
+  },
+  "car_light_switch": {
+    "yes": "",
+    "no": "The car light switch was not found at the time of inspection. It is required that one be installed.",
+    "inoperable": "The car light switch is inoperable and must be repaired or replaced."
+  },
+  "car_alarm": {
+    "yes": "",
+    "no": "The car alarm was not found at the time of inspection. It is required that one be installed.",
+    "inoperable": "The car alarm is inoperable and must be repaired or replaced."
+  },
+  "car_alarm_switch": {
+    "yes": "",
+    "no": "The car alarm switch was not found at the time of inspection. It is required that one be installed.",
+    "inoperable": "The alarm switch is inoperable and must be repaired or replaced."
+  },
+  "emergency_stop": {
+    "yes": "",
+    "no": "The emergency stop inside the car was not found at the time of inspection. A stop button is required inside the cab and must be a push-in type.",
+    "inoperable": "The emergency stop in the car is inoperable. A stop button must be furnished inside the cab and must be a push-in type."
+  },
+  "capacity_signage": {
+    "yes": "",
+    "no": "The capacity signage inside the car was not observed at the time of inspection. It is required that one be installed."
+  },
+  "comm_device": {
+    "yes": "",
+    "no": "The communication device was not observed at the time of inspection."
+  },
+  "emergency_escape_hatch": {
+    "yes": "",
+    "no": "There was no emergency escape hatch found at the time of inspection. Where space and design permits, an escape hatch must be provided.",
+    "n/a": ""
+  },
+  "emergency_escape_hatch_switch": {
+    "yes": "",
+    "no": "Where design and space permit, an escape hatch with electric contact must be provided. There is no electric contact on the hatch.",
+    "inoperable": "The emergency escape hatch switch was inoperable at the time of inspection and must be repaired or replaced.",
+    "n/a": ""
+  },
+  "manual_backup_car_alarm": {
+    "yes": "",
+    "no": "A manual backup car alarm was not found during the time of inspection. An alarm must be installed in case of power failure.",
+    "inoperable": "The manual backup car alarm was found to be inoperable during the time of inspection and must be replaced in case of power failure."
+  },
+  "manual_backup_car_alarm_type": {
+    "default": ""
+  },
+  "data_plate": {
+    "yes": "",
+    "no": "The data plate on the car is missing and must be replaced."
+  },
+  "type_of_cable_attachment_to_car": {
+    "oh_sling": "",
+    "1_bolt_triangle": "",
+    "other": ""
+  },
+  "car_and_counterweight_fastening": {
+    "hoist_cable_fasteners_to_car": {
+      "poured_babbit": "",
+      "cable_clamps": "",
+      "fistgrips": "",
+      "wedge_socket": "",
+      "other": ""
+    },
+    "number_of_fasteners_per_cable": {
+      "1": "",
+      "2": "",
+      "3": ""
+    },
+    "hoist_cable_fasteners_to_cw": {
+      "poured_babbit": "",
+      "cable_clamps": "",
+      "fistgrips": "",
+      "wedge_socket": "",
+      "other": ""
+    },
+    "hoist_cable_number": {
+      "2": "",
+      "3": ""
+    },
+    "size": {
+      "3_8": "",
+      "1_2": ""
+    },
+    "condition": {
+      "ok": "",
+      "replace": "The hoist cables are worn and must be replaced.",
+      "monitor": "The hoist cables are showing wear and will require further monitoring."
+    },
+    "governor_cable_size": {
+      "3_8": "",
+      "1_2": ""
+    },
+    "governor_cable_condition": {
+      "ok": "",
+      "replace": "The governor cable is worn and must be replaced.",
+      "monitor": "The governor cable is showing wear and will require further monitoring."
+    },
+    "governor_cable_fasteners": {
+      "poured_babbit": "",
+      "cable_clamps": "",
+      "fistgrips": "",
+      "wedge_socket": "",
+      "other": ""
+    },
+    "governor_release_type": {
+      "ball_socket": "",
+      "t_arm": "",
+      "fistgrips": "",
+      "pull_arm": ""
+    },
+    "location": {
+      "left": "",
+      "right": ""
+    }
+  },
+  "drive_support": {
+    "description": "",
+    "floor_to_ceiling_measurement_top_landing": "",
+    "overhead_car_clearance_measurement": "",
+    "top_of_counterweight_clearance": "",
+    "top_normal_terminal": {
+      "yes": "",
+      "no": "There was no top normal terminal found at the time of inspection, it is required that one be installed.",
+      "inoperable": "The top normal terminal is inoperable and must be replaced.",
+      "replace": "The top normal terminal must be replaced."
+    },
+    "top_final_terminal": {
+      "yes": "",
+      "no": "The top final terminal was not found at the time of inspection, it is required that one be installed.",
+      "inoperable": "The final terminal is inoperable and must be replaced.",
+      "replace": "The top final terminal must be replaced."
+    },
+    "governor_guard": {
+      "yes": "",
+      "no": "The governor guard is missing and must be replaced to meet code requirements."
+    },
+    "sheave_guard": {
+      "yes": "",
+      "no": "The sheave guard is missing and must be replaced to meet code requirements."
+    },
+    "governor_type": {
+      "flip_bale": "",
+      "fly_ball": "",
+      "certified": "",
+      "hollister_whitney": "",
+      "other": ""
+    },
+    "governor_condition": {
+      "ok": "",
+      "inoperable": "The governor is inoperable and must be replaced.",
+      "replace": "The ____ governor must be replaced."
+    },
+    "why": "",
+    "governor_location": {
+      "rt_front": "",
+      "rt_back": "",
+      "lt_front": "",
+      "lt_back": ""
+    },
+    "bale_flip": {
+      "easy": "",
+      "hard": ""
+    },
+    "governor_switch": {
+      "yes": "",
+      "no": "No governor switch was found during the time of inspection, one must be installed to meet code compliance. or The governor switch must be replaced."
+    },
+    "tripping_speed": {
+      "175_fpm": "",
+      "other": ""
+    },
+    "rope_gripper": {
+      "yes": "",
+      "no": ""
+    },
+    "rope_gripper_condition": {
+      "ok": "",
+      "inoperable": "The rope gripper is inoperable and must be replaced.",
+      "replace": "The rope gripper must be replaced.",
+      "other": ""
+    },
+    "sheave_break": {
+      "yes": "",
+      "no": ""
+    },
+    "sheave_break_condition": {
+      "ok": "",
+      "inoperable": "The sheave break is inoperable and must be replaced.",
+      "replace": "The sheave break must be replaced.",
+      "other": ""
+    },
+    "type_of_bushing": {
+      "taper_bushing": "",
+      "straight_bore": ""
+    },
+    "traction_sheave_bushing_size": "",
+    "traction_sheave_type": "",
+    "traction_sheave_condition": {
+      "ok": "",
+      "replace": "The traction sheave is worn beyond the maximum allowable tolerance and must be replaced."
+    },
+    "shaft_size": "",
+    "bearing_type": "",
+    "bearing_size": "",
+    "deflector_sheave": {
+      "yes": "",
+      "no": ""
+    },
+    "deflector_sheave_shaft_size": "",
+    "deflector_sheave_bearing_type": "",
+    "deflector_sheave_bearing_size": "",
+    "shaft_and_bearing_condition": {
+      "ok": "",
+      "replace": "The shaft and bearing are worn and need to be replaced.",
+      "other": ""
+    },
+    "coupler_size": "",
+    "coupler_type": "",
+    "coupler_condition": {
+      "ok": "",
+      "replace": "The coupler is worn and needs to be replaced.",
+      "other": ""
+    },
+    "gearbox_brand_name": "",
+    "gearbox_numbers": "",
+    "gearbox_condition": {
+      "ok": "",
+      "excessive_backlash": "The gearbox is experiencing excessive backlash and must be repaired or replaced.",
+      "monitor": "The gearbox is worn and will require further monitoring.",
+      "replace": "The gearbox must be replaced."
+    },
+    "motor_brand_name": "",
+    "motor_numbers": "",
+    "motor_condition": {
+      "ok": "",
+      "replace": "The motor needs to be replaced."
+    },
+    "brake_brand_name": "",
+    "brake_numbers": "",
+    "brake_condition": {
+      "ok": "",
+      "replace_friction_disks_only": "",
+      "replace": "The brake is inoperable and must be replaced."
+    },
+    "head_drive_measurements": {
+      "length": "",
+      "width": "",
+      "from_walls": {
+        "front": "",
+        "back": "",
+        "left": "",
+        "right": ""
+      }
+    },
+    "orientation_of_motor_comments": "",
+    "overall_travel_height": "",
+    "access_to_drive": {
+      "ok": "",
+      "other": "Safe and convenient access to the drive must be provided."
+    },
+    "machine_disconnect": {
+      "yes": "",
+      "no": "A machine disconnect is required at the top landing."
+    },
+    "overhead_lifting_supports": {
+      "yes": "",
+      "no": "There were no overhead lifting supports found at the time of inspection."
+    },
+    "top_landing_comments": ""
+  },
+  "electrical_control_panel": {
+    "nema": {
+      "4_dust_tight": "",
+      "9_explosive_dust": ""
+    },
+    "voltage": {
+      "208": "",
+      "240": "",
+      "440": ""
+    },
+    "controls": {
+      "panel": "",
+      "individual_controls": ""
+    },
+    "location": {
+      "by_manlift": "",
+      "in_mcc_room": ""
+    },
+    "starter": {
+      "yes": "",
+      "no": "The starter was not found at the time of inspection, it is required that one be installed."
+    },
+    "control_relay": {
+      "yes": "",
+      "no": "The control relay was not found at the time of inspection, it is required that one be installed."
+    },
+    "phase_reversal_relay": {
+      "yes": "",
+      "no": "The phase reversal relay was not found at the time of inspection. It is required that one be installed."
+    },
+    "3_pole_contactor": {
+      "yes": "",
+      "no": "The 3-pole contactor was not found at the time of inspection it is required that one be installed."
+    }
+  },
+  "load_tests": {
+    "pounds_used_during_test": {
+      "300": "",
+      "500": "",
+      "650": "",
+      "1000": "",
+      "other": ""
+    },
+    "did_unit_pass_load_test": {
+      "yes": "This unit did pass a full load test.",
+      "no": "This unit did not pass a full load test."
+    },
+    "speed": {
+      "empty_up": "",
+      "empty_dn": "",
+      "loaded_up": "",
+      "loaded_dn": ""
+    },
+    "governor_tripped_at": "",
+    "load_tests_comments": ""
+  }
+}

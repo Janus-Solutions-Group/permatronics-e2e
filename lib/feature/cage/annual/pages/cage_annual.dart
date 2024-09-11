@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:manlift_app/feature/cage/annual/widgets/annual_landing_form.dart';
+import 'package:manlift_app/feature/cage/annual/widgets/add_landing_form.dart';
 import 'package:manlift_app/feature/cage/annual/widgets/cab_form.dart';
 import 'package:manlift_app/feature/cage/annual/widgets/car_counterweight_form.dart';
 import 'package:manlift_app/feature/cage/annual/widgets/drive_support.dart';
 import 'package:manlift_app/feature/cage/annual/widgets/electrical_control.dart';
 import 'package:manlift_app/feature/cage/annual/widgets/load_test.dart';
-import 'package:manlift_app/feature/cage/quaterly/cab_form.dart';
-import 'package:manlift_app/feature/cage/quaterly/car_counter_weight_form.dart';
-import 'package:manlift_app/feature/cage/quaterly/landing_form.dart';
 import 'package:manlift_app/feature/common/widgets/header_form.dart';
 import 'package:manlift_app/feature/cage/annual/widgets/yearly_pit_form.dart';
-import 'package:manlift_app/feature/common/widgets/image_upload.dart';
+import 'package:manlift_app/feature/common/widgets/image_picking_last.dart';
 
 class CageAnnualyPage extends StatelessWidget {
   CageAnnualyPage({super.key});
@@ -25,10 +22,11 @@ class CageAnnualyPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: PageView(
+          controller: pageController,
           children: [
             HeaderForm(pageController: pageController),
             YearlyPitInspectionForm(pageController: pageController),
-            AnnualLandingForm(pageController: pageController),
+            AddAnnualLandingFormPage(pageController: pageController),
             AnnualCageCABForm(pageController: pageController),
             AnnualCageCarCounterWeightForm(pageController: pageController),
             AnnualCageDriveSupportForm(pageController: pageController),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manlift_app/feature/cage/widgets/section_title.dart';
+import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/custom_title.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
@@ -25,7 +25,7 @@ class _AnnualCageDriveSupportFormState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          buildSectionTitle('DRIVE SUPPORT'),
+          FormHeaderTitle(title: "DRIVE SUPPORT"),
           CustomTextField(title: 'Description'),
           CustomTextField(title: 'Floor to Ceiling Measurement Top Landing:'),
           CustomTextField(title: 'Overhead Car Clearance Measurement:'),
@@ -33,38 +33,22 @@ class _AnnualCageDriveSupportFormState
           CustomRadioTile(
             title: 'Top Normal Terminal:',
             values: ["Yes", "No", "Inoperable", "Replace"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Top Final Terminal:',
             values: ["Yes", "No", "Inoperable", "Replace"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Governor Guard:',
             values: ["Yes", "No"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Sheave Guard',
             values: const ["Yes", "No"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Governor Type',
@@ -75,11 +59,7 @@ class _AnnualCageDriveSupportFormState
               'Hollister-Whitney',
               'Other'
             ],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
             isTextField: true,
             fieldTitle: 'Other',
           ),
@@ -88,100 +68,72 @@ class _AnnualCageDriveSupportFormState
             values: const ["OK", "Inoerable", "Replace"],
             isTextField: true,
             fieldTitle: "Why",
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Governor Location',
-            values: const ["Rt Front", "Rt Back", "Lt Front"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            values: const ["Rt Front", "Rt Back", "Lt Front", "Lt Back"],
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Bale Flip:',
             values: const ["Easy", "Hard"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Governor Switch',
             values: const ["Yes", "No"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Tripping Speed',
             values: const ["175 fpm", "Other"],
             isTextField: true,
             fieldTitle: "Other",
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Rope Gripper:',
             values: const ["Yes", "No", "N/A"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Condition:',
             values: const ["OK", "Inoperable", "Replace", "Other"],
             isTextField: true,
             fieldTitle: "Other",
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
+          ),
+          CustomRadioTile(
+            title: 'Sheave Break:',
+            values: const ["Yes", "No", "N/A"],
+            onChangeValue: (value) {},
+          ),
+          CustomRadioTile(
+            title: 'Condition:',
+            values: const ["OK", "Inoperable", "Replace", "Other"],
+            isTextField: true,
+            fieldTitle: "Other",
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Type of Bushing:',
             values: const ["Taper Bushing", "Straight Bore"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomTextField(title: "Traction Sheave & Bushing Size"),
           CustomTextField(title: "Traction Sheave Type"),
           CustomRadioTile(
             title: 'Tractor Sheave Condition',
-            values: const ["OK"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            values: const ["OK", "Frozen"],
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Replace',
             values: const ["Yes", "No"],
             isTextField: true,
             fieldTitle: "if yes, why: ",
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomTextField(
             title: 'Shaft Size',
@@ -195,11 +147,7 @@ class _AnnualCageDriveSupportFormState
           CustomRadioTile(
             title: 'Deflector Sheave',
             values: const ["Yes", "No"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomTextField(
             title: 'Shaft Size',
@@ -215,16 +163,12 @@ class _AnnualCageDriveSupportFormState
             values: ["OK", "Replace", "Other"],
             isTextField: true,
             fieldTitle: "Other",
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           Row(
             children: [
-              Expanded(child: CustomTextField(title: 'Couple Sizer')),
-              Expanded(child: CustomTextField(title: 'Couple Type')),
+              Expanded(child: CustomTextField(title: 'Coupler Size')),
+              Expanded(child: CustomTextField(title: 'Coupler Type')),
             ],
           ),
           CustomRadioTile(
@@ -232,44 +176,28 @@ class _AnnualCageDriveSupportFormState
             values: ["OK", "Replace", "Other"],
             isTextField: true,
             fieldTitle: "Other",
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomTextField(title: 'Gearbox Brand Name:'),
           CustomTextField(title: 'Gearbox Numbers:'),
           CustomRadioTile(
             title: 'Gearbox Condition:',
             values: ["OK", "Excessive Back lash", "Monitor", "Replace"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomTextField(title: 'Motor Brand Name:'),
           CustomTextField(title: 'Motor Numbers:'),
           CustomRadioTile(
             title: 'Motor Condition:',
             values: ["OK", "Replace"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomTextField(title: 'Brake Brand Name:'),
           CustomTextField(title: 'Brake Numbers:'),
           CustomRadioTile(
             title: 'Brake Condition',
             values: ["OK", "Replace Friction Disks only", "Replace"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomTitle(title: 'Head Drive Measurements:'),
           Row(
@@ -303,20 +231,12 @@ class _AnnualCageDriveSupportFormState
           CustomRadioTile(
             title: 'Machine Disconnect:',
             values: ["Yes", "No"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomRadioTile(
             title: 'Overhead Lifting Supports:',
             values: ["Yes", "No"],
-            onChangeValue: (value) {
-              setState(() {
-                cleanVal = value;
-              });
-            },
+            onChangeValue: (value) {},
           ),
           CustomTextField(title: 'Top Landing Comments'),
           Row(
