@@ -23,8 +23,8 @@ class TailSection extends StatelessWidget {
             values: const [
               "OK",
               "Worn, but OK",
-              "Replaced Damaged",
-              "Replaced Worn"
+              "Replace Damaged",
+              "Replace Worn"
             ],
             onChangeValue: (value) {},
           ),
@@ -34,7 +34,7 @@ class TailSection extends StatelessWidget {
             onChangeValue: (value) {},
           ),
           CustomRadioTile(
-            title: "Leg Anchored to",
+            title: "Legs Anchored to",
             values: const ['Concrete', 'Steel'],
             onChangeValue: (value) {},
           ),
@@ -48,8 +48,8 @@ class TailSection extends StatelessWidget {
             values: const [
               "OK",
               "Worn, but OK",
-              "Replaced Damaged",
-              "Replaced Worn"
+              "Replace Damaged",
+              "Replace Worn"
             ],
             onChangeValue: (value) {},
           ),
@@ -63,8 +63,8 @@ class TailSection extends StatelessWidget {
             values: const [
               "OK",
               "Worn, but OK",
-              "Replaced Damaged",
-              "Replaced Worn"
+              "Replace Damaged",
+              "Replace Worn"
             ],
             onChangeValue: (value) {},
           ),
@@ -73,8 +73,8 @@ class TailSection extends StatelessWidget {
             values: const [
               "OK",
               "Worn, but OK",
-              "Replaced Damaged",
-              "Replaced Worn"
+              "Replace Damaged",
+              "Replace Worn"
             ],
             onChangeValue: (value) {
               // bearingHousingCondition = value;
@@ -87,8 +87,8 @@ class TailSection extends StatelessWidget {
             values: const [
               "OK",
               "Worn, but OK",
-              "Replaced Damaged",
-              "Replaced Worn"
+              "Replace Damaged",
+              "Replace Worn"
             ],
             onChangeValue: (value) {
               // footShaftCondition = value;
@@ -108,8 +108,8 @@ class TailSection extends StatelessWidget {
             values: const [
               "OK",
               "Worn, but OK",
-              "Replaced Damaged",
-              "Replaced Worn"
+              "Replace Damaged",
+              "Replace Worn"
             ],
             onChangeValue: (value) {
               // footPulleyCondition = value;
@@ -153,7 +153,7 @@ class TailSection extends StatelessWidget {
           ),
           CustomRadioTile(
             title: "Debris Deflector Condition",
-            values: const ["Replace Damaged", "Replaced Worn"],
+            values: const ["Replace Damaged", "Replace Worn"],
             onChangeValue: (value) {
               // debrisDeflectorCondition = value;
             },
@@ -167,7 +167,7 @@ class TailSection extends StatelessWidget {
           ),
           CustomRadioTile(
             title: "Rope Sheaves Condition",
-            values: const ["Replace Damaged", "Replaced Worn"],
+            values: const ["Replace Damaged", "Replace Worn"],
             onChangeValue: (value) {
               // ropeSheavesCondition = value;
             },
@@ -181,7 +181,7 @@ class TailSection extends StatelessWidget {
           ),
           CustomRadioTile(
             title: "Yoke Assembly Condition",
-            values: const ["Replace Damaged", "Replaced Worn"],
+            values: const ["Replace Damaged", "Replace Worn"],
             onChangeValue: (value) {
               // yokeAssemblyConditon = value;
             },

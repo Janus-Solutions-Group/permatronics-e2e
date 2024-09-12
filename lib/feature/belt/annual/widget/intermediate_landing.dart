@@ -208,7 +208,7 @@ class IntermediateLanding extends StatelessWidget {
               values: ['Humphrey'],
               onChangeValue: (value) {},
             ),
-            CustomTextField(title: 'Distance Between Ropw Guides'),
+            CustomTextField(title: 'Distance Between Rope Guides'),
             CustomRadioTile(
               title: 'Condition:',
               values: ['OK', 'Replace Damaged', 'Replace Worn'],

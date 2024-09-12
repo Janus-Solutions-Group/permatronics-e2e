@@ -83,7 +83,7 @@ class Belting extends StatelessWidget {
               values: const ['Good', 'Needs to be adjusted'],
               onChangeValue: (value) {},
             ),
-            CustomTextField(title: 'Belt Condition Commnets:'),
+            CustomTextField(title: 'Belt Condition Comments:'),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

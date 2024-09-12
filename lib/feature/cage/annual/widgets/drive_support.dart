@@ -124,7 +124,7 @@ class _AnnualCageDriveSupportFormState
           CustomTextField(title: "Traction Sheave & Bushing Size"),
           CustomTextField(title: "Traction Sheave Type"),
           CustomRadioTile(
-            title: 'Tractor Sheave Condition',
+            title: 'Traction Sheave Condition',
             values: const ["OK", "Frozen"],
             onChangeValue: (value) {},
           ),

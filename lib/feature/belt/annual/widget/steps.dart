@@ -82,7 +82,7 @@ class Steps extends StatelessWidget {
               values: const [
                 'L-75 Flanged Cast',
                 'L-75N Flanged Nylatron',
-                'L-69 Rubber'
+                'L-69V Rubber'
               ],
               onChangeValue: (value) {},
             ),

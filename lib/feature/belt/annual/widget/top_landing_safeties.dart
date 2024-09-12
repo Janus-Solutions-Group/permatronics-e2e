@@ -30,7 +30,7 @@ class TopLandingSafeties extends StatelessWidget {
               title: 'Type 1 Condition:',
               values: [
                 'OK',
-                'Inoperative',
+                'Inoperable',
                 'Replace Switch',
                 'Replace Whole Assembly'
               ],
@@ -50,7 +50,7 @@ class TopLandingSafeties extends StatelessWidget {
               title: 'Type 2 Condition:',
               values: [
                 'OK',
-                'Inoperative',
+                'Inoperable',
                 'Replace Switch',
                 'Replace Whole Assembly'
               ],
@@ -70,7 +70,7 @@ class TopLandingSafeties extends StatelessWidget {
               title: 'Type 3 Condition:',
               values: [
                 'OK',
-                'Inoperative',
+                'Inoperable',
                 'Replace Switch',
                 'Replace Whole Assembly'
               ],
@@ -90,7 +90,7 @@ class TopLandingSafeties extends StatelessWidget {
               title: 'Type 4 Condition:',
               values: [
                 'OK',
-                'Inoperative',
+                'Inoperable',
                 'Replace Switch',
                 'Replace Whole Assembly'
               ],
@@ -109,7 +109,7 @@ class TopLandingSafeties extends StatelessWidget {
             ),
             CustomRadioTile(
               title: 'Condition:',
-              values: ['OK', 'Inoperative'],
+              values: ['OK', 'Inoperable'],
               onChangeValue: (value) {},
             ),
             CustomRadioTile(

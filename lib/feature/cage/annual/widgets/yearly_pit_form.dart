@@ -186,7 +186,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
             ),
             CustomRadioTile(
               title: "Car Guide Type:",
-              values: const ["Steel", "UHMW Inserts", "Rollers", "Inoperable"],
+              values: const ["Steel", "UHMW Inserts", "Rollers"],
               onChangeValue: (value) {},
             ),
             CustomRadioTile(
@@ -233,7 +233,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
             ),
             CustomRadioTile(
               title: "CW Guide Type",
-              values: const ["Steel", "UHMW Inserts", "Rollers", "Inoperable"],
+              values: const ["Steel", "UHMW Inserts", "Rollers"],
               onChangeValue: (value) {},
             ),
             CustomRadioTile(
