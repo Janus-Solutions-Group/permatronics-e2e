@@ -22,12 +22,7 @@ class BottomLandingHood extends StatelessWidget {
             FormHeaderTitle(title: "BOTTOM LANDING HOOD"),
             CustomRadioTile(
               title: 'Type of Hood',
-              values: const [
-                "Stationary",
-                "Moveable",
-                "Moverable Mini",
-                'None'
-              ],
+              values: const ["Stationary", "Moveable", "Moveable Mini", 'None'],
               onChangeValue: (value) {},
             ),
             CustomRadioTile(
@@ -83,7 +78,7 @@ class BottomLandingHood extends StatelessWidget {
               values: const [
                 'OK',
                 'Damaged, but OK',
-                'Replaced Damaged',
+                'Replace Damaged',
                 'Replace Worn'
               ],
               onChangeValue: (value) {},

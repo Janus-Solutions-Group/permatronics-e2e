@@ -25,8 +25,8 @@ class DriveAssembly extends StatelessWidget {
               values: const [
                 'OK',
                 'Worn, but OK',
-                'replace Damaged',
-                'Replaced Worn'
+                'Replace Damaged',
+                'Replace Worn'
               ],
               onChangeValue: (value) {},
             ),
@@ -40,8 +40,8 @@ class DriveAssembly extends StatelessWidget {
               values: const [
                 'OK',
                 'Worn, but OK',
-                'replace Damaged',
-                'Replaced Worn'
+                'Replace Damaged',
+                'Replace Worn'
               ],
               onChangeValue: (value) {},
             ),
@@ -50,8 +50,8 @@ class DriveAssembly extends StatelessWidget {
               values: const [
                 'OK',
                 'Worn, but OK',
-                'replace Damaged',
-                'Replaced Worn'
+                'Replace Damaged',
+                'Replace Worn'
               ],
               onChangeValue: (value) {},
             ),
@@ -60,8 +60,8 @@ class DriveAssembly extends StatelessWidget {
               values: const [
                 'OK',
                 'Worn, but OK',
-                'replace Damaged',
-                'Replaced Worn'
+                'Replace Damaged',
+                'Replace Worn'
               ],
               onChangeValue: (value) {},
             ),
@@ -93,8 +93,8 @@ class DriveAssembly extends StatelessWidget {
               values: const [
                 'OK',
                 'Worn, but OK',
-                'replace Damaged',
-                'Replaced Worn'
+                'Replace Damaged',
+                'Replace Worn'
               ],
               onChangeValue: (value) {},
             ),
@@ -110,8 +110,8 @@ class DriveAssembly extends StatelessWidget {
               values: const [
                 'OK',
                 'Worn, but OK',
-                'replace Damaged',
-                'Replaced Worn'
+                'Replace Damaged',
+                'Replace Worn'
               ],
               onChangeValue: (value) {},
             ),
@@ -127,8 +127,8 @@ class DriveAssembly extends StatelessWidget {
               values: const [
                 'OK',
                 'Worn, but OK',
-                'replace Damaged',
-                'Replaced Worn'
+                'Replace Damaged',
+                'Replace Worn'
               ],
               onChangeValue: (value) {},
             ),

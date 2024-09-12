@@ -77,7 +77,7 @@ class BottomLandingSafeties extends StatelessWidget {
               title: "Condition:",
               values: const [
                 'OK',
-                'Inoperative',
+                'Inoperable',
                 'Replace Switch',
                 'Replace Whole Assembly'
               ],

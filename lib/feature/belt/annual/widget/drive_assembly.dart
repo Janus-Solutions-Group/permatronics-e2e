@@ -33,7 +33,7 @@ class DriveAssembly extends StatelessWidget {
                 'Worn, but OK',
                 'Replace',
                 'Damaged',
-                'Replaced Worn'
+                'Replace Worn'
               ],
               onChangeValue: (value) {},
             ),

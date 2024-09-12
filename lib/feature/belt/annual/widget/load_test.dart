@@ -26,7 +26,7 @@ class LoadTest extends StatelessWidget {
                 values: ['Pass', 'Fail'],
                 onChangeValue: (value) {}),
             CustomTextField(title: 'Weight Used'),
-            CustomTextField(title: 'Stopping Distnace'),
+            CustomTextField(title: 'Stopping Distance'),
             CustomTextField(title: 'Belt Manlift Speed: FPM (Feet Per Minute)'),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
