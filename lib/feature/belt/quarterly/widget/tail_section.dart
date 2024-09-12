@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:manlift_app/feature/belt/model/belt_inspection_model.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
@@ -6,6 +9,12 @@ import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
 import '../pages/belt_quaterly.dart';
+
+import 'package:path_provider/path_provider.dart';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
+
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
 
 class TailSectionFootAssembly extends StatefulWidget {
   const TailSectionFootAssembly(
@@ -37,6 +46,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
   final tailSectionComment = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  String ans = "";
 
   @override
   Widget build(BuildContext context) {
@@ -244,6 +254,72 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
                   pageController: widget.pageController,
                   right: false,
                 ),
+                ElevatedButton(
+                    onPressed: () async {
+                      final font =
+                          await rootBundle.load("assets/OpenSans-Bold.ttf");
+                      final ttf = pw.Font.ttf(font);
+                      final pdf = pw.Document();
+                      // String ans = widget.beltModel.tailSectionFootAssemblyLegCondition.toString() +
+                      //     widget.beltModel.tailSectionFootAssemblyLegAnchors
+                      //         .toString() +
+                      //     widget.beltModel.tailSectionFootAssemblyLegsAnchoredTo
+                      //         .toString() +
+                      //     widget.beltModel
+                      //         .tailSectionFootAssemblyBottomCircleCondition
+                      //         .toString() +
+                      //     widget.beltModel
+                      //         .tailSectionFootAssemblyBearingHousingCondition
+                      //         .toString() +
+                      //     widget.beltModel.tailSectionFootAssemblyFootShaftCondition
+                      //         .toString() +
+                      //     widget.beltModel
+                      //         .tailSectionFootAssemblyFootPulleyCondition
+                      //         .toString() +
+                      //     widget.beltModel.tailSectionFootAssemblyTypeOfBeltAdjustment
+                      //         .toString() +
+                      //     widget.beltModel
+                      //         .tailSectionFootAssemblyIsFootPulleyCentered
+                      //         .toString() +
+                      //     widget.beltModel.driveAssemblyBeltTracking
+                      //         .toString() +
+                      //     widget.beltModel.tailSectionFootAssemblyDebrisDeflector
+                      //         .toString() +
+                      //     widget.beltModel
+                      //         .tailSectionFootAssemblyDebrisDeflectorCondition
+                      //         .toString() +
+                      //     widget.beltModel.tailSectionFootAssemblyRopeSheaves
+                      //         .toString() +
+                      //     widget.beltModel
+                      //         .tailSectionFootAssemblyRopeSheavesCondition
+                      //         .toString() +
+                      //     widget.beltModel.tailSectionFootAssemblyYokeAssembly
+                      //         .toString();
+                      widget.beltModel.toMap().forEach((u, v) {
+                        if (v != null) {
+                          ans += v.toString();
+                        }
+                      });
+
+                      pdf.addPage(pw.Page(
+                          pageFormat: PdfPageFormat.a4,
+                          build: (pw.Context context) {
+                            return pw.Text(
+                              ans,
+                              // style: pw.TextStyle(font: ttf, fontSize: 40),
+                            );
+                          }));
+                      // final output = await getExternalStorageDirectory();
+                      final directory =
+                          Directory("/storage/emulated/0/Download");
+                      final path = directory.path;
+                      print(path);
+
+                      await Directory(path).create(recursive: true);
+                      final file = File("${path}/belt_quarterly.pdf");
+                      await file.writeAsBytes(await pdf.save());
+                    },
+                    child: Text('Create Pdf')),
                 PageNavigationButton(
                   pageController: widget.pageController,
                   right: true,
