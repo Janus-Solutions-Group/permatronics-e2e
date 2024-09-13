@@ -172,14 +172,14 @@ class _HeaderFormState extends State<HeaderForm> {
                 title: "Rated Load:",
                 controller: fieldControllers[5],
               ),
-              CustomTextField(
-                title: "Landings:",
-                controller: fieldControllers[6],
-              ),
-              CustomTextField(
-                title: "Landings:",
-                controller: fieldControllers[7],
-              ),
+              // CustomTextField(
+              //   title: "Landings:",
+              //   controller: fieldControllers[6],
+              // ),
+              // CustomTextField(
+              //   title: "Landings:",
+              //   controller: fieldControllers[7],
+              // ),
               CustomTextField(
                 title: "City",
                 controller: fieldControllers[8]
