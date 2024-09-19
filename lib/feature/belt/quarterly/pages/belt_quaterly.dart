@@ -70,17 +70,50 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
                       pageController: pageController,
                       beltModel: beltModel,
                     ),
-                    BottomLandingSafeties(pageController: pageController),
-                    BottomLanding(pageController: pageController),
-                    BottomLandingHood(pageController: pageController),
-                    Belting(pageController: pageController),
-                    Handholds(pageController: pageController),
-                    Steps(pageController: pageController),
-                    IntermediateLanding(pageController: pageController),
-                    TopLanding(pageController: pageController),
-                    DriveAssembly(pageController: pageController),
-                    TopLandingSafeties(pageController: pageController),
-                    ImagePickingWidget(pageController: pageController),
+                    BottomLandingSafeties(
+                      pageController: pageController,
+                      beltModel: beltModel,
+                    ),
+                    BottomLanding(
+                      pageController: pageController,
+                      beltModel: beltModel,
+                    ),
+                    BottomLandingHood(
+                      pageController: pageController,
+                      beltModel: beltModel,
+                    ),
+                    Belting(
+                      pageController: pageController,
+                      beltModel: beltModel,
+                    ),
+                    Handholds(
+                      pageController: pageController,
+                      beltModel: beltModel,
+                    ),
+                    Steps(
+                      pageController: pageController,
+                      beltModel: beltModel,
+                    ),
+                    IntermediateLanding(
+                      pageController: pageController,
+                      beltModel: beltModel,
+                    ),
+                    TopLanding(
+                      pageController: pageController,
+                      beltModel: beltModel,
+                    ),
+                    DriveAssembly(
+                      pageController: pageController,
+                      beltModel: beltModel,
+                    ),
+                    TopLandingSafeties(
+                      pageController: pageController,
+                      beltModel: beltModel,
+                    ),
+                    ImagePickingWidget(
+                      pageController: pageController,
+                      beltModel: beltModel,
+                    ),
                   ],
                 ),
               ),

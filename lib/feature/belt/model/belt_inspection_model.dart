@@ -248,9 +248,14 @@ class BeltInspection {
   String? driveAssemblyTopLandingSafetiesType1;
   String? driveAssemblyTopLandingSafetiesType1Condition;
   String? driveAssemblyTopLandingSafetiesType2;
+  String? driveAssemblyTopLandingSafetiesType2Location;
   String? driveAssemblyTopLandingSafetiesType2Condition;
   String? driveAssemblyTopLandingSafetiesType3Condition;
+  String? driveAssemblyTopLandingSafetiesType3Location;
   String? driveAssemblyTopLandingSafetiesType3;
+  String? driveAssemblyTopLandingSafetiesType4Condition;
+  String? driveAssemblyTopLandingSafetiesType4Location;
+  String? driveAssemblyTopLandingSafetiesType4;
   String? driveAssemblyTopLandingSafetiesTopReset;
   String? driveAssemblyTopLandingSafetiesTopResetLocation;
   String? driveAssemblyTopLandingSafetiesTopResetCompliant;
@@ -509,8 +514,13 @@ class BeltInspection {
     this.driveAssemblyTopLandingSafetiesType1Condition,
     this.driveAssemblyTopLandingSafetiesType2,
     this.driveAssemblyTopLandingSafetiesType2Condition,
+    this.driveAssemblyTopLandingSafetiesType2Location,
     this.driveAssemblyTopLandingSafetiesType3,
+    this.driveAssemblyTopLandingSafetiesType3Location,
     this.driveAssemblyTopLandingSafetiesType3Condition,
+    this.driveAssemblyTopLandingSafetiesType4,
+    this.driveAssemblyTopLandingSafetiesType4Location,
+    this.driveAssemblyTopLandingSafetiesType4Condition,
     this.driveAssemblyTopLandingSafetiesTopReset,
     this.driveAssemblyTopLandingSafetiesTopResetLocation,
     this.driveAssemblyTopLandingSafetiesTopResetCompliant,

@@ -42,7 +42,7 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
     result = result
         .replaceAll(' ', '_')
         .replaceAll(',', '')
-        .replaceAll('-', '_')
+        .replaceAll('-', '-')
         .replaceAll('/', '');
 
     return result;
