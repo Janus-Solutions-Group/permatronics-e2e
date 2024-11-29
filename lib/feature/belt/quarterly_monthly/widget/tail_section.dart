@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:manlift_app/feature/belt/model/belt_inspection_model.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
@@ -9,12 +6,6 @@ import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
 import '../pages/belt_quaterly.dart';
-
-import 'package:path_provider/path_provider.dart';
-import 'package:syncfusion_flutter_pdf/pdf.dart';
-
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
 
 class TailSectionFootAssembly extends StatefulWidget {
   const TailSectionFootAssembly(
@@ -30,23 +21,9 @@ class TailSectionFootAssembly extends StatefulWidget {
 
 class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
     with AutomaticKeepAliveClientMixin {
-  String? legCondition;
-  String? legAnchors;
-  String? legAnchoredTo;
-  String? bottomCircleCondition;
-  String? bearingHousingCondition;
-  String? footShaftCondition;
-  String? footPulleyCondition;
-  String? typeOfBeltAdjustment;
-  String? isFootPulleyCentered;
-  String? beltTracking;
-  String? debrisDeflector;
-  String? debrisDeflectorCondition;
-  String? ropeSheaves, ropeSheavesCondition, yokeAssembly, yokeAssemblyConditon;
   final tailSectionComment = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-  String ans = "";
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +40,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
             const FormHeaderTitle(title: "Tail Section/ Foot Assembly"),
             CustomRadioTile(
               title: "Leg Condition",
+              id: "Leg Condition",
               values: const [
                 "OK",
                 "Worn, but OK",
@@ -76,6 +54,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
             ),
             CustomRadioTile(
               title: "Leg Anchors",
+              id: "Leg Anchors",
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
                 widget.beltModel.tailSectionFootAssemblyLegAnchors =
@@ -84,6 +63,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
             ),
             CustomRadioTile(
               title: "Legs Anchored to",
+              id: "Legs Anchored to",
               values: const ['Concrete', 'Steel'],
               onChangeValue: (value) {
                 widget.beltModel.tailSectionFootAssemblyLegsAnchoredTo =
@@ -93,6 +73,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
             ),
             CustomRadioTile(
               title: "Bottom Circle Condition",
+              id: "Bottom Circle Condition",
               values: const [
                 "OK",
                 "Worn, but OK",
@@ -108,6 +89,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
             ),
             CustomRadioTile(
               title: "Bearing Housing Condition",
+              id: "Bearing Housing Condition",
               values: const [
                 "OK",
                 "Worn, but OK",
@@ -123,6 +105,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
             ),
             CustomRadioTile(
               title: "Foot Shaft Condition",
+              id: "Foot Shaft Condition",
               values: const [
                 "OK",
                 "Worn, but OK",
@@ -137,6 +120,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
             ),
             CustomRadioTile(
               title: "Foot Pulley Condition",
+              id: "Foot Pulley Condition",
               values: const [
                 "OK",
                 "Worn, but OK",
@@ -151,6 +135,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
             ),
             CustomRadioTile(
               title: "Type of Belt Adjustment",
+              id: "Type of Belt Adjustment",
               values: const ["Floating", "Manual"],
               onChangeValue: (value) {
                 widget.beltModel
@@ -161,6 +146,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
             ),
             CustomRadioTile(
               title: "Is Foot Pulley Centered",
+              id: "Is Foot Pulley Centered",
               values: const ["Yes", "NO"],
               onChangeValue: (value) {
                 widget.beltModel
@@ -171,6 +157,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
             ),
             CustomRadioTile(
               title: "Belt Tracking",
+              id: "Belt Tracking",
               values: const ["OK", "Off"],
               onChangeValue: (value) {
                 widget.beltModel.driveAssemblyBeltTracking =
@@ -189,6 +176,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
             ),
             CustomRadioTile(
               title: "Debris Deflector",
+              id: "Debris Deflector",
               values: const ["Yes", "No"],
               onChangeValue: (value) {
                 widget.beltModel.tailSectionFootAssemblyDebrisDeflector =
@@ -197,7 +185,8 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
               },
             ),
             CustomRadioTile(
-              title: "Condition",
+              title: "Debris Deflector Condition",
+              id: "Debris Deflector Condition",
               values: const ["Replace Damaged", "Replace Worn"],
               onChangeValue: (value) {
                 widget.beltModel
@@ -208,6 +197,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
             ),
             CustomRadioTile(
               title: "Rope Sheaves",
+              id: "Rope Sheaves",
               values: const ["Yes", "No"],
               onChangeValue: (value) {
                 widget.beltModel.tailSectionFootAssemblyRopeSheaves =
@@ -216,6 +206,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
             ),
             CustomRadioTile(
               title: "Rope Sheaves Condition",
+              id: "Rope Sheaves Condition",
               values: const ["Replace Damaged", "Replace Worn"],
               onChangeValue: (value) {
                 widget.beltModel.tailSectionFootAssemblyRopeSheavesCondition =
@@ -226,6 +217,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
             ),
             CustomRadioTile(
               title: "Yoke Assembly",
+              id: "Yoke Assembly",
               values: const ["Yes", "No"],
               onChangeValue: (value) {
                 widget.beltModel.tailSectionFootAssemblyYokeAssembly =
@@ -233,7 +225,8 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
               },
             ),
             CustomRadioTile(
-              title: "Condition",
+              title: "Yoke Assembly Condition",
+              id: "Yoke Assembly Condition",
               values: const ["Replace Damaged", "Replace Worn"],
               onChangeValue: (value) {
                 //TODO - MISING IN JSON
@@ -246,6 +239,9 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
             CustomTextField(
               title: "Tail Section/ Foot Assembly Comments",
               controller: tailSectionComment,
+              onChanged: (val) {
+                widget.beltModel.tailSectionFootAssemblyComments = val;
+              },
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,24 +1,34 @@
 import 'package:flutter/material.dart';
 
-class CustomRadioTile extends StatefulWidget {
-  const CustomRadioTile({
-    super.key,
-    this.title,
-    required this.values,
-    this.valueStyle,
-    this.isTextField = false,
-    this.fieldTitle,
-    required this.onChangeValue,
-    this.type,
-  });
+List<Map<String, String?>> selectionsRef =
+    []; // List to hold id, title, and value
 
+class CustomRadioTile extends StatefulWidget {
+  const CustomRadioTile(
+      {super.key,
+      this.id,
+      this.title,
+      required this.values,
+      this.valueStyle,
+      this.isTextField = false,
+      this.fieldTitle,
+      required this.onChangeValue,
+      this.type,
+      this.onFieldChange,
+      this.fieldValue});
+
+  final String? id;
   final String? title;
   final List<String> values;
   final TextStyle? valueStyle;
-  final bool isTextField;
-  final String? fieldTitle;
   final ValueChanged<String?> onChangeValue;
   final String? type;
+
+  final bool isTextField;
+  final String? fieldTitle;
+  final String? fieldValue;
+  final ValueChanged<String>? onFieldChange;
+
   // final TextEditingController
   @override
   State<CustomRadioTile> createState() => _CustomRadioTileState();
@@ -39,13 +49,21 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
     String result = input.toLowerCase();
 
     // Replace spaces and commas with underscores
-    result = result
-        .replaceAll(' ', '_')
-        .replaceAll(',', '')
-        .replaceAll('-', '-')
-        .replaceAll('/', '');
+    result =
+        result.replaceAll(' ', '_').replaceAll(',', '').replaceAll('-', '-');
 
     return result;
+  }
+
+  void updateSelection(String id, String? title, String? value) {
+    setState(() {
+      final index = selectionsRef.indexWhere((element) => element['id'] == id);
+      if (index >= 0) {
+        selectionsRef[index]['value'] = value;
+      } else {
+        selectionsRef.add({'id': id, 'title': title, 'value': value});
+      }
+    });
   }
 
   @override
@@ -71,6 +89,10 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
                   value: formatString(widget.values[index]),
                   groupValue: currentVal,
                   onChanged: (value) {
+                    if (widget.id != null) {
+                      updateSelection(
+                          widget.id.toString(), widget.title, value);
+                    }
                     setState(() {
                       currentVal = value;
                       widget.onChangeValue(value);
@@ -78,7 +100,6 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
                   },
                 ),
                 // CupertinoRadio(value: value, groupValue: groupValue, onChanged: onChanged)
-
                 Text(
                   widget.values[index],
                   style: widget.valueStyle,
@@ -87,28 +108,13 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
             ),
           ),
         ),
-        // Wrap(
-        //   children: List.generate(
-        //     widget.values.length,
-        //     (index) => RadioListTile.adaptive(
-        //       value: widget.values[index],
-        //       groupValue: currentVal,
-        //       onChanged: (value) {
-        //         setState(() {
-        //           currentVal = value;
-        //           widget.onChangeValue(value);
-        //         });
-        //       },
-        //       title: Text(widget.values[index], style: widget.valueStyle),
-        //     ),
-        //   ),
-        // ),
-        if (widget.isTextField)
+
+        if (currentVal == widget.fieldValue)
           Padding(
             padding: const EdgeInsets.only(bottom: 25, left: 18, right: 18),
             child: TextField(
-              // controller: ,
               maxLines: null,
+              onChanged: widget.onFieldChange,
               decoration: InputDecoration(labelText: widget.fieldTitle),
             ),
           ),

@@ -108,7 +108,7 @@
     "inoperable": "The switch on the car safeties must be repaired or replaced."
   },
   "car_guide_rails_type": {
-    "t_rail": "",
+    "t-rail": "",
     "angle": "",
     "wood": ""
   },
@@ -151,11 +151,11 @@
     "rear": ""
   },
   "counterweight_guide_rail_type": {
-    "t_rail": "",
+    "t-rail": "",
     "angle": "",
     "box": "",
     "enclosed": "",
-    "c_channel": ""
+    "c-channel": ""
   },
   "counterweight_guide_rail_size": {
     "default": ""
@@ -193,7 +193,7 @@
   },
   "cw_condition": {
     "ok": "",
-    "worn": "The counter weight guide inserts are showing wear and will require further monitoring.",
+    "worn_but_ok": "The counter weight guide inserts are showing wear and will require further monitoring.",
     "replace": "The counterweight guide inserts are worn or damaged and must be replaced. Or The car guide inserts are not code compliant and must be replaced."
   },
   "hoistway_ladder": {
@@ -604,8 +604,8 @@
   },
   "electrical_control_panel": {
     "nema": {
-      "4_dust_tight": "",
-      "9_explosive_dust": ""
+      "4-dust_tight": "",
+      "9-explosive_dust": ""
     },
     "voltage": {
       "208": "",

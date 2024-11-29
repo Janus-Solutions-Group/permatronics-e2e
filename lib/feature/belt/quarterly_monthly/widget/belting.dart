@@ -27,8 +27,9 @@ class Belting extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FormHeaderTitle(title: "BELTING"),
+            const FormHeaderTitle(title: "BELTING"),
             CustomRadioTile(
+              id: 'belting_1',
               title: 'Belting Type',
               values: const ['PVC', 'Cotton', 'Rubber'],
               onChangeValue: (value) {
@@ -37,6 +38,7 @@ class Belting extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'belting_2',
               title: 'Width',
               values: const ['12”', '14”', '16”'],
               onChangeValue: (value) {
@@ -44,6 +46,7 @@ class Belting extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'belting_3',
               title: 'Splice Type',
               values: const ['Lap', 'Butt'],
               onChangeValue: (value) {
@@ -51,9 +54,22 @@ class Belting extends StatelessWidget {
                     jsonData['belting_splice_type'][value];
               },
             ),
-            CustomTextField(title: 'Splice Length:'),
-            CustomTextField(title: 'Number of Bolts:'),
+            CustomTextField(
+              id: 'belting_4',
+              title: 'Splice Length:',
+              onChanged: (val) {
+                beltModel.beltingSpliceLength = val;
+              },
+            ),
+            CustomTextField(
+              id: 'belting_5',
+              title: 'Number of Bolts:',
+              onChanged: (val) {
+                beltModel.beltingNumberOfBolts = val;
+              },
+            ),
             CustomRadioTile(
+              id: 'belting_6',
               title: 'Splice Bolt Condition:',
               values: const [
                 'OK',
@@ -67,6 +83,7 @@ class Belting extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'belting_7',
               title: 'Instructions Stenciled on the Belt:',
               values: const ['OK', 'Non-Compliant', 'Faded'],
               onChangeValue: (value) {
@@ -76,6 +93,7 @@ class Belting extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'belting_8',
               title: 'Directional Arrows Stenciled on the Belt:',
               values: const ['Yes', 'No', 'Faded'],
               onChangeValue: (value) {
@@ -85,14 +103,17 @@ class Belting extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'belting_9',
               title: 'Compressive Flex Failure:',
               values: const ['No', 'Slight', 'Extreme'],
               onChangeValue: (value) {
                 beltModel.beltingCompressiveFlexFailure =
-                    jsonData['belting_compressive_flex_failure'][value];
+                    jsonData['belting_compressive_flex_failure'][value]
+                        .toString();
               },
             ),
             CustomRadioTile(
+              id: 'belting_10',
               title: 'Tension of Belt:',
               values: const ['Good', 'Needs to be adjusted'],
               onChangeValue: (value) {
@@ -100,7 +121,13 @@ class Belting extends StatelessWidget {
                     jsonData['belting_tension_of_belt'][value];
               },
             ),
-            CustomTextField(title: 'Belt Condition Comments:'),
+            CustomTextField(
+              id: 'belting_11',
+              title: 'Belt Condition Comments:',
+              onChanged: (val) {
+                beltModel.beltingBeltConditionComments = val;
+              },
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

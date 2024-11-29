@@ -303,7 +303,7 @@
     "yes": "",
     "no": "The hood does not have a rolled edge and must be repaired or replaced."
   },
-  "bottom_landing_hood_if_moveable,_does_the_switch_work": {
+  "bottom_landing_hood_if_moveable_does_the_switch_work": {
     "yes": "",
     "no": "The switch on the bottom landing hood was inoperable at the time of inspection, it is required that it be repaired or replaced."
   },
@@ -740,7 +740,7 @@
   "drive_assembly_fasteningmethod": { "bolt": "", "drivescrews": "" },
   "drive_assembly_headshaftbearing": {
     "number": 0,
-    "type": { "pillowblock": "", "highbox": "" },
+    "type": { "pillow_block": "", "high_box": "" },
     "size": ""
   },
   "drive_assembly_bearingcondition": {
@@ -921,14 +921,14 @@
     "no": "No Visual and/or Audible Alerting System was found to be present at the time of inspection. It is required that a Visual and/or Audible Alerting System be installed."
   },
   "drive_assembly_toplandingsafeties_topsafetiescomments": "",
-  "electrical_nematype": { "4": "", "7": "", "9": "" },
+  "electrical_nematype": { "4_(dust_tight)": "", "7_(explosive_vapors)": "", "9_(explosive_dust)": "" },
   "electrical_voltage": { "208": "", "230/240": "", "460/480": "" },
   "electrical_hascontrolpanel": {
     "yes": "",
     "no": "A Manlift Control Panel was not observed at the time of inspection. It is recommended a Manlift Control Panel be installed.",
-    "location": { "bymanlift": "", "inmccroom": "" }
+    "location": { "by_manlift": "", "in_mcc_room": "" }
   },
-  "electrical_individualcontrollocation": { "bymanlift": "", "inmccroom": "" },
+  "electrical_individualcontrollocation": { "by_manlift": "", "in_mcc_room": "" },
   "electrical_hasstarter": {
     "yes": "",
     "no": " A starter was not observed at the time of inspection. It is required that a Starter be installed."

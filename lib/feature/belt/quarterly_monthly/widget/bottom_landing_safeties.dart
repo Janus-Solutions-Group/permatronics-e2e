@@ -32,8 +32,9 @@ class BottomLandingSafeties extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FormHeaderTitle(title: "Bottom Landing Safeties"),
+            const FormHeaderTitle(title: "Bottom Landing Safeties"),
             CustomRadioTile(
+              id: 'bottom_landing_safeties_1',
               title: "Type 1:",
               values: const ["Treadle", "Photo Eye"],
               onChangeValue: (value) {
@@ -42,7 +43,8 @@ class BottomLandingSafeties extends StatelessWidget {
               },
             ),
             CustomRadioTile(
-              title: "Condition:",
+              id: 'bottom_landing_safeties_2',
+              title: "Type 1 Condition:",
               values: const [
                 'OK',
                 'Inoperable',
@@ -57,6 +59,7 @@ class BottomLandingSafeties extends StatelessWidget {
             Wrap(
               children: [
                 CustomRadioTile(
+                  id: 'bottom_landing_safeties_3',
                   title: "Type 2:",
                   values: const ["Photo Eye", "In-Track", "Split-Rail"],
                   onChangeValue: (value) {
@@ -65,6 +68,7 @@ class BottomLandingSafeties extends StatelessWidget {
                   },
                 ),
                 CustomRadioTile(
+                  id: 'bottom_landing_safeties_4',
                   title: "Location:",
                   values: const ["Right", "Left"],
                   onChangeValue: (value) {
@@ -74,6 +78,7 @@ class BottomLandingSafeties extends StatelessWidget {
               ],
             ),
             CustomRadioTile(
+              id: 'bottom_landing_safeties_5',
               title: "Condition:",
               values: const [
                 'OK',
@@ -89,6 +94,7 @@ class BottomLandingSafeties extends StatelessWidget {
             Wrap(
               children: [
                 CustomRadioTile(
+                  id: 'bottom_landing_safeties_6',
                   title: "Type 3:",
                   values: const ["Photo Eye", "In-Track", "Split-Rail"],
                   onChangeValue: (value) {
@@ -97,6 +103,7 @@ class BottomLandingSafeties extends StatelessWidget {
                   },
                 ),
                 CustomRadioTile(
+                  id: 'bottom_landing_safeties_7',
                   title: "Location:",
                   values: const ["Right", "Left"],
                   onChangeValue: (value) {
@@ -106,6 +113,7 @@ class BottomLandingSafeties extends StatelessWidget {
               ],
             ),
             CustomRadioTile(
+              id: 'bottom_landing_safeties_8',
               title: "Condition:",
               values: const [
                 'OK',
@@ -119,6 +127,7 @@ class BottomLandingSafeties extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'bottom_landing_safeties_9',
               title: "Bottom Reset:",
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -126,8 +135,20 @@ class BottomLandingSafeties extends StatelessWidget {
                     jsonData['bottom_landing_safeties_bottom_reset'][value];
               },
             ),
-            CustomTextField(title: "Location:"),
-            CustomTextField(title: "Bottom Safeties Comments"),
+            CustomTextField(
+              id: 'bottom_landing_safeties_10',
+              title: "Location:",
+              onChanged: (val) {
+                beltModel.bottomLandingSafetiesBottomResetLocation = val;
+              },
+            ),
+            CustomTextField(
+              id: 'bottom_landing_safeties_11',
+              title: "Bottom Safeties Comments",
+              onChanged: (val) {
+                beltModel.bottomLandingSafetiesBottomSafetiesComments = val;
+              },
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

@@ -26,8 +26,9 @@ class TopLandingSafeties extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FormHeaderTitle(title: "TOP LANDING SAFETIES"),
+            const FormHeaderTitle(title: "TOP LANDING SAFETIES"),
             CustomRadioTile(
+              id: 'top_landing_safeties_1',
               title: 'Type 1:',
               values: const ['Knock Out Bar', 'Photo Eye'],
               onChangeValue: (value) {
@@ -36,6 +37,7 @@ class TopLandingSafeties extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_safeties_2',
               title: 'Type 1: Condition',
               values: const [
                 'OK',
@@ -50,6 +52,7 @@ class TopLandingSafeties extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_safeties_3',
               title: 'Type 2:',
               values: const ['Photo Eye', 'In-Track', 'Split Rail'],
               onChangeValue: (value) {
@@ -58,6 +61,7 @@ class TopLandingSafeties extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_safeties_4',
               title: 'Location',
               values: const ['Right', 'Left'],
               onChangeValue: (value) {
@@ -67,6 +71,7 @@ class TopLandingSafeties extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_safeties_5',
               title: 'Type 2: Condition',
               values: const [
                 'OK',
@@ -81,6 +86,7 @@ class TopLandingSafeties extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_safeties_6',
               title: 'Type 3:',
               values: const ['Photo Eye', 'In-Track', 'Split Rail'],
               onChangeValue: (value) {
@@ -89,6 +95,7 @@ class TopLandingSafeties extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_safeties_7',
               title: 'Location',
               values: const ['Right', 'Left'],
               onChangeValue: (value) {
@@ -98,6 +105,7 @@ class TopLandingSafeties extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_safeties_8',
               title: 'Type 3: Condition',
               values: const [
                 'OK',
@@ -112,6 +120,7 @@ class TopLandingSafeties extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_safeties_9',
               title: 'Type 4:',
               values: const ['Photo Eye', 'In-Track', 'Split Rail'],
               onChangeValue: (value) {
@@ -120,6 +129,7 @@ class TopLandingSafeties extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_safeties_10',
               title: 'Location',
               values: const ['Right', 'Left'],
               onChangeValue: (value) {
@@ -129,6 +139,7 @@ class TopLandingSafeties extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_safeties_11',
               title: 'Type 4: Condition',
               values: const [
                 'OK',
@@ -143,6 +154,7 @@ class TopLandingSafeties extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_safeties_12',
               title: 'Top Reset',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -151,8 +163,12 @@ class TopLandingSafeties extends StatelessWidget {
                         [value];
               },
             ),
-            CustomTextField(title: 'Location'),
+            CustomTextField(
+              id: 'top_landing_safeties_13',
+              title: 'Location',
+            ),
             CustomRadioTile(
+              id: 'top_landing_safeties_14',
               title: 'Compliant',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -161,6 +177,7 @@ class TopLandingSafeties extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_safeties_15',
               title: 'Condition',
               values: const ['Ok', 'Inoperable'],
               onChangeValue: (value) {
@@ -171,6 +188,7 @@ class TopLandingSafeties extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_safeties_16',
               title: 'Are Safety Stop Device Switches:',
               values: const ['Manual', 'Self-Resetting', "Both"],
               onChangeValue: (value) {
@@ -179,6 +197,7 @@ class TopLandingSafeties extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_safeties_17',
               title: 'Is there a visual and audible alerting system',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -186,7 +205,10 @@ class TopLandingSafeties extends StatelessWidget {
                     jsonData['hasalertingsystem'][value];
               },
             ),
-            CustomTextField(title: 'Top Safeties Comments:'),
+            CustomTextField(
+              id: 'top_landing_safeties_18',
+              title: 'Top Safeties Comments:',
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

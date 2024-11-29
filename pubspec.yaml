@@ -39,9 +39,12 @@ dependencies:
   dropdown_search: ^5.0.6
   gal: ^2.3.0
   path_provider: ^2.1.4
-  syncfusion_flutter_pdf: ^26.2.13
+  # syncfusion_flutter_pdf: ^26.2.13
+  syncfusion_flutter_signaturepad: ^27.1.55
   open_file: ^3.5.3
   pdf: ^3.11.1
+  intl: 
+  screenshot: 
   # permission_handler: ^11.3.1
   # google_fonts: 
   # file_saver: ^0.2.14

@@ -25,8 +25,9 @@ class TopLanding extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FormHeaderTitle(title: "TOP LANDING#"),
+            const FormHeaderTitle(title: "TOP LANDING#"),
             CustomRadioTile(
+              id: 'top_landing_1',
               title: '“Authorized Personnel Only” Sign: (2” letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
@@ -35,6 +36,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_2',
               title: 'Instruction Sign: (1” letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
@@ -43,6 +45,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_3',
               title: '“TOP FLOOR – GET OFF” Sign: (2” letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
@@ -51,6 +54,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_4',
               title: 'Location',
               values: const ["Below Landing", "Above Landing"],
               onChangeValue: (value) {
@@ -59,6 +63,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_5',
               title: "Red Warning Light:",
               values: const ['Yes', 'No', 'Inoperable'],
               onChangeValue: (value) {
@@ -67,6 +72,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_6',
               title: "Location",
               values: const ["Below Landing", "Above Landing"],
               onChangeValue: (value) {
@@ -75,6 +81,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_7',
               title: 'Maze:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -82,8 +89,12 @@ class TopLanding extends StatelessWidget {
                 //     jsonData['top_landing_maze'][value];
               },
             ),
-            CustomTextField(title: 'Description'),
+            CustomTextField(
+              id: 'top_landing_8',
+              title: 'Description',
+            ),
             CustomRadioTile(
+              id: 'top_landing_9',
               title: 'Self Closing Gate:',
               values: const ['1', '2', '3', '4'],
               onChangeValue: (value) {
@@ -92,6 +103,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_10',
               title: 'Open Outward:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -100,6 +112,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_11',
               title: 'Toeboard:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -108,6 +121,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_12',
               title: 'Add’l Toeboard Required:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -115,8 +129,12 @@ class TopLanding extends StatelessWidget {
                     jsonData['top_landing_addltoeboardrequired'][value];
               },
             ),
-            CustomTextField(title: 'Length'),
+            CustomTextField(
+              id: 'top_landing_13',
+              title: 'Length',
+            ),
             CustomRadioTile(
+              id: 'top_landing_14',
               title: 'Toeboard Material:',
               values: const ['Steel', 'Raised Concrete', 'Other'],
               onChangeValue: (value) {
@@ -124,9 +142,16 @@ class TopLanding extends StatelessWidget {
                 //     jsonData['top_landing_instructionsign'][value];
               },
             ),
-            CustomTextField(title: 'Toeboard Height:'),
-            CustomTextField(title: 'Control Rope Diameter'),
+            CustomTextField(
+              id: 'top_landing_15',
+              title: 'Toeboard Height:',
+            ),
+            CustomTextField(
+              id: 'top_landing_16',
+              title: 'Control Rope Diameter',
+            ),
             CustomRadioTile(
+              id: 'top_landing_17',
               title: 'Type:',
               values: const ['Wire Center Cable', 'Non-Compliant'],
               onChangeValue: (value) {
@@ -135,6 +160,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_18',
               title: 'Control Rope Condition:',
               values: const ['OK', 'Replace Damaged', 'Replace Worn'],
               onChangeValue: (value) {
@@ -142,8 +168,12 @@ class TopLanding extends StatelessWidget {
                     jsonData['top_landing_conditionofropeguides'][value];
               },
             ),
-            CustomTextField(title: 'Control Rope Fasteners'),
+            CustomTextField(
+              id: 'top_landing_19',
+              title: 'Control Rope Fasteners',
+            ),
             CustomRadioTile(
+              id: 'top_landing_20',
               title: 'Pinch Clips:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -152,6 +182,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_21',
               title: 'U-Bolts:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -160,6 +191,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_22',
               title: 'Tape:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -168,6 +200,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_23',
               title: 'Tied:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -176,6 +209,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_24',
               title: 'Guide Rail Type:',
               values: const ['Channel', 'Angle'],
               onChangeValue: (value) {
@@ -184,6 +218,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_25',
               title: 'Guide Rail Condition:',
               values: const [
                 'OK',
@@ -199,6 +234,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_26',
               title: 'Lighting:',
               values: const ['OK', 'Poor,'],
               onChangeValue: (value) {
@@ -207,6 +243,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_27',
               title: 'Is Landing Clean/Free of Obstructions:',
               values: const ['Yes', 'No,'],
               onChangeValue: (value) {
@@ -215,6 +252,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_28',
               title: 'Lateral Bracing:',
               values: const ['OK', 'Needs Add’l,'],
               onChangeValue: (value) {
@@ -223,6 +261,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_29',
               title: 'Check Attachment Bolts:',
               values: const [
                 'Yes',
@@ -234,6 +273,7 @@ class TopLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'top_landing_30',
               title: 'Condition:',
               values: const ['OK', 'Missing'],
               onChangeValue: (value) {
@@ -241,8 +281,14 @@ class TopLanding extends StatelessWidget {
                 //     jsonData['top_landing_instructionsign'][value];
               },
             ),
-            CustomTextField(title: 'How Many'),
-            CustomTextField(title: 'Top Landing Comments:'),
+            CustomTextField(
+              id: 'top_landing_31',
+              title: 'How Many',
+            ),
+            CustomTextField(
+              id: 'top_landing_32',
+              title: 'Top Landing Comments:',
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

@@ -26,8 +26,9 @@ class IntermediateLanding extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FormHeaderTitle(title: "INTERMEDIATE LANDING#"),
+            const FormHeaderTitle(title: "INTERMEDIATE LANDING#"),
             CustomRadioTile(
+              id: 'intermediate_landing_1',
               title: '“Authorized Personnel Only” Sign: (2” letters)',
               values: const ['Yes', 'No', 'Non-Compliant'],
               onChangeValue: (value) {
@@ -37,6 +38,7 @@ class IntermediateLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'intermediate_landing_2',
               title: 'Instruction Sign: (1” letters)',
               values: const ['Yes', 'No', 'Non-Compliant'],
               onChangeValue: (value) {
@@ -45,6 +47,7 @@ class IntermediateLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'intermediate_landing_3',
               title: 'Maze:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -52,8 +55,15 @@ class IntermediateLanding extends StatelessWidget {
                     jsonData['intermediate_landing_maze'][value];
               },
             ),
-            CustomTextField(title: 'Description'),
+            CustomTextField(
+              id: 'intermediate_landing_4',
+              title: 'Description',
+              onChanged: (val) {
+                beltModel.stepsStepDescription = val;
+              },
+            ),
             CustomRadioTile(
+              id: 'intermediate_landing_5',
               title: 'Self Closing Gate:',
               values: const ['1', '2', '3', '4'],
               onChangeValue: (value) {
@@ -63,6 +73,7 @@ class IntermediateLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'intermediate_landing_6',
               title: 'Open Outward:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -71,6 +82,7 @@ class IntermediateLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'intermediate_landing_7',
               title: 'Toeboard:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -79,6 +91,7 @@ class IntermediateLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'intermediate_landing_8',
               title: 'Add’l Toeboard Required:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -87,8 +100,13 @@ class IntermediateLanding extends StatelessWidget {
                         [value];
               },
             ),
-            CustomTextField(title: 'Length'),
+            CustomTextField(
+              id: 'intermediate_landing_9',
+              title: 'Length',
+              onChanged: (val) {},
+            ),
             CustomRadioTile(
+              id: 'intermediate_landing_10',
               title: 'Toeboard Material:',
               values: const ['Steel', 'Raised Concrete', 'Other'],
               onChangeValue: (value) {
@@ -96,8 +114,13 @@ class IntermediateLanding extends StatelessWidget {
                 //   jsonData['steps_step_rollers_bolts'][value];
               },
             ),
-            CustomTextField(title: 'Toeboard Height:'),
+            CustomTextField(
+              id: 'intermediate_landing_11',
+              title: 'Toeboard Height:',
+              onChanged: (val) {},
+            ),
             CustomRadioTile(
+              id: 'intermediate_landing_12',
               title: 'Type of Hood:',
               values: const ['Stationary', 'Moveable', 'Moveable Mini', 'None'],
               onChangeValue: (value) {
@@ -106,6 +129,7 @@ class IntermediateLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'intermediate_landing_13',
               title: 'Hood Condition:',
               values: const [
                 'OK',
@@ -119,6 +143,7 @@ class IntermediateLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'intermediate_landing_14',
               title: 'if Moveable, does Switch work:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -127,6 +152,7 @@ class IntermediateLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'intermediate_landing_15',
               title: 'Does Hood have a Rolled Edge:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -136,6 +162,7 @@ class IntermediateLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'intermediate_landing_16',
               title: 'Condition of Rolled Edge:',
               values: const [
                 'OK',
@@ -150,6 +177,7 @@ class IntermediateLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'intermediate_landing_17',
               title: 'Lighting:',
               values: const ['OK', 'Poor,'],
               onChangeValue: (value) {
@@ -158,6 +186,7 @@ class IntermediateLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'intermediate_landing_18',
               title: 'Is Landing Clean/Free of Obstructions:',
               values: const ['Yes', 'No,'],
               onChangeValue: (value) {
@@ -166,6 +195,7 @@ class IntermediateLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'intermediate_landing_19',
               title: 'Lateral Bracing:',
               values: const ['OK', 'Needs Add’l,'],
               onChangeValue: (value) {
@@ -174,6 +204,7 @@ class IntermediateLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'intermediate_landing_20',
               title: 'Check Attachment Bolts:',
               values: const [
                 'Yes',
@@ -186,6 +217,7 @@ class IntermediateLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'intermediate_landing_21',
               title: 'Condition:',
               values: const ['OK', 'Missing'],
               onChangeValue: (value) {
@@ -193,8 +225,16 @@ class IntermediateLanding extends StatelessWidget {
                 //   jsonData['steps_step_rollers_bolts'][value];
               },
             ),
-            CustomTextField(title: 'How Many'),
-            CustomTextField(title: 'Intermediate Landing Comments:'),
+            CustomTextField(
+              id: 'intermediate_landing_22',
+              title: 'How Many',
+              onChanged: (val) {},
+            ),
+            CustomTextField(
+              id: 'intermediate_landing_23',
+              title: 'Intermediate Landing Comments:',
+              onChanged: (val) {},
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

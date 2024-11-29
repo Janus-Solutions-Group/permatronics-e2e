@@ -25,8 +25,9 @@ class DriveAssembly extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FormHeaderTitle(title: "Drive Assembly"),
+            const FormHeaderTitle(title: "Drive Assembly"),
             CustomRadioTile(
+              id: 'drive_assembly_1',
               title: 'Head Circle Condition:',
               values: const [
                 'OK',
@@ -40,6 +41,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_2',
               title: 'Belt Tracking:',
               values: const ['OK', 'Off'],
               onChangeValue: (value) {
@@ -48,6 +50,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_3',
               title: 'Lagging Condition:',
               values: const [
                 'OK',
@@ -61,6 +64,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_4',
               title: 'Head Shaft Condition:',
               values: const [
                 'OK',
@@ -74,6 +78,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_5',
               title: 'Head Pulley Condition:',
               values: const [
                 'OK',
@@ -87,6 +92,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_6',
               title: 'Is Head Pulley Centered:',
               values: const ['YES', 'NO'],
               onChangeValue: (value) {
@@ -95,6 +101,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_7',
               title: 'Is Head Pulley Level:',
               values: const ['YES', 'NO'],
               onChangeValue: (value) {
@@ -103,6 +110,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_8',
               title: 'Coupler Type',
               values: const [
                 'Old Style',
@@ -119,6 +127,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_9',
               title: 'Coupler Condition:',
               values: const [
                 'OK',
@@ -132,6 +141,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_10',
               title: 'Gear Box Type',
               values: const ['Reliance', 'Dodge', 'Falk', 'Ehrsam', 'Other'],
               isTextField: true,
@@ -142,6 +152,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_11',
               title: 'Gear Box Condition:',
               values: const [
                 'OK',
@@ -155,6 +166,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_12',
               title: 'Motor Type',
               values: const ['Reliance', 'Dodge', 'US Motors', 'GE', 'Other'],
               isTextField: true,
@@ -165,6 +177,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_13',
               title: 'Brake',
               values: const [
                 'Reliance',
@@ -182,6 +195,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_14',
               title: 'Is there a Skip in the Drive',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -190,6 +204,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_15',
               title: 'Reason',
               values: const [
                 'Coupler Play',
@@ -203,6 +218,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_16',
               title: 'Saf-T-Stop Brake',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -211,6 +227,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_17',
               title: 'Linkage',
               values: const ['OK', 'Replace Damaged', 'Replace Worn'],
               onChangeValue: (value) {
@@ -219,6 +236,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_18',
               title:
                   'Overall Saf-T-Stop Brake Condition: (i.e. micro switch arms, castings etc.)',
               values: const [
@@ -233,6 +251,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'drive_assembly_19',
               title: 'Drive Unit Support Type',
               values: const ['A-Frame', 'Beam'],
               onChangeValue: (value) {
@@ -240,17 +259,18 @@ class DriveAssembly extends StatelessWidget {
                     jsonData['drive_assembly_drivesupporttype'][value];
               },
             ),
-
-            // not in the json -------
-
             CustomRadioTile(
+              id: 'drive_assembly_20',
               title: 'Drive Unit Support Condition',
               values: const ['OK', 'Other'],
               onChangeValue: (value) {
                 // beltModel.drivesup = value;
               },
             ),
-            CustomTextField(title: 'Drive Comments:'),
+            CustomTextField(
+              id: 'drive_assembly_21',
+              title: 'Drive Comments:',
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

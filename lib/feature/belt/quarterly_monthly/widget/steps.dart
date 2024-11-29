@@ -18,6 +18,7 @@ class Steps extends StatelessWidget {
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
     var jsonData = BeltJson.of(context)!.data;
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Form(
@@ -25,8 +26,9 @@ class Steps extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FormHeaderTitle(title: "STEPS"),
+            const FormHeaderTitle(title: "STEPS"),
             CustomRadioTile(
+              id: 'steps_1',
               title: 'Step Description',
               values: const [
                 'Viola',
@@ -44,8 +46,15 @@ class Steps extends StatelessWidget {
             ),
             Wrap(
               children: [
-                CustomTextField(title: '# of Steps:'),
+                CustomTextField(
+                  id: 'steps_2',
+                  title: '# of Steps:',
+                  onChanged: (val) {
+                    beltModel.stepsNumberOfSteps = val;
+                  },
+                ),
                 CustomRadioTile(
+                  id: 'steps_3',
                   title: 'Steps Missing',
                   values: const ['Yes', 'No'],
                   onChangeValue: (value) {
@@ -53,10 +62,17 @@ class Steps extends StatelessWidget {
                         jsonData['steps_steps_missing'][value];
                   },
                 ),
-                CustomTextField(title: 'How Many:'),
+                CustomTextField(
+                  id: 'steps_4',
+                  title: 'How Many:',
+                  onChanged: (val) {
+                    beltModel.stepsMissingStepsNumber = val;
+                  },
+                ),
               ],
             ),
             CustomRadioTile(
+              id: 'steps_5',
               title: 'Tread Color:',
               values: const ['Blue', 'Yellow', 'Other'],
               onChangeValue: (value) {
@@ -65,6 +81,7 @@ class Steps extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'steps_6',
               title: '# of Elevator Bolts:',
               values: const ['3', '4', '5', '6'],
               onChangeValue: (value) {
@@ -73,6 +90,7 @@ class Steps extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'steps_7',
               title: 'Condition of Elevator Bolts:',
               values: const [
                 'OK',
@@ -86,6 +104,7 @@ class Steps extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'steps_8',
               title: 'Step Roller Type:',
               values: const [
                 'L-75 Flanged Cast',
@@ -98,6 +117,7 @@ class Steps extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'steps_9',
               title: 'Step Roller Condition:',
               values: const [
                 'OK',
@@ -111,6 +131,7 @@ class Steps extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'steps_10',
               title: 'Step Roller Bolts:',
               values: const [
                 'OK',
@@ -124,6 +145,7 @@ class Steps extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'steps_11',
               title: 'Step Tread Material:',
               values: const ['Steel', 'Wood'],
               onChangeValue: (value) {
@@ -132,6 +154,7 @@ class Steps extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'steps_12',
               title: 'Condition:',
               values: const [
                 'OK',
@@ -145,6 +168,7 @@ class Steps extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'steps_13',
               title: 'Anti-Skid:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -152,6 +176,7 @@ class Steps extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'steps_14',
               title: 'Condition:',
               values: const [
                 'OK',
@@ -165,6 +190,7 @@ class Steps extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'steps_15',
               title: 'X-Y Washer:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -173,6 +199,7 @@ class Steps extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'steps_16',
               title: 'Condition:',
               values: const [
                 'OK',
@@ -187,6 +214,7 @@ class Steps extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'steps_17',
               title: 'Bracket Condition:',
               values: const [
                 'OK',
@@ -200,6 +228,7 @@ class Steps extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'steps_18',
               title: 'Step Bar Condition:',
               values: const [
                 'OK',
@@ -212,7 +241,13 @@ class Steps extends StatelessWidget {
                     jsonData['steps_step_bars_condition'][value];
               },
             ),
-            CustomTextField(title: 'Step Comments:'),
+            CustomTextField(
+              id: 'steps_19',
+              title: 'Step Comments:',
+              onChanged: (val) {
+                beltModel.stepsStepComments = val;
+              },
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

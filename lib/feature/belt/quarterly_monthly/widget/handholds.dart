@@ -28,6 +28,7 @@ class Handholds extends StatelessWidget {
           children: [
             const FormHeaderTitle(title: "Handholds"),
             CustomRadioTile(
+              id: 'handholds_1',
               title: 'Handhold Color',
               values: const ['Blue', 'Yellow', 'Other'],
               onChangeValue: (value) {
@@ -36,6 +37,7 @@ class Handholds extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'handholds_2',
               title: 'Condition of Bolts',
               values: const [
                 'OK',
@@ -48,7 +50,13 @@ class Handholds extends StatelessWidget {
                     jsonData['handholds_condition_of_bolts'][value];
               },
             ),
-            CustomTextField(title: 'Handhold Comments:'),
+            CustomTextField(
+              id: 'handholds_3',
+              title: 'Handhold Comments:',
+              onChanged: (val) {
+                beltModel.handholdsHandholdComments = val;
+              },
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

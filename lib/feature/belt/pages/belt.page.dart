@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:manlift_app/feature/belt/annual/pages/belt_annual.dart';
-import 'package:manlift_app/feature/belt/quarterly/pages/belt_quaterly.dart';
+import 'package:manlift_app/feature/belt/quarterly_monthly/pages/belt_quaterly.dart';
 import 'package:manlift_app/util/navigate.dart';
 
 class BeltPage extends StatelessWidget {
@@ -31,13 +31,13 @@ class BeltPage extends StatelessWidget {
                   onTap: () {
                     if (index == 0) {
                       moveTo(context,
-                          BeltQuaterlyPage(title: "Belt Monthly Form"));
+                          const BeltQuaterlyPage(title: "Belt Monthly Form"));
                     } else if (index == 1) {
                       moveTo(context,
-                          BeltQuaterlyPage(title: "Belt Quaterly Form"));
+                          const BeltQuaterlyPage(title: "Belt Quaterly Form"));
                     } else if (index == 2) {
-                      moveTo(
-                          context, BeltAnnualPage(title: "Belt Yearly Form"));
+                      moveTo(context,
+                          const BeltAnnualPage(title: "Belt Yearly Form"));
                     }
                   },
                   child: Card(

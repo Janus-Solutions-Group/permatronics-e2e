@@ -14,9 +14,7 @@ class BeltInspection {
   String? tailSectionFootAssemblyFootShaftDiameter;
   String? tailSectionFootAssemblyFootShaftLength;
   String? tailSectionFootAssemblyFootShaftCondition;
-  String? tailSectionFootAssemblyDoesFootShaftHaveKey;
-  String? tailSectionFootAssemblyDoesFootShaftHaveBushing;
-  String? tailSectionFootAssemblyDoesFootShaftHaveSetScrews;
+  String? tailSectionFootAssemblyDoesFootShaftHave;
   String? tailSectionFootAssemblyDistanceFromFloorToCenterlineOfFootShaft;
   String? tailSectionFootAssemblyFootPulleyCondition;
   String? tailSectionFootAssemblyTypeOfBeltAdjustment;
@@ -51,6 +49,8 @@ class BeltInspection {
   String? bottomLandingRedWarningLight;
   String? bottomLandingLightLocation;
   String? bottomLandingIsManliftInABelowGradePit;
+  String? bottomLandingGradePitWidth;
+  String? bottomLandingGradePitDepth;
   String? bottomLandingManliftClean;
   String? bottomLandingDoesManliftUseUpSidePlatform;
   String? bottomLandingDescribeOpening;
@@ -68,8 +68,10 @@ class BeltInspection {
   String? bottomLandingAreGatesSelfClosing;
   String? bottomLandingOpenOutward;
   String? bottomLandingAreGatesMissing;
+  String? bottomLandingGatesMissingCount;
   String? bottomLandingToeboard;
   String? bottomLandingAddToeboard;
+  String? bottomLandingToeboardLength;
   String? bottomLandingToeboardHeight;
   String? bottomLandingDistanceFromFaceOfBeltToBackEdgeOfFloorOpening;
   String? bottomLandingBottomLandingNotesComments;
@@ -294,9 +296,7 @@ class BeltInspection {
     this.tailSectionFootAssemblyFootShaftDiameter,
     this.tailSectionFootAssemblyFootShaftLength,
     this.tailSectionFootAssemblyFootShaftCondition,
-    this.tailSectionFootAssemblyDoesFootShaftHaveKey,
-    this.tailSectionFootAssemblyDoesFootShaftHaveBushing,
-    this.tailSectionFootAssemblyDoesFootShaftHaveSetScrews,
+    this.tailSectionFootAssemblyDoesFootShaftHave,
     this.tailSectionFootAssemblyDistanceFromFloorToCenterlineOfFootShaft,
     this.tailSectionFootAssemblyFootPulleyCondition,
     this.tailSectionFootAssemblyTypeOfBeltAdjustment,
@@ -329,6 +329,8 @@ class BeltInspection {
     this.bottomLandingRedWarningLight,
     this.bottomLandingLightLocation,
     this.bottomLandingIsManliftInABelowGradePit,
+    this.bottomLandingGradePitWidth,
+    this.bottomLandingGradePitDepth,
     this.bottomLandingManliftClean,
     this.bottomLandingDoesManliftUseUpSidePlatform,
     this.bottomLandingDescribeOpening,
@@ -344,8 +346,10 @@ class BeltInspection {
     this.bottomLandingAreGatesSelfClosing,
     this.bottomLandingOpenOutward,
     this.bottomLandingAreGatesMissing,
+    this.bottomLandingGatesMissingCount,
     this.bottomLandingToeboard,
     this.bottomLandingAddToeboard,
+    this.bottomLandingToeboardLength,
     this.bottomLandingToeboardHeight,
     this.bottomLandingDistanceFromFaceOfBeltToBackEdgeOfFloorOpening,
     this.bottomLandingBottomLandingNotesComments,
@@ -568,12 +572,8 @@ class BeltInspection {
           tailSectionFootAssemblyFootShaftLength,
       'tailSectionFootAssemblyFootShaftCondition':
           tailSectionFootAssemblyFootShaftCondition,
-      'tailSectionFootAssemblyDoesFootShaftHaveKey':
-          tailSectionFootAssemblyDoesFootShaftHaveKey,
-      'tailSectionFootAssemblyDoesFootShaftHaveBushing':
-          tailSectionFootAssemblyDoesFootShaftHaveBushing,
-      'tailSectionFootAssemblyDoesFootShaftHaveSetScrews':
-          tailSectionFootAssemblyDoesFootShaftHaveSetScrews,
+      'tailSectionFootAssemblyDoesFootShaftHave':
+          tailSectionFootAssemblyDoesFootShaftHave,
       'tailSectionFootAssemblyDistanceFromFloorToCenterlineOfFootShaft':
           tailSectionFootAssemblyDistanceFromFloorToCenterlineOfFootShaft,
       'tailSectionFootAssemblyFootPulleyCondition':
@@ -915,12 +915,8 @@ class BeltInspection {
           map['tailSectionFootAssemblyFootShaftLength'],
       tailSectionFootAssemblyFootShaftCondition:
           map['tailSectionFootAssemblyFootShaftCondition'],
-      tailSectionFootAssemblyDoesFootShaftHaveKey:
-          map['tailSectionFootAssemblyDoesFootShaftHaveKey'],
-      tailSectionFootAssemblyDoesFootShaftHaveBushing:
-          map['tailSectionFootAssemblyDoesFootShaftHaveBushing'],
-      tailSectionFootAssemblyDoesFootShaftHaveSetScrews:
-          map['tailSectionFootAssemblyDoesFootShaftHaveSetScrews'],
+      tailSectionFootAssemblyDoesFootShaftHave:
+          map['tailSectionFootAssemblyDoesFootShaftHave'],
       tailSectionFootAssemblyDistanceFromFloorToCenterlineOfFootShaft: map[
           'tailSectionFootAssemblyDistanceFromFloorToCenterlineOfFootShaft'],
       tailSectionFootAssemblyFootPulleyCondition:

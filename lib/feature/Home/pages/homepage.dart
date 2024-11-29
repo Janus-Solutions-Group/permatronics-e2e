@@ -1,13 +1,14 @@
-import 'dart:io';
+// import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:manlift_app/feature/belt/pages/belt.page.dart';
 import 'package:manlift_app/feature/cage/pages/cage.page.dart';
 import 'package:manlift_app/util/navigate.dart';
 
-import 'package:open_file/open_file.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:syncfusion_flutter_pdf/pdf.dart';
+// import 'package:open_file/open_file.dart';
+// import 'package:path_provider/path_provider.dart';
+// import 'package:syncfusion_flutter_pdf/pdf.dart';
+// import 'package:pdf/pdf.dart';
+// import 'package:pdf/widgets.dart' as pw;
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
@@ -73,6 +74,38 @@ class _HomePageState extends State<HomePage> {
                       );
                     }),
               ),
+              // ElevatedButton(
+              //   onPressed: () async {
+              //     List<String> l = [];
+              //     for (int i = 0; i < 1000; i++) {
+              //       l.add("asd$i");
+              //     }
+
+              //     // await generatePdf(list);
+              //     final pdf = pw.Document();
+
+              //     pdf.addPage(pw.MultiPage(
+              //         pageFormat: PdfPageFormat.a4,
+              //         build: (pw.Context context) {
+              //           return List.generate(
+              //               l.length, (index) => pw.Text(l[index]));
+              //         }));
+              //     // final output = await getExternalStorageDirectory();
+              //     final directory = Directory("/storage/emulated/0/Download");
+              //     final path = directory.path;
+              //     print(path);
+
+              //     await Directory(path).create(recursive: true);
+              //     final file = File("${path}/output.pdf");
+              //     await file.writeAsBytes(await pdf.save());
+
+              //     if (context.mounted) {
+              //       ScaffoldMessenger.of(context).showSnackBar(
+              //           const SnackBar(content: Text('pdf is created')));
+              //     }
+              //   },
+              //   child: const Text("Create"),
+              // )
             ],
           ),
         ),

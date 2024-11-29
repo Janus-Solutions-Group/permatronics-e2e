@@ -29,6 +29,7 @@ class BottomLanding extends StatelessWidget {
           children: [
             const FormHeaderTitle(title: "BOTTOM LANDING = LANDING#1"),
             CustomRadioTile(
+              id: 'bottom_landing_1',
               title: '“Authorized Personnel Only” Sign: (2” letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
@@ -39,6 +40,7 @@ class BottomLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'bottom_landing_2',
               title: 'Instruction Sign: (1” letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
@@ -47,6 +49,7 @@ class BottomLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'bottom_landing_3',
               title: '“BOTTOM FLOOR – GET OFF” Sign: (2” letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
@@ -57,6 +60,7 @@ class BottomLanding extends StatelessWidget {
 
             // change in the json
             CustomRadioTile(
+              id: 'bottom_landing_4',
               title: "Red Warning Light:",
               values: const ['Yes', 'No', 'N/A'],
               onChangeValue: (value) {
@@ -65,6 +69,7 @@ class BottomLanding extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'bottom_landing_5',
               title: "Condition",
               values: const ['OK', 'Inoperable'],
               onChangeValue: (value) {

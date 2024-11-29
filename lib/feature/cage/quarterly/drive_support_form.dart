@@ -1,153 +1,243 @@
 import 'package:flutter/material.dart';
+import 'package:manlift_app/feature/cage/model/cage_model.dart';
+import 'package:manlift_app/feature/cage/quarterly/cage_quaterly.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
 import '../../common/widgets/page_navigation_button.dart';
 
-class DriveSupportForm extends StatefulWidget {
-  const DriveSupportForm({super.key, required this.pageController});
+class DriveSupportForm extends StatelessWidget {
+  const DriveSupportForm(
+      {super.key, required this.pageController, required this.cageModel});
 
   final PageController pageController;
+  final CageInspection cageModel;
 
-  @override
-  State<DriveSupportForm> createState() => _DriveSupportFormState();
-}
-
-class _DriveSupportFormState extends State<DriveSupportForm> {
   @override
   Widget build(BuildContext context) {
+    var jsonData = CageQuarterlyJson.of(context)!.data;
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FormHeaderTitle(title: "DRIVE SUPPORT"),
-          CustomTextField(title: 'Description'),
+          const FormHeaderTitle(title: "DRIVE SUPPORT"),
+          CustomTextField(
+            id: 'drive_support_form_1',
+            title: 'Description',
+          ),
           CustomRadioTile(
+            id: 'drive_support_form_2',
             title: 'Top Normal Terminal:',
-            values: ["Yes", "No", "Inoperable", "Replace"],
-            onChangeValue: (value) {},
+            values: const ["Yes", "No", "Inoperable", "Replace"],
+            onChangeValue: (value) {
+              cageModel.driveSupportTopNormalTerminal =
+                  jsonData['drive_support']['top_normal_terminal'][value];
+            },
           ),
           CustomRadioTile(
+            id: 'drive_support_form_3',
             title: 'Top Final Terminal:',
-            values: ["Yes", "No", "Inoperable", "Replace"],
-            onChangeValue: (value) {},
+            values: const ["Yes", "No", "Inoperable", "Replace"],
+            onChangeValue: (value) {
+              cageModel.driveSupportTopFinalTerminal =
+                  jsonData['drive_support']['top_final_terminal'][value];
+            },
           ),
           CustomRadioTile(
+            id: 'drive_support_form_4',
             title: 'Governor Guard:',
             values: ["Yes", "No"],
-            onChangeValue: (value) {},
+            onChangeValue: (value) {
+              cageModel.driveSupportGovernorGuard =
+                  jsonData['drive_support']['governor_guard'][value];
+            },
           ),
           CustomRadioTile(
+            id: 'drive_support_form_5',
             title: 'Sheave Guard',
             values: ["Yes", "No"],
-            onChangeValue: (value) {},
+            onChangeValue: (value) {
+              cageModel.driveSupportSheaveGuard =
+                  jsonData['drive_support']['sheave_guard'][value];
+            },
           ),
           CustomRadioTile(
+            id: 'drive_support_form_6',
             title: 'Governor Condition',
-            values: ["OK", "Inoerable", "Replace"],
+            values: const ["OK", "Inoperable", "Replace"],
             isTextField: true,
             fieldTitle: "Why",
-            onChangeValue: (value) {},
+            onChangeValue: (value) {
+              cageModel.driveSupportGovernorCondition =
+                  jsonData['drive_support']['governor_condition'][value];
+            },
           ),
           CustomRadioTile(
+            id: 'drive_support_form_7',
             title: 'Bale Flip:',
-            values: ["Easy", "Hard"],
+            values: const ["Easy", "Hard"],
             isTextField: true,
             fieldTitle: "Why",
-            onChangeValue: (value) {},
+            onChangeValue: (value) {
+              cageModel.driveSupportBaleFlip =
+                  jsonData['drive_support']['bale_flip'][value];
+            },
           ),
           CustomRadioTile(
+            id: 'drive_support_form_8',
             title: 'Governor Switch',
-            values: ["Yes", "No"],
-            onChangeValue: (value) {},
+            values: const ["Yes", "No"],
+            onChangeValue: (value) {
+              cageModel.driveSupportGovernorSwitch =
+                  jsonData['drive_support']['governor_switch'][value];
+            },
           ),
           CustomRadioTile(
+            id: 'drive_support_form_9',
             title: 'Rope Gripper:',
-            values: ["Yes", "No", "N/A"],
-            onChangeValue: (value) {},
+            values: const ["Yes", "No", "N/A"],
+            onChangeValue: (value) {
+              cageModel.driveSupportRopeGripper =
+                  jsonData['drive_support']['rope_gripper'][value];
+            },
           ),
           CustomRadioTile(
-            title: 'Governor',
-            values: ["OK", "Inoerable", "Replace", "Other"],
+            id: 'drive_support_form_10',
+            title: 'Rope Gripper Condition',
+            values: const ["OK", "Inoperable", "Replace", "Other"],
             isTextField: true,
             fieldTitle: "Other",
-            onChangeValue: (value) {},
+            onChangeValue: (value) {
+              cageModel.driveSupportRopeGripperCondition =
+                  jsonData['drive_support']['rope_gripper_condition'][value];
+            },
           ),
           CustomRadioTile(
+            id: 'drive_support_form_11',
             title: 'Sheave Break:',
-            values: ["Yes", "No", "N/A"],
-            onChangeValue: (value) {},
+            values: const ["Yes", "No", "N/A"],
+            onChangeValue: (value) {
+              cageModel.driveSupportSheaveBreak =
+                  jsonData['drive_support']['sheave_break'][value];
+            },
           ),
           CustomRadioTile(
-            title: 'Governor',
-            values: ["OK", "Inoerable", "Replace", "Other"],
+            id: 'drive_support_form_12',
+            title: 'Sheave Break Condition',
+            values: const ["OK", "Inoperable", "Replace", "Other"],
             isTextField: true,
             fieldTitle: "Other",
-            onChangeValue: (value) {},
+            onChangeValue: (value) {
+              cageModel.driveSupportSheaveBreakCondition =
+                  jsonData['drive_support']['sheave_break_condition'][value];
+            },
           ),
           CustomRadioTile(
+            id: 'drive_support_form_13',
             title: 'Deflector Sheave',
-            values: ["Yes", "No"],
-            onChangeValue: (value) {},
+            values: const ["Yes", "No"],
+            onChangeValue: (value) {
+              cageModel.driveSupportDeflectorSheave =
+                  jsonData['drive_support']['deflector_sheave'][value];
+            },
           ),
           CustomRadioTile(
+            id: 'drive_support_form_14',
             title: 'Shaft and Bearing Condition:',
-            values: ["OK", "Replace", "Other"],
+            values: const ["OK", "Replace", "Other"],
             isTextField: true,
             fieldTitle: "Other",
-            onChangeValue: (value) {},
+            onChangeValue: (value) {
+              cageModel.driveSupportShaftAndBearingCondition =
+                  jsonData['drive_support']['shaft_and_bearing_condition']
+                      [value];
+            },
           ),
           Row(
             children: [
-              Expanded(child: CustomTextField(title: 'Couple Sizer')),
-              Expanded(child: CustomTextField(title: 'Couple Type')),
+              Expanded(
+                child: CustomTextField(
+                  id: 'drive_support_form_15',
+                  title: 'Couple Sizer',
+                ),
+              ),
+              Expanded(
+                child: CustomTextField(
+                  id: 'drive_support_form_16',
+                  title: 'Couple Type',
+                ),
+              ),
             ],
           ),
           CustomRadioTile(
+            id: 'drive_support_form_17',
             title: 'Coupler Condition:',
-            values: ["OK", "Replace", "Other"],
+            values: const ["OK", "Replace", "Other"],
             isTextField: true,
             fieldTitle: "Other",
-            onChangeValue: (value) {},
+            onChangeValue: (value) {
+              cageModel.driveSupportCouplerCondition =
+                  jsonData['drive_support']['coupler_condition'][value];
+            },
           ),
           CustomRadioTile(
+            id: 'drive_support_form_18',
             title: 'Gearbox Condition:',
-            values: ["OK", "Excessive Back lash", "Monitor", "Replace"],
+            values: const ["OK", "Excessive Backlash", "Monitor", "Replace"],
             isTextField: true,
             fieldTitle: "Other",
-            onChangeValue: (value) {},
+            onChangeValue: (value) {
+              cageModel.driveSupportGearboxCondition =
+                  jsonData['drive_support']['gearbox_condition'][value];
+            },
           ),
           CustomRadioTile(
+            id: 'drive_support_form_19',
             title: 'Motor Condition:',
-            values: ["OK", "Replace"],
-            onChangeValue: (value) {},
+            values: const ["OK", "Replace"],
+            onChangeValue: (value) {
+              cageModel.driveSupportMotorCondition =
+                  jsonData['drive_support']['motor_condition'][value];
+            },
           ),
           CustomRadioTile(
+            id: 'drive_support_form_20',
             title: 'Brake Condition',
-            values: ["OK", "Replace Friction Disks only", "Replace"],
-            onChangeValue: (value) {},
+            values: const ["OK", "Replace Friction Disks only", "Replace"],
+            onChangeValue: (value) {
+              cageModel.driveSupportBrakeCondition =
+                  jsonData['drive_support']['brake_condition'][value];
+            },
           ),
           CustomRadioTile(
+            id: 'drive_support_form_21',
             title: 'Machine Disconnect:',
-            values: ["Yes", "No"],
-            onChangeValue: (value) {},
+            values: const ["Yes", "No"],
+            onChangeValue: (value) {
+              cageModel.driveSupportMachineDisconnect =
+                  jsonData['drive_support']['machine_disconnect'][value];
+            },
           ),
           CustomRadioTile(
+            id: 'drive_support_form_22',
             title: 'Overhead Lifting Supports:',
-            values: ["Yes", "No"],
-            onChangeValue: (value) {},
+            values: const ["Yes", "No"],
+            onChangeValue: (value) {
+              cageModel.driveSupportOverheadLiftingSupports =
+                  jsonData['drive_support']['overhead_lifting_supports'][value];
+            },
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               PageNavigationButton(
-                pageController: widget.pageController,
+                pageController: pageController,
                 right: false,
               ),
               PageNavigationButton(
-                pageController: widget.pageController,
+                pageController: pageController,
                 right: true,
               ),
             ],

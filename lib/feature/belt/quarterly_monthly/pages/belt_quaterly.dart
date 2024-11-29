@@ -5,45 +5,41 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:manlift_app/data/models/header.dart';
+import 'package:manlift_app/feature/belt/quarterly_monthly/widget/belting.dart';
+import 'package:manlift_app/feature/belt/quarterly_monthly/widget/bottom_landing.dart';
+import 'package:manlift_app/feature/belt/quarterly_monthly/widget/bottom_landing_hood.dart';
+import 'package:manlift_app/feature/belt/quarterly_monthly/widget/bottom_landing_safeties.dart';
+import 'package:manlift_app/feature/belt/quarterly_monthly/widget/drive_assembly.dart';
+import 'package:manlift_app/feature/belt/quarterly_monthly/widget/handholds.dart';
+import 'package:manlift_app/feature/belt/quarterly_monthly/widget/intermediate_landing.dart';
+import 'package:manlift_app/feature/belt/quarterly_monthly/widget/steps.dart';
+import 'package:manlift_app/feature/belt/quarterly_monthly/widget/tail_section.dart';
+import 'package:manlift_app/feature/belt/quarterly_monthly/widget/top_landing.dart';
+import 'package:manlift_app/feature/belt/quarterly_monthly/widget/top_landing_safeties.dart';
 import 'package:manlift_app/feature/common/widgets/header_form.dart';
 import 'package:manlift_app/feature/common/widgets/image_picking_last.dart';
-import 'package:manlift_app/feature/common/widgets/signature_pad.dart';
+import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
-import '../../../../data/models/header.dart';
-import '../../../common/widgets/radio_tile.dart';
+import '../../../common/widgets/signature_pad.dart';
 import '../../model/belt_inspection_model.dart';
-import '../widget/belting.dart';
-import '../widget/bottom_landing.dart';
-import '../widget/bottom_landing_hood.dart';
-import '../widget/bottom_landing_safeties.dart';
-import '../widget/drive_assembly.dart';
-import '../widget/electrical.dart';
-import '../widget/handholds.dart';
-import '../widget/load_test.dart';
-import '../widget/steps.dart';
-import '../widget/tail_section.dart';
-import '../widget/intermediate_landing.dart';
-import '../widget/top_landing.dart';
-import '../widget/top_landing_safeties.dart';
 
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
-class BeltAnnualPage extends StatefulWidget {
-  const BeltAnnualPage({super.key, required this.title});
+class BeltQuaterlyPage extends StatefulWidget {
+  const BeltQuaterlyPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<BeltAnnualPage> createState() => _BeltAnnualPageState();
+  State<BeltQuaterlyPage> createState() => _BeltQuaterlyPageState();
 }
 
-class _BeltAnnualPageState extends State<BeltAnnualPage> {
+class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
   final pageController = PageController();
-
-  final beltModel = BeltInspection();
   final headerModel = HeaderModel();
-
+  final beltModel = BeltInspection();
   Map<String, dynamic> data = {};
 
   fetchJsonData() async {
@@ -60,7 +56,7 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
     super.initState();
   }
 
-  Future<void> createinspectionPdf() async {
+  Future<void> createInspectionPdf() async {
     List<String> list = [];
     beltModel.toMap().forEach((u, v) {
       if (v != null) {
@@ -74,7 +70,6 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
 
     // await generatePdf(list);
     final pdf = pw.Document();
-
     final img = await rootBundle.load('assets/perma_tronic.png');
     final imageBytes = img.buffer.asUint8List();
     pw.Image image1 = pw.Image(pw.MemoryImage(imageBytes));
@@ -118,7 +113,9 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
                 pw.Text(r"VP\GM"),
                 pw.Text("gordon.butler@permatronic.com"),
               ],
-            )
+            ),
+            // if (image != null)
+            //   pw.Image(pw.MemoryImage(image))
           ];
         }));
     // final output = await getExternalStorageDirectory();
@@ -128,7 +125,7 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
 
     await Directory(path).create(recursive: true);
     final file = File(
-        "$path/belt_annual_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf");
+        "$path/belt_quarterly_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf");
     await file.writeAsBytes(await pdf.save());
 
     if (mounted) {
@@ -181,7 +178,7 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
 
     await Directory(path).create(recursive: true);
     final file = File(
-        "$path/belt_annual_ref_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf");
+        "$path/belt_quarterly_ref_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf");
     await file.writeAsBytes(await pdf.save());
 
     selectionsRef.clear();
@@ -196,7 +193,7 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BeltAnnualJson(
+    return BeltJson(
       data: data,
       runFunction: fetchJsonData,
       child: Scaffold(
@@ -214,8 +211,10 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
                     HeaderForm(
                         pageController: pageController,
                         headerModel: headerModel),
-                    TailSection(
-                        pageController: pageController, beltModel: beltModel),
+                    TailSectionFootAssembly(
+                      pageController: pageController,
+                      beltModel: beltModel,
+                    ),
                     BottomLandingSafeties(
                       pageController: pageController,
                       beltModel: beltModel,
@@ -256,14 +255,6 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
                       pageController: pageController,
                       beltModel: beltModel,
                     ),
-                    Electrical(
-                      pageController: pageController,
-                      beltModel: beltModel,
-                    ),
-                    LoadTest(
-                      pageController: pageController,
-                      beltModel: beltModel,
-                    ),
                     SignaturePad(
                       signatureChanged: (value) async {
                         final png = await value.toByteData(
@@ -274,8 +265,9 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
                     ),
                     ImagePickingWidget(
                       pageController: pageController,
+                      beltModel: beltModel,
                       onSubmit: () async {
-                        await createinspectionPdf();
+                        await createInspectionPdf();
                         await createrefrencePdf();
                       },
                     ),
@@ -290,22 +282,23 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
   }
 }
 
-class BeltAnnualJson extends InheritedWidget {
-  const BeltAnnualJson(
-      {super.key,
-      required this.data,
-      required this.runFunction,
-      required super.child});
+class BeltJson extends InheritedWidget {
+  const BeltJson({
+    super.key,
+    required super.child,
+    required this.data,
+    required this.runFunction,
+  });
 
   final Map<String, dynamic> data;
   final Function() runFunction;
 
-  static BeltAnnualJson? of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<BeltAnnualJson>();
+  static BeltJson? of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<BeltJson>();
   }
 
   @override
-  bool updateShouldNotify(BeltAnnualJson oldWidget) {
+  bool updateShouldNotify(BeltJson oldWidget) {
     return oldWidget.data != data;
   }
 }

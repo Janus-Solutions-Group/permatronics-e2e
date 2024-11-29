@@ -25,8 +25,9 @@ class BottomLandingHood extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FormHeaderTitle(title: "BOTTOM LANDING HOOD"),
+            const FormHeaderTitle(title: "BOTTOM LANDING HOOD"),
             CustomRadioTile(
+              id: 'bottom_landing_hood_1',
               title: 'Type of Hood',
               values: const ["Stationary", "Moveable", "Moveable Mini", 'None'],
               onChangeValue: (value) {
@@ -35,6 +36,7 @@ class BottomLandingHood extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'bottom_landing_hood_2',
               title: 'Hood Condition',
               values: const [
                 "OK",
@@ -48,6 +50,7 @@ class BottomLandingHood extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'bottom_landing_hood_3',
               title: 'If moveable, does the switch work',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -58,6 +61,7 @@ class BottomLandingHood extends StatelessWidget {
               },
             ),
             CustomRadioTile(
+              id: 'bottom_landing_hood_4',
               title: 'Does Hood have a Rolled Edge',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -66,7 +70,13 @@ class BottomLandingHood extends StatelessWidget {
                         [value];
               },
             ),
-            CustomTextField(title: 'Bottom Hood Comments:'),
+            CustomTextField(
+              id: 'bottom_landing_hood_5',
+              title: 'Bottom Hood Comments:',
+              onChanged: (val) {
+                beltModel.bottomLandingHoodBottomHoodComments = val;
+              },
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
