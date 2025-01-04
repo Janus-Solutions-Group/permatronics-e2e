@@ -20,10 +20,9 @@ class Belting extends StatefulWidget {
 
 class _BeltingState extends State<Belting> {
   var beltVariable = BeltInspection();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-
     var jsonData = BeltAnnualJson.of(context)!.data;
 
     return SingleChildScrollView(
@@ -35,6 +34,7 @@ class _BeltingState extends State<Belting> {
           children: [
             const FormHeaderTitle(title: "BELTING"),
             CustomRadioTile(
+              id: "belting_annual_1",
               title: 'Belting Type',
               values: const ['PVC', 'Cotton', 'Rubber'],
               onChangeValue: (value) {
@@ -43,6 +43,7 @@ class _BeltingState extends State<Belting> {
               },
             ),
             CustomRadioTile(
+              id: "belting_annual_2",
               title: 'Belting Condition',
               values: const ['OK', 'Cuts', 'Frayed Edges', 'Replace Damaged'],
               onChangeValue: (value) {
@@ -51,6 +52,7 @@ class _BeltingState extends State<Belting> {
               },
             ),
             CustomRadioTile(
+              id: "belting_annual_3",
               title: 'Width',
               values: const ['12”', '14”', '16”'],
               onChangeValue: (value) {
@@ -59,6 +61,7 @@ class _BeltingState extends State<Belting> {
               },
             ),
             CustomRadioTile(
+              id: "belting_annual_4",
               title: 'Color',
               values: const ['Black', 'Yellow', 'Other'],
               onChangeValue: (value) {
@@ -72,6 +75,7 @@ class _BeltingState extends State<Belting> {
               },
             ),
             CustomRadioTile(
+              id: "belting_annual_5",
               title: 'Splice Type',
               values: const ['Lap', 'Butt'],
               onChangeValue: (value) {
@@ -80,18 +84,21 @@ class _BeltingState extends State<Belting> {
               },
             ),
             CustomTextField(
+              id: "belting_annual_6",
               title: 'Splice Length:',
               onChanged: (value) {
                 widget.beltModel.beltingSpliceLength = value;
               },
             ),
             CustomTextField(
+              id: "belting_annual_7",
               title: 'Number of Bolts:',
               onChanged: (value) {
                 widget.beltModel.beltingNumberOfBolts = value;
               },
             ),
             CustomRadioTile(
+              id: "belting_annual_8",
               title: 'Missing Bolts',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -104,12 +111,14 @@ class _BeltingState extends State<Belting> {
             ),
             if (beltVariable.stepsMissingBolts == "yes")
               CustomTextField(
+                id: "belting_annual_9",
                 title: 'How Many:',
                 onChanged: (value) {
                   widget.beltModel.beltingMissingBoltsNumber = value;
                 },
               ),
             CustomRadioTile(
+              id: "belting_annual_10",
               title: 'Splice Bolt Condition:',
               values: const [
                 'OK',
@@ -123,6 +132,7 @@ class _BeltingState extends State<Belting> {
               },
             ),
             CustomRadioTile(
+              id: "belting_annual_11",
               title: 'Instructions Stenciled on the Belt:',
               values: const ['OK', 'Non-Compliant', 'Faded'],
               onChangeValue: (value) {
@@ -132,6 +142,7 @@ class _BeltingState extends State<Belting> {
               },
             ),
             CustomRadioTile(
+              id: "belting_annual_12",
               title: 'Directional Arrows Stenciled on the Belt:',
               values: const ['Yes', 'No', 'Faded'],
               onChangeValue: (value) {
@@ -141,6 +152,7 @@ class _BeltingState extends State<Belting> {
               },
             ),
             CustomRadioTile(
+              id: "belting_annual_13",
               title: 'Compressive Flex Failure:',
               values: const ['No', 'Slight', 'Extreme'],
               onChangeValue: (value) {
@@ -149,6 +161,7 @@ class _BeltingState extends State<Belting> {
               },
             ),
             CustomRadioTile(
+              id: "belting_annual_13",
               title: 'Tension of Belt:',
               values: const ['Good', 'Needs to be adjusted'],
               onChangeValue: (value) {
@@ -157,6 +170,7 @@ class _BeltingState extends State<Belting> {
               },
             ),
             CustomTextField(
+              id: "belting_annual_14",
               title: 'Belt Condition Comments:',
               onChanged: (value) {
                 widget.beltModel.beltingBeltConditionComments = value;

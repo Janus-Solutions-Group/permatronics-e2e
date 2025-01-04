@@ -8,13 +8,18 @@ import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 import '../../../common/widgets/page_navigation_button.dart';
 import '../pages/belt_annual.dart';
 
-class TopLanding extends StatelessWidget {
+class TopLanding extends StatefulWidget {
   const TopLanding(
       {super.key, required this.pageController, required this.beltModel});
 
   final PageController pageController;
   final BeltInspection beltModel;
 
+  @override
+  State<TopLanding> createState() => _TopLandingState();
+}
+
+class _TopLandingState extends State<TopLanding> {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
@@ -32,7 +37,7 @@ class TopLanding extends StatelessWidget {
               title: '“Authorized Personnel Only” Sign: (2” letters)',
               values: const ['Yes', 'No', 'Non-Compliant'],
               onChangeValue: (value) {
-                beltModel.topLandingAuthorizedPersonnelSign =
+                widget.beltModel.topLandingAuthorizedPersonnelSign =
                     jsonData['top_landing_authorizedpersonnelsign'][value];
               },
             ),
@@ -40,7 +45,7 @@ class TopLanding extends StatelessWidget {
               title: 'Instruction Sign: (1” letters)',
               values: const ['Yes', 'No', 'Non-Compliant'],
               onChangeValue: (value) {
-                beltModel.topLandingInstructionSign =
+                widget.beltModel.topLandingInstructionSign =
                     jsonData['top_landing_instructionsign'][value];
               },
             ),
@@ -89,7 +94,7 @@ class TopLanding extends StatelessWidget {
               title: 'Floor Opening Shape:',
               values: const ['Circular', 'Square'],
               onChangeValue: (value) {
-                beltModel.topLandingFloorOpeningShape =
+                widget.beltModel.topLandingFloorOpeningShape =
                     jsonData['top_landing_flooropeningshape'][value];
               },
             ),
@@ -137,7 +142,8 @@ class TopLanding extends StatelessWidget {
               title: 'Maze:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.topLandingMaze = jsonData['top_landing_maze'][value];
+                widget.beltModel.topLandingMaze =
+                    jsonData['top_landing_maze'][value];
               },
             ),
             CustomTextField(title: 'Description:'),
@@ -154,7 +160,7 @@ class TopLanding extends StatelessWidget {
               title: 'Are Gates Self-Closing:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.topLandingAreGatesSelfClosing =
+                widget.beltModel.topLandingAreGatesSelfClosing =
                     jsonData['top_landing_aregatesselfclosing'][value];
               },
             ),
@@ -162,7 +168,7 @@ class TopLanding extends StatelessWidget {
               title: 'Open Outward:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.topLandingOpenOutward =
+                widget.beltModel.topLandingOpenOutward =
                     jsonData['top_landing_openoutward'][value];
               },
             ),
@@ -170,7 +176,7 @@ class TopLanding extends StatelessWidget {
               title: 'Are Gates Missing:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.topLandingAreGatesMissing =
+                widget.beltModel.topLandingAreGatesMissing =
                     jsonData['top_landing_aregatesmissing'][value];
               },
             ),
@@ -179,7 +185,7 @@ class TopLanding extends StatelessWidget {
               title: 'Toeboard:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.topLandingToeboard =
+                widget.beltModel.topLandingToeboard =
                     jsonData['top_landing_toeboard'][value];
               },
             ),
@@ -187,7 +193,7 @@ class TopLanding extends StatelessWidget {
               title: 'Add’l Toeboard Required:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.topLandingAddlToeboard =
+                widget.beltModel.topLandingAddlToeboard =
                     jsonData['top_landing_addltoeboardrequired'][value];
               },
             ),
@@ -263,7 +269,7 @@ class TopLanding extends StatelessWidget {
               title: 'Ladder Rungs:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.topLandingLadderRungs =
+                widget.beltModel.topLandingLadderRungs =
                     jsonData['top_landing_ladderrungs'][value];
               },
             ),
@@ -317,7 +323,7 @@ class TopLanding extends StatelessWidget {
                 'Replace Worn'
               ],
               onChangeValue: (value) {
-                beltModel.topLandingHoodCondition =
+                widget.beltModel.topLandingHoodCondition =
                     jsonData['top_landing_hoodcondition'][value];
               },
             ),
@@ -325,7 +331,7 @@ class TopLanding extends StatelessWidget {
               title: 'Hood Clearance: (Minimum 7’6”)',
               values: const ['OK', 'Non-Compliant'],
               onChangeValue: (value) {
-                beltModel.topLandingHoodClearance =
+                widget.beltModel.topLandingHoodClearance =
                     jsonData['top_landing_hoodclearance'][value];
               },
             ),
@@ -358,7 +364,7 @@ class TopLanding extends StatelessWidget {
               title: 'Does Hood Have a Rolled Edge:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.topLandingDoesHoodHaveRolledEdge =
+                widget.beltModel.topLandingDoesHoodHaveRolledEdge =
                     jsonData['top_landing_doeshoodhaverollededge'][value];
               },
             ),
@@ -371,7 +377,7 @@ class TopLanding extends StatelessWidget {
                 'Replace Worn'
               ],
               onChangeValue: (value) {
-                beltModel.topLandingConditionOfRolledEdge =
+                widget.beltModel.topLandingConditionOfRolledEdge =
                     jsonData['top_landing_conditionofrollededge'][value];
               },
             ),
@@ -385,7 +391,7 @@ class TopLanding extends StatelessWidget {
               title: 'Rope Guide Condition:',
               values: const ['OK', 'Replace Damaged', 'Replace Worn'],
               onChangeValue: (value) {
-                beltModel.topLandingConditionOfRopeGuides =
+                widget.beltModel.topLandingConditionOfRopeGuides =
                     jsonData['top_landing_conditionofropeguides'][value];
               },
             ),
@@ -393,7 +399,7 @@ class TopLanding extends StatelessWidget {
               title: 'Need Add’l:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.topLandingNeedAddlRopeGuides =
+                widget.beltModel.topLandingNeedAddlRopeGuides =
                     jsonData['top_landing_needaddlropeguides'][value];
               },
             ),
@@ -404,7 +410,7 @@ class TopLanding extends StatelessWidget {
               title: 'Lighting:',
               values: const ['OK', 'Poor'],
               onChangeValue: (value) {
-                beltModel.topLandingLighting =
+                widget.beltModel.topLandingLighting =
                     jsonData['top_landing_lighting'][value];
               },
             ),
@@ -412,7 +418,7 @@ class TopLanding extends StatelessWidget {
               title: 'Is Landing Clean/Free of Obstructions:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.topLandingIsLandingClean =
+                widget.beltModel.topLandingIsLandingClean =
                     jsonData['top_landing_islandingclean'][value];
               },
             ),
@@ -420,7 +426,7 @@ class TopLanding extends StatelessWidget {
               title: 'Lateral Bracing:',
               values: const ['OK', 'Needs Add’l'],
               onChangeValue: (value) {
-                beltModel.topLandingLateralBracing =
+                widget.beltModel.topLandingLateralBracing =
                     jsonData['top_landing_lateralbracing'][value];
               },
             ),
@@ -428,7 +434,7 @@ class TopLanding extends StatelessWidget {
               title: 'Check Attachment Bolts:',
               values: ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.topLandingCheckAttachmentBolts =
+                widget.beltModel.topLandingCheckAttachmentBolts =
                     jsonData['top_landing_checkattachmentbolts'][value];
               },
             ),
@@ -451,11 +457,11 @@ class TopLanding extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 PageNavigationButton(
-                  pageController: pageController,
+                  pageController: widget.pageController,
                   right: false,
                 ),
                 PageNavigationButton(
-                  pageController: pageController,
+                  pageController: widget.pageController,
                   right: true,
                 ),
               ],

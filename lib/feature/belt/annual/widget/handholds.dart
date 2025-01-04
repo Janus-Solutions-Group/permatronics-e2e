@@ -20,9 +20,9 @@ class Handholds extends StatefulWidget {
 
 class _HandholdsState extends State<Handholds> {
   var beltVariable = BeltInspection();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
     var jsonData = BeltAnnualJson.of(context)!.data;
 
     return SingleChildScrollView(
@@ -34,6 +34,7 @@ class _HandholdsState extends State<Handholds> {
           children: [
             const FormHeaderTitle(title: "Handholds"),
             CustomRadioTile(
+              id: "handholds_annual_1",
               title: 'Handhold Type',
               values: const ['L55', 'Cup', 'Open'],
               onChangeValue: (value) {
@@ -42,24 +43,28 @@ class _HandholdsState extends State<Handholds> {
               },
             ),
             CustomRadioTile(
+              id: "handholds_annual_2",
               title: 'Handhold Color',
               values: const ['Blue', 'Yellow', 'Other'],
               onChangeValue: (value) {
                 widget.beltModel.handholdsHandholdColor =
                     jsonData['handholds_handhold_color'][value];
               },
+              fieldTitle: "Other Color",
               fieldValue: "other",
               onFieldChange: (value) {
-                widget.beltModel.handholdsHandholdColor = value;
+                // widget.beltModel.handholdsHandholdColor = value;
               },
             ),
             CustomTextField(
+              id: "handholds_annual_3",
               title: 'Number of Handholds',
               onChanged: (value) {
                 widget.beltModel.handholdsNumberOfHandholds = value;
               },
             ),
             CustomRadioTile(
+              id: "handholds_annual_4",
               title: 'Depth: (3”)',
               values: const ['OK', 'Non-Compliant'],
               onChangeValue: (value) {
@@ -68,6 +73,7 @@ class _HandholdsState extends State<Handholds> {
               },
             ),
             CustomRadioTile(
+              id: "handholds_annual_5",
               title: 'Distance from Belt: (2”)',
               values: const ['OK', 'Non-Compliant'],
               onChangeValue: (value) {
@@ -76,6 +82,7 @@ class _HandholdsState extends State<Handholds> {
               },
             ),
             CustomRadioTile(
+              id: "handholds_annual_6",
               title: 'Distance from Step: (48”-56”)',
               values: const ['OK', 'Non-Compliant'],
               onChangeValue: (value) {
@@ -84,6 +91,7 @@ class _HandholdsState extends State<Handholds> {
               },
             ),
             CustomRadioTile(
+              id: "handholds_annual_7",
               title: 'Punching Pattern:',
               values: const ['8 7/8”', '9” ', 'Other'],
               onChangeValue: (value) {
@@ -91,11 +99,13 @@ class _HandholdsState extends State<Handholds> {
                     jsonData['handholds_punching_pattern'][value];
               },
               fieldValue: "other",
+              fieldTitle: "Other",
               onFieldChange: (value) {
-                widget.beltModel.handholdsPunchingPattern = value;
+                // widget.beltModel.handholdsPunchingPattern = value;
               },
             ),
             CustomRadioTile(
+              id: "handholds_annual_8",
               title: 'Condition of Bolts',
               values: const [
                 'OK',
@@ -109,6 +119,7 @@ class _HandholdsState extends State<Handholds> {
               },
             ),
             CustomTextField(
+              id: "handholds_annual_9",
               title: 'Handhold Comments:',
               onChanged: (value) {
                 widget.beltModel.handholdsHandholdComments = value;

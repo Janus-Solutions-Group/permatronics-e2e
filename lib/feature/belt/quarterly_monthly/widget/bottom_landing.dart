@@ -6,20 +6,23 @@ import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
 import '../pages/belt_quaterly.dart';
 
-class BottomLanding extends StatelessWidget {
+class BottomLanding extends StatefulWidget {
   const BottomLanding(
       {super.key, required this.pageController, required this.beltModel});
   final PageController pageController;
   final BeltInspection beltModel;
 
   @override
+  State<BottomLanding> createState() => _BottomLandingState();
+}
+
+class _BottomLandingState extends State<BottomLanding> {
+  final formKey = GlobalKey<FormState>();
+  var beltVariable = BeltInspection();
+
+  @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-
-    // Assuming jsonData is available in your context
-    var jsonData =
-        BeltJson.of(context)!.data; // Replace with your actual JSON data
-
+    var jsonData = BeltJson.of(context)!.data;
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Form(
@@ -34,7 +37,7 @@ class BottomLanding extends StatelessWidget {
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
                 // Update the beltModel's corresponding field
-                beltModel.bottomLandingAuthorizedPersonnelOnlySign =
+                widget.beltModel.bottomLandingAuthorizedPersonnelOnlySign =
                     jsonData['bottom_landing_authorized_personnel_only_sign']
                         [value];
               },
@@ -44,7 +47,7 @@ class BottomLanding extends StatelessWidget {
               title: 'Instruction Sign: (1” letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
-                beltModel.bottomLandingInstructionSign =
+                widget.beltModel.bottomLandingInstructionSign =
                     jsonData['bottom_landing_instruction_sign'][value];
               },
             ),
@@ -53,7 +56,7 @@ class BottomLanding extends StatelessWidget {
               title: '“BOTTOM FLOOR – GET OFF” Sign: (2” letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
-                beltModel.bottomLandingBottomFloorGetOffSign =
+                widget.beltModel.bottomLandingBottomFloorGetOffSign =
                     jsonData['bottom_landing_bottom_floor_get_off_sign'][value];
               },
             ),
@@ -64,28 +67,32 @@ class BottomLanding extends StatelessWidget {
               title: "Red Warning Light:",
               values: const ['Yes', 'No', 'N/A'],
               onChangeValue: (value) {
-                beltModel.bottomLandingRedWarningLight =
+                setState(() {
+                  beltVariable.bottomLandingRedWarningLight = value;
+                });
+                widget.beltModel.bottomLandingRedWarningLight =
                     jsonData['bottom_landing_red_warning_light'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'bottom_landing_5',
-              title: "Condition",
-              values: const ['OK', 'Inoperable'],
-              onChangeValue: (value) {
-                // beltModel.redWarningLightCondition =
-                //     jsonData['bottom_landing_red_warning_light'][value];
-              },
-            ),
+            if (beltVariable.bottomLandingRedWarningLight == "yes")
+              CustomRadioTile(
+                id: 'bottom_landing_5',
+                title: "Condition",
+                values: const ['OK', 'Inoperable'],
+                onChangeValue: (value) {
+                  // beltModel.redWarningLightCondition =
+                  //     jsonData['bottom_landing_red_warning_light'][value];
+                },
+              ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 PageNavigationButton(
-                  pageController: pageController,
+                  pageController: widget.pageController,
                   right: false,
                 ),
                 PageNavigationButton(
-                  pageController: pageController,
+                  pageController: widget.pageController,
                   right: true,
                 ),
               ],

@@ -7,7 +7,7 @@ import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
 import '../pages/belt_quaterly.dart';
 
-class BottomLandingHood extends StatelessWidget {
+class BottomLandingHood extends StatefulWidget {
   const BottomLandingHood(
       {super.key, required this.pageController, required this.beltModel});
 
@@ -15,9 +15,15 @@ class BottomLandingHood extends StatelessWidget {
   final BeltInspection beltModel;
 
   @override
+  State<BottomLandingHood> createState() => _BottomLandingHoodState();
+}
+
+class _BottomLandingHoodState extends State<BottomLandingHood> {
+  var beltVariable = BeltInspection();
+  final formKey = GlobalKey<FormState>();
+  @override
   Widget build(BuildContext context) {
     var jsonData = BeltJson.of(context)!.data;
-    final formKey = GlobalKey<FormState>();
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Form(
@@ -31,61 +37,75 @@ class BottomLandingHood extends StatelessWidget {
               title: 'Type of Hood',
               values: const ["Stationary", "Moveable", "Moveable Mini", 'None'],
               onChangeValue: (value) {
-                beltModel.bottomLandingHoodTypeOfHood =
+                setState(() {
+                  beltVariable.bottomLandingHoodTypeOfHood = value;
+                });
+                widget.beltModel.bottomLandingHoodTypeOfHood =
                     jsonData['bottom_landing_hood_type_of_hood'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'bottom_landing_hood_2',
-              title: 'Hood Condition',
-              values: const [
-                "OK",
-                "Damaged, but OK",
-                "Replace Damaged",
-                'Replace Worn'
-              ],
-              onChangeValue: (value) {
-                beltModel.bottomLandingHoodHoodCondition =
-                    jsonData['bottom_landing_hood_hood_condition'][value];
-              },
-            ),
-            CustomRadioTile(
-              id: 'bottom_landing_hood_3',
-              title: 'If moveable, does the switch work',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {
-                beltModel
-                    .bottomLandingHoodIfMoveableDoesTheSwitchWork = jsonData[
-                        'bottom_landing_hood_if_moveable,_does_the_switch_work']
-                    [value];
-              },
-            ),
-            CustomRadioTile(
-              id: 'bottom_landing_hood_4',
-              title: 'Does Hood have a Rolled Edge',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {
-                beltModel.bottomLandingHoodDoesHoodHaveARolledEdge =
-                    jsonData['bottom_landing_hood_does_hood_have_a_rolled_edge']
-                        [value];
-              },
-            ),
-            CustomTextField(
-              id: 'bottom_landing_hood_5',
-              title: 'Bottom Hood Comments:',
-              onChanged: (val) {
-                beltModel.bottomLandingHoodBottomHoodComments = val;
-              },
-            ),
+            if (beltVariable.bottomLandingHoodTypeOfHood != null &&
+                beltVariable.bottomLandingHoodTypeOfHood != "none")
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomRadioTile(
+                    id: 'bottom_landing_hood_2',
+                    title: 'Hood Condition',
+                    values: const [
+                      "OK",
+                      "Damaged, but OK",
+                      "Replace Damaged",
+                      'Replace Worn'
+                    ],
+                    onChangeValue: (value) {
+                      widget.beltModel.bottomLandingHoodHoodCondition =
+                          jsonData['bottom_landing_hood_hood_condition'][value];
+                    },
+                  ),
+                  if (beltVariable.bottomLandingHoodTypeOfHood == "moveable")
+                    CustomRadioTile(
+                      id: 'bottom_landing_hood_3',
+                      title: 'If moveable, does the switch work',
+                      values: const ['Yes', 'No'],
+                      onChangeValue: (value) {
+                        widget.beltModel
+                                .bottomLandingHoodIfMoveableDoesTheSwitchWork =
+                            jsonData[
+                                    'bottom_landing_hood_if_moveable_does_the_switch_work']
+                                [value];
+                      },
+                    ),
+                  CustomRadioTile(
+                    id: 'bottom_landing_hood_4',
+                    title: 'Does Hood have a Rolled Edge',
+                    values: const ['Yes', 'No'],
+                    onChangeValue: (value) {
+                      widget.beltModel
+                          .bottomLandingHoodDoesHoodHaveARolledEdge = jsonData[
+                              'bottom_landing_hood_does_hood_have_a_rolled_edge']
+                          [value];
+                    },
+                  ),
+                  CustomTextField(
+                    id: 'bottom_landing_hood_5',
+                    title: 'Bottom Hood Comments:',
+                    onChanged: (val) {
+                      widget.beltModel.bottomLandingHoodBottomHoodComments =
+                          val;
+                    },
+                  ),
+                ],
+              ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 PageNavigationButton(
-                  pageController: pageController,
+                  pageController: widget.pageController,
                   right: false,
                 ),
                 PageNavigationButton(
-                  pageController: pageController,
+                  pageController: widget.pageController,
                   right: true,
                 ),
               ],

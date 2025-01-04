@@ -39,6 +39,7 @@ class _AddAnnualLandingFormPageState extends State<AddAnnualLandingFormPage>
                   // moveTo(context, CageLandingForm());
                   Scaffold.of(context).showBottomSheet(
                     (context) => AnnualLandingForm(
+                      index: index,
                       model: landingModels[index],
                       onSubmit: (val) {
                         landingModels[index] = val;
@@ -61,7 +62,7 @@ class _AddAnnualLandingFormPageState extends State<AddAnnualLandingFormPage>
                         ),
                         IconButton(
                           onPressed: () {
-                            landingFormList.removeAt(index);
+                            landingModels.removeAt(index);
                             setState(() {});
                           },
                           icon: const Icon(Icons.cancel),
@@ -83,7 +84,6 @@ class _AddAnnualLandingFormPageState extends State<AddAnnualLandingFormPage>
               ElevatedButton(
                 onPressed: () {
                   landingModels.add(CageAnnualLanding());
-
                   setState(() {});
                 },
                 child: const Icon(Icons.add),

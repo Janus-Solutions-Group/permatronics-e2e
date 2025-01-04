@@ -4,7 +4,9 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+import 'package:manlift_app/feature/Home/pages/homepage.dart';
 import 'package:manlift_app/feature/cage/annual/widgets/add_landing_form.dart';
 import 'package:manlift_app/feature/cage/annual/widgets/cab_form.dart';
 import 'package:manlift_app/feature/cage/annual/widgets/car_counterweight_form.dart';
@@ -22,6 +24,7 @@ import 'package:pdf/widgets.dart' as pw;
 
 import '../../../../data/models/header.dart';
 import '../../../common/widgets/radio_tile.dart';
+import '../../../final/final_page.dart';
 
 class CageAnnualyPage extends StatefulWidget {
   const CageAnnualyPage({super.key});
@@ -135,7 +138,8 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
   Future<void> createrefrencePdf() async {
     final pdf = pw.Document();
 
-    pw.Image image1 = pw.Image(pw.MemoryImage(signature!));
+    pw.Image? image1 =
+        signature != null ? pw.Image(pw.MemoryImage(signature!)) : null;
 
     pdf.addPage(
       pw.MultiPage(
@@ -172,7 +176,6 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
 
     final directory = Directory("/storage/emulated/0/Download");
     final path = directory.path;
-    print(path);
 
     await Directory(path).create(recursive: true);
     final file = File(
@@ -231,6 +234,7 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
 
               // signature is left
               SignaturePad(
+                pageController: pageController,
                 signatureChanged: (value) async {
                   final png =
                       await value.toByteData(format: ui.ImageByteFormat.png);
@@ -243,6 +247,13 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
                 onSubmit: () async {
                   await createinspectionPdf();
                   await createrefrencePdf();
+                  await GetStorage().erase();
+                  if (context.mounted) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const FinalPage()));
+                  }
                 },
               ),
             ],

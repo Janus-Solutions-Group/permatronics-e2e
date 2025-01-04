@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
 List<Map<String, String?>> selectionsRef =
     []; // List to hold id, title, and value
@@ -24,9 +27,9 @@ class CustomRadioTile extends StatefulWidget {
   final ValueChanged<String?> onChangeValue;
   final String? type;
 
+  final String? fieldValue; // required for adding textfield
   final bool isTextField;
   final String? fieldTitle;
-  final String? fieldValue;
   final ValueChanged<String>? onFieldChange;
 
   // final TextEditingController
@@ -39,10 +42,14 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
 
   @override
   void initState() {
-    currentVal = widget.type;
+    currentVal = GetStorage().read(widget.id!) ?? '';
+    // widget.onChangeValue(currentVal);
+    // currentVal = widget.type ?? GetStorage().read(widget.id!);
     if (mounted) setState(() {});
     super.initState();
   }
+
+  getLocalValueById() {}
 
   String formatString(String input) {
     // Convert to lowercase
@@ -88,11 +95,16 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
                 Radio.adaptive(
                   value: formatString(widget.values[index]),
                   groupValue: currentVal,
-                  onChanged: (value) {
+                  onChanged: (value) async {
                     if (widget.id != null) {
                       updateSelection(
                           widget.id.toString(), widget.title, value);
+                    } else {
+                      log('id is null');
                     }
+                    final box = GetStorage();
+                    await box.write(widget.id!, value);
+
                     setState(() {
                       currentVal = value;
                       widget.onChangeValue(value);
@@ -109,13 +121,15 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
           ),
         ),
 
-        if (currentVal == widget.fieldValue)
+        if (currentVal != null && currentVal == widget.fieldValue)
           Padding(
             padding: const EdgeInsets.only(bottom: 25, left: 18, right: 18),
             child: TextField(
               maxLines: null,
               onChanged: widget.onFieldChange,
-              decoration: InputDecoration(labelText: widget.fieldTitle),
+              decoration: InputDecoration(
+                labelText: widget.fieldTitle ?? widget.fieldValue,
+              ),
             ),
           ),
         // const SizedBox(height: 0),

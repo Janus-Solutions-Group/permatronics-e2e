@@ -22,6 +22,8 @@ class YearlyPitInspectionForm extends StatefulWidget {
 
 class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
   final _formKey = GlobalKey<FormState>();
+  var cageInspection = CageInspection();
+
   @override
   Widget build(BuildContext context) {
     var jsonData = CageAnnualJson.of(context)!.data;
@@ -50,39 +52,52 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               title: "Pit",
               values: const ["YES", "NO", "N/A"],
               onChangeValue: (value) {
+                setState(() {
+                  cageInspection.bottomPlatform = value;
+                });
                 widget.cageModel.pit = jsonData['pit'][value];
               },
             ),
-            CustomTextField(id: 'pit_5', title: "Depth"),
-            CustomTextField(id: 'pit_6', title: "Width"),
-            CustomTextField(id: 'pit_7', title: "Length"),
-            CustomRadioTile(
-              id: 'pit_8',
-              title: "Clean",
-              values: const ["YES", "NO"],
-              onChangeValue: (value) {
-                widget.cageModel.clean = jsonData['clean'][value];
-              },
-            ),
+            if (cageInspection.bottomPlatform == "yes")
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomTextField(id: 'pit_5', title: "Depth"),
+                  CustomTextField(id: 'pit_6', title: "Width"),
+                  CustomTextField(id: 'pit_7', title: "Length"),
+                  CustomRadioTile(
+                    id: 'pit_8',
+                    title: "Clean",
+                    values: const ["YES", "NO"],
+                    onChangeValue: (value) {
+                      widget.cageModel.clean = jsonData['clean'][value];
+                    },
+                  ),
+                ],
+              ),
             CustomRadioTile(
               id: 'pit_9',
               title: "Pit Switch",
               values: const ["YES", "NO", "Inoperable"],
               onChangeValue: (value) {
+                setState(() {
+                  cageInspection.pitSwitch = value;
+                });
                 widget.cageModel.pitSwitch = jsonData['pit_switch'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'pit_10',
-              title: "Switch Location",
-              values: const ["YES", "NO", "Inoperable"],
-              isTextField: true,
-              fieldTitle: 'Reason',
-              onChangeValue: (value) {
-                widget.cageModel.switchLocation =
-                    jsonData['switch_location'][value];
-              },
-            ),
+            if (cageInspection.pitSwitch == "yes")
+              CustomRadioTile(
+                id: 'pit_10',
+                title: "Switch Location",
+                values: const ["YES", "NO", "Inoperable"],
+                isTextField: true,
+                fieldTitle: 'Reason',
+                onChangeValue: (value) {
+                  widget.cageModel.switchLocation =
+                      jsonData['switch_location'][value];
+                },
+              ),
             CustomRadioTile(
               id: 'pit_11',
               title: "Pit Light",
@@ -105,51 +120,65 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               title: "Car Buffers:",
               values: const ["YES", "NO"],
               onChangeValue: (value) {
+                setState(() {
+                  cageInspection.carBuffers = value;
+                });
                 widget.cageModel.carBuffers = jsonData['car_buffers'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'pit_14',
-              title: "How Many:",
-              values: const ["1", "2", "3"],
-              onChangeValue: (value) {
-                // widget.cageModel.howman =
-                //     jsonData['bottom_platform'][value];
-              },
-            ),
-            CustomRadioTile(
-              id: 'pit_15',
-              title: "Runby:",
-              values: const ["Compliant", "Non-compliant"],
-              onChangeValue: (value) {
-                widget.cageModel.runbyCarBuffers =
-                    jsonData['runby_car_buffers'][value];
-              },
-            ),
+            if (cageInspection.carBuffers == "yes")
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomRadioTile(
+                    id: 'pit_14',
+                    title: "How Many:",
+                    values: const ["1", "2", "3"],
+                    onChangeValue: (value) {
+                      // widget.cageModel.howman =
+                      //     jsonData['bottom_platform'][value];
+                    },
+                  ),
+                  CustomRadioTile(
+                    id: 'pit_15',
+                    title: "Runby:",
+                    values: const ["Compliant", "Non-compliant"],
+                    onChangeValue: (value) {
+                      widget.cageModel.runbyCarBuffers =
+                          jsonData['runby_car_buffers'][value];
+                    },
+                  ),
+                ],
+              ),
             CustomRadioTile(
               id: 'pit_16',
               title: "Counterweight Buffers:",
               values: const ["YES", "NO"],
               onChangeValue: (value) {
+                setState(() {
+                  cageInspection.counterweightBuffers = value;
+                });
                 widget.cageModel.counterweightBuffers =
                     jsonData['counterweight_buffers'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'pit_17',
-              title: "How Many:",
-              values: const ["1", "2", "3"],
-              onChangeValue: (value) {},
-            ),
-            CustomRadioTile(
-              id: 'pit_18',
-              title: "Runby:",
-              values: const ["Compliant", "Non-compliant"],
-              onChangeValue: (value) {
-                widget.cageModel.runbyCounterweightBuffers =
-                    jsonData['runby_counterweight_buffers'][value];
-              },
-            ),
+            if (cageInspection.counterweightBuffers == "yes")
+              CustomRadioTile(
+                id: 'pit_17',
+                title: "How Many:",
+                values: const ["1", "2", "3"],
+                onChangeValue: (value) {},
+              ),
+            if (cageInspection.counterweightBuffers == "yes")
+              CustomRadioTile(
+                id: 'pit_18',
+                title: "Runby:",
+                values: const ["Compliant", "Non-compliant"],
+                onChangeValue: (value) {
+                  widget.cageModel.runbyCounterweightBuffers =
+                      jsonData['runby_counterweight_buffers'][value];
+                },
+              ),
             CustomRadioTile(
               id: 'pit_19',
               title: "Governor Cable Tensioner Description",
@@ -265,19 +294,23 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               title: "Condition:",
               values: const ["OK", "Replace"],
               onChangeValue: (value) {
+                setState(() {
+                  cageInspection.carGuideRailsCondition = value;
+                });
                 widget.cageModel.carGuideRailsCondition =
                     jsonData['car_guide_rails_condition'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'pit_34',
-              title: "Why:",
-              values: const ["Broken", "Worn", "Bolted", "Welded"],
-              onChangeValue: (value) {
-                widget.cageModel.carGuideRailsWhy =
-                    jsonData['car_guide_rails_why'][value];
-              },
-            ),
+            if (cageInspection.carGuideRailsCondition == "replace")
+              CustomRadioTile(
+                id: 'pit_34',
+                title: "Why:",
+                values: const ["Broken", "Worn", "Bolted", "Welded"],
+                onChangeValue: (value) {
+                  widget.cageModel.carGuideRailsWhy =
+                      jsonData['car_guide_rails_why'][value];
+                },
+              ),
             CustomTextField(id: 'pit_35', title: "Car Guide Rails DBG"),
             CustomRadioTile(
               id: 'pit_36',

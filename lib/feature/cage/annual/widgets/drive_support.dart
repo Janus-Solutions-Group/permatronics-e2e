@@ -7,13 +7,21 @@ import 'package:manlift_app/feature/common/widgets/custom_title.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
-class AnnualCageDriveSupportForm extends StatelessWidget {
+class AnnualCageDriveSupportForm extends StatefulWidget {
   const AnnualCageDriveSupportForm(
       {super.key, required this.pageController, required this.cageModel});
 
   final PageController pageController;
   final CageInspection cageModel;
 
+  @override
+  State<AnnualCageDriveSupportForm> createState() =>
+      _AnnualCageDriveSupportFormState();
+}
+
+class _AnnualCageDriveSupportFormState
+    extends State<AnnualCageDriveSupportForm> {
+  var cageInspection = CageInspection();
   @override
   Widget build(BuildContext context) {
     var jsonData = CageAnnualJson.of(context)!.data;
@@ -38,7 +46,7 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
             title: 'Top Normal Terminal:',
             values: const ["Yes", "No", "Inoperable", "Replace"],
             onChangeValue: (value) {
-              cageModel.driveSupportTopNormalTerminal =
+              widget.cageModel.driveSupportTopNormalTerminal =
                   jsonData['drive_support']['top_normal_terminal'][value];
             },
           ),
@@ -47,7 +55,7 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
             title: 'Top Final Terminal:',
             values: const ["Yes", "No", "Inoperable", "Replace"],
             onChangeValue: (value) {
-              cageModel.driveSupportTopFinalTerminal =
+              widget.cageModel.driveSupportTopFinalTerminal =
                   jsonData['drive_support']['top_final_terminal'][value];
             },
           ),
@@ -56,7 +64,7 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
             title: 'Governor Guard:',
             values: const ["Yes", "No"],
             onChangeValue: (value) {
-              cageModel.driveSupportGovernorGuard =
+              widget.cageModel.driveSupportGovernorGuard =
                   jsonData['drive_support']['governor_guard'][value];
             },
           ),
@@ -65,7 +73,7 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
             title: 'Sheave Guard',
             values: const ["Yes", "No"],
             onChangeValue: (value) {
-              cageModel.driveSupportSheaveGuard =
+              widget.cageModel.driveSupportSheaveGuard =
                   jsonData['drive_support']['sheave_guard'][value];
             },
           ),
@@ -80,29 +88,29 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
               'Other'
             ],
             onChangeValue: (value) {
-              cageModel.driveSupportGovernorType =
+              widget.cageModel.driveSupportGovernorType =
                   jsonData['drive_support']['governor_type'][value];
             },
-            isTextField: true,
-            fieldTitle: 'Other',
+            fieldValue: 'other',
           ),
           CustomRadioTile(
             id: 'drive_support_10',
             title: 'Governor Condition',
-            values: const ["OK", "Inoerable", "Replace"],
+            values: const ["OK", "Inoperable", "Replace"],
             onChangeValue: (value) {
-              cageModel.driveSupportGovernorCondition =
+              widget.cageModel.driveSupportGovernorCondition =
                   jsonData['drive_support']['governor_condition'][value];
             },
             isTextField: true,
             fieldTitle: "Why",
+            fieldValue: "replace",
           ),
           CustomRadioTile(
             id: 'drive_support_11',
             title: 'Governor Location',
             values: const ["Rt Front", "Rt Back", "Lt Front", "Lt Back"],
             onChangeValue: (value) {
-              cageModel.driveSupportGovernorLocation =
+              widget.cageModel.driveSupportGovernorLocation =
                   jsonData['drive_support']['governor_location'][value];
             },
           ),
@@ -111,7 +119,7 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
             title: 'Bale Flip:',
             values: const ["Easy", "Hard"],
             onChangeValue: (value) {
-              cageModel.driveSupportBaleFlip =
+              widget.cageModel.driveSupportBaleFlip =
                   jsonData['drive_support']['bale_flip'][value];
             },
           ),
@@ -120,7 +128,7 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
             title: 'Governor Switch',
             values: const ["Yes", "No"],
             onChangeValue: (value) {
-              cageModel.driveSupportGovernorSwitch =
+              widget.cageModel.driveSupportGovernorSwitch =
                   jsonData['drive_support']['governor_switch'][value];
             },
           ),
@@ -129,71 +137,78 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
             title: 'Tripping Speed',
             values: const ["175 fpm", "Other"],
             onChangeValue: (value) {
-              cageModel.driveSupportTrippingSpeed =
+              widget.cageModel.driveSupportTrippingSpeed =
                   jsonData['drive_support']['tripping_speed'][value];
             },
-            isTextField: true,
-            fieldTitle: "Other",
+            fieldValue: "other",
           ),
           CustomRadioTile(
             id: 'drive_support_15',
             title: 'Rope Gripper:',
             values: const ["Yes", "No", "N/A"],
             onChangeValue: (value) {
-              cageModel.driveSupportRopeGripper =
+              setState(() {
+                cageInspection.driveSupportRopeGripper = value;
+              });
+              widget.cageModel.driveSupportRopeGripper =
                   jsonData['drive_support']['rope_gripper'][value];
             },
           ),
-          CustomRadioTile(
-            id: 'drive_support_16',
-            title: 'Condition:',
-            values: const ["OK", "Inoperable", "Replace", "Other"],
-            onChangeValue: (value) {
-              cageModel.driveSupportRopeGripperCondition =
-                  jsonData['drive_support']['rope_gripper_condition'][value];
-            },
-            isTextField: true,
-            fieldTitle: "Other",
-          ),
+          if (cageInspection.driveSupportRopeGripper == "yes")
+            CustomRadioTile(
+              id: 'drive_support_16',
+              title: 'Condition:',
+              values: const ["OK", "Inoperable", "Replace", "Other"],
+              onChangeValue: (value) {
+                widget.cageModel.driveSupportRopeGripperCondition =
+                    jsonData['drive_support']['rope_gripper_condition'][value];
+              },
+              isTextField: true,
+              fieldValue: "other",
+            ),
           CustomRadioTile(
             id: 'drive_support_17',
             title: 'Sheave Break:',
             values: const ["Yes", "No", "N/A"],
             onChangeValue: (value) {
-              cageModel.driveSupportSheaveBreak =
+              setState(() {
+                cageInspection.driveSupportSheaveBreak = value;
+              });
+              widget.cageModel.driveSupportSheaveBreak =
                   jsonData['drive_support']['sheave_break'][value];
             },
           ),
-          CustomRadioTile(
-            id: 'drive_support_18',
-            title: 'Condition:',
-            values: const ["OK", "Inoperable", "Replace", "Other"],
-            onChangeValue: (value) {
-              cageModel.driveSupportSheaveBreakCondition =
-                  jsonData['drive_support']['sheave_break_condition'][value];
-            },
-            isTextField: true,
-            fieldTitle: "Other",
-          ),
+          if (cageInspection.driveSupportSheaveBreak == "yes")
+            CustomRadioTile(
+              id: 'drive_support_18',
+              title: 'Condition:',
+              values: const ["OK", "Inoperable", "Replace", "Other"],
+              onChangeValue: (value) {
+                widget.cageModel.driveSupportSheaveBreakCondition =
+                    jsonData['drive_support']['sheave_break_condition'][value];
+              },
+              isTextField: true,
+              fieldValue: "other",
+            ),
           CustomRadioTile(
             id: 'drive_support_19',
             title: 'Type of Bushing:',
             values: const ["Taper Bushing", "Straight Bore"],
             onChangeValue: (value) {
-              cageModel.driveSupportTypeOfBushing =
+              widget.cageModel.driveSupportTypeOfBushing =
                   jsonData['drive_support']['type_of_bushing'][value];
             },
           ),
-          CustomTextField(
+          const CustomTextField(
               id: 'drive_support_20', title: "Traction Sheave & Bushing Size"),
-          CustomTextField(
+          const CustomTextField(
               id: 'drive_support_21', title: "Traction Sheave Type"),
           CustomRadioTile(
             id: 'drive_support_22',
             title: 'Traction Sheave Condition',
             values: const ["OK", "Frozen"],
             onChangeValue: (value) {
-              cageModel.travelCableConnectionAndCondition =
+              widget.cageModel.travelCableConnectionAndCondition =
                   jsonData['drive_support']['traction_sheave_condition'][value];
             },
           ),
@@ -206,16 +221,17 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
             },
             isTextField: true,
             fieldTitle: "if yes, why: ",
+            fieldValue: "yes",
           ),
-          CustomTextField(
+          const CustomTextField(
             id: 'drive_support_24',
             title: 'Shaft Size',
           ),
-          CustomTextField(
+          const CustomTextField(
             id: 'drive_support_25',
             title: 'Bearing Type',
           ),
-          CustomTextField(
+          const CustomTextField(
             id: 'drive_support_26',
             title: 'Bearing Size',
           ),
@@ -224,14 +240,14 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
             title: 'Shaft and Bearing Condition:',
             values: const ["OK", "Replace", "Other"],
             onChangeValue: (value) {
-              cageModel.driveSupportShaftAndBearingCondition =
+              widget.cageModel.driveSupportShaftAndBearingCondition =
                   jsonData['drive_support']['shaft_and_bearing_condition']
                       [value];
             },
             isTextField: true,
-            fieldTitle: "Other",
+            fieldValue: "other",
           ),
-          Row(
+          const Row(
             children: [
               Expanded(
                   child: CustomTextField(
@@ -246,47 +262,53 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
             title: 'Coupler Condition:',
             values: const ["OK", "Replace", "Other"],
             onChangeValue: (value) {
-              cageModel.driveSupportCouplerCondition =
+              widget.cageModel.driveSupportCouplerCondition =
                   jsonData['drive_support']['coupler_condition'][value];
             },
             isTextField: true,
-            fieldTitle: "Other",
+            fieldValue: "other",
           ),
-          CustomTextField(id: 'drive_support_31', title: 'Gearbox Brand Name:'),
-          CustomTextField(id: 'drive_support_32', title: 'Gearbox Numbers:'),
+          const CustomTextField(
+              id: 'drive_support_31', title: 'Gearbox Brand Name:'),
+          const CustomTextField(
+              id: 'drive_support_32', title: 'Gearbox Numbers:'),
           CustomRadioTile(
             id: 'drive_support_33',
             title: 'Gearbox Condition:',
             values: const ["OK", "Excessive Backlash", "Monitor", "Replace"],
             onChangeValue: (value) {
-              cageModel.driveSupportGearboxCondition =
+              widget.cageModel.driveSupportGearboxCondition =
                   jsonData['drive_support']['gearbox_condition'][value];
             },
           ),
-          CustomTextField(id: 'drive_support_34', title: 'Motor Brand Name:'),
-          CustomTextField(id: 'drive_support_35', title: 'Motor Numbers:'),
+          const CustomTextField(
+              id: 'drive_support_34', title: 'Motor Brand Name:'),
+          const CustomTextField(
+              id: 'drive_support_35', title: 'Motor Numbers:'),
           CustomRadioTile(
             id: 'drive_support_36',
             title: 'Motor Condition:',
             values: const ["OK", "Replace"],
             onChangeValue: (value) {
-              cageModel.driveSupportMotorCondition =
+              widget.cageModel.driveSupportMotorCondition =
                   jsonData['drive_support']['motor_condition'][value];
             },
           ),
-          CustomTextField(id: 'drive_support_37', title: 'Brake Brand Name:'),
-          CustomTextField(id: 'drive_support_38', title: 'Brake Numbers:'),
+          const CustomTextField(
+              id: 'drive_support_37', title: 'Brake Brand Name:'),
+          const CustomTextField(
+              id: 'drive_support_38', title: 'Brake Numbers:'),
           CustomRadioTile(
             id: 'drive_support_39',
             title: 'Brake Condition',
             values: const ["OK", "Replace Friction Disks only", "Replace"],
             onChangeValue: (value) {
-              cageModel.driveSupportBrakeCondition =
+              widget.cageModel.driveSupportBrakeCondition =
                   jsonData['drive_support']['brake_condition'][value];
             },
           ),
-          CustomTitle(title: 'Head Drive Measurements:'),
-          Row(
+          const CustomTitle(title: 'Head Drive Measurements:'),
+          const Row(
             children: [
               Expanded(
                   child:
@@ -297,7 +319,7 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
             ],
           ),
           const CustomTitle(title: 'From Walls'),
-          Row(
+          const Row(
             children: [
               Expanded(
                   child:
@@ -306,7 +328,7 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
                   child: CustomTextField(id: 'drive_support_44', title: 'Back'))
             ],
           ),
-          Row(
+          const Row(
             children: [
               Expanded(
                   child:
@@ -316,19 +338,20 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
                       CustomTextField(id: 'drive_support_46', title: 'Right'))
             ],
           ),
-          CustomTextField(
+          const CustomTextField(
               id: 'drive_support_47', title: 'Orientation of Motor Comments'),
-          CustomTextField(
+          const CustomTextField(
               id: 'drive_support_48', title: 'Overall Travel(Height):'),
           CustomRadioTile(
             id: 'drive_support_49',
             title: 'Access to Drive',
             values: const ["OK", "Other(Explain)"],
             onChangeValue: (val) {
-              cageModel.driveSupportAccessToDrive =
+              widget.cageModel.driveSupportAccessToDrive =
                   jsonData['drive_support']['access_to_drive'][val];
             },
             isTextField: true,
+            fieldValue: "other(explain)",
             fieldTitle: "Other(Explain)",
           ),
           CustomRadioTile(
@@ -336,7 +359,7 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
             title: 'Machine Disconnect:',
             values: const ["Yes", "No"],
             onChangeValue: (value) {
-              cageModel.driveSupportMachineDisconnect =
+              widget.cageModel.driveSupportMachineDisconnect =
                   jsonData['drive_support']['machine_disconnect'][value];
             },
           ),
@@ -345,11 +368,11 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
             title: 'Overhead Lifting Supports:',
             values: const ["Yes", "No"],
             onChangeValue: (value) {
-              cageModel.driveSupportOverheadLiftingSupports =
+              widget.cageModel.driveSupportOverheadLiftingSupports =
                   jsonData['drive_support']['overhead_lifting_supports'][value];
             },
           ),
-          CustomTextField(
+          const CustomTextField(
             id: 'drive_support_52',
             title: 'Top Landing Comments',
           ),
@@ -357,11 +380,11 @@ class AnnualCageDriveSupportForm extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               PageNavigationButton(
-                pageController: pageController,
+                pageController: widget.pageController,
                 right: false,
               ),
               PageNavigationButton(
-                pageController: pageController,
+                pageController: widget.pageController,
                 right: true,
               ),
             ],

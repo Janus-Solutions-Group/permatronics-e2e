@@ -3,8 +3,11 @@ import 'dart:ui' as ui;
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
 class SignaturePad extends StatefulWidget {
-  const SignaturePad({super.key, required this.signatureChanged});
-
+  const SignaturePad(
+      {super.key,
+      required this.signatureChanged,
+      required this.pageController});
+  final PageController pageController;
   final ValueChanged<ui.Image> signatureChanged;
 
   @override
@@ -55,6 +58,11 @@ class _SignaturePadState extends State<SignaturePad>
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('This signature is confirmed')));
                     }
+
+                    widget.pageController.nextPage(
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.easeInOut,
+                    );
                   },
                 ),
               ],

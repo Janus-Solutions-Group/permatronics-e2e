@@ -38,6 +38,7 @@ class _AddLandingFormPageState extends State<AddLandingFormPage>
                   // moveTo(context, CageLandingForm());
                   Scaffold.of(context).showBottomSheet(
                     (context) => CageLandingForm(
+                      index: index,
                       model: landingModels[index],
                       onSubmit: (val) {
                         landingModels[index] = val;
@@ -71,7 +72,7 @@ class _AddLandingFormPageState extends State<AddLandingFormPage>
                         ),
                         IconButton(
                           onPressed: () {
-                            landingFormList.removeAt(index);
+                            landingModels.removeAt(index);
                             setState(() {});
                           },
                           icon: const Icon(Icons.cancel),

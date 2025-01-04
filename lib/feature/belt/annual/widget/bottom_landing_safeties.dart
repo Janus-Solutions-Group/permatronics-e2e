@@ -23,11 +23,11 @@ class BottomLandingSafeties extends StatefulWidget {
 class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
   String? wantToAddThisPage;
   var beltVariable = BeltInspection();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     var jsonData = BeltAnnualJson.of(context)!.data;
-    final formKey = GlobalKey<FormState>();
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
@@ -92,8 +92,7 @@ class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
                         onChangeValue: (value) {
                           widget.beltModel.bottomLandingSafetiesType2Location =
                               jsonData[
-                                      "bottom_landing_safeties_type_2_location"]
-                                  [value];
+                                  "bottom_landing_safeties_type_2_location"];
                         },
                       ),
                     ],
@@ -131,8 +130,7 @@ class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
                         onChangeValue: (value) {
                           widget.beltModel.bottomLandingSafetiesType3Location =
                               jsonData[
-                                      "bottom_landing_safeties_type_3_location"]
-                                  [value];
+                                  "bottom_landing_safeties_type_3_location"];
                         },
                       ),
                     ],
@@ -166,33 +164,38 @@ class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
                     },
                   ),
                   if (beltVariable.bottomLandingSafetiesBottomReset == "yes")
-                    CustomTextField(
-                      title: "Location:",
-                      onChanged: (val) {},
-                    ),
-                  if (beltVariable.bottomLandingSafetiesBottomReset == "yes")
-                    CustomRadioTile(
-                      id: "Bottom Landing Safeties 10",
-                      title: 'Compliant',
-                      values: const ['Yes', 'No'],
-                      onChangeValue: (value) {
-                        widget.beltModel
-                            .bottomLandingSafetiesBottomResetCompliant = jsonData[
-                                "bottom_landing_safeties_bottom_reset_compliant"]
-                            [value];
-                      },
-                    ),
-                  if (beltVariable.bottomLandingSafetiesBottomReset == "yes")
-                    CustomRadioTile(
-                      id: "Bottom Landing Safeties 11",
-                      title: 'Condition',
-                      values: const ['OK', 'Inoperable'],
-                      onChangeValue: (value) {
-                        widget.beltModel
-                            .bottomLandingSafetiesBottomResetCondition = jsonData[
-                                "bottom_landing_safeties_bottom_reset_condition"]
-                            [value];
-                      },
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomTextField(
+                          title: "Location:",
+                          onChanged: (val) {},
+                        ),
+                        CustomRadioTile(
+                          id: "Bottom Landing Safeties 10",
+                          title: 'Compliant',
+                          values: const ['Yes', 'No'],
+                          onChangeValue: (value) {
+                            widget.beltModel
+                                    .bottomLandingSafetiesBottomResetCompliant =
+                                jsonData[
+                                        "bottom_landing_safeties_bottom_reset_compliant"]
+                                    [value];
+                          },
+                        ),
+                        CustomRadioTile(
+                          id: "Bottom Landing Safeties 11",
+                          title: 'Condition',
+                          values: const ['OK', 'Inoperable'],
+                          onChangeValue: (value) {
+                            widget.beltModel
+                                    .bottomLandingSafetiesBottomResetCondition =
+                                jsonData[
+                                        "bottom_landing_safeties_bottom_reset_condition"]
+                                    [value];
+                          },
+                        ),
+                      ],
                     ),
                   CustomRadioTile(
                     id: "Bottom Landing Safeties 12",

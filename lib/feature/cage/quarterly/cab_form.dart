@@ -22,7 +22,7 @@ class CABForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const FormHeaderTitle(title: "CAB"),
-          CustomTextField(
+          const CustomTextField(
             id: 'cab_form_1',
             title: "Car Condition and Description:",
           ),

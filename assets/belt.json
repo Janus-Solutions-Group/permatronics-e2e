@@ -348,7 +348,7 @@
     "faded": "The stenciled directional arrows on the belt are faded and must be re-stenciled."
   },
   "belting_compressive_flex_failure": {
-    "no": true,
+    "no": "true",
     "slight": "The belt has slight compressive flex failure and must be monitored.",
     "extreme": "The belt compressive flex failure is extreme and the belt must be replaced."
   },
@@ -725,10 +725,10 @@
   "drive_assembly_belttracking": {
     "ok": "",
     "off": "The belt tracking is off",
-    "uparrow": "",
-    "downarrow": "",
-    "rightarrow": "",
-    "leftarrow": "",
+    "up": "",
+    "down": "",
+    "right": "",
+    "left": "",
     "measurement": ""
   },
   "drive_assembly_laggingcondition": {

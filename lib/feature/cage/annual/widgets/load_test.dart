@@ -31,7 +31,7 @@ class AnnualCageLoadTests extends StatelessWidget {
                   jsonData['load_tests']['pounds_used_during_test'][value];
             },
             isTextField: true,
-            fieldTitle: "Other",
+            fieldValue: "other",
           ),
           CustomRadioTile(
             id: 'load_test_2',
@@ -42,7 +42,7 @@ class AnnualCageLoadTests extends StatelessWidget {
                   jsonData['load_tests']['did_unit_pass_load_test'][value];
             },
           ),
-          Row(
+          const Row(
             children: [
               Expanded(
                   child: CustomTextField(
@@ -56,7 +56,7 @@ class AnnualCageLoadTests extends StatelessWidget {
               )),
             ],
           ),
-          Row(
+          const Row(
             children: [
               Expanded(
                   child: CustomTextField(
@@ -70,11 +70,11 @@ class AnnualCageLoadTests extends StatelessWidget {
               )),
             ],
           ),
-          CustomTextField(
+          const CustomTextField(
             id: 'load_test_7',
             title: 'Governor Tripped @:',
           ),
-          CustomTextField(
+          const CustomTextField(
             id: 'load_test_8',
             title: 'Load Tests Comments',
           ),

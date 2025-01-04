@@ -7,7 +7,7 @@ import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
 import '../pages/belt_quaterly.dart';
 
-class Belting extends StatelessWidget {
+class Belting extends StatefulWidget {
   const Belting(
       {super.key, required this.pageController, required this.beltModel});
 
@@ -15,9 +15,14 @@ class Belting extends StatelessWidget {
   final BeltInspection beltModel;
 
   @override
-  Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
+  State<Belting> createState() => _BeltingState();
+}
 
+class _BeltingState extends State<Belting> {
+  var beltVariable = BeltInspection();
+  final formKey = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
     var jsonData = BeltJson.of(context)!.data;
 
     return SingleChildScrollView(
@@ -33,7 +38,7 @@ class Belting extends StatelessWidget {
               title: 'Belting Type',
               values: const ['PVC', 'Cotton', 'Rubber'],
               onChangeValue: (value) {
-                beltModel.beltingBeltingType =
+                widget.beltModel.beltingBeltingType =
                     jsonData['belting_belting_type'][value];
               },
             ),
@@ -42,7 +47,8 @@ class Belting extends StatelessWidget {
               title: 'Width',
               values: const ['12”', '14”', '16”'],
               onChangeValue: (value) {
-                beltModel.beltingWidth = jsonData['belting_width'][value];
+                widget.beltModel.beltingWidth =
+                    jsonData['belting_width'][value];
               },
             ),
             CustomRadioTile(
@@ -50,7 +56,7 @@ class Belting extends StatelessWidget {
               title: 'Splice Type',
               values: const ['Lap', 'Butt'],
               onChangeValue: (value) {
-                beltModel.beltingSpliceType =
+                widget.beltModel.beltingSpliceType =
                     jsonData['belting_splice_type'][value];
               },
             ),
@@ -58,14 +64,14 @@ class Belting extends StatelessWidget {
               id: 'belting_4',
               title: 'Splice Length:',
               onChanged: (val) {
-                beltModel.beltingSpliceLength = val;
+                widget.beltModel.beltingSpliceLength = val;
               },
             ),
             CustomTextField(
               id: 'belting_5',
               title: 'Number of Bolts:',
               onChanged: (val) {
-                beltModel.beltingNumberOfBolts = val;
+                widget.beltModel.beltingNumberOfBolts = val;
               },
             ),
             CustomRadioTile(
@@ -78,7 +84,7 @@ class Belting extends StatelessWidget {
                 'Replace Worn'
               ],
               onChangeValue: (value) {
-                beltModel.beltingSpliceBoltCondition =
+                widget.beltModel.beltingSpliceBoltCondition =
                     jsonData['belting_splice_bolt_condition'][value];
               },
             ),
@@ -87,7 +93,7 @@ class Belting extends StatelessWidget {
               title: 'Instructions Stenciled on the Belt:',
               values: const ['OK', 'Non-Compliant', 'Faded'],
               onChangeValue: (value) {
-                beltModel.beltingInstructionsStenciledOnTheBelt =
+                widget.beltModel.beltingInstructionsStenciledOnTheBelt =
                     jsonData['belting_instructions_stenciled_on_the_belt']
                         [value];
               },
@@ -97,7 +103,7 @@ class Belting extends StatelessWidget {
               title: 'Directional Arrows Stenciled on the Belt:',
               values: const ['Yes', 'No', 'Faded'],
               onChangeValue: (value) {
-                beltModel.beltingDirectionalArrowsStenciledOnTheBelt =
+                widget.beltModel.beltingDirectionalArrowsStenciledOnTheBelt =
                     jsonData['belting_directional_arrows_stenciled_on_the_belt']
                         [value];
               },
@@ -107,7 +113,7 @@ class Belting extends StatelessWidget {
               title: 'Compressive Flex Failure:',
               values: const ['No', 'Slight', 'Extreme'],
               onChangeValue: (value) {
-                beltModel.beltingCompressiveFlexFailure =
+                widget.beltModel.beltingCompressiveFlexFailure =
                     jsonData['belting_compressive_flex_failure'][value]
                         .toString();
               },
@@ -117,7 +123,7 @@ class Belting extends StatelessWidget {
               title: 'Tension of Belt:',
               values: const ['Good', 'Needs to be adjusted'],
               onChangeValue: (value) {
-                beltModel.beltingTensionOfBelt =
+                widget.beltModel.beltingTensionOfBelt =
                     jsonData['belting_tension_of_belt'][value];
               },
             ),
@@ -125,18 +131,18 @@ class Belting extends StatelessWidget {
               id: 'belting_11',
               title: 'Belt Condition Comments:',
               onChanged: (val) {
-                beltModel.beltingBeltConditionComments = val;
+                widget.beltModel.beltingBeltConditionComments = val;
               },
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 PageNavigationButton(
-                  pageController: pageController,
+                  pageController: widget.pageController,
                   right: false,
                 ),
                 PageNavigationButton(
-                  pageController: pageController,
+                  pageController: widget.pageController,
                   right: true,
                 ),
               ],

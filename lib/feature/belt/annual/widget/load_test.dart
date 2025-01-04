@@ -28,6 +28,7 @@ class LoadTest extends StatelessWidget {
           children: [
             FormHeaderTitle(title: "load test".toUpperCase()),
             CustomRadioTile(
+              id: "load_test_annual_1",
               title: 'Load Test',
               values: const ['Pass', 'Fail'],
               onChangeValue: (value) {
@@ -35,9 +36,27 @@ class LoadTest extends StatelessWidget {
                     jsonData['load_test_testresult'][value];
               },
             ),
-            CustomTextField(title: 'Weight Used'),
-            CustomTextField(title: 'Stopping Distance'),
-            CustomTextField(title: 'Belt Manlift Speed: FPM (Feet Per Minute)'),
+            CustomTextField(
+              id: "load_test_annual_2",
+              title: 'Weight Used',
+              onChanged: (value) {
+                beltModel.loadTestWeightUsed = value;
+              },
+            ),
+            CustomTextField(
+              id: "load_test_annual_3",
+              title: 'Stopping Distance',
+              onChanged: (value) {
+                beltModel.loadTestStoppingDistance = value;
+              },
+            ),
+            CustomTextField(
+              id: "load_test_annual_4",
+              title: 'Belt Manlift Speed: FPM (Feet Per Minute)',
+              onChanged: (value) {
+                beltModel.loadTestBeltManliftSpeed = value;
+              },
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

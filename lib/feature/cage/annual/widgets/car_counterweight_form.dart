@@ -36,8 +36,7 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
                   jsonData['car_and_counterweight_fastening']
                       ['hoist_cable_fasteners_to_car'][value];
             },
-            isTextField: true,
-            fieldTitle: "Other",
+            fieldValue: "other",
           ),
           CustomRadioTile(
             id: 'car_conterweight_2',
@@ -64,8 +63,7 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
                   jsonData['car_and_counterweight_fastening']
                       ['hoist_cable_fasteners_to_cw'][value];
             },
-            isTextField: true,
-            fieldTitle: "Other",
+            fieldValue: "other",
           ),
           CustomRadioTile(
             id: 'car_conterweight_4',
@@ -141,8 +139,7 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
                   jsonData['car_and_counterweight_fastening']
                       ['governor_cable_fasteners'][value];
             },
-            isTextField: true,
-            fieldTitle: "Other",
+            fieldValue: "other",
           ),
           CustomRadioTile(
             id: 'car_conterweight_11',

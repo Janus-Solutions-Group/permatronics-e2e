@@ -7,7 +7,7 @@ import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 import '../../model/belt_inspection_model.dart';
 import '../pages/belt_quaterly.dart';
 
-class Steps extends StatelessWidget {
+class Steps extends StatefulWidget {
   const Steps(
       {super.key, required this.pageController, required this.beltModel});
 
@@ -15,8 +15,14 @@ class Steps extends StatelessWidget {
   final BeltInspection beltModel;
 
   @override
+  State<Steps> createState() => _StepsState();
+}
+
+class _StepsState extends State<Steps> {
+  var beltVariable = BeltInspection();
+  final formKey = GlobalKey<FormState>();
+  @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
     var jsonData = BeltJson.of(context)!.data;
 
     return SingleChildScrollView(
@@ -39,9 +45,8 @@ class Steps extends StatelessWidget {
                 'Day'
               ],
               onChangeValue: (value) {
-                beltModel.driveAssemblyTopLandingSafetiesTopReset =
-                    jsonData['drive_assembly_toplandingsafeties_topreset']
-                        [value];
+                widget.beltModel.stepsStepDescription =
+                    jsonData['steps_step_description'];
               },
             ),
             Wrap(
@@ -50,7 +55,7 @@ class Steps extends StatelessWidget {
                   id: 'steps_2',
                   title: '# of Steps:',
                   onChanged: (val) {
-                    beltModel.stepsNumberOfSteps = val;
+                    widget.beltModel.stepsNumberOfSteps = val;
                   },
                 ),
                 CustomRadioTile(
@@ -58,17 +63,21 @@ class Steps extends StatelessWidget {
                   title: 'Steps Missing',
                   values: const ['Yes', 'No'],
                   onChangeValue: (value) {
-                    beltModel.stepsStepsMissing =
+                    setState(() {
+                      beltVariable.stepsStepsMissing = value;
+                    });
+                    widget.beltModel.stepsStepsMissing =
                         jsonData['steps_steps_missing'][value];
                   },
                 ),
-                CustomTextField(
-                  id: 'steps_4',
-                  title: 'How Many:',
-                  onChanged: (val) {
-                    beltModel.stepsMissingStepsNumber = val;
-                  },
-                ),
+                if (beltVariable.stepsStepsMissing == "yes")
+                  CustomTextField(
+                    id: 'steps_4',
+                    title: 'How Many:',
+                    onChanged: (val) {
+                      widget.beltModel.stepsMissingStepsNumber = val;
+                    },
+                  ),
               ],
             ),
             CustomRadioTile(
@@ -76,8 +85,12 @@ class Steps extends StatelessWidget {
               title: 'Tread Color:',
               values: const ['Blue', 'Yellow', 'Other'],
               onChangeValue: (value) {
-                beltModel.stepsTreadColor =
+                widget.beltModel.stepsTreadColor =
                     jsonData['steps_tread_color'][value];
+              },
+              fieldValue: 'other',
+              onFieldChange: (value) {
+                widget.beltModel.stepsTreadColor = value;
               },
             ),
             CustomRadioTile(
@@ -85,7 +98,7 @@ class Steps extends StatelessWidget {
               title: '# of Elevator Bolts:',
               values: const ['3', '4', '5', '6'],
               onChangeValue: (value) {
-                beltModel.stepsNumberOfStepBarBolts =
+                widget.beltModel.stepsNumberOfStepBarBolts =
                     jsonData['steps_#_of_step_bar_bolts'][value];
               },
             ),
@@ -99,7 +112,7 @@ class Steps extends StatelessWidget {
                 'Replace Worn'
               ],
               onChangeValue: (value) {
-                beltModel.stepsConditionOfElevatorBolts =
+                widget.beltModel.stepsConditionOfElevatorBolts =
                     jsonData['steps_condition_of_elevator_bolts'][value];
               },
             ),
@@ -112,7 +125,7 @@ class Steps extends StatelessWidget {
                 'L-69V Rubber'
               ],
               onChangeValue: (value) {
-                beltModel.stepsStepRollerType =
+                widget.beltModel.stepsStepRollerType =
                     jsonData['steps_step_roller_type'];
               },
             ),
@@ -126,7 +139,7 @@ class Steps extends StatelessWidget {
                 'Replace Worn'
               ],
               onChangeValue: (value) {
-                beltModel.stepsStepRollerCondition =
+                widget.beltModel.stepsStepRollerCondition =
                     jsonData['steps_step_roller_condition'][value];
               },
             ),
@@ -140,7 +153,7 @@ class Steps extends StatelessWidget {
                 'Replace Worn'
               ],
               onChangeValue: (value) {
-                beltModel.stepsStepRollersBolts =
+                widget.beltModel.stepsStepRollersBolts =
                     jsonData['steps_step_rollers_bolts'][value];
               },
             ),
@@ -149,7 +162,7 @@ class Steps extends StatelessWidget {
               title: 'Step Tread Material:',
               values: const ['Steel', 'Wood'],
               onChangeValue: (value) {
-                beltModel.stepsStepTreadMaterial =
+                widget.beltModel.stepsStepTreadMaterial =
                     jsonData['steps_step_tread_material'];
               },
             ),
@@ -163,7 +176,7 @@ class Steps extends StatelessWidget {
                 'Replace Worn'
               ],
               onChangeValue: (value) {
-                beltModel.stepsConditionOfStepTreads =
+                widget.beltModel.stepsConditionOfStepTreads =
                     jsonData['steps_condition_of_step_treads'][value];
               },
             ),
@@ -172,47 +185,56 @@ class Steps extends StatelessWidget {
               title: 'Anti-Skid:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.stepsAntiSkid = jsonData['steps_anti-skid'][value];
+                setState(() {
+                  beltVariable.stepsAntiSkid = value;
+                });
+                widget.beltModel.stepsAntiSkid =
+                    jsonData['steps_anti-skid'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'steps_14',
-              title: 'Condition:',
-              values: const [
-                'OK',
-                'Worn, but OK',
-                'Replace Damaged',
-                'Replace Worn'
-              ],
-              onChangeValue: (value) {
-                beltModel.stepsConditionOfAntiSkid =
-                    jsonData['steps_condition_of_anti-skid'][value];
-              },
-            ),
+            if (beltVariable.stepsAntiSkid == "yes")
+              CustomRadioTile(
+                id: 'steps_14',
+                title: 'Anti-Skid Condition:',
+                values: const [
+                  'OK',
+                  'Worn, but OK',
+                  'Replace Damaged',
+                  'Replace Worn'
+                ],
+                onChangeValue: (value) {
+                  widget.beltModel.stepsConditionOfAntiSkid =
+                      jsonData['steps_condition_of_anti-skid'][value];
+                },
+              ),
             CustomRadioTile(
               id: 'steps_15',
               title: 'X-Y Washer:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.stepsStepPinsAndXyWasher =
+                setState(() {
+                  beltVariable.stepsStepPinsAndXyWasher = value;
+                });
+                widget.beltModel.stepsStepPinsAndXyWasher =
                     jsonData['steps_step_pins_and_x-y_washer'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'steps_16',
-              title: 'Condition:',
-              values: const [
-                'OK',
-                'Worn, but OK',
-                'Replace Damaged',
-                'Replace Worn'
-              ],
-              onChangeValue: (value) {
-                beltModel.stepsConditionOfStepPinsAndXyWasher =
-                    jsonData['steps_condition_of_step_pins_and_x-y_washer']
-                        [value];
-              },
-            ),
+            if (beltVariable.stepsStepPinsAndXyWasher == "yes")
+              CustomRadioTile(
+                id: 'steps_16',
+                title: 'Step Pins & X-Y Washer Condition:',
+                values: const [
+                  'OK',
+                  'Worn, but OK',
+                  'Replace Damaged',
+                  'Replace Worn'
+                ],
+                onChangeValue: (value) {
+                  widget.beltModel.stepsConditionOfStepPinsAndXyWasher =
+                      jsonData['steps_condition_of_step_pins_and_x-y_washer']
+                          [value];
+                },
+              ),
             CustomRadioTile(
               id: 'steps_17',
               title: 'Bracket Condition:',
@@ -223,7 +245,7 @@ class Steps extends StatelessWidget {
                 'Replace Worn'
               ],
               onChangeValue: (value) {
-                beltModel.stepsStepBracketsCondition =
+                widget.beltModel.stepsStepBracketsCondition =
                     jsonData['steps_step_brackets_condition'][value];
               },
             ),
@@ -237,7 +259,7 @@ class Steps extends StatelessWidget {
                 'Replace Worn'
               ],
               onChangeValue: (value) {
-                beltModel.stepsStepBarsCondition =
+                widget.beltModel.stepsStepBarsCondition =
                     jsonData['steps_step_bars_condition'][value];
               },
             ),
@@ -245,18 +267,18 @@ class Steps extends StatelessWidget {
               id: 'steps_19',
               title: 'Step Comments:',
               onChanged: (val) {
-                beltModel.stepsStepComments = val;
+                widget.beltModel.stepsStepComments = val;
               },
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 PageNavigationButton(
-                  pageController: pageController,
+                  pageController: widget.pageController,
                   right: false,
                 ),
                 PageNavigationButton(
-                  pageController: pageController,
+                  pageController: widget.pageController,
                   right: true,
                 ),
               ],

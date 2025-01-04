@@ -19,9 +19,9 @@ class BottomLandingHood extends StatefulWidget {
 
 class _BottomLandingHoodState extends State<BottomLandingHood> {
   var beltVariable = BeltInspection();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
     var jsonData = BeltAnnualJson.of(context)!.data;
 
     return SingleChildScrollView(
@@ -33,6 +33,7 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
           children: [
             const FormHeaderTitle(title: "BOTTOM LANDING HOOD"),
             CustomRadioTile(
+              id: "bottom_landing_hood_annual_1",
               title: 'Type of Hood',
               values: const ["Stationary", "Moveable", "Moveable Mini", 'None'],
               onChangeValue: (value) {
@@ -46,19 +47,24 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
             if (beltVariable.bottomLandingHoodTypeOfHood != null &&
                 beltVariable.bottomLandingHoodTypeOfHood != "none")
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (beltVariable.bottomLandingHoodTypeOfHood == "stationary")
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomTextField(
+                          id: "bottom_landing_hood_annual_2",
                           title: 'If Stationary, Distance from Face of Belt:',
                           onChanged: (value) {},
                         ),
                         CustomTextField(
+                          id: "bottom_landing_hood_annual_3",
                           title: 'Angle of Slope:',
                           onChanged: (value) {},
                         ),
                         CustomRadioTile(
+                          id: "bottom_landing_hood_annual_4",
                           title: 'Shape',
                           values: const ['Circular', 'Square'],
                           onChangeValue: (value) {
@@ -70,8 +76,10 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                     ),
                   if (beltVariable.bottomLandingHoodTypeOfHood == "moveable")
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomRadioTile(
+                          id: "bottom_landing_hood_annual_5",
                           title: 'If Moveable, What Type of Switch:',
                           values: const ['Mercury', 'Micro-Switch'],
                           onChangeValue: (value) {
@@ -83,6 +91,7 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                           },
                         ),
                         CustomRadioTile(
+                          id: "bottom_landing_hood_annual_6",
                           title: 'Does the Switch work',
                           values: const ['Yes', 'No'],
                           onChangeValue: (value) {
@@ -94,6 +103,7 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                           },
                         ),
                         CustomRadioTile(
+                          id: "bottom_landing_hood_annual_7",
                           title: 'Location of Hinges',
                           values: const [
                             '6”',
@@ -116,6 +126,7 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                       ],
                     ),
                   CustomRadioTile(
+                    id: "bottom_landing_hood_annual_8",
                     title: 'Counterweighted',
                     values: const ['Yes', 'No'],
                     onChangeValue: (value) {
@@ -125,6 +136,7 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                     },
                   ),
                   CustomRadioTile(
+                    id: "bottom_landing_hood_annual_9",
                     title: 'Hood Condition',
                     values: const [
                       "OK",
@@ -138,6 +150,7 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                     },
                   ),
                   CustomRadioTile(
+                    id: "bottom_landing_hood_annual_10",
                     title: 'Hood Clearance:',
                     values: const [
                       '(Minimum 7’6”)',
@@ -150,6 +163,7 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                     },
                   ),
                   CustomRadioTile(
+                    id: "bottom_landing_hood_annual_11",
                     title: 'Does Hood have a Rolled Edge',
                     values: const ['Yes', 'No'],
                     onChangeValue: (value) {
@@ -166,6 +180,7 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                   if (beltVariable.bottomLandingHoodDoesHoodHaveARolledEdge ==
                       "yes")
                     CustomRadioTile(
+                      id: "bottom_landing_hood_annual_12",
                       title: 'Condition of Rolled Edge:',
                       values: const [
                         'OK',
@@ -181,6 +196,7 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                       },
                     ),
                   CustomTextField(
+                    id: "bottom_landing_hood_annual_13",
                     title: 'Bottom Hood Comments:',
                     onChanged: (value) {
                       widget.beltModel.bottomLandingHoodBottomHoodComments =

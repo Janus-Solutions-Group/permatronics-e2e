@@ -187,8 +187,28 @@ class AnnualCageCABForm extends StatelessWidget {
                   jsonData['manual_backup_car_alarm'][value];
             },
           ),
+          CustomRadioTile(
+            id: 'cab_form_23',
+            title: 'Data Plate',
+            values: const ["Yes", "No"],
+            onChangeValue: (value) {
+              cageModel.manualBackupCarAlarm = jsonData['data_plate'][value];
+            },
+          ),
+          CustomRadioTile(
+            id: 'cab_form_24',
+            title: 'Type of Cable Attachment to Car',
+            values: const ["OH Sling", "1 Bolt Triangle", "Other"],
+            onChangeValue: (value) {
+              cageModel.manualBackupCarAlarm =
+                  jsonData['type_of_cable_attachment_to_car'][value];
+            },
+            fieldValue: 'other',
+          ),
           CustomTextField(
-              id: 'cab_22', title: "Manual Back Up Car Alarm Type:"),
+            id: 'cab_22',
+            title: "Manual Back Up Car Alarm Type:",
+          ),
           CustomRadioTile(
             id: 'cab_23',
             title: 'Data Plate:',

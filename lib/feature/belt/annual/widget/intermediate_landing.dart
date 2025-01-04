@@ -9,7 +9,7 @@ import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
 import '../pages/belt_annual.dart';
 
-class IntermediateLanding extends StatelessWidget {
+class IntermediateLanding extends StatefulWidget {
   const IntermediateLanding(
       {super.key, required this.pageController, required this.beltModel});
 
@@ -17,8 +17,13 @@ class IntermediateLanding extends StatelessWidget {
   final BeltInspection beltModel;
 
   @override
+  State<IntermediateLanding> createState() => _IntermediateLandingState();
+}
+
+class _IntermediateLandingState extends State<IntermediateLanding> {
+  final formKey = GlobalKey<FormState>();
+  @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
     var jsonData = BeltAnnualJson.of(context)!.data;
 
     return SingleChildScrollView(
@@ -33,7 +38,7 @@ class IntermediateLanding extends StatelessWidget {
               title: '“Authorized Personnel Only” Sign: (2” letters)',
               values: const ['Yes', 'No', 'Non-Compliant'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingAuthorizedPersonnelSign =
+                widget.beltModel.intermediateLandingAuthorizedPersonnelSign =
                     jsonData['intermediate_landing_authorizedpersonnelsign']
                         [value];
               },
@@ -42,7 +47,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Instruction Sign: (1” letters)',
               values: const ['Yes', 'No', 'Non-Compliant'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingInstructionSign =
+                widget.beltModel.intermediateLandingInstructionSign =
                     jsonData['intermediate_landing_instructionsign'][value];
               },
             ),
@@ -50,7 +55,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Floor Opening Shape',
               values: const ['Circular', 'Shape'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingFloorOpeningShape  =
+                widget.beltModel.intermediateLandingFloorOpeningShape =
                     jsonData['intermediate_landing_flooropeningshape'][value];
               },
             ),
@@ -108,7 +113,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Maze:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingMaze =
+                widget.beltModel.intermediateLandingMaze =
                     jsonData['intermediate_landing_maze'][value];
               },
             ),
@@ -117,7 +122,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Self Closing Gate:',
               values: const ['1', '2', '3', '4'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingSelfClosingGates =
+                widget.beltModel.intermediateLandingSelfClosingGates =
                     jsonData['intermediate_landing_selfclosinggates'][value];
               },
             ),
@@ -125,7 +130,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Open Outward:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingOpenOutward =
+                widget.beltModel.intermediateLandingOpenOutward =
                     jsonData['intermediate_landing_openoutward'][value];
               },
             ),
@@ -133,7 +138,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Are Gates Missing:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingAreGatesMissing =
+                widget.beltModel.intermediateLandingAreGatesMissing =
                     jsonData['intermediate_landing_aregatesmissing'][value];
               },
             ),
@@ -142,7 +147,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Toeboard:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingToeboard =
+                widget.beltModel.intermediateLandingToeboard =
                     jsonData['intermediate_landing_toeboard'][value];
               },
             ),
@@ -150,7 +155,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Add’l Toeboard Required:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingAddlToeboard =
+                widget.beltModel.intermediateLandingAddlToeboard =
                     jsonData['intermediate_landing_addltoeboardrequired']
                         [value];
               },
@@ -180,7 +185,7 @@ class IntermediateLanding extends StatelessWidget {
                 'Replace Worn'
               ],
               onChangeValue: (value) {
-                beltModel.intermediateLandingHoodCondition =
+                widget.beltModel.intermediateLandingHoodCondition =
                     jsonData['intermediate_landing_hoodcondition'][value];
               },
             ),
@@ -188,7 +193,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Hood Clearance: : (Minimum 7’6”)',
               values: const ['OK', 'Non-Compliant'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingHoodClearance =
+                widget.beltModel.intermediateLandingHoodClearance =
                     jsonData['intermediate_landing_hoodclearance'][value];
               },
             ),
@@ -226,7 +231,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Does Hood Have a Rolled Edge:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingDoesHoodHaveRolledEdge =
+                widget.beltModel.intermediateLandingDoesHoodHaveRolledEdge =
                     jsonData['intermediate_landing_doeshoodhaverollededge']
                         [value];
               },
@@ -240,7 +245,7 @@ class IntermediateLanding extends StatelessWidget {
                 'Replace Worn'
               ],
               onChangeValue: (value) {
-                beltModel.intermediateLandingConditionOfRolledEdge =
+                widget.beltModel.intermediateLandingConditionOfRolledEdge =
                     jsonData['intermediate_landing_conditionofrollededge']
                         [value];
               },
@@ -249,7 +254,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Ladder Rungs:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingLadderRungs =
+                widget.beltModel.intermediateLandingLadderRungs =
                     jsonData['intermediate_landing_ladderrungs'][value];
               },
             ),
@@ -286,7 +291,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Tension of Belt:',
               values: const ['OK', 'Loose', 'Tight'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingTensionOfBelt =
+                widget.beltModel.intermediateLandingTensionOfBelt =
                     jsonData['intermediate_landing_tensionofbelt'][value];
               },
             ),
@@ -300,7 +305,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Condition:',
               values: const ['OK', 'Replace Damaged', 'Replace Worn'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingConditionOfRopeGuides =
+                widget.beltModel.intermediateLandingConditionOfRopeGuides =
                     jsonData['intermediate_landing_tensionofbelt'][value];
               },
             ),
@@ -308,7 +313,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Need Add’l:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingConditionOfRopeGuides =
+                widget.beltModel.intermediateLandingConditionOfRopeGuides =
                     jsonData['intermediate_landing_needaddlropeguides'][value];
               },
             ),
@@ -319,7 +324,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Lighting:',
               values: const ['OK', 'Poor'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingLighting =
+                widget.beltModel.intermediateLandingLighting =
                     jsonData['intermediate_landing_lighting'][value];
               },
             ),
@@ -327,7 +332,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Is Landing Clean/Free of Obstructions:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingIsLandingClean =
+                widget.beltModel.intermediateLandingIsLandingClean =
                     jsonData['intermediate_landing_islandingclean'][value];
               },
             ),
@@ -335,7 +340,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Lateral Bracing:',
               values: const ['OK', 'Needs Add’l'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingLateralBracing =
+                widget.beltModel.intermediateLandingLateralBracing =
                     jsonData['intermediate_landing_lateralbracing'][value];
               },
             ),
@@ -343,7 +348,7 @@ class IntermediateLanding extends StatelessWidget {
               title: 'Check Attachment Bolts:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingCheckAttachmentBolts =
+                widget.beltModel.intermediateLandingCheckAttachmentBolts =
                     jsonData['intermediate_landing_checkattachmentbolts']
                         [value];
               },
@@ -364,11 +369,11 @@ class IntermediateLanding extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 PageNavigationButton(
-                  pageController: pageController,
+                  pageController: widget.pageController,
                   right: false,
                 ),
                 PageNavigationButton(
-                  pageController: pageController,
+                  pageController: widget.pageController,
                   right: true,
                 ),
               ],

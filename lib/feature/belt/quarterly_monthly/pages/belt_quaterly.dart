@@ -4,8 +4,10 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:manlift_app/data/models/header.dart';
+import 'package:manlift_app/feature/Home/pages/homepage.dart';
 import 'package:manlift_app/feature/belt/quarterly_monthly/widget/belting.dart';
 import 'package:manlift_app/feature/belt/quarterly_monthly/widget/bottom_landing.dart';
 import 'package:manlift_app/feature/belt/quarterly_monthly/widget/bottom_landing_hood.dart';
@@ -20,6 +22,7 @@ import 'package:manlift_app/feature/belt/quarterly_monthly/widget/top_landing_sa
 import 'package:manlift_app/feature/common/widgets/header_form.dart';
 import 'package:manlift_app/feature/common/widgets/image_picking_last.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
+import 'package:manlift_app/feature/final/final_page.dart';
 
 import '../../../common/widgets/signature_pad.dart';
 import '../../model/belt_inspection_model.dart';
@@ -137,7 +140,8 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
   Future<void> createrefrencePdf() async {
     final pdf = pw.Document();
 
-    pw.Image image1 = pw.Image(pw.MemoryImage(signature!));
+    pw.Image? image1 =
+        signature != null ? pw.Image(pw.MemoryImage(signature!)) : null;
 
     pdf.addPage(
       pw.MultiPage(
@@ -256,6 +260,7 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
                       beltModel: beltModel,
                     ),
                     SignaturePad(
+                      pageController: pageController,
                       signatureChanged: (value) async {
                         final png = await value.toByteData(
                             format: ui.ImageByteFormat.png);
@@ -269,6 +274,13 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
                       onSubmit: () async {
                         await createInspectionPdf();
                         await createrefrencePdf();
+                        await GetStorage().erase();
+                        if (context.mounted) {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const FinalPage()));
+                        }
                       },
                     ),
                   ],

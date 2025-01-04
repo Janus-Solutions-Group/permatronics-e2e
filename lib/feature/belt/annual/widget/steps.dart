@@ -20,9 +20,9 @@ class Steps extends StatefulWidget {
 
 class _StepsState extends State<Steps> {
   var beltVariable = BeltInspection();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
     var jsonData = BeltAnnualJson.of(context)!.data;
 
     return SingleChildScrollView(
@@ -45,7 +45,7 @@ class _StepsState extends State<Steps> {
               ],
               onChangeValue: (value) {
                 widget.beltModel.stepsStepDescription =
-                    jsonData['steps_step_description'][value];
+                    jsonData['steps_step_description'];
               },
             ),
             Wrap(
@@ -53,7 +53,7 @@ class _StepsState extends State<Steps> {
                 CustomTextField(
                   title: '# of Steps:',
                   onChanged: (value) {
-                    widget.beltModel.stepsNumberOfSteps = value;
+                    // widget.beltModel.stepsNumberOfSteps = value;
                   },
                 ),
                 CustomRadioTile(
@@ -61,13 +61,13 @@ class _StepsState extends State<Steps> {
                   values: const ['Yes', 'No'],
                   onChangeValue: (value) {
                     setState(() {
-                      beltVariable.stepsMissingBolts = value;
+                      beltVariable.stepsStepsMissing = value;
                     });
-                    widget.beltModel.stepsMissingBolts =
+                    widget.beltModel.stepsStepsMissing =
                         jsonData['steps_steps_missing'][value];
                   },
                 ),
-                if (beltVariable.stepsMissingBolts == "yes")
+                if (beltVariable.stepsStepsMissing == "yes")
                   CustomTextField(
                     title: 'How Many:',
                     onChanged: (value) {
@@ -145,8 +145,9 @@ class _StepsState extends State<Steps> {
                 'L-69V Rubber'
               ],
               onChangeValue: (value) {
+                // value is not passed in json
                 widget.beltModel.stepsStepRollerType =
-                    jsonData['steps_step_roller_type'][value];
+                    jsonData['steps_step_roller_type'];
               },
             ),
             CustomRadioTile(
@@ -179,8 +180,9 @@ class _StepsState extends State<Steps> {
               title: 'Step Tread Material:',
               values: const ['Steel', 'Wood'],
               onChangeValue: (value) {
+                // value is not in json
                 widget.beltModel.stepsStepTreadMaterial =
-                    jsonData['steps_step_tread_material'][value];
+                    jsonData['steps_step_tread_material'];
               },
             ),
             CustomRadioTile(
