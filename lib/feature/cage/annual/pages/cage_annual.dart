@@ -18,9 +18,11 @@ import 'package:manlift_app/feature/common/widgets/header_form.dart';
 import 'package:manlift_app/feature/cage/annual/widgets/yearly_pit_form.dart';
 import 'package:manlift_app/feature/common/widgets/image_picking_last.dart';
 import 'package:manlift_app/feature/common/widgets/signature_pad.dart';
+import 'package:manlift_app/provider/selection_ref_provider.dart';
 
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:provider/provider.dart';
 
 import '../../../../data/models/header.dart';
 import '../../../common/widgets/radio_tile.dart';
@@ -140,7 +142,7 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
 
     pw.Image? image1 =
         signature != null ? pw.Image(pw.MemoryImage(signature!)) : null;
-
+    var selectionsRef = context.read<SelectionRefProvider>().selectionsRef;
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,

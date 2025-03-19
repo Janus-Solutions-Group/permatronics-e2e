@@ -35,7 +35,7 @@ class Handholds extends StatelessWidget {
                 beltModel.handholdsHandholdColor =
                     jsonData['handholds_handhold_color'][value];
               },
-              fieldTitle: "Other Color",
+              fieldLabelTitle: "Other Color",
               fieldValue: "other",
               onFieldChange: (value) {
                 // widget.beltModel.handholdsHandholdColor = value;

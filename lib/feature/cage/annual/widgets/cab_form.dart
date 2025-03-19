@@ -226,7 +226,7 @@ class AnnualCageCABForm extends StatelessWidget {
                   jsonData['type_of_cable_attachment_to_car'][value];
             },
             isTextField: true,
-            fieldTitle: "Other",
+            fieldLabelTitle: "Other",
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

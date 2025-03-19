@@ -151,11 +151,11 @@
     "rear": ""
   },
   "counterweight_guide_rail_type": {
-    "t-rail": "",
-    "angle": "",
-    "box": "",
-    "enclosed": "",
-    "c-channel": ""
+    "t-rail": "a",
+    "angle": "b",
+    "box": "c",
+    "enclosed": "d",
+    "c-channel": "e"
   },
   "counterweight_guide_rail_size": {
     "default": ""

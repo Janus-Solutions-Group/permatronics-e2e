@@ -69,7 +69,7 @@ class _BeltingState extends State<Belting> {
                     jsonData['belting_color'][value];
               },
               fieldValue: "other",
-              fieldTitle: "Other",
+              fieldLabelTitle: "Other",
               onFieldChange: (value) {
                 widget.beltModel.beltingColor = value;
               },

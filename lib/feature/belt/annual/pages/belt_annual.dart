@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:manlift_app/feature/Home/pages/homepage.dart';
+import 'package:manlift_app/feature/belt/annual/widget/add_intermediate_landing.dart';
 import 'package:manlift_app/feature/common/widgets/header_form.dart';
 import 'package:manlift_app/feature/common/widgets/image_picking_last.dart';
 import 'package:manlift_app/feature/common/widgets/signature_pad.dart';
@@ -204,13 +205,12 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
       data: data,
       runFunction: fetchJsonData,
       child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
         body: SafeArea(
           child: Column(
             children: [
-              Text(
-                widget.title,
-                style: const TextStyle(fontSize: 20),
-              ),
               Expanded(
                 child: PageView(
                   controller: pageController,
@@ -244,9 +244,12 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
                       pageController: pageController,
                       beltModel: beltModel,
                     ),
-                    IntermediateLanding(
+                    // IntermediateLanding(
+                    //   pageController: pageController,
+                    //   beltModel: beltModel,
+                    // ),
+                    AddAnnualIntermediateLandingFormPage(
                       pageController: pageController,
-                      beltModel: beltModel,
                     ),
                     TopLanding(
                       pageController: pageController,

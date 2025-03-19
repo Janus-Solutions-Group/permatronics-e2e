@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:manlift_app/data/models/original_model.dart';
 import 'package:manlift_app/feature/cage/model/cage_model.dart';
 import 'package:manlift_app/feature/cage/quarterly/cage_quaterly.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
@@ -26,22 +28,52 @@ class CABForm extends StatelessWidget {
             id: 'cab_form_1',
             title: "Car Condition and Description:",
           ),
-          CustomRadioTile(
-            id: 'cab_form_2',
-            title: 'Cam:',
-            values: const ["Retiring", "Stationary", "None"],
-            onChangeValue: (value) {
-              cageModel.carConditionAndDescriptionCam =
-                  jsonData['car_condition_and_description']['cam'][value];
+          // CustomRadioTile(
+          //   id: 'cab_form_2',
+          //   title: 'Cam:',
+          //   values: const ["Retiring", "Stationary", "None"],
+          //   onChangeValue: (value) {
+          //     cageModel.carConditionAndDescriptionCam =
+          //         jsonData['car_condition_and_description']['cam'][value];
+          //   },
+          // ),
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'cab_form_2',
+              title: 'Cam:',
+              values: const ["Retiring", "Stationary", "None"],
+            ),
+            onSelectionChanged: (val) {
+              String res = "";
+              for (var e in val) {
+                res += jsonData['car_condition_and_description'][e] + "\n";
+              }
+              cageModel.carConditionAndDescriptionCam = res;
             },
           ),
-          CustomRadioTile(
-            id: 'cab_form_3',
-            title: 'Location',
-            values: const ["Left", "Right", "Middle"],
-            onChangeValue: (value) {
-              cageModel.carConditionAndDescriptionLocation =
-                  jsonData['car_condition_and_description']['location'][value];
+          // CustomRadioTile(
+          //   id: 'cab_form_3',
+          //   title: 'Location',
+          //   values: const ["Left", "Right", "Middle"],
+          //   onChangeValue: (value) {
+          //     cageModel.carConditionAndDescriptionLocation =
+          //         jsonData['car_condition_and_description']['location'][value];
+          //   },
+          // ),
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'cab_form_3',
+              title: 'Location',
+              values: const ["Left", "Right", "Middle"],
+            ),
+            onSelectionChanged: (val) {
+              String res = "";
+              for (var e in val) {
+                res += jsonData['car_condition_and_description']['location']
+                        [e] +
+                    "\n";
+              }
+              cageModel.carConditionAndDescriptionLocation = res;
             },
           ),
           CustomRadioTile(
@@ -52,6 +84,9 @@ class CABForm extends StatelessWidget {
               cageModel.carConditionAndDescriptionCondition =
                   jsonData['car_condition_and_description']['condition'][value];
             },
+            isTextField: true,
+            fieldValue: "replace",
+            fieldLabelTitle: "why",
           ),
           CustomRadioTile(
             id: 'cab_form_5',
@@ -61,12 +96,26 @@ class CABForm extends StatelessWidget {
               cageModel.carDoorType = jsonData['car_door_type'][value];
             },
           ),
-          CustomRadioTile(
-            id: 'cab_form_6',
-            title: 'Material',
-            values: const ["Expended Metal", "Solid Panel"],
-            onChangeValue: (value) {
-              cageModel.carDoorMaterial = jsonData['car_door_material'][value];
+          // CustomRadioTile(
+          //   id: 'cab_form_6',
+          //   title: 'Material',
+          //   values: const ["Expended Metal", "Solid Panel"],
+          //   onChangeValue: (value) {
+          //     cageModel.carDoorMaterial = jsonData['car_door_material'][value];
+          //   },
+          // ),
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'cab_form_6',
+              title: 'Material',
+              values: const ["Expended Metal", "Solid Panel"],
+            ),
+            onSelectionChanged: (val) {
+              String res = "";
+              for (var e in val) {
+                res += jsonData['car_door_material'][e] + "\n";
+              }
+              cageModel.carDoorMaterial = res;
             },
           ),
           CustomRadioTile(
@@ -77,13 +126,30 @@ class CABForm extends StatelessWidget {
               cageModel.carDoorCondition =
                   jsonData['car_door_condition'][value];
             },
+            isTextField: true,
+            fieldValue: "replace",
+            fieldLabelTitle: "Why",
           ),
-          CustomRadioTile(
-            id: 'cab_form_8',
-            title: 'Car Door Limit',
-            values: const ["Yes", "No", "Inoperable"],
-            onChangeValue: (value) {
-              cageModel.carDoorLimit = jsonData['car_door_limit'][value];
+          // CustomRadioTile(
+          //   id: 'cab_form_8',
+          //   title: 'Car Door Limit',
+          //   values: const ["Yes", "No", "Inoperable"],
+          //   onChangeValue: (value) {
+          //     cageModel.carDoorLimit = jsonData['car_door_limit'][value];
+          //   },
+          // ),
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'cab_form_8',
+              title: 'Car Door Limit',
+              values: const ["Yes", "No", "Inoperable"],
+            ),
+            onSelectionChanged: (val) {
+              String res = "";
+              for (var e in val) {
+                res += jsonData['car_door_limit'][e] + "\n";
+              }
+              cageModel.carDoorLimit = res;
             },
           ),
           CustomTextField(
@@ -92,7 +158,7 @@ class CABForm extends StatelessWidget {
           ),
           CustomRadioTile(
             id: 'cab_form_10',
-            title: 'Car Operation Controls: “UP”',
+            title: 'Car Operation Controls: "UP"',
             values: const ["OK", "Inoperable"],
             onChangeValue: (value) {
               cageModel.carOperationControlsUp =
@@ -101,35 +167,77 @@ class CABForm extends StatelessWidget {
           ),
           CustomRadioTile(
             id: 'cab_form_11',
-            title: 'Car Operation Controls: “DN”',
+            title: 'Car Operation Controls: "DN"',
             values: const ["OK", "Inoperable"],
             onChangeValue: (value) {
               cageModel.carOperationControlsDown =
                   jsonData['car_operation_controls']['dn'][value];
             },
           ),
-          CustomRadioTile(
-            id: 'cab_form_12',
-            title: 'Car Light:',
-            values: const ["Yes", "No", "Inoperable"],
-            onChangeValue: (value) {
-              cageModel.carLight = jsonData['car_light'][value];
+          // CustomRadioTile(
+          //   id: 'cab_form_12',
+          //   title: 'Car Light:',
+          //   values: const ["Yes", "No", "Inoperable"],
+          //   onChangeValue: (value) {
+          //     cageModel.carLight = jsonData['car_light'][value];
+          //   },
+          // ),
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'cab_form_12',
+              title: 'Car Light:',
+              values: const ["Yes", "No", "Inoperable"],
+            ),
+            onSelectionChanged: (val) {
+              String res = "";
+              for (var e in val) {
+                res += jsonData['car_light'][e] + "\n";
+              }
+              cageModel.carLight = res;
             },
           ),
-          CustomRadioTile(
-            id: 'cab_form_13',
-            title: 'Car Light Switch:',
-            values: const ["Yes", "No", "Inoperable"],
-            onChangeValue: (value) {
-              cageModel.carLightSwitch = jsonData['car_light_switch'][value];
+          // CustomRadioTile(
+          //   id: 'cab_form_13',
+          //   title: 'Car Light Switch:',
+          //   values: const ["Yes", "No", "Inoperable"],
+          //   onChangeValue: (value) {
+          //     cageModel.carLightSwitch = jsonData['car_light_switch'][value];
+          //   },
+          // ),
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'cab_form_13',
+              title: 'Car Light Switch:',
+              values: const ["Yes", "No", "Inoperable"],
+            ),
+            onSelectionChanged: (val) {
+              String res = "";
+              for (var e in val) {
+                res += jsonData['car_light_switch'][e] + "\n";
+              }
+              cageModel.carLightSwitch = res;
             },
           ),
-          CustomRadioTile(
-            id: 'cab_form_14',
-            title: 'Car Alarm:',
-            values: const ["Yes", "No", "Inoperable"],
-            onChangeValue: (value) {
-              cageModel.carAlarm = jsonData['car_alarm'][value];
+          // CustomRadioTile(
+          //   id: 'cab_form_14',
+          //   title: 'Car Alarm:',
+          //   values: const ["Yes", "No", "Inoperable"],
+          //   onChangeValue: (value) {
+          //     cageModel.carAlarm = jsonData['car_alarm'][value];
+          //   },
+          // ),
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'cab_form_14',
+              title: 'Car Alarm:',
+              values: const ["Yes", "No", "Inoperable"],
+            ),
+            onSelectionChanged: (val) {
+              String res = "";
+              for (var e in val) {
+                res += jsonData['car_alarm'][e] + "\n";
+              }
+              cageModel.carAlarm = res;
             },
           ),
           CustomRadioTile(
@@ -140,12 +248,40 @@ class CABForm extends StatelessWidget {
               cageModel.carAlarmSwitch = jsonData['car_alarm_switch'][value];
             },
           ),
-          CustomRadioTile(
-            id: 'cab_form_16',
-            title: 'Emergency Stop:',
-            values: const ["Yes", "No", "Inoperable"],
-            onChangeValue: (value) {
-              cageModel.emergencyStop = jsonData['emergency_stop'][value];
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'cab_form_15',
+              title: 'Car Alarm Switch:',
+              values: const ["Yes", "No", "Inoperable"],
+            ),
+            onSelectionChanged: (val) {
+              String res = "";
+              for (var e in val) {
+                res += jsonData['car_alarm_switch'][e] + "\n";
+              }
+              cageModel.carAlarmSwitch = res;
+            },
+          ),
+          // CustomRadioTile(
+          //   id: 'cab_form_16',
+          //   title: 'Emergency Stop:',
+          //   values: const ["Yes", "No", "Inoperable"],
+          //   onChangeValue: (value) {
+          //     cageModel.emergencyStop = jsonData['emergency_stop'][value];
+          //   },
+          // ),
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'cab_form_16',
+              title: 'Emergency Stop:',
+              values: const ["Yes", "No", "Inoperable"],
+            ),
+            onSelectionChanged: (val) {
+              String res = "";
+              for (var e in val) {
+                res += jsonData['emergency_stop'][e] + "\n";
+              }
+              cageModel.emergencyStop = res;
             },
           ),
           CustomRadioTile(
@@ -173,22 +309,50 @@ class CABForm extends StatelessWidget {
                   jsonData['emergency_escape_hatch'][value];
             },
           ),
-          CustomRadioTile(
-            id: 'cab_form_20',
-            title: 'Emergency Escape Hatch Switch:',
-            values: const ["Yes", "No", "Inoperable"],
-            onChangeValue: (value) {
-              cageModel.emergencyEscapeHatchSwitch =
-                  jsonData['emergency_escape_hatch_switch'][value];
+          // CustomRadioTile(
+          //   id: 'cab_form_20',
+          //   title: 'Emergency Escape Hatch Switch:',
+          //   values: const ["Yes", "No", "Inoperable"],
+          //   onChangeValue: (value) {
+          //     cageModel.emergencyEscapeHatchSwitch =
+          //         jsonData['emergency_escape_hatch_switch'][value];
+          //   },
+          // ),
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'cab_form_20',
+              title: 'Emergency Escape Hatch Switch:',
+              values: const ["Yes", "No", "Inoperable"],
+            ),
+            onSelectionChanged: (val) {
+              String res = "";
+              for (var e in val) {
+                res += jsonData['emergency_escape_hatch_switch'][e] + "\n";
+              }
+              cageModel.emergencyEscapeHatchSwitch = res;
             },
           ),
-          CustomRadioTile(
-            id: 'cab_form_21',
-            title: 'Manual Back Up Car Alarm:',
-            values: const ["Yes", "No", "Inoperable"],
-            onChangeValue: (value) {
-              cageModel.manualBackupCarAlarm =
-                  jsonData['manual_backup_car_alarm'][value];
+          // CustomRadioTile(
+          //   id: 'cab_form_21',
+          //   title: 'Manual Back Up Car Alarm:',
+          //   values: const ["Yes", "No", "Inoperable"],
+          //   onChangeValue: (value) {
+          //     cageModel.manualBackupCarAlarm =
+          //         jsonData['manual_backup_car_alarm'][value];
+          //   },
+          // ),
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'cab_form_21',
+              title: 'Manual Back Up Car Alarm:',
+              values: const ["Yes", "No", "Inoperable"],
+            ),
+            onSelectionChanged: (val) {
+              String res = "";
+              for (var e in val) {
+                res += jsonData['manual_backup_car_alarm'][e] + "\n";
+              }
+              cageModel.manualBackupCarAlarm = res;
             },
           ),
           CustomTextField(

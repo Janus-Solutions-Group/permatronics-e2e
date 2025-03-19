@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:manlift_app/data/models/original_model.dart';
 import 'package:manlift_app/feature/cage/model/cage_model.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/custom_title.dart';
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
@@ -92,7 +94,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                 title: "Switch Location",
                 values: const ["YES", "NO", "Inoperable"],
                 isTextField: true,
-                fieldTitle: 'Reason',
+                fieldLabelTitle: 'Reason',
                 onChangeValue: (value) {
                   widget.cageModel.switchLocation =
                       jsonData['switch_location'][value];
@@ -179,13 +181,27 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                       jsonData['runby_counterweight_buffers'][value];
                 },
               ),
-            CustomRadioTile(
-              id: 'pit_19',
-              title: "Governor Cable Tensioner Description",
-              values: const ["Weighted", "Spring", "Screw"],
-              onChangeValue: (value) {
-                widget.cageModel.governorCableTensioner =
-                    jsonData['governor_cable_tensioner'][value];
+            // CustomRadioTile(
+            //   id: 'pit_19',
+            //   title: "Governor Cable Tensioner Description",
+            //   values: const ["Weighted", "Spring", "Screw"],
+            //   onChangeValue: (value) {
+            //     widget.cageModel.governorCableTensioner =
+            //         jsonData['governor_cable_tensioner'][value];
+            //   },
+            // ),
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'pit_19',
+                title: "Governor Cable Tensioner Description",
+                values: const ["Weighted", "Spring", "Screw"],
+              ),
+              onSelectionChanged: (val) {
+                String res = "";
+                for (var e in val) {
+                  res += jsonData['governor_cable_tensioner'][e] + "\n";
+                }
+                widget.cageModel.governorCableTensioner = res;
               },
             ),
             CustomRadioTile(
@@ -234,7 +250,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               title: "Travel Cable Connection and Condition:",
               values: const ["Ok", "Replace"],
               isTextField: true,
-              fieldTitle: 'Reason',
+              fieldLabelTitle: 'Reason',
               onChangeValue: (value) {
                 widget.cageModel.travelCableConnectionAndCondition =
                     jsonData['travel_cable_connection_and_condition'][value];
@@ -262,7 +278,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               title: "Safety Condition",
               values: const ["OK", "Frozen", "Replace", "Yes", "No"],
               isTextField: true,
-              fieldTitle: 'If not, Why:',
+              fieldLabelTitle: 'If not, Why:',
               onChangeValue: (value) {
                 widget.cageModel.safetyCondition =
                     jsonData['safety_condition'][value];
@@ -273,19 +289,33 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               title: "Switch on Safeties:",
               values: const ["Yes", "No", "OK", "Inoperable"],
               isTextField: true,
-              fieldTitle: 'If not, Why:',
+              fieldLabelTitle: 'If not, Why:',
               onChangeValue: (value) {
                 widget.cageModel.switchOnSafeties =
                     jsonData['switch_on_safeties'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'pit_31',
-              title: "Car Guide Rails Type:",
-              values: const ["T-Rail", "Angle", "Wood"],
-              onChangeValue: (value) {
-                widget.cageModel.carGuideRailsType =
-                    jsonData['car_guide_rails_type'][value];
+            // CustomRadioTile(
+            //   id: 'pit_31',
+            //   title: "Car Guide Rails Type:",
+            //   values: const ["T-Rail", "Angle", "Wood"],
+            //   onChangeValue: (value) {
+            //     widget.cageModel.carGuideRailsType =
+            //         jsonData['car_guide_rails_type'][value];
+            //   },
+            // ),
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'pit_31',
+                title: "Car Guide Rails Type:",
+                values: const ["T-Rail", "Angle", "Wood"],
+              ),
+              onSelectionChanged: (val) {
+                String res = "";
+                for (var e in val) {
+                  res += jsonData['car_guide_rails_type'][e] + "\n";
+                }
+                widget.cageModel.carGuideRailsType = res;
               },
             ),
             CustomTextField(id: 'pit_32', title: "Car Guide Rails Size"),
@@ -312,13 +342,27 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                 },
               ),
             CustomTextField(id: 'pit_35', title: "Car Guide Rails DBG"),
-            CustomRadioTile(
-              id: 'pit_36',
-              title: "Car Guide Rail Brackets",
-              values: const ["Wooden", "Steel", "Bolted", "Welded"],
-              onChangeValue: (value) {
-                widget.cageModel.carGuideRailBrackets =
-                    jsonData['car_guide_rail_brackets'][value];
+            // CustomRadioTile(
+            //   id: 'pit_36',
+            //   title: "Car Guide Rail Brackets",
+            //   values: const ["Wooden", "Steel", "Bolted", "Welded"],
+            //   onChangeValue: (value) {
+            //     widget.cageModel.carGuideRailBrackets =
+            //         jsonData['car_guide_rail_brackets'][value];
+            //   },
+            // ),
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'pit_36',
+                title: "Car Guide Rail Brackets",
+                values: const ["Wooden", "Steel", "Bolted", "Welded"],
+              ),
+              onSelectionChanged: (val) {
+                String res = "";
+                for (var e in val) {
+                  res += jsonData['car_guide_rail_brackets'][e] + "\n";
+                }
+                widget.cageModel.carGuideRailBrackets = res;
               },
             ),
             CustomRadioTile(
@@ -348,17 +392,39 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                     jsonData['counterweight_location_facing_car'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'pit_40',
-              title: "Counterweight Guide Rail Type",
-              values: const ["T-Rail", "Angle", "Box", "Enclosed", "C-Channel"],
-              onChangeValue: (value) {
-                widget.cageModel.counterweightGuideRailType =
-                    jsonData['counterweight_guide_rail_type'][value];
+            // CustomRadioTile(
+            //   id: 'pit_40',
+            //   title: "Counterweight Guide Rail Type",
+            //   values: const ["T-Rail", "Angle", "Box", "Enclosed", "C-Channel"],
+            //   onChangeValue: (value) {
+            //     widget.cageModel.counterweightGuideRailType =
+            //         jsonData['counterweight_guide_rail_type'][value];
+            //   },
+            // ),
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: "pit_40",
+                title: "Counterweight Guide Rail Type",
+                values: const [
+                  "T-Rail",
+                  "Angle",
+                  "Box",
+                  "Enclosed",
+                  "C-Channel"
+                ],
+              ),
+              onSelectionChanged: (val) {
+                String res = "";
+                for (var e in val) {
+                  res += jsonData['counterweight_guide_rail_type'][e] + "\n";
+                }
+                print(res);
+                widget.cageModel.counterweightGuideRailType = res;
               },
             ),
-            CustomTextField(id: 'pit_41', title: 'Size'),
-            CustomTextField(
+
+            const CustomTextField(id: 'pit_41', title: 'Size'),
+            const CustomTextField(
                 id: 'pit_42', title: 'Counterweight Guide Rail DBG:'),
             CustomRadioTile(
               id: 'pit_43',
@@ -369,7 +435,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                     jsonData['counterweight_guide_rail_condition'][value];
               },
               isTextField: true,
-              fieldTitle: "Other",
+              fieldLabelTitle: "Other",
             ),
             CustomRadioTile(
               id: 'pit_44',

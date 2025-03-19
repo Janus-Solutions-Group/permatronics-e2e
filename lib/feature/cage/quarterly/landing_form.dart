@@ -52,7 +52,8 @@ class _CageLandingFormState extends State<CageLandingForm>
             title: 'Hoistway Door Interlock Condition:',
             values: const ["OK", "Replace ", "Other"],
             isTextField: true,
-            fieldTitle: 'Other',
+            fieldValue: "other",
+            fieldLabelTitle: 'Other',
             type: widget.model.hoistwayDoorInterlockDevice,
             onChangeValue: (value) {
               widget.model.hoistwayDoorInterlockDevice = value;

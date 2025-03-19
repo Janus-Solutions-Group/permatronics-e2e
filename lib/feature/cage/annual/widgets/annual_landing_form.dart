@@ -65,7 +65,7 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             type: widget.model.hoistwayDoorInterlockLocation,
             values: const ["Left", "Right ", "Top", "Middle"],
             isTextField: true,
-            fieldTitle: 'Other',
+            fieldLabelTitle: 'Other',
             fieldValue: 'other',
             onChangeValue: (value) {
               widget.model.hoistwayDoorInterlockLocation = value;
@@ -77,7 +77,7 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             values: const ["OK", "Replace ", "Other"],
             type: widget.model.hoistwayDoorInterlockCondition,
             isTextField: true,
-            fieldTitle: 'Other',
+            fieldLabelTitle: 'Other',
             fieldValue: 'other',
             onChangeValue: (value) {
               widget.model.hoistwayDoorInterlockCondition = value;
@@ -174,7 +174,7 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
               widget.model.enclosurePanels = value;
             },
             isTextField: true,
-            fieldTitle: "Other",
+            fieldLabelTitle: "Other",
             fieldValue: 'other',
           ),
           CustomRadioTile(

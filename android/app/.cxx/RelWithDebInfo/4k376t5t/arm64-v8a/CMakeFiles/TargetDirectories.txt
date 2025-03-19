@@ -1,0 +1,2 @@
+C:/Users/anpap/Desktop/flutter pro/manlift_app/android/app/.cxx/RelWithDebInfo/4k376t5t/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/anpap/Desktop/flutter pro/manlift_app/android/app/.cxx/RelWithDebInfo/4k376t5t/arm64-v8a/CMakeFiles/rebuild_cache.dir

@@ -424,7 +424,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
                 //     jsonData['drive_assembly_saftstoplinkage'][value];
               },
               isTextField: true,
-              fieldTitle: "Other",
+              fieldLabelTitle: "Other",
             ),
             CustomTextField(
               title: 'Drive Comments:',

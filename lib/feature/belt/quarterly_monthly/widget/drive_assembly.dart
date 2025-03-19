@@ -120,7 +120,7 @@ class DriveAssembly extends StatelessWidget {
                 'Other'
               ],
               isTextField: true,
-              fieldTitle: 'Other',
+              fieldLabelTitle: 'Other',
               onChangeValue: (value) {
                 beltModel.driveAssemblyCouplerType =
                     jsonData['drive_assembly_couplertype'][value];
@@ -145,7 +145,7 @@ class DriveAssembly extends StatelessWidget {
               title: 'Gear Box Type',
               values: const ['Reliance', 'Dodge', 'Falk', 'Ehrsam', 'Other'],
               isTextField: true,
-              fieldTitle: 'Other',
+              fieldLabelTitle: 'Other',
               onChangeValue: (value) {
                 beltModel.driveAssemblyGearboxType =
                     jsonData['drive_assembly_gearboxtype'][value];
@@ -170,7 +170,7 @@ class DriveAssembly extends StatelessWidget {
               title: 'Motor Type',
               values: const ['Reliance', 'Dodge', 'US Motors', 'GE', 'Other'],
               isTextField: true,
-              fieldTitle: 'Other',
+              fieldLabelTitle: 'Other',
               onChangeValue: (value) {
                 beltModel.driveAssemblyMotorType =
                     jsonData['drive_assembly_motortype'][value];
@@ -188,7 +188,7 @@ class DriveAssembly extends StatelessWidget {
                 'Other'
               ],
               isTextField: true,
-              fieldTitle: 'Other',
+              fieldLabelTitle: 'Other',
               onChangeValue: (value) {
                 beltModel.driveAssemblyBrakeType =
                     jsonData['drive_assembly_braketype'][value];

@@ -7,14 +7,12 @@ import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:manlift_app/data/models/header.dart';
-import 'package:manlift_app/feature/Home/pages/homepage.dart';
 import 'package:manlift_app/feature/belt/quarterly_monthly/widget/belting.dart';
 import 'package:manlift_app/feature/belt/quarterly_monthly/widget/bottom_landing.dart';
 import 'package:manlift_app/feature/belt/quarterly_monthly/widget/bottom_landing_hood.dart';
 import 'package:manlift_app/feature/belt/quarterly_monthly/widget/bottom_landing_safeties.dart';
 import 'package:manlift_app/feature/belt/quarterly_monthly/widget/drive_assembly.dart';
 import 'package:manlift_app/feature/belt/quarterly_monthly/widget/handholds.dart';
-import 'package:manlift_app/feature/belt/quarterly_monthly/widget/intermediate_landing.dart';
 import 'package:manlift_app/feature/belt/quarterly_monthly/widget/steps.dart';
 import 'package:manlift_app/feature/belt/quarterly_monthly/widget/tail_section.dart';
 import 'package:manlift_app/feature/belt/quarterly_monthly/widget/top_landing.dart';
@@ -29,6 +27,8 @@ import '../../model/belt_inspection_model.dart';
 
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+
+import '../widget/add_intermediate_landing.dart';
 
 class BeltQuaterlyPage extends StatefulWidget {
   const BeltQuaterlyPage({super.key, required this.title});
@@ -201,13 +201,12 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
       data: data,
       runFunction: fetchJsonData,
       child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
         body: SafeArea(
           child: Column(
             children: [
-              Text(
-                widget.title,
-                style: const TextStyle(fontSize: 20),
-              ),
               Expanded(
                 child: PageView(
                   controller: pageController,
@@ -243,10 +242,8 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
                       pageController: pageController,
                       beltModel: beltModel,
                     ),
-                    IntermediateLanding(
-                      pageController: pageController,
-                      beltModel: beltModel,
-                    ),
+                    AddQuarterlyIntermediateLandingFormPage(
+                        pageController: pageController),
                     TopLanding(
                       pageController: pageController,
                       beltModel: beltModel,

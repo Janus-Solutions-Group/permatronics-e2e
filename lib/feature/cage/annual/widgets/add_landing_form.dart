@@ -15,7 +15,6 @@ class AddAnnualLandingFormPage extends StatefulWidget {
 
 class _AddAnnualLandingFormPageState extends State<AddAnnualLandingFormPage>
     with AutomaticKeepAliveClientMixin {
-  List<AnnualLandingForm> landingFormList = [];
   List<CageAnnualLanding> landingModels = [];
 
   @override

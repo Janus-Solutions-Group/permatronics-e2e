@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:manlift_app/feature/belt/model/belt_inspection_model.dart';
+import 'package:manlift_app/feature/belt/model/intermediate_landing.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
-import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
 import '../pages/belt_quaterly.dart';
 
 class IntermediateLanding extends StatelessWidget {
   const IntermediateLanding(
-      {super.key, required this.pageController, required this.beltModel});
+      {super.key, required this.index, required this.model});
 
-  final PageController pageController;
-  final BeltInspection beltModel;
+  final int index;
+  final IntermediateLandingModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -28,108 +27,108 @@ class IntermediateLanding extends StatelessWidget {
           children: [
             const FormHeaderTitle(title: "INTERMEDIATE LANDING#"),
             CustomRadioTile(
-              id: 'intermediate_landing_1',
+              id: 'intermediate_landing_quartmonth_${index}_1',
               title: '“Authorized Personnel Only” Sign: (2” letters)',
               values: const ['Yes', 'No', 'Non-Compliant'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingAuthorizedPersonnelSign =
+                model.intermediateLandingAuthorizedPersonnelSign =
                     jsonData['intermediate_landing_authorizedpersonnelsign']
                         [value];
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_2',
+              id: 'intermediate_landing_quartmonth_${index}_2',
               title: 'Instruction Sign: (1” letters)',
               values: const ['Yes', 'No', 'Non-Compliant'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingInstructionSign =
+                model.intermediateLandingInstructionSign =
                     jsonData['intermediate_landing_instructionsign'][value];
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_3',
+              id: 'intermediate_landing_quartmonth_${index}_3',
               title: 'Maze:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingMaze =
+                model.intermediateLandingMaze =
                     jsonData['intermediate_landing_maze'][value];
               },
             ),
             CustomTextField(
-              id: 'intermediate_landing_4',
+              id: 'intermediate_landing_quartmonth_${index}_4',
               title: 'Description',
               onChanged: (val) {
-                beltModel.stepsStepDescription = val;
+                // model.stepsStepDescription = val;
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_5',
+              id: 'intermediate_landing_quartmonth_${index}_5',
               title: 'Self Closing Gate:',
               values: const ['1', '2', '3', '4'],
               onChangeValue: (value) {
                 // json keys are different--
-                // beltModel.intermediateLandingSelfClosingGates =
+                // model.intermediateLandingSelfClosingGates =
                 //   jsonData['intermediate_landing_selfclosinggates'][value];
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_6',
+              id: 'intermediate_landing_quartmonth_${index}_6',
               title: 'Open Outward:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingOpenOutward =
+                model.intermediateLandingOpenOutward =
                     jsonData['intermediate_landing_openoutward'][value];
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_7',
+              id: 'intermediate_landing_quartmonth_${index}_7',
               title: 'Toeboard:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingToeboard =
+                model.intermediateLandingToeboard =
                     jsonData['intermediate_landing_toeboard'][value];
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_8',
+              id: 'intermediate_landing_quartmonth_${index}_8',
               title: 'Add’l Toeboard Required:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.topLandingAddlToeboard =
+                model.intermediateLandingAddlToeboard =
                     jsonData['intermediate_landing_addltoeboardrequired']
                         [value];
               },
             ),
             CustomTextField(
-              id: 'intermediate_landing_9',
+              id: 'intermediate_landing_quartmonth_${index}_9',
               title: 'Length',
               onChanged: (val) {},
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_10',
+              id: 'intermediate_landing_quartmonth_${index}_10',
               title: 'Toeboard Material:',
               values: const ['Steel', 'Raised Concrete', 'Other'],
               onChangeValue: (value) {
-                // beltModel. =
+                // model. =
                 //   jsonData['steps_step_rollers_bolts'][value];
               },
             ),
             CustomTextField(
-              id: 'intermediate_landing_11',
+              id: 'intermediate_landing_quartmonth_${index}_11',
               title: 'Toeboard Height:',
               onChanged: (val) {},
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_12',
+              id: 'intermediate_landing_quartmonth_${index}_12',
               title: 'Type of Hood:',
               values: const ['Stationary', 'Moveable', 'Moveable Mini', 'None'],
               onChangeValue: (value) {
-                // beltModel.hood =
+                // model.hood =
                 //   jsonData['steps_step_rollers_bolts'][value];
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_13',
+              id: 'intermediate_landing_quartmonth_${index}_13',
               title: 'Hood Condition:',
               values: const [
                 'OK',
@@ -138,31 +137,31 @@ class IntermediateLanding extends StatelessWidget {
                 'Replace Worn'
               ],
               onChangeValue: (value) {
-                beltModel.intermediateLandingHoodCondition =
+                model.intermediateLandingHoodCondition =
                     jsonData['intermediate_landing_hoodcondition'][value];
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_14',
+              id: 'intermediate_landing_quartmonth_${index}_14',
               title: 'if Moveable, does Switch work:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                // beltModel.ifmo =
+                // model.ifmo =
                 //   jsonData['steps_step_rollers_bolts'][value];
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_15',
+              id: 'intermediate_landing_quartmonth_${index}_15',
               title: 'Does Hood have a Rolled Edge:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingDoesHoodHaveRolledEdge =
+                model.intermediateLandingDoesHoodHaveRolledEdge =
                     jsonData['intermediate_landing_doeshoodhaverollededge']
                         [value];
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_16',
+              id: 'intermediate_landing_quartmonth_${index}_16',
               title: 'Condition of Rolled Edge:',
               values: const [
                 'OK',
@@ -171,83 +170,70 @@ class IntermediateLanding extends StatelessWidget {
                 'Replace Worn'
               ],
               onChangeValue: (value) {
-                beltModel.intermediateLandingConditionOfRolledEdge =
+                model.intermediateLandingConditionOfRolledEdge =
                     jsonData['intermediate_landing_conditionofrollededge']
                         [value];
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_17',
+              id: 'intermediate_landing_quartmonth_${index}_17',
               title: 'Lighting:',
               values: const ['OK', 'Poor,'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingLighting =
+                model.intermediateLandingLighting =
                     jsonData['intermediate_landing_lighting'][value];
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_18',
+              id: 'intermediate_landing_quartmonth_${index}_18',
               title: 'Is Landing Clean/Free of Obstructions:',
               values: const ['Yes', 'No,'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingIsLandingClean =
+                model.intermediateLandingIsLandingClean =
                     jsonData['intermediate_landing_islandingclean'][value];
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_19',
+              id: 'intermediate_landing_quartmonth_${index}_19',
               title: 'Lateral Bracing:',
               values: const ['OK', 'Needs Add’l,'],
               onChangeValue: (value) {
-                beltModel.intermediateLandingLateralBracing =
+                model.intermediateLandingLateralBracing =
                     jsonData['intermediate_landing_lateralbracing'][value];
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_20',
+              id: 'intermediate_landing_quartmonth_${index}_20',
               title: 'Check Attachment Bolts:',
               values: const [
                 'Yes',
                 'No',
               ],
               onChangeValue: (value) {
-                beltModel.intermediateLandingCheckAttachmentBolts =
+                model.intermediateLandingCheckAttachmentBolts =
                     jsonData['intermediate_landing_checkattachmentbolts']
                         [value];
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_21',
+              id: 'intermediate_landing_quartmonth_${index}_21',
               title: 'Condition:',
               values: const ['OK', 'Missing'],
               onChangeValue: (value) {
-                // beltModel.intermediatecondition =
+                // model.intermediatecondition =
                 //   jsonData['steps_step_rollers_bolts'][value];
               },
             ),
             CustomTextField(
-              id: 'intermediate_landing_22',
+              id: 'intermediate_landing_quartmonth_${index}_22',
               title: 'How Many',
               onChanged: (val) {},
             ),
             CustomTextField(
-              id: 'intermediate_landing_23',
+              id: 'intermediate_landing_quartmonth_${index}_23',
               title: 'Intermediate Landing Comments:',
               onChanged: (val) {},
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                PageNavigationButton(
-                  pageController: pageController,
-                  right: false,
-                ),
-                PageNavigationButton(
-                  pageController: pageController,
-                  right: true,
-                ),
-              ],
-            )
           ],
         ),
       ),

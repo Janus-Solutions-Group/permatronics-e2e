@@ -117,7 +117,7 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                                 [value];
                           },
                           fieldValue: "other",
-                          fieldTitle: "Mesurment in inches",
+                          fieldLabelTitle: "Mesurment in inches",
                           onFieldChange: (value) {
                             widget.beltModel.bottomLandingHoodLocationOfHinges =
                                 value;

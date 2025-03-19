@@ -50,7 +50,7 @@ class _HandholdsState extends State<Handholds> {
                 widget.beltModel.handholdsHandholdColor =
                     jsonData['handholds_handhold_color'][value];
               },
-              fieldTitle: "Other Color",
+              fieldLabelTitle: "Other Color",
               fieldValue: "other",
               onFieldChange: (value) {
                 // widget.beltModel.handholdsHandholdColor = value;
@@ -99,7 +99,7 @@ class _HandholdsState extends State<Handholds> {
                     jsonData['handholds_punching_pattern'][value];
               },
               fieldValue: "other",
-              fieldTitle: "Other",
+              fieldLabelTitle: "Other",
               onFieldChange: (value) {
                 // widget.beltModel.handholdsPunchingPattern = value;
               },

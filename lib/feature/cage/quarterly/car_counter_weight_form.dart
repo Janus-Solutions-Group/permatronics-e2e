@@ -32,7 +32,7 @@ class CarCounterWeightForm extends StatelessWidget {
           CustomRadioTile(
             id: 'car_counterweight_2',
             title: 'Size',
-            values: const ["3/8”", "1/2”"],
+            values: const ['3/8"', '1/2"'],
             onChangeValue: (value) {
               cageModel.ccfHoistcableSize =
                   jsonData['car_and_counterweight_fastening']['size'][value];

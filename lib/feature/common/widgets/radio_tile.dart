@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:manlift_app/provider/selection_ref_provider.dart';
+import 'package:provider/provider.dart';
 
 List<Map<String, String?>> selectionsRef =
     []; // List to hold id, title, and value
@@ -9,18 +11,18 @@ List<Map<String, String?>> selectionsRef =
 class CustomRadioTile extends StatefulWidget {
   const CustomRadioTile(
       {super.key,
-      this.id,
+      this.id = "default",
       this.title,
       required this.values,
       this.valueStyle,
       this.isTextField = false,
-      this.fieldTitle,
+      this.fieldLabelTitle,
       required this.onChangeValue,
       this.type,
       this.onFieldChange,
       this.fieldValue});
 
-  final String? id;
+  final String id;
   final String? title;
   final List<String> values;
   final TextStyle? valueStyle;
@@ -28,8 +30,9 @@ class CustomRadioTile extends StatefulWidget {
   final String? type;
 
   final String? fieldValue; // required for adding textfield
+  final String?
+      fieldLabelTitle; // label text for the textfield - by default field value acts as label
   final bool isTextField;
-  final String? fieldTitle;
   final ValueChanged<String>? onFieldChange;
 
   // final TextEditingController
@@ -42,7 +45,7 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
 
   @override
   void initState() {
-    currentVal = GetStorage().read(widget.id!) ?? '';
+    currentVal = GetStorage().read(widget.id) ?? '';
     // widget.onChangeValue(currentVal);
     // currentVal = widget.type ?? GetStorage().read(widget.id!);
     if (mounted) setState(() {});
@@ -62,16 +65,16 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
     return result;
   }
 
-  void updateSelection(String id, String? title, String? value) {
-    setState(() {
-      final index = selectionsRef.indexWhere((element) => element['id'] == id);
-      if (index >= 0) {
-        selectionsRef[index]['value'] = value;
-      } else {
-        selectionsRef.add({'id': id, 'title': title, 'value': value});
-      }
-    });
-  }
+  // void updateSelection(String id, String? title, String? value) {
+  //   setState(() {
+  //     final index = selectionsRef.indexWhere((element) => element['id'] == id);
+  //     if (index >= 0) {
+  //       selectionsRef[index]['value'] = value;
+  //     } else {
+  //       selectionsRef.add({'id': id, 'title': title, 'value': value});
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +100,7 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
                   groupValue: currentVal,
                   onChanged: (value) async {
                     if (widget.id != null) {
-                      updateSelection(
+                      context.read<SelectionRefProvider>().updateSelection(
                           widget.id.toString(), widget.title, value);
                     } else {
                       log('id is null');
@@ -128,7 +131,7 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
               maxLines: null,
               onChanged: widget.onFieldChange,
               decoration: InputDecoration(
-                labelText: widget.fieldTitle ?? widget.fieldValue,
+                labelText: widget.fieldLabelTitle ?? widget.fieldValue,
               ),
             ),
           ),

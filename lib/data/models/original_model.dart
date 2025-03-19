@@ -1,8 +1,10 @@
 class OriginalModel {
+  final String id;
   final String? title;
-  final String? value;
+  final List<String> values;
   OriginalModel({
+    required this.id,
     this.title,
-    this.value,
+    required this.values,
   });
 }
