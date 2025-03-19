@@ -188,8 +188,8 @@ class DriveSupportForm extends StatelessWidget {
           MultipleSelectionWidget(
             original: OriginalModel(
               id: 'drive_support_form_11',
-            title: 'Sheave Break:',
-            values: const ["Yes", "No", "N/A"],
+              title: 'Sheave Break:',
+              values: const ["Yes", "No", "N/A"],
             ),
             onSelectionChanged: (val) {
               String res = "";
@@ -212,14 +212,15 @@ class DriveSupportForm extends StatelessWidget {
           // ),
           MultipleSelectionWidget(
             original: OriginalModel(
-                id: 'drive_support_form_12',
-            title: 'Sheave Break Condition',
-            values: const ["OK", "Inoperable", "Replace", "Other"],
+              id: 'drive_support_form_12',
+              title: 'Sheave Break Condition',
+              values: const ["OK", "Inoperable", "Replace", "Other"],
             ),
             onSelectionChanged: (val) {
               String res = "";
               for (var e in val) {
-                res += jsonData['drive_support']['sheave_break_condition'][e] + "\n";
+                res += jsonData['drive_support']['sheave_break_condition'][e] +
+                    "\n";
               }
               cageModel.driveSupportSheaveBreakCondition = res;
             },
@@ -245,13 +246,30 @@ class DriveSupportForm extends StatelessWidget {
                       [value];
             },
           ),
-          
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'drive_support_form_14',
+              title: 'Shaft and Bearing Condition:',
+              values: const ["OK", "Replace", "Other"],
+            ),
+            onSelectionChanged: (val) {
+              String res = "";
+              for (var e in val) {
+                res += jsonData['drive_support']['sheave_break_condition'][e] +
+                    "\n";
+              }
+              cageModel.driveSupportSheaveBreakCondition = res;
+            },
+            fieldValues: const ["other"],
+            fieldLabelTitle: 'Other',
+          ),
           Row(
             children: [
               Expanded(
                 child: CustomTextField(
                   id: 'drive_support_form_15',
                   title: 'Couple Sizer',
+                  
                 ),
               ),
               Expanded(
