@@ -5,11 +5,22 @@ import 'package:manlift_app/provider/selection_ref_provider.dart';
 import 'package:provider/provider.dart';
 
 class MultipleSelectionWidget extends StatefulWidget {
-  const MultipleSelectionWidget(
-      {super.key, required this.original, required this.onSelectionChanged});
+  const MultipleSelectionWidget({
+    super.key,
+    required this.original,
+    required this.onSelectionChanged,
+    this.fieldValues,
+    this.fieldLabelTitle,
+    this.onFieldChange,
+  });
 
   final OriginalModel original;
   final ValueChanged<List<String>> onSelectionChanged;
+
+  // for adding textfield
+  final List<String>? fieldValues;
+  final String? fieldLabelTitle;
+  final ValueChanged<String>? onFieldChange;
 
   @override
   State<MultipleSelectionWidget> createState() =>
@@ -72,6 +83,18 @@ class _MultipleSelectionWidgetState extends State<MultipleSelectionWidget> {
               )
               .toList(),
         ),
+        if (widget.fieldValues != null &&
+            selectedItems.any((e) => widget.fieldValues!.contains(e)))
+          Padding(
+            padding: const EdgeInsets.only(bottom: 25, left: 18, right: 18),
+            child: TextField(
+              maxLines: null,
+              onChanged: widget.onFieldChange,
+              decoration: InputDecoration(
+                labelText: widget.fieldLabelTitle,
+              ),
+            ),
+          ),
       ],
     );
   }

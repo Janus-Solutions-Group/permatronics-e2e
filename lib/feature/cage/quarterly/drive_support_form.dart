@@ -95,17 +95,17 @@ class DriveSupportForm extends StatelessWidget {
                   jsonData['drive_support']['sheave_guard'][value];
             },
           ),
-          CustomRadioTile(
-            id: 'drive_support_form_6',
-            title: 'Governor Condition',
-            values: const ["OK", "Inoperable", "Replace"],
-            isTextField: true,
-            fieldLabelTitle: "Why",
-            onChangeValue: (value) {
-              cageModel.driveSupportGovernorCondition =
-                  jsonData['drive_support']['governor_condition'][value];
-            },
-          ),
+          // CustomRadioTile(
+          //   id: 'drive_support_form_6',
+          //   title: 'Governor Condition',
+          //   values: const ["OK", "Inoperable", "Replace"],
+          //   isTextField: true,
+          //   fieldLabelTitle: "Why",
+          //   onChangeValue: (value) {
+          //     cageModel.driveSupportGovernorCondition =
+          //         jsonData['drive_support']['governor_condition'][value];
+          //   },
+          // ),
           MultipleSelectionWidget(
             original: OriginalModel(
               id: 'drive_support_form_6',
@@ -116,9 +116,9 @@ class DriveSupportForm extends StatelessWidget {
               String res = "";
               for (var e in val) {
                 res +=
-                    jsonData['drive_support']['top_final_terminal'][e] + "\n";
+                    jsonData['drive_support']['governor_condition'][e] + "\n";
               }
-              cageModel.driveSupportTopFinalTerminal = res;
+              cageModel.driveSupportGovernorCondition = res;
             },
           ),
           CustomRadioTile(
@@ -150,35 +150,78 @@ class DriveSupportForm extends StatelessWidget {
                   jsonData['drive_support']['rope_gripper'][value];
             },
           ),
-          CustomRadioTile(
-            id: 'drive_support_form_10',
-            title: 'Rope Gripper Condition',
-            values: const ["OK", "Inoperable", "Replace", "Other"],
-            isTextField: true,
-            fieldLabelTitle: "Other",
-            onChangeValue: (value) {
-              cageModel.driveSupportRopeGripperCondition =
-                  jsonData['drive_support']['rope_gripper_condition'][value];
+          // CustomRadioTile(
+          //   id: 'drive_support_form_10',
+          //   title: 'Rope Gripper Condition',
+          //   values: const ["OK", "Inoperable", "Replace", "Other"],
+          //   isTextField: true,
+          //   fieldLabelTitle: "Other",
+          //   onChangeValue: (value) {
+          //     cageModel.driveSupportRopeGripperCondition =
+          //         jsonData['drive_support']['rope_gripper_condition'][value];
+          //   },
+          // ),
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'drive_support_form_10',
+              title: 'Rope Gripper Condition',
+              values: const ["OK", "Inoperable", "Replace", "Other"],
+            ),
+            onSelectionChanged: (val) {
+              String res = "";
+              for (var e in val) {
+                res += jsonData['drive_support']['rope_gripper_condition'][e] +
+                    "\n";
+              }
+              cageModel.driveSupportRopeGripperCondition = res;
             },
           ),
-          CustomRadioTile(
-            id: 'drive_support_form_11',
+          // CustomRadioTile(
+          //   id: 'drive_support_form_11',
+          //   title: 'Sheave Break:',
+          //   values: const ["Yes", "No", "N/A"],
+          //   onChangeValue: (value) {
+          //     cageModel.driveSupportSheaveBreak =
+          //         jsonData['drive_support']['sheave_break'][value];
+          //   },
+          // ),
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'drive_support_form_11',
             title: 'Sheave Break:',
             values: const ["Yes", "No", "N/A"],
-            onChangeValue: (value) {
-              cageModel.driveSupportSheaveBreak =
-                  jsonData['drive_support']['sheave_break'][value];
+            ),
+            onSelectionChanged: (val) {
+              String res = "";
+              for (var e in val) {
+                res += jsonData['drive_support']['sheave_break'][e] + "\n";
+              }
+              cageModel.driveSupportSheaveBreak = res;
             },
           ),
-          CustomRadioTile(
-            id: 'drive_support_form_12',
+          // CustomRadioTile(
+          //   id: 'drive_support_form_12',
+          //   title: 'Sheave Break Condition',
+          //   values: const ["OK", "Inoperable", "Replace", "Other"],
+          //   isTextField: true,
+          //   fieldLabelTitle: "Other",
+          //   onChangeValue: (value) {
+          //     cageModel.driveSupportSheaveBreakCondition =
+          //         jsonData['drive_support']['sheave_break_condition'][value];
+          //   },
+          // ),
+          MultipleSelectionWidget(
+            original: OriginalModel(
+                id: 'drive_support_form_12',
             title: 'Sheave Break Condition',
             values: const ["OK", "Inoperable", "Replace", "Other"],
-            isTextField: true,
-            fieldLabelTitle: "Other",
-            onChangeValue: (value) {
-              cageModel.driveSupportSheaveBreakCondition =
-                  jsonData['drive_support']['sheave_break_condition'][value];
+            ),
+            onSelectionChanged: (val) {
+              String res = "";
+              for (var e in val) {
+                res += jsonData['drive_support']['sheave_break_condition'][e] + "\n";
+              }
+              cageModel.driveSupportSheaveBreakCondition = res;
             },
           ),
           CustomRadioTile(
@@ -202,6 +245,7 @@ class DriveSupportForm extends StatelessWidget {
                       [value];
             },
           ),
+          
           Row(
             children: [
               Expanded(
