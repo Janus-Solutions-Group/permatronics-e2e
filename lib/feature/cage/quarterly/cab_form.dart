@@ -41,12 +41,13 @@ class CABForm extends StatelessWidget {
             original: OriginalModel(
               id: 'cab_form_2',
               title: 'Cam:',
-              values: const ["Retiring", "Stationary", "None"],
+              values: const ["Retiring", "Stationary", "Not Present"],
             ),
             onSelectionChanged: (val) {
               String res = "";
               for (var e in val) {
-                res += jsonData['car_condition_and_description'][e] + "\n";
+                res +=
+                    jsonData['car_condition_and_description']['cam'][e] + "\n";
               }
               cageModel.carConditionAndDescriptionCam = res;
             },
@@ -99,7 +100,7 @@ class CABForm extends StatelessWidget {
           // CustomRadioTile(
           //   id: 'cab_form_6',
           //   title: 'Material',
-          //   values: const ["Expended Metal", "Solid Panel"],
+          //   values: const ["Expanded Metal", "Solid Panel"],
           //   onChangeValue: (value) {
           //     cageModel.carDoorMaterial = jsonData['car_door_material'][value];
           //   },
@@ -108,7 +109,7 @@ class CABForm extends StatelessWidget {
             original: OriginalModel(
               id: 'cab_form_6',
               title: 'Material',
-              values: const ["Expended Metal", "Solid Panel"],
+              values: const ["Expanded Metal", "Solid Panel"],
             ),
             onSelectionChanged: (val) {
               String res = "";

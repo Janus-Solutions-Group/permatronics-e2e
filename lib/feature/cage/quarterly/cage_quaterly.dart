@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'dart:ui' as ui;
 
@@ -17,9 +18,11 @@ import 'package:manlift_app/feature/common/widgets/header_form.dart';
 import 'package:manlift_app/feature/common/widgets/image_picking_last.dart';
 import 'package:manlift_app/feature/common/widgets/signature_pad.dart';
 import 'package:manlift_app/feature/final/final_page.dart';
+import 'package:manlift_app/provider/selection_ref_provider.dart';
 
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:provider/provider.dart';
 
 import '../../../data/models/header.dart';
 import '../../common/widgets/radio_tile.dart';
@@ -136,16 +139,31 @@ class _CageQuaterlyPageState extends State<CageQuaterlyPage> {
   }
 
   Future<void> createrefrencePdf() async {
+    List<String> headerList = [];
+    headerModel.toMap().forEach((u, v) {
+      if (v != null) headerList.add(v.toString());
+    });
+
     final pdf = pw.Document();
 
     pw.Image? image1 =
         signature != null ? pw.Image(pw.MemoryImage(signature!)) : null;
+    var selectionsRef = context.read<SelectionRefProvider>().selectionsRef;
 
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) {
           return [
+            pw.Align(
+              alignment: pw.Alignment.center,
+              child: pw.Text('Inspection Reference',
+                  style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+            ),
+            pw.SizedBox(height: 10),
+            ...List.generate(
+                headerList.length, (index) => pw.Text(headerList[index])),
+            pw.SizedBox(height: 10),
             ...List.generate(
                 selectionsRef.length,
                 (index) => pw.Padding(
@@ -179,7 +197,7 @@ class _CageQuaterlyPageState extends State<CageQuaterlyPage> {
 
     await Directory(path).create(recursive: true);
     final file = File(
-        "$path/cage_quarterly_ref_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf");
+        "$path/cage_${widget.title.toLowerCase()}_ref_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf");
     await file.writeAsBytes(await pdf.save());
 
     selectionsRef.clear();
@@ -197,8 +215,19 @@ class _CageQuaterlyPageState extends State<CageQuaterlyPage> {
     return CageQuarterlyJson(
       data: data,
       child: Scaffold(
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {
+        //     log(context
+        //         .read<SelectionRefProvider>()
+        //         .selectionsRef
+        //         .length
+        //         .toString());
+        //   },
+        //   child: const Icon(Icons.ads_click),
+        // ),
         appBar: AppBar(
-          title: Text(widget.title),
+          automaticallyImplyLeading: false,
+          title: Text("Cage ${widget.title} form"),
         ),
         body: SafeArea(
           child: PageView(

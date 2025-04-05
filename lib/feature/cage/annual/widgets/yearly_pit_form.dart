@@ -231,7 +231,13 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                     jsonData['bottom_final_terminal'][value];
               },
             ),
-            CustomTextField(id: 'pit_23', title: 'Pit Comment'),
+            CustomTextField(
+              id: 'pit_23',
+              title: 'Pit Comment',
+              onChanged: (value) {
+                // widget.cageModel.pitComments = value;
+              },
+            ),
             const CustomTitle(title: "Under Car Size, measurement from:"),
             Row(
               children: [

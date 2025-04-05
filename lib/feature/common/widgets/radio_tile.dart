@@ -5,9 +5,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:manlift_app/provider/selection_ref_provider.dart';
 import 'package:provider/provider.dart';
 
-List<Map<String, String?>> selectionsRef =
-    []; // List to hold id, title, and value
-
 class CustomRadioTile extends StatefulWidget {
   const CustomRadioTile(
       {super.key,

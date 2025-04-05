@@ -12,6 +12,8 @@ import 'package:manlift_app/feature/common/widgets/header_form.dart';
 import 'package:manlift_app/feature/common/widgets/image_picking_last.dart';
 import 'package:manlift_app/feature/common/widgets/signature_pad.dart';
 import 'package:manlift_app/feature/final/final_page.dart';
+import 'package:manlift_app/provider/selection_ref_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../data/models/header.dart';
 import '../../../common/widgets/radio_tile.dart';
@@ -142,16 +144,29 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
   }
 
   Future<void> createrefrencePdf() async {
+    List<String> headerList = [];
+    headerModel.toMap().forEach((u, v) {
+      if (v != null) headerList.add(v.toString());
+    });
     final pdf = pw.Document();
 
     pw.Image? image1 =
         signature != null ? pw.Image(pw.MemoryImage(signature!)) : null;
-
+  var selectionsRef = context.read<SelectionRefProvider>().selectionsRef;
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) {
           return [
+            pw.Align(
+              alignment: pw.Alignment.center,
+              child: pw.Text('Inspection Reference',
+                  style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+            ),
+            pw.SizedBox(height: 10),
+            ...List.generate(
+                headerList.length, (index) => pw.Text(headerList[index])),
+            pw.SizedBox(height: 10),
             ...List.generate(
                 selectionsRef.length,
                 (index) => pw.Padding(

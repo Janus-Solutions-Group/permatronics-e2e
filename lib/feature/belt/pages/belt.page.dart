@@ -30,11 +30,10 @@ class BeltPage extends StatelessWidget {
                 itemBuilder: (context, index) => GestureDetector(
                   onTap: () {
                     if (index == 0) {
-                      moveTo(context,
-                          const BeltQuaterlyPage(title: "Belt Monthly Form"));
+                      moveTo(context, const BeltQuaterlyPage(title: "Monthly"));
                     } else if (index == 1) {
-                      moveTo(context,
-                          const BeltQuaterlyPage(title: "Belt Quaterly Form"));
+                      moveTo(
+                          context, const BeltQuaterlyPage(title: "Quaterly"));
                     } else if (index == 2) {
                       moveTo(context,
                           const BeltAnnualPage(title: "Belt Yearly Form"));

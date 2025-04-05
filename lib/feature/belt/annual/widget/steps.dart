@@ -34,6 +34,7 @@ class _StepsState extends State<Steps> {
           children: [
             const FormHeaderTitle(title: "STEPS"),
             CustomRadioTile(
+              id: "step_belt_annual_1",
               title: 'Step Description',
               values: const [
                 'Viola',
@@ -51,12 +52,14 @@ class _StepsState extends State<Steps> {
             Wrap(
               children: [
                 CustomTextField(
+                  id: "step_belt_annual_2",
                   title: '# of Steps:',
                   onChanged: (value) {
                     // widget.beltModel.stepsNumberOfSteps = value;
                   },
                 ),
                 CustomRadioTile(
+                  id: "step_belt_annual_3",
                   title: 'Steps Missing',
                   values: const ['Yes', 'No'],
                   onChangeValue: (value) {
@@ -69,6 +72,7 @@ class _StepsState extends State<Steps> {
                 ),
                 if (beltVariable.stepsStepsMissing == "yes")
                   CustomTextField(
+                    id: "step_belt_annual_4",
                     title: 'How Many:',
                     onChanged: (value) {
                       widget.beltModel.stepsMissingStepsNumber = value;
@@ -77,6 +81,7 @@ class _StepsState extends State<Steps> {
               ],
             ),
             CustomRadioTile(
+              id: "step_belt_annual_5",
               title: 'Tread Color:',
               values: const ['Blue', 'Yellow', 'Other'],
               onChangeValue: (value) {
@@ -89,6 +94,7 @@ class _StepsState extends State<Steps> {
               },
             ),
             CustomRadioTile(
+              id: "step_belt_annual_6",
               title: '# of Elevator Bolts:',
               values: const ['3', '4', '5', '6'],
               onChangeValue: (value) {
@@ -97,6 +103,7 @@ class _StepsState extends State<Steps> {
               },
             ),
             CustomRadioTile(
+              id: "step_belt_annual_7",
               title: 'Condition of Elevator Bolts:',
               values: const [
                 'OK',
@@ -110,6 +117,7 @@ class _StepsState extends State<Steps> {
               },
             ),
             CustomRadioTile(
+              id: "step_belt_annual_8",
               title: 'Missing Bolts:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -118,12 +126,14 @@ class _StepsState extends State<Steps> {
               },
             ),
             CustomTextField(
+              id: "step_belt_annual_9",
               title: 'How Many',
               onChanged: (value) {
                 beltVariable.stepsMissingStepBolts = value;
               },
             ),
             CustomTextField(
+              id: "step_belt_annual_10",
               title: 'Step Bar Bolt Hole Pattern:',
               subtitle: '” Centerline',
               onChanged: (value) {
@@ -131,6 +141,7 @@ class _StepsState extends State<Steps> {
               },
             ),
             CustomTextField(
+              id: "step_belt_annual_11",
               title: 'Step Bar to Step Bar Centers:',
               subtitle: '” to Centerline of Bolts',
               onChanged: (value) {
@@ -138,6 +149,7 @@ class _StepsState extends State<Steps> {
               },
             ),
             CustomRadioTile(
+              id: "step_belt_annual_12",
               title: 'Step Roller Type:',
               values: const [
                 'L-75 Flanged Cast',
@@ -151,6 +163,7 @@ class _StepsState extends State<Steps> {
               },
             ),
             CustomRadioTile(
+              id: "step_belt_annual_13",
               title: 'Step Roller Condition:',
               values: const [
                 'OK',
@@ -164,6 +177,7 @@ class _StepsState extends State<Steps> {
               },
             ),
             CustomRadioTile(
+              id: "step_belt_annual_14",
               title: 'Step Roller Bolts:',
               values: const [
                 'OK',
@@ -177,6 +191,7 @@ class _StepsState extends State<Steps> {
               },
             ),
             CustomRadioTile(
+              id: "step_belt_annual_15",
               title: 'Step Tread Material:',
               values: const ['Steel', 'Wood'],
               onChangeValue: (value) {
@@ -186,6 +201,7 @@ class _StepsState extends State<Steps> {
               },
             ),
             CustomRadioTile(
+              id: "step_belt_annual_16",
               title: 'Step Tread Material Condition:',
               values: const [
                 'OK',
@@ -199,6 +215,7 @@ class _StepsState extends State<Steps> {
               },
             ),
             CustomRadioTile(
+              id: "step_belt_annual_17",
               title: 'Anti-Skid:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -211,6 +228,7 @@ class _StepsState extends State<Steps> {
             ),
             if (beltVariable.stepsAntiSkid == "yes")
               CustomRadioTile(
+                id: "step_belt_annual_18",
                 title: 'Anti-Skid Condition:',
                 values: const [
                   'OK',
@@ -224,6 +242,7 @@ class _StepsState extends State<Steps> {
                 },
               ),
             CustomRadioTile(
+              id: "step_belt_annual_19",
               title: 'Step Pins & X-Y Washer:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -236,6 +255,7 @@ class _StepsState extends State<Steps> {
             ),
             if (beltVariable.stepsStepPinsAndXyWasher == "yes")
               CustomRadioTile(
+                id: "step_belt_annual_20",
                 title: 'Step Pins & X-Y Washer Condition:',
                 values: const [
                   'OK',
@@ -250,6 +270,7 @@ class _StepsState extends State<Steps> {
                 },
               ),
             CustomRadioTile(
+              id: "step_belt_annual_21",
               title: 'Bracket Condition:',
               values: const [
                 'OK',
@@ -263,6 +284,7 @@ class _StepsState extends State<Steps> {
               },
             ),
             CustomRadioTile(
+              id: "step_belt_annual_22",
               title: 'Step Bar Condition:',
               values: const [
                 'OK',
@@ -276,6 +298,7 @@ class _StepsState extends State<Steps> {
               },
             ),
             CustomTextField(
+              id: "step_belt_annual_23",
               title: 'Step Comments:',
               onChanged: (value) {
                 beltVariable.stepsStepComments = value;

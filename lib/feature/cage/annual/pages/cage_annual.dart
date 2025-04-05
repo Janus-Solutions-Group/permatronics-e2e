@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'dart:ui' as ui;
 
@@ -138,6 +139,11 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
   }
 
   Future<void> createrefrencePdf() async {
+    List<String> headerList = [];
+    headerModel.toMap().forEach((u, v) {
+      if (v != null) headerList.add(v.toString());
+    });
+
     final pdf = pw.Document();
 
     pw.Image? image1 =
@@ -148,6 +154,15 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) {
           return [
+            pw.Align(
+              alignment: pw.Alignment.center,
+              child: pw.Text('Inspection Reference',
+                  style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+            ),
+            pw.SizedBox(height: 10),
+            ...List.generate(
+                headerList.length, (index) => pw.Text(headerList[index])),
+            pw.SizedBox(height: 10),
             ...List.generate(
                 selectionsRef.length,
                 (index) => pw.Padding(
@@ -158,7 +173,7 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
                           pw.Text(
                             selectionsRef[index]['title'].toString(),
                             style: pw.TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: pw.FontWeight.bold,
                             ),
                           ),
@@ -201,6 +216,7 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Cage Yearly Form"),
+          automaticallyImplyLeading: false,
         ),
         body: SafeArea(
           child: PageView(

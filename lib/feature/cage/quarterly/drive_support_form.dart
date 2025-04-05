@@ -189,7 +189,11 @@ class DriveSupportForm extends StatelessWidget {
             original: OriginalModel(
               id: 'drive_support_form_11',
               title: 'Sheave Break:',
-              values: const ["Yes", "No", "N/A"],
+              values: const [
+                "Yes",
+                "No",
+                // "N/A",  not in the json
+              ],
             ),
             onSelectionChanged: (val) {
               String res = "";
@@ -269,7 +273,6 @@ class DriveSupportForm extends StatelessWidget {
                 child: CustomTextField(
                   id: 'drive_support_form_15',
                   title: 'Couple Sizer',
-                  
                 ),
               ),
               Expanded(

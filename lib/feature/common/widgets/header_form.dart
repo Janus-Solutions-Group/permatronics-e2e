@@ -162,6 +162,7 @@ class _HeaderFormState extends State<HeaderForm>
               //   controller: fieldControllers[1],
               // ),
               CustomTextField(
+                id: "header1",
                 title: "Manufacturer",
                 controller: fieldControllers[2],
                 onChanged: (val) {
@@ -169,6 +170,7 @@ class _HeaderFormState extends State<HeaderForm>
                 },
               ),
               CustomTextField(
+                id: "header2",
                 title: "Designation of Unit:",
                 controller: fieldControllers[3],
                 onChanged: (val) {
@@ -176,6 +178,7 @@ class _HeaderFormState extends State<HeaderForm>
                 },
               ),
               CustomTextField(
+                id: "header3",
                 title: "Address:",
                 controller: fieldControllers[4]
                   ..text = selectedCustomer != null
@@ -188,6 +191,7 @@ class _HeaderFormState extends State<HeaderForm>
                 },
               ),
               CustomTextField(
+                id: "header4",
                 title: "Rated Load:",
                 controller: fieldControllers[5],
                 onChanged: (val) {
@@ -195,6 +199,7 @@ class _HeaderFormState extends State<HeaderForm>
                 },
               ),
               CustomTextField(
+                id: "header5",
                 title: "Landings:",
                 controller: fieldControllers[6],
                 onChanged: (val) {
@@ -206,6 +211,7 @@ class _HeaderFormState extends State<HeaderForm>
               //   controller: fieldControllers[7],
               // ),
               CustomTextField(
+                id: "header6",
                 title: "City",
                 controller: fieldControllers[8]
                   ..text = selectedCustomer != null
@@ -218,6 +224,7 @@ class _HeaderFormState extends State<HeaderForm>
                 },
               ),
               CustomTextField(
+                id: "header7",
                 title: "State",
                 controller: fieldControllers[9]
                   ..text = selectedCustomer != null
@@ -230,6 +237,7 @@ class _HeaderFormState extends State<HeaderForm>
                 },
               ),
               CustomTextField(
+                id: "header8",
                 title: "Zip",
                 controller: fieldControllers[10]
                   ..text = selectedCustomer != null
@@ -242,6 +250,7 @@ class _HeaderFormState extends State<HeaderForm>
                 },
               ),
               CustomTextField(
+                id: "header9",
                 title: "Serial Number:",
                 controller: fieldControllers[11],
                 onChanged: (val) {
@@ -249,6 +258,7 @@ class _HeaderFormState extends State<HeaderForm>
                 },
               ),
               CustomTextField(
+                id: "header10",
                 title: "Contact Name",
                 controller: fieldControllers[12],
                 onChanged: (val) {
@@ -256,6 +266,7 @@ class _HeaderFormState extends State<HeaderForm>
                 },
               ),
               CustomTextField(
+                id: "header11",
                 title: "Inspector(s):",
                 controller: fieldControllers[13],
                 onChanged: (val) {
@@ -263,6 +274,7 @@ class _HeaderFormState extends State<HeaderForm>
                 },
               ),
               CustomTextField(
+                id: "header12",
                 title: "Phone",
                 controller: fieldControllers[14]
                   ..text = selectedCustomer != null
@@ -275,6 +287,7 @@ class _HeaderFormState extends State<HeaderForm>
                 },
               ),
               CustomTextField(
+                id: "header13",
                 title: "Email",
                 controller: fieldControllers[15],
                 onChanged: (val) {
@@ -282,6 +295,7 @@ class _HeaderFormState extends State<HeaderForm>
                 },
               ),
               CustomTextField(
+                id: "header14",
                 title: "Problem reported by Customer:",
                 controller: fieldControllers[16],
                 onChanged: (val) {
@@ -289,6 +303,7 @@ class _HeaderFormState extends State<HeaderForm>
                 },
               ),
               CustomTextField(
+                id: "header15",
                 title: "Send Report To:",
                 controller: fieldControllers[17],
                 onChanged: (val) {

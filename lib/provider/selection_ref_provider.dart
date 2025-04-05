@@ -10,6 +10,6 @@ class SelectionRefProvider with ChangeNotifier {
     } else {
       selectionsRef.add({'id': id, 'title': title, 'value': value});
     }
-    notifyListeners();
+    // notifyListeners();
   }
 }

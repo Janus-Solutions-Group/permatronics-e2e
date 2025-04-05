@@ -224,6 +224,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomRadioTile(
+              id: "drive_assembly_annual_20",
               title: 'Level:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -232,6 +233,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomRadioTile(
+              id: "drive_assembly_annual_21",
               title: 'Coupler Type:',
               values: const [
                 'Old Style',
@@ -250,6 +252,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomRadioTile(
+              id: "drive_assembly_annual_22",
               title: 'Condition:',
               values: const [
                 'OK',
@@ -264,6 +267,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomRadioTile(
+              id: "drive_assembly_annual_23",
               title: 'Gear Box Type:',
               values: const ['Reliance', 'Dodge', 'Falk', 'Ehrsam', 'Other'],
               onChangeValue: (value) {
@@ -276,12 +280,14 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomTextField(
+              id: "drive_assembly_annual_24",
               title: 'Gear Box ID#:',
               onChanged: (value) {
                 widget.beltModel.driveAssemblyGearboxId = value;
               },
             ),
             CustomRadioTile(
+              id: "drive_assembly_annual_15",
               title: 'Condition:',
               values: const [
                 'OK',
@@ -296,6 +302,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomRadioTile(
+              id: "drive_assembly_annual_26",
               title: 'Motor Type:',
               values: const ['Reliance', 'Dodge', 'U.S. Motors', 'GE', 'Other'],
               onChangeValue: (value) {
@@ -308,18 +315,21 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomTextField(
+              id: "drive_assembly_annual_27",
               title: 'Motor ID#:',
               onChanged: (value) {
                 widget.beltModel.driveAssemblyMotorId = value;
               },
             ),
             CustomTextField(
+              id: "drive_assembly_annual_28",
               title: 'H.P.:',
               onChanged: (value) {
                 widget.beltModel.driveAssemblyHp = value;
               },
             ),
             CustomRadioTile(
+              id: "drive_assembly_annual_29",
               title: 'Voltage:',
               values: const ['208', '230/240', '460/480'],
               onChangeValue: (value) {
@@ -328,6 +338,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomRadioTile(
+              id: "drive_assembly_annual_30",
               title: 'Brake:',
               values: const [
                 'Reliance',
@@ -347,18 +358,21 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomTextField(
+              id: "drive_assembly_annual_31",
               title: 'Brake ID#:',
               onChanged: (value) {
                 widget.beltModel.driveAssemblyBrakeId = value;
               },
             ),
             CustomTextField(
+              id: "drive_assembly_annual_32",
               title: 'FT. LBS.:',
               onChanged: (value) {
                 widget.beltModel.driveAssemblyFtLbs = value;
               },
             ),
             CustomRadioTile(
+              id: "drive_assembly_annual_33",
               title: 'Is there a Skip in the Drive:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -367,6 +381,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomRadioTile(
+              id: "drive_assembly_annual_34",
               title: 'Skip reason',
               values: const [
                 'Coupler Play',
@@ -380,6 +395,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomRadioTile(
+              id: "drive_assembly_annual_35",
               title: 'Saf-T-Stop Brake:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
@@ -388,6 +404,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomRadioTile(
+              id: "drive_assembly_annual_36",
               title: 'Linkage:',
               values: const ['OK', 'Replace Damaged', 'Replace Worn'],
               onChangeValue: (value) {
@@ -396,6 +413,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomRadioTile(
+              id: "drive_assembly_annual_37",
               title: 'Overall Saf-T-Stop Brake Condition:',
               values: const [
                 'OK',
@@ -409,6 +427,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomRadioTile(
+              id: "drive_assembly_annual_38",
               title: 'Drive Unit Support Type:',
               values: const ['A-Frame', 'Beam'],
               onChangeValue: (value) {
@@ -417,6 +436,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomRadioTile(
+              id: "drive_assembly_annual_39",
               title: 'Drive Unit Support Condition:',
               values: const ['OK', 'Other'],
               onChangeValue: (value) {
@@ -427,6 +447,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               fieldLabelTitle: "Other",
             ),
             CustomTextField(
+              id: "drive_assembly_annual_40",
               title: 'Drive Comments:',
               onChanged: (value) {
                 widget.beltModel.driveAssemblyDriveComments = value;

@@ -19,8 +19,9 @@ import 'package:manlift_app/feature/belt/quarterly_monthly/widget/top_landing.da
 import 'package:manlift_app/feature/belt/quarterly_monthly/widget/top_landing_safeties.dart';
 import 'package:manlift_app/feature/common/widgets/header_form.dart';
 import 'package:manlift_app/feature/common/widgets/image_picking_last.dart';
-import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 import 'package:manlift_app/feature/final/final_page.dart';
+import 'package:manlift_app/provider/selection_ref_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../common/widgets/signature_pad.dart';
 import '../../model/belt_inspection_model.dart';
@@ -138,16 +139,29 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
   }
 
   Future<void> createrefrencePdf() async {
+    List<String> headerList = [];
+    headerModel.toMap().forEach((u, v) {
+      if (v != null) headerList.add(v.toString());
+    });
     final pdf = pw.Document();
 
     pw.Image? image1 =
         signature != null ? pw.Image(pw.MemoryImage(signature!)) : null;
-
+    var selectionsRef = context.read<SelectionRefProvider>().selectionsRef;
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) {
           return [
+            pw.Align(
+              alignment: pw.Alignment.center,
+              child: pw.Text('Inspection Reference',
+                  style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+            ),
+            pw.SizedBox(height: 10),
+            ...List.generate(
+                headerList.length, (index) => pw.Text(headerList[index])),
+            pw.SizedBox(height: 10),
             ...List.generate(
                 selectionsRef.length,
                 (index) => pw.Padding(
@@ -182,7 +196,7 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
 
     await Directory(path).create(recursive: true);
     final file = File(
-        "$path/belt_quarterly_ref_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf");
+        "$path/belt_${widget.title.toLowerCase()}_ref_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf");
     await file.writeAsBytes(await pdf.save());
 
     selectionsRef.clear();
@@ -202,7 +216,7 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
       runFunction: fetchJsonData,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text("Belt ${widget.title} form"),
         ),
         body: SafeArea(
           child: Column(

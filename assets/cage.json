@@ -274,7 +274,7 @@
   "landing_zone_switch": {
     "yes": "",
     "no": "The landing zone switch on landing {i} was not found at the time of inspection. It is required that one be installed.",
-    "n_a": ""
+    "n/a": ""
   },
   "landing_zone_switch_condition": {
     "ok": "",

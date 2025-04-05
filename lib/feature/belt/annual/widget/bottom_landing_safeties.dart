@@ -168,11 +168,12 @@ class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomTextField(
+                          id: "Bottom Landing Safeties 10",
                           title: "Location:",
                           onChanged: (val) {},
                         ),
                         CustomRadioTile(
-                          id: "Bottom Landing Safeties 10",
+                          id: "Bottom Landing Safeties 11",
                           title: 'Compliant',
                           values: const ['Yes', 'No'],
                           onChangeValue: (value) {
@@ -184,7 +185,7 @@ class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
                           },
                         ),
                         CustomRadioTile(
-                          id: "Bottom Landing Safeties 11",
+                          id: "Bottom Landing Safeties 12",
                           title: 'Condition',
                           values: const ['OK', 'Inoperable'],
                           onChangeValue: (value) {
@@ -198,7 +199,7 @@ class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
                       ],
                     ),
                   CustomRadioTile(
-                    id: "Bottom Landing Safeties 12",
+                    id: "Bottom Landing Safeties 13",
                     title: 'Is there a Visual and Audible Alerting System:',
                     values: const ['Yes', 'No'],
                     onChangeValue: (value) {
@@ -210,6 +211,7 @@ class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
                     },
                   ),
                   const CustomTextField(
+                    id: "Bottom Landing Safeties 14",
                     title: "Bottom Safeties Comments",
                   ),
                 ],
