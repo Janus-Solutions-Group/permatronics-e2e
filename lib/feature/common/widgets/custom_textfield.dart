@@ -7,6 +7,7 @@ class CustomTextField extends StatefulWidget {
   const CustomTextField(
       {super.key,
       required this.id,
+      this.header = false,
       required this.title,
       this.keyboard,
       this.controller,
@@ -14,6 +15,7 @@ class CustomTextField extends StatefulWidget {
       this.onChanged});
 
   final String id;
+  final bool header;
   final String title;
   final String? subtitle;
   final TextInputType? keyboard;
@@ -28,12 +30,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
   String? initialValue;
   @override
   void initState() {
-    initialValue =
-        widget.id != null ? GetStorage().read(widget.id!) ?? " " : "";
-    if (widget.id != null && initialValue != null) {
+    initialValue = GetStorage().read(widget.id) ?? "";
+    // if (initialValue == "" && widget.controller != null) {
+    //   initialValue = widget.controller!.text;
+    // }
+    if (initialValue != null) {
       context
           .read<SelectionRefProvider>()
-          .updateSelection(widget.id!, widget.title, initialValue);
+          .updateSelection(widget.id, widget.title, initialValue);
     }
     super.initState();
   }
@@ -49,21 +53,33 @@ class _CustomTextFieldState extends State<CustomTextField> {
             widget.title,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
           ),
-          TextFormField(
-            controller: widget.controller,
-            initialValue: initialValue,
-            maxLines: null,
-            keyboardType: widget.keyboard,
-            onChanged: (value) async {
-              if (widget.id != null) {
-                context
-                    .read<SelectionRefProvider>()
-                    .updateSelection(widget.id!, widget.title, value);
-                await GetStorage().write(widget.id!, value);
-              }
-              if (widget.onChanged != null) widget.onChanged!(value);
-            },
-          ),
+          widget.header
+              ? TextFormField(
+                  controller: widget.controller,
+                  maxLines: null,
+                  keyboardType: widget.keyboard,
+                  onChanged: (value) async {
+                    context
+                        .read<SelectionRefProvider>()
+                        .updateSelection(widget.id, widget.title, value);
+                    await GetStorage().write(widget.id, value);
+
+                    if (widget.onChanged != null) widget.onChanged!(value);
+                  },
+                )
+              : TextFormField(
+                  initialValue: widget.header ? null : initialValue,
+                  maxLines: null,
+                  keyboardType: widget.keyboard,
+                  onChanged: (value) async {
+                    context
+                        .read<SelectionRefProvider>()
+                        .updateSelection(widget.id, widget.title, value);
+                    await GetStorage().write(widget.id, value);
+
+                    if (widget.onChanged != null) widget.onChanged!(value);
+                  },
+                ),
           if (widget.subtitle != null)
             Text(
               widget.subtitle!,

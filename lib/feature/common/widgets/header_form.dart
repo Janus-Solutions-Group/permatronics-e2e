@@ -179,6 +179,7 @@ class _HeaderFormState extends State<HeaderForm>
               ),
               CustomTextField(
                 id: "header3",
+                header: true,
                 title: "Address:",
                 controller: fieldControllers[4]
                   ..text = selectedCustomer != null
@@ -212,6 +213,7 @@ class _HeaderFormState extends State<HeaderForm>
               // ),
               CustomTextField(
                 id: "header6",
+                header: true,
                 title: "City",
                 controller: fieldControllers[8]
                   ..text = selectedCustomer != null
@@ -225,6 +227,7 @@ class _HeaderFormState extends State<HeaderForm>
               ),
               CustomTextField(
                 id: "header7",
+                header: true,
                 title: "State",
                 controller: fieldControllers[9]
                   ..text = selectedCustomer != null
@@ -238,6 +241,7 @@ class _HeaderFormState extends State<HeaderForm>
               ),
               CustomTextField(
                 id: "header8",
+                header: true,
                 title: "Zip",
                 controller: fieldControllers[10]
                   ..text = selectedCustomer != null
@@ -275,6 +279,7 @@ class _HeaderFormState extends State<HeaderForm>
               ),
               CustomTextField(
                 id: "header12",
+                header: true,
                 title: "Phone",
                 controller: fieldControllers[14]
                   ..text = selectedCustomer != null
