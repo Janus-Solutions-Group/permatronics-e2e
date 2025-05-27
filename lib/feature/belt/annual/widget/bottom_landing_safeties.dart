@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:manlift_app/feature/belt/annual/pages/belt_annual.dart';
 import 'package:manlift_app/feature/belt/model/belt_inspection_model.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
+
+var beltVariable = BeltInspection();
 
 class BottomLandingSafeties extends StatefulWidget {
   const BottomLandingSafeties({
@@ -22,7 +25,7 @@ class BottomLandingSafeties extends StatefulWidget {
 
 class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
   String? wantToAddThisPage;
-  var beltVariable = BeltInspection();
+  // var beltVariable = BeltInspection();
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -36,17 +39,29 @@ class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FormHeaderTitle(
+            // FormHeaderTitle(
+            //   title: "Bottom Landing Safeties",
+            //   values: const ["Yes", "No"],
+            //   currentValue: wantToAddThisPage,
+            //   onChanged: (value) {
+            //     setState(() {
+            //       wantToAddThisPage = value;
+            //     });
+            //   },
+            // ),
+            CustomRadioTile(
+              id: 'belt_annual_bottom_landing_safeties',
               title: "Bottom Landing Safeties",
               values: const ["Yes", "No"],
-              currentValue: wantToAddThisPage,
-              onChanged: (value) {
+              onChangeValue: (value) {
                 setState(() {
-                  wantToAddThisPage = value;
+                  beltVariable.bottomLandingSafeties = value;
                 });
               },
             ),
-            if (wantToAddThisPage == "Yes")
+            if (beltVariable.bottomLandingSafeties == "Yes" ||
+                GetStorage().read("belt_annual_bottom_landing_safeties") ==
+                    "yes")
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -210,9 +225,10 @@ class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
                               [value];
                     },
                   ),
-                  const CustomTextField(
+                  CustomTextField(
                     id: "Bottom Landing Safeties 14",
                     title: "Bottom Safeties Comments",
+                    onChanged: (val) {},
                   ),
                 ],
               ),

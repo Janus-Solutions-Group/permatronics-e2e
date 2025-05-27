@@ -53,9 +53,9 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
               id: "tail_section_1",
               values: const [
                 "OK",
-                "Worn, but OK",
+                // "Worn, but OK",
                 "Replace Damaged",
-                "Replace Worn"
+                // "Replace Worn"
               ],
               type: beltVariable.tailSectionFootAssemblyLegCondition,
               onChangeValue: (value) {
@@ -105,6 +105,22 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
               },
             ),
             CustomRadioTile(
+              title: "Bearing Bearing Condition",
+              id: "tail_section_19",
+              values: const [
+                "OK",
+                "Worn, but OK",
+                "Replace Damaged",
+                "Replace Worn"
+              ],
+              onChangeValue: (value) {
+                widget.beltModel
+                    .tailSectionFootAssemblyBearingHousingCondition = jsonData[
+                        'tail_section_foot_assembly_bottom_bearings_condition']
+                    [value];
+              },
+            ),
+            CustomRadioTile(
               title: "Bearing Housing Condition",
               id: "tail_section_5",
               values: const [
@@ -125,9 +141,9 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
               id: "tail_section_6",
               values: const [
                 "OK",
-                "Worn, but OK",
+                // "Worn, but OK",
                 "Replace Damaged",
-                "Replace Worn"
+                // "Replace Worn"
               ],
               onChangeValue: (value) {
                 widget.beltModel.tailSectionFootAssemblyFootShaftCondition =
@@ -184,14 +200,14 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
                     jsonData['tail_section_foot_assembly_belt_tracking'][value];
               },
             ),
-            if (beltVariable.tailSectionFootAssemblyBeltTracking == 'ok')
+            if (beltVariable.tailSectionFootAssemblyBeltTracking == 'off')
               CustomRadioTile(
                 values: const ["up", "down"],
                 id: "tail_section_11",
                 onChangeValue: (value) {},
                 valueStyle: const TextStyle(fontWeight: FontWeight.bold),
               ),
-            if (beltVariable.tailSectionFootAssemblyBeltTracking == 'ok')
+            if (beltVariable.tailSectionFootAssemblyBeltTracking == 'off')
               CustomRadioTile(
                 values: const ["left", "right"],
                 id: "tail_section_12",
@@ -215,7 +231,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
               CustomRadioTile(
                 title: "Debris Deflector Condition",
                 id: "tail_section_14",
-                values: const ["Replace Damaged", "Replace Worn"],
+                values: const ["OK", "Replace Damaged", "Replace Worn"],
                 onChangeValue: (value) {
                   widget.beltModel
                       .tailSectionFootAssemblyDebrisDeflectorCondition = jsonData[
@@ -239,7 +255,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
               CustomRadioTile(
                 title: "Rope Sheaves Condition",
                 id: "tail_section_16",
-                values: const ["Replace Damaged", "Replace Worn"],
+                values: const ["OK", "Replace Damaged", "Replace Worn"],
                 onChangeValue: (value) {
                   widget.beltModel
                       .tailSectionFootAssemblyRopeSheavesCondition = jsonData[
@@ -256,13 +272,17 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
                   widget.beltModel.tailSectionFootAssemblyYokeAssembly =
                       jsonData['tail_section_foot_assembly_yoke_assembly']
                           [value];
+
+                  setState(() {
+                    beltVariable.tailSectionFootAssemblyYokeAssembly = value;
+                  });
                 },
               ),
             if (beltVariable.tailSectionFootAssemblyYokeAssembly == "yes")
               CustomRadioTile(
                 title: "Yoke Assembly Condition",
                 id: "tail_section_18",
-                values: const ["Replace Damaged", "Replace Worn"],
+                values: const ["OK", "Replace Damaged", "Replace Worn"],
                 onChangeValue: (value) {
                   //TODO - MISING IN JSON
                   // widget.beltModel

@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:manlift_app/data/models/original_model.dart';
 import 'package:manlift_app/feature/cage/model/cage_model.dart';
 import 'package:manlift_app/feature/cage/quarterly/cage_quaterly.dart';
+import 'package:manlift_app/feature/cage/quarterly/models/pit_model.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
-class PitInspectionForm extends StatelessWidget {
+class PitInspectionForm extends StatefulWidget {
   PitInspectionForm(
       {super.key, required this.pageController, required this.cageModel});
 
   final PageController pageController;
   final CageInspection cageModel;
 
+  @override
+  State<PitInspectionForm> createState() => _PitInspectionFormState();
+}
+
+class _PitInspectionFormState extends State<PitInspectionForm> {
   final _formKey = GlobalKey<FormState>();
+  var pitref = PitModel();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +41,7 @@ class PitInspectionForm extends StatelessWidget {
               title: "Clean",
               values: const ["YES", "NO"],
               onChangeValue: (value) {
-                cageModel.clean = jsonData['clean'][value];
+                widget.cageModel.clean = jsonData['clean'][value];
               },
             ),
             // CustomRadioTile(
@@ -52,22 +60,29 @@ class PitInspectionForm extends StatelessWidget {
               ),
               onSelectionChanged: (val) {
                 String res = "";
+                List<String> ref = [];
                 for (var e in val) {
+                  ref.add(e);
                   res += jsonData['pit_switch'][e] + "\n";
                 }
-                cageModel.pitSwitch = res;
+                pitref.pitSwitch = ref.toSet();
+                widget.cageModel.pitSwitch = res;
+                setState(() {});
               },
             ),
-            CustomRadioTile(
-              id: 'pit_3',
-              title: "Switch Location",
-              values: const ["OK", "Relocate"],
-              isTextField: true,
-              fieldLabelTitle: 'Reason',
-              onChangeValue: (value) {
-                cageModel.switchLocation = jsonData['switch_location'][value];
-              },
-            ),
+            if (pitref.pitSwitch.contains("yes") ||
+                pitref.pitSwitch.contains("inoperable"))
+              CustomRadioTile(
+                id: 'pit_3',
+                title: "Switch Location",
+                values: const ["OK", "Relocate"],
+                isTextField: true,
+                fieldLabelTitle: 'Reason',
+                onChangeValue: (value) {
+                  widget.cageModel.switchLocation =
+                      jsonData['switch_location'][value];
+                },
+              ),
             // CustomRadioTile(
             //   id: 'pit_4',
             //   title: "Pit Light",
@@ -87,7 +102,7 @@ class PitInspectionForm extends StatelessWidget {
                 for (var e in val) {
                   res += jsonData['pit_light'][e] + "\n";
                 }
-                cageModel.pitLight = res;
+                widget.cageModel.pitLight = res;
               },
             ),
             // CustomRadioTile(
@@ -106,10 +121,13 @@ class PitInspectionForm extends StatelessWidget {
               ),
               onSelectionChanged: (val) {
                 String res = "";
+                List<String> ref = [];
                 for (var e in val) {
+                  ref.add(e);
                   res += jsonData['pit_light_switch'][e] + "\n";
                 }
-                cageModel.pitLightSwitch = res;
+                pitref.pitLightSwitch = ref.toSet();
+                widget.cageModel.pitLightSwitch = res;
               },
             ),
             // CustomRadioTile(
@@ -132,7 +150,7 @@ class PitInspectionForm extends StatelessWidget {
                 for (var e in val) {
                   res += jsonData['governor_cable_tensioner'][e] + "\n";
                 }
-                cageModel.governorCableTensioner = res;
+                widget.cageModel.governorCableTensioner = res;
               },
             ),
             CustomRadioTile(
@@ -140,7 +158,7 @@ class PitInspectionForm extends StatelessWidget {
               title: "Condition",
               values: const ["Ok", "Replace"],
               onChangeValue: (value) {
-                cageModel.conditionGovernorCableTensioner =
+                widget.cageModel.conditionGovernorCableTensioner =
                     jsonData['condition_governor_cable_tensioner'][value];
               },
             ),
@@ -149,7 +167,7 @@ class PitInspectionForm extends StatelessWidget {
               title: "Bottom Normal Terminal",
               values: const ["Ok", "inoperable", "Replace", "None"],
               onChangeValue: (value) {
-                cageModel.bottomNormalTerminal =
+                widget.cageModel.bottomNormalTerminal =
                     jsonData['bottom_normal_terminal'][value];
               },
             ),
@@ -158,7 +176,7 @@ class PitInspectionForm extends StatelessWidget {
               title: "Bottom Final Terminal:",
               values: const ["Ok", "inoperable", "Replace", "None"],
               onChangeValue: (value) {
-                cageModel.bottomFinalTerminal =
+                widget.cageModel.bottomFinalTerminal =
                     jsonData['bottom_final_terminal'][value];
               },
             ),
@@ -166,7 +184,7 @@ class PitInspectionForm extends StatelessWidget {
               id: 'pit_10',
               title: 'Pit Comment',
               onChanged: (value) {
-                cageModel.pitComments = value;
+                widget.cageModel.pitComments = value;
               },
             ),
             CustomRadioTile(
@@ -177,7 +195,7 @@ class PitInspectionForm extends StatelessWidget {
               fieldValue: 'replace',
               fieldLabelTitle: 'Reason',
               onChangeValue: (value) {
-                cageModel.travelCableConnectionAndCondition =
+                widget.cageModel.travelCableConnectionAndCondition =
                     jsonData['travel_cable_connection_and_condition'][value];
               },
             ),
@@ -186,7 +204,7 @@ class PitInspectionForm extends StatelessWidget {
               title: "Safety Type",
               values: const ["Type'A'", "Slack"],
               onChangeValue: (value) {
-                cageModel.safetyType = jsonData['safety_type'][value];
+                widget.cageModel.safetyType = jsonData['safety_type'][value];
               },
             ),
             CustomRadioTile(
@@ -194,17 +212,19 @@ class PitInspectionForm extends StatelessWidget {
               title: "Safety Location",
               values: const ["Top of Car", "Bottom of Car"],
               onChangeValue: (value) {
-                cageModel.safetyLocation = jsonData['safety_location'][value];
+                widget.cageModel.safetyLocation =
+                    jsonData['safety_location'][value];
               },
             ),
             CustomRadioTile(
               id: 'pit_14',
               title: "Safety Condition",
-              values: const ["OK", "Frozen", "Replace", "Yes", "No"],
+              values: const ["OK", "Frozen", "Replace"],
               isTextField: true,
               fieldLabelTitle: 'If not, Why:',
               onChangeValue: (value) {
-                cageModel.safetyCondition = jsonData['safety_condition'][value];
+                widget.cageModel.safetyCondition =
+                    jsonData['safety_condition'][value];
               },
             ),
             // CustomRadioTile(
@@ -229,7 +249,7 @@ class PitInspectionForm extends StatelessWidget {
                 for (var e in val) {
                   res += jsonData['switch_on_safeties'][e] + "\n";
                 }
-                cageModel.switchOnSafeties = res;
+                widget.cageModel.switchOnSafeties = res;
               },
             ),
             // CustomRadioTile(
@@ -251,7 +271,7 @@ class PitInspectionForm extends StatelessWidget {
                 for (var e in val) {
                   res += jsonData['car_guide_type'][e] + "\n";
                 }
-                cageModel.carGuideType = res;
+                widget.cageModel.carGuideType = res;
               },
             ),
             CustomRadioTile(
@@ -259,7 +279,7 @@ class PitInspectionForm extends StatelessWidget {
               title: "Condition",
               values: const ["OK", "Replace"],
               onChangeValue: (value) {
-                cageModel.carGuideCondition =
+                widget.cageModel.carGuideCondition =
                     jsonData['car_guide_condition'][value];
               },
             ),
@@ -282,7 +302,7 @@ class PitInspectionForm extends StatelessWidget {
                 for (var e in val) {
                   res += jsonData['cw_guide_type'][e] + "\n";
                 }
-                cageModel.cwGuideType = res;
+                widget.cageModel.cwGuideType = res;
               },
             ),
             CustomRadioTile(
@@ -290,7 +310,7 @@ class PitInspectionForm extends StatelessWidget {
               title: "Condition",
               values: const ["OK", "Worn, but OK", "Replace"],
               onChangeValue: (value) {
-                cageModel.cwCondition = jsonData['cw_condition'][value];
+                widget.cageModel.cwCondition = jsonData['cw_condition'][value];
               },
             ),
             CustomRadioTile(
@@ -298,18 +318,19 @@ class PitInspectionForm extends StatelessWidget {
               title: "Hoistway Ladder: ",
               values: const ["Yes", "No"],
               onChangeValue: (value) {
-                cageModel.hoistwayLadder = jsonData['hoistway_ladder'][value];
+                widget.cageModel.hoistwayLadder =
+                    jsonData['hoistway_ladder'][value];
               },
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 PageNavigationButton(
-                  pageController: pageController,
+                  pageController: widget.pageController,
                   right: false,
                 ),
                 PageNavigationButton(
-                  pageController: pageController,
+                  pageController: widget.pageController,
                   right: true,
                 ),
               ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:manlift_app/feature/belt/model/belt_inspection_model.dart';
+import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
@@ -33,7 +34,7 @@ class _BottomLandingState extends State<BottomLanding> {
             const FormHeaderTitle(title: "BOTTOM LANDING = LANDING#1"),
             CustomRadioTile(
               id: 'bottom_landing_1',
-              title: '“Authorized Personnel Only” Sign: (2” letters)',
+              title: '"Authorized Personnel Only" Sign: (2" letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
                 // Update the beltModel's corresponding field
@@ -44,7 +45,7 @@ class _BottomLandingState extends State<BottomLanding> {
             ),
             CustomRadioTile(
               id: 'bottom_landing_2',
-              title: 'Instruction Sign: (1” letters)',
+              title: 'Instruction Sign: (1" letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
                 widget.beltModel.bottomLandingInstructionSign =
@@ -53,7 +54,7 @@ class _BottomLandingState extends State<BottomLanding> {
             ),
             CustomRadioTile(
               id: 'bottom_landing_3',
-              title: '“BOTTOM FLOOR – GET OFF” Sign: (2” letters)',
+              title: 'BOTTOM FLOOR - GET OFF" Sign: (2" letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
                 widget.beltModel.bottomLandingBottomFloorGetOffSign =
@@ -84,6 +85,15 @@ class _BottomLandingState extends State<BottomLanding> {
                   //     jsonData['bottom_landing_red_warning_light'][value];
                 },
               ),
+            CustomTextField(
+              id: "bottom_landing_annual_6",
+              title: 'Bottom Landing Comments:',
+              onChanged: (value) {
+                widget.beltModel.bottomLandingBottomLandingNotesComments =
+                    value;
+              },
+            ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

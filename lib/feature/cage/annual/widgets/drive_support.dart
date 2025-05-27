@@ -206,7 +206,7 @@ class _AnnualCageDriveSupportFormState
           CustomRadioTile(
             id: 'drive_support_22',
             title: 'Traction Sheave Condition',
-            values: const ["OK", "Frozen"],
+            values: const ["OK", "Replace"],
             onChangeValue: (value) {
               widget.cageModel.travelCableConnectionAndCondition =
                   jsonData['drive_support']['traction_sheave_condition'][value];

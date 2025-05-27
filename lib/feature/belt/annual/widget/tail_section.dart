@@ -35,9 +35,9 @@ class _TailSectionState extends State<TailSection> {
             title: "Leg Condition",
             values: const [
               "OK",
-              "Worn, but OK",
+              // "Worn, but OK",
               "Replace Damaged",
-              "Replace Worn"
+              // "Replace Worn"
             ],
             onChangeValue: (value) {
               beltVariable.tailSectionFootAssemblyLegCondition = value;
@@ -112,7 +112,8 @@ class _TailSectionState extends State<TailSection> {
             },
           ),
           if (beltVariable.tailSectionFootAssemblyBottomBearings == 'yes' ||
-              beltVariable.tailSectionFootAssemblyBottomBearings == 'bushings')
+              beltVariable.tailSectionFootAssemblyBottomBearings ==
+                  'bushings') ...[
             CustomRadioTile(
               id: "tail_section_7",
               title: "Bottom Bearing Condition",
@@ -129,8 +130,6 @@ class _TailSectionState extends State<TailSection> {
                     [value];
               },
             ),
-          if (beltVariable.tailSectionFootAssemblyBottomBearings == 'yes' ||
-              beltVariable.tailSectionFootAssemblyBottomBearings == 'bushings')
             CustomRadioTile(
               id: "tail_section_8",
               title: "Bearing Housing Condition",
@@ -147,28 +146,31 @@ class _TailSectionState extends State<TailSection> {
                     [value];
               },
             ),
-          CustomTextField(
-            id: "tail_section_9",
-            title: 'Foot Shaft Diameter',
-            onChanged: (val) {
-              widget.beltModel.tailSectionFootAssemblyFootShaftDiameter = val;
-            },
-          ),
-          CustomTextField(
-            id: "tail_section_10",
-            title: 'Foot Shaft Length',
-            onChanged: (val) {
-              widget.beltModel.tailSectionFootAssemblyFootShaftLength = val;
-            },
-          ),
+          ],
+          if (beltVariable.tailSectionFootAssemblyBottomBearings == 'no') ...[
+            CustomTextField(
+              id: "tail_section_9",
+              title: 'Foot Shaft Diameter',
+              onChanged: (val) {
+                widget.beltModel.tailSectionFootAssemblyFootShaftDiameter = val;
+              },
+            ),
+            CustomTextField(
+              id: "tail_section_10",
+              title: 'Foot Shaft Length',
+              onChanged: (val) {
+                widget.beltModel.tailSectionFootAssemblyFootShaftLength = val;
+              },
+            ),
+          ],
           CustomRadioTile(
             id: "tail_section_11",
             title: "Foot Shaft Condition",
             values: const [
               "OK",
-              "Worn, but OK",
+              // "Worn, but OK",
               "Replace Damaged",
-              "Replace Worn"
+              // "Replace Worn"
             ],
             onChangeValue: (value) {
               widget.beltModel.tailSectionFootAssemblyFootShaftCondition =
@@ -242,14 +244,14 @@ class _TailSectionState extends State<TailSection> {
                   jsonData["tail_section_foot_assembly_belt_tracking"][value];
             },
           ),
-          if (beltVariable.tailSectionFootAssemblyBeltTracking == 'ok')
+          if (beltVariable.tailSectionFootAssemblyBeltTracking == 'off')
             CustomRadioTile(
               id: "tail_section_18",
               values: const ["up", "down"],
               onChangeValue: (value) {},
               valueStyle: const TextStyle(fontWeight: FontWeight.bold),
             ),
-          if (beltVariable.tailSectionFootAssemblyBeltTracking == 'ok')
+          if (beltVariable.tailSectionFootAssemblyBeltTracking == 'off')
             CustomRadioTile(
               id: "tail_section_19",
               values: const ["left", "right"],

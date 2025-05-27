@@ -291,7 +291,8 @@
     },
     "location": {
       "left": "",
-      "right": ""
+      "right": "",
+      "middle":""
     },
     "condition": {
       "ok": "",
@@ -409,11 +410,13 @@
     },
     "hoist_cable_number": {
       "2": "",
-      "3": ""
+      "3": "",
+      "4": ""
     },
     "size": {
       "3_8": "",
-      "1_2": ""
+      "1_2": "",
+      "5_8": ""
     },
     "condition": {
       "ok": "",
@@ -422,7 +425,8 @@
     },
     "governor_cable_size": {
       "3_8": "",
-      "1_2": ""
+      "1_2": "",
+      "5_8": ""
     },
     "governor_cable_condition": {
       "ok": "",

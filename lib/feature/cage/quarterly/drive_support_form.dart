@@ -6,6 +6,8 @@ import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
+import 'package:manlift_app/provider/selection_ref_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../common/widgets/page_navigation_button.dart';
 
@@ -25,7 +27,7 @@ class DriveSupportForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const FormHeaderTitle(title: "DRIVE SUPPORT"),
-          CustomTextField(
+          const CustomTextField(
             id: 'drive_support_form_1',
             title: 'Description',
           ),
@@ -228,6 +230,14 @@ class DriveSupportForm extends StatelessWidget {
               }
               cageModel.driveSupportSheaveBreakCondition = res;
             },
+            fieldValues: const ["other"],
+            onFieldChange: (value) {
+              context.read<SelectionRefProvider>().updateSelection(
+                    "drive_support_form_other_12",
+                    "Other",
+                    value,
+                  );
+            },
           ),
           CustomRadioTile(
             id: 'drive_support_form_13',
@@ -238,18 +248,32 @@ class DriveSupportForm extends StatelessWidget {
                   jsonData['drive_support']['deflector_sheave'][value];
             },
           ),
+          // CustomRadioTile(
+          //   id: 'drive_support_form_14',
+          //   title: 'Shaft and Bearing Condition:',
+          //   values: const ["OK", "Replace", "Other"],
+          //   isTextField: true,
+          //   fieldLabelTitle: "Other",
+          //   onChangeValue: (value) {
+          //     cageModel.driveSupportShaftAndBearingCondition =
+          //         jsonData['drive_support']['shaft_and_bearing_condition']
+          //             [value];
+          //   },
+          // ),
+          const CustomTextField(
+              id: 'drive_support_form_24', title: "Traction Sheave Type"),
           CustomRadioTile(
-            id: 'drive_support_form_14',
-            title: 'Shaft and Bearing Condition:',
-            values: const ["OK", "Replace", "Other"],
-            isTextField: true,
-            fieldLabelTitle: "Other",
+            id: 'drive_support_form_25',
+            title: 'Traction Sheave Condition',
+            values: const ["OK", "Replace"],
             onChangeValue: (value) {
-              cageModel.driveSupportShaftAndBearingCondition =
-                  jsonData['drive_support']['shaft_and_bearing_condition']
-                      [value];
+              cageModel.travelCableConnectionAndCondition =
+                  jsonData['drive_support']['traction_sheave_condition'][value];
             },
           ),
+          const CustomTextField(
+              id: 'drive_support_form_26',
+              title: "Traction Sheave & Bushing Size"),
           MultipleSelectionWidget(
             original: OriginalModel(
               id: 'drive_support_form_14',

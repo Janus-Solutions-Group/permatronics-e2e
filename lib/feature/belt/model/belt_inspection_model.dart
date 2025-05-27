@@ -28,6 +28,7 @@ class BeltInspection {
   String? tailSectionFootAssemblyComments;
 
   // Bottom Landing Safeties Variables
+  String? bottomLandingSafeties;
   String? bottomLandingSafetiesType1;
   String? bottomLandingSafetiesType1Condition;
   String? bottomLandingSafetiesType2;

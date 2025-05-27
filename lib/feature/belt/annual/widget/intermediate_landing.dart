@@ -155,6 +155,16 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               },
             ),
             CustomRadioTile(
+              id: 'intermediate_landing_quartmonth_${widget.index}_14_1',
+              title: 'Are Gates Self Closing',
+              values: const ['Yes', "No"],
+              onChangeValue: (value) {
+                // json keys are different--
+                widget.model.intermediateLandingAreGatesSelfClosing =
+                    jsonData['intermediate_landing_aregatesselfclosing'][value];
+              },
+            ),
+            CustomRadioTile(
               id: 'landing${widget.index}_belt_annual_17',
               title: 'Open Outward:',
               values: const ['Yes', 'No'],

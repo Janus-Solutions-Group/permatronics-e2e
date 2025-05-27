@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:manlift_app/data/models/original_model.dart';
 import 'package:manlift_app/feature/cage/model/cage_model.dart';
 import 'package:manlift_app/feature/cage/quarterly/cage_quaterly.dart';
+import 'package:manlift_app/feature/cage/quarterly/models/pit_model.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
@@ -241,14 +242,14 @@ class CABForm extends StatelessWidget {
               cageModel.carAlarm = res;
             },
           ),
-          CustomRadioTile(
-            id: 'cab_form_15',
-            title: 'Car Alarm Switch:',
-            values: const ["Yes", "No", "Inoperable"],
-            onChangeValue: (value) {
-              cageModel.carAlarmSwitch = jsonData['car_alarm_switch'][value];
-            },
-          ),
+          // CustomRadioTile(
+          //   id: 'cab_form_15',
+          //   title: 'Car Alarm Switch:',
+          //   values: const ["Yes", "No", "Inoperable"],
+          //   onChangeValue: (value) {
+          //     cageModel.carAlarmSwitch = jsonData['car_alarm_switch'][value];
+          //   },
+          // ),
           MultipleSelectionWidget(
             original: OriginalModel(
               id: 'cab_form_15',

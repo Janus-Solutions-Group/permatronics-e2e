@@ -54,9 +54,9 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                     title: 'Hood Condition',
                     values: const [
                       "OK",
-                      "Damaged, but OK",
+                      // "Damaged, but OK",
                       "Replace Damaged",
-                      'Replace Worn'
+                      // 'Replace Worn'
                     ],
                     onChangeValue: (value) {
                       widget.beltModel.bottomLandingHoodHoodCondition =

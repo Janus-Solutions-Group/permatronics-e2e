@@ -115,6 +115,7 @@ class CageInspection {
   String? driveSupportRopeGripperCondition;
   String? driveSupportSheaveBreak;
   String? driveSupportSheaveBreakCondition;
+  String? driveSupportSheaveBreakConditionOther;
   String? driveSupportTypeOfBushing;
   String? driveSupportTractionSheaveBushingSize;
   String? driveSupportTractionSheaveType;

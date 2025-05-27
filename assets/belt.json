@@ -86,6 +86,7 @@
     "no": "No debris deflector was found to be present at the time of inspection. It is required that a debris deflector be installed."
   },
   "tail_section_foot_assembly_debris_deflector_condition": {
+    "ok":"",
     "replace_damaged": "The debris deflector is damaged and must be replaced.",
     "replace_worn": "The debris deflector is worn and must be replaced."
   },
@@ -185,6 +186,7 @@
   },
   "bottom_landing_is_manlift_in_a_below_grade_pit": {
     "yes": "",
+    "no":"",
     "non_compliant": "The pit is not compliant."
   },
   "bottom_landing_manlift_clean": {
@@ -354,7 +356,8 @@
   },
   "belting_tension_of_belt": {
     "good": "",
-    "needs_to_be_adjusted": "The belt tension needs to be adjusted."
+    "needs_to_be_adjusted": "The belt tension needs to be adjusted.",
+    "adjusted_on_site":""
   },
   "belting_belt_condition_comments": "",
   "handholds_handhold_type": { "l55": "", "cup": "", "open": "" },

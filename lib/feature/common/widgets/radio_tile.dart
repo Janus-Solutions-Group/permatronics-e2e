@@ -126,7 +126,12 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
             padding: const EdgeInsets.only(bottom: 25, left: 18, right: 18),
             child: TextField(
               maxLines: null,
-              onChanged: widget.onFieldChange,
+              onChanged: (value) {
+                String id = "${widget.id} dropdownline";
+                context.read<SelectionRefProvider>().updateSelection(
+                    id, widget.fieldLabelTitle ?? widget.fieldValue, value);
+                if (widget.onFieldChange != null) widget.onFieldChange!(value);
+              },
               decoration: InputDecoration(
                 labelText: widget.fieldLabelTitle ?? widget.fieldValue,
               ),

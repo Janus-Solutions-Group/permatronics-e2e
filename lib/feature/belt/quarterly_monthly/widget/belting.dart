@@ -45,7 +45,7 @@ class _BeltingState extends State<Belting> {
             CustomRadioTile(
               id: 'belting_2',
               title: 'Width',
-              values: const ['12”', '14”', '16”'],
+              values: const ['12"', '14"', '16"'],
               onChangeValue: (value) {
                 widget.beltModel.beltingWidth =
                     jsonData['belting_width'][value];
@@ -121,7 +121,11 @@ class _BeltingState extends State<Belting> {
             CustomRadioTile(
               id: 'belting_10',
               title: 'Tension of Belt:',
-              values: const ['Good', 'Needs to be adjusted'],
+              values: const [
+                'Good',
+                'Needs to be adjusted',
+                'Adjusted on Site'
+              ],
               onChangeValue: (value) {
                 widget.beltModel.beltingTensionOfBelt =
                     jsonData['belting_tension_of_belt'][value];

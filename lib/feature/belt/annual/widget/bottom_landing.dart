@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:manlift_app/data/models/original_model.dart';
 import 'package:manlift_app/feature/belt/model/belt_inspection_model.dart';
 import 'package:manlift_app/feature/common/widgets/custom_title.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
@@ -35,7 +37,7 @@ class _BottomLandingState extends State<BottomLanding> {
             const FormHeaderTitle(title: "BOTTOM LANDING = LANDING#1"),
             CustomRadioTile(
               id: "bottom_landing_annual_1",
-              title: '“Authorized Personnel Only” Sign: (2” letters)',
+              title: '"Authorized Personnel Only" Sign: (2" letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
                 widget.beltModel.bottomLandingAuthorizedPersonnelOnlySign =
@@ -45,7 +47,7 @@ class _BottomLandingState extends State<BottomLanding> {
             ),
             CustomRadioTile(
               id: "bottom_landing_annual_2",
-              title: 'Instruction Sign: (1” letters)',
+              title: 'Instruction Sign: (1" letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
                 widget.beltModel.bottomLandingInstructionSign =
@@ -54,7 +56,7 @@ class _BottomLandingState extends State<BottomLanding> {
             ),
             CustomRadioTile(
               id: "bottom_landing_annual_3",
-              title: '“BOTTOM FLOOR – GET OFF” Sign: (2” letters) ',
+              title: '"BOTTOM FLOOR - GET OFF" Sign: (2" letters) ',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
                 setState(() {
@@ -108,19 +110,39 @@ class _BottomLandingState extends State<BottomLanding> {
                       jsonData["bottom_landing_light_location"][value];
                 },
               ),
-            CustomRadioTile(
-              id: "bottom_landing_annual_8",
-              title: "Is Manlift in a Below Grade Pit",
-              values: const ['Yes', 'No', 'Non Compliant'],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: "bottom_landing_annual_8",
+                title: "Is Manlift in a Below Grade Pit",
+                values: const ['Yes', 'No', 'Non Compliant'],
+              ),
+              onSelectionChanged: (val) {
+                String res = "";
+                for (var e in val) {
+                  res +=
+                      jsonData['bottom_landing_is_manlift_in_a_below_grade_pit']
+                              [e] +
+                          "\n";
+                }
+                widget.beltModel.bottomLandingIsManliftInABelowGradePit = res;
                 setState(() {
-                  beltVariable.bottomLandingIsManliftInABelowGradePit = value;
+                  beltVariable.bottomLandingIsManliftInABelowGradePit = res;
                 });
-                widget.beltModel.bottomLandingIsManliftInABelowGradePit =
-                    jsonData["bottom_landing_is_manlift_in_a_below_grade_pit"]
-                        [value];
               },
             ),
+            // CustomRadioTile(
+            //   id: "bottom_landing_annual_8",
+            //   title: "Is Manlift in a Below Grade Pit",
+            //   values: const ['Yes', 'No', 'Non Compliant'],
+            //   onChangeValue: (value) {
+            //     setState(() {
+            //       beltVariable.bottomLandingIsManliftInABelowGradePit = value;
+            //     });
+            //     widget.beltModel.bottomLandingIsManliftInABelowGradePit =
+            //         jsonData["bottom_landing_is_manlift_in_a_below_grade_pit"]
+            //             [value];
+            //   },
+            // ),
             if (beltVariable.bottomLandingIsManliftInABelowGradePit == "yes")
               CustomTextField(
                 id: "bottom_landing_annual_9",

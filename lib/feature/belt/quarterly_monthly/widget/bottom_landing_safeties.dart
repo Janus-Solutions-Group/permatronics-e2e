@@ -7,6 +7,8 @@ import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
 import '../pages/belt_quaterly.dart';
 
+var beltVariable = BeltInspection();
+
 class BottomLandingSafeties extends StatefulWidget {
   const BottomLandingSafeties({
     super.key,
@@ -22,9 +24,7 @@ class BottomLandingSafeties extends StatefulWidget {
 }
 
 class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
-  String? wantToAddThisPage;
   final formKey = GlobalKey<FormState>();
-  var beltVariable = BeltInspection();
 
   @override
   Widget build(BuildContext context) {
@@ -37,17 +37,27 @@ class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FormHeaderTitle(
-              title: "Bottom Landing Safeties",
+            // FormHeaderTitle(
+            //   title: "Bottom Landing Safeties",
+            //   values: const ["Yes", "No"],
+            //   currentValue: beltVariable.bottomLandingSafeties,
+            //   onChanged: (value) {
+            //     setState(() {
+            //       beltVariable.bottomLandingSafeties = value;
+            //     });
+            //   },
+            // ),
+            CustomRadioTile(
+              id: 'belt_bottom_landing_safeties',
+              title: 'Bottom Landing Safeties',
               values: const ["Yes", "No"],
-              currentValue: wantToAddThisPage,
-              onChanged: (value) {
+              onChangeValue: (value) {
                 setState(() {
-                  wantToAddThisPage = value;
+                  beltVariable.bottomLandingSafeties = value;
                 });
               },
             ),
-            if (wantToAddThisPage == "Yes")
+            if (beltVariable.bottomLandingSafeties == "yes")
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
