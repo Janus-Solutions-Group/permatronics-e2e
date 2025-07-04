@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:manlift_app/data/models/original_model.dart';
 import 'package:manlift_app/feature/cage/annual/pages/cage_annual.dart';
 import 'package:manlift_app/feature/cage/model/cage_model.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
@@ -21,7 +23,8 @@ class AnnualCageCABForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const FormHeaderTitle(title: "CAB"),
-          CustomTextField(id: 'cab_1', title: "Car Condition and Description:"),
+          const CustomTextField(
+              id: 'cab_1', title: "Car Condition and Description:"),
           CustomRadioTile(
             id: 'cab_2',
             title: 'Cam:',
@@ -31,13 +34,30 @@ class AnnualCageCABForm extends StatelessWidget {
                   jsonData['car_condition_and_description']['cam'][value];
             },
           ),
-          CustomRadioTile(
-            id: 'cab_3',
-            title: 'Location',
-            values: const ["Left", "Right", "Middle"],
-            onChangeValue: (value) {
-              cageModel.carConditionAndDescriptionLocation =
-                  jsonData['car_condition_and_description']['location'][value];
+          // CustomRadioTile(
+          //   id: 'cab_3',
+          //   title: 'Location',
+          //   values: const ["Left", "Right", "Middle"],
+          //   onChangeValue: (value) {
+          //     cageModel.carConditionAndDescriptionLocation =
+          //         jsonData['car_condition_and_description']['location'][value];
+          //   },
+          // ),
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'cab_3',
+              title: 'Location',
+              values: const ["Left", "Right", "Middle"],
+            ),
+            onSelectionChanged: (val) {
+              String res = "";
+              for (var e in val) {
+                res += jsonData['car_condition_and_description']['location']
+                        [e] +
+                    "\n";
+              }
+
+              cageModel.carConditionAndDescriptionLocation = res;
             },
           ),
           CustomRadioTile(
@@ -88,7 +108,7 @@ class AnnualCageCABForm extends StatelessWidget {
           ),
           CustomRadioTile(
             id: 'cab_10',
-            title: 'Car Operation Controls: “UP”',
+            title: 'Car Operation Controls: "UP"',
             values: const ["OK", "Inoperable"],
             onChangeValue: (value) {
               cageModel.carOperationControlsUp =
@@ -97,7 +117,7 @@ class AnnualCageCABForm extends StatelessWidget {
           ),
           CustomRadioTile(
             id: 'cab_11',
-            title: 'Car Operation Controls: “DN”',
+            title: 'Car Operation Controls: "DN"',
             values: const ["OK", "Inoperable"],
             onChangeValue: (value) {
               cageModel.carOperationControlsDown =
@@ -188,7 +208,7 @@ class AnnualCageCABForm extends StatelessWidget {
             },
           ),
           CustomRadioTile(
-            id: 'cab_form_23',
+            id: 'cab_22',
             title: 'Data Plate',
             values: const ["Yes", "No"],
             onChangeValue: (value) {
@@ -196,7 +216,7 @@ class AnnualCageCABForm extends StatelessWidget {
             },
           ),
           CustomRadioTile(
-            id: 'cab_form_24',
+            id: 'cab_23',
             title: 'Type of Cable Attachment to Car',
             values: const ["OH Sling", "1 Bolt Triangle", "Other"],
             onChangeValue: (value) {
@@ -204,30 +224,21 @@ class AnnualCageCABForm extends StatelessWidget {
                   jsonData['type_of_cable_attachment_to_car'][value];
             },
             fieldValue: 'other',
+            fieldLabelTitle: "Other",
           ),
-          CustomTextField(
-            id: 'cab_22',
+          const CustomTextField(
+            id: 'cab_24',
             title: "Manual Back Up Car Alarm Type:",
           ),
           CustomRadioTile(
-            id: 'cab_23',
+            id: 'cab_25',
             title: 'Data Plate:',
             values: const ["Yes", "No"],
             onChangeValue: (value) {
               cageModel.dataPlate = jsonData['data_plate'][value];
             },
           ),
-          CustomRadioTile(
-            id: 'cab_24',
-            title: 'Type of Cable Attachment to Car:',
-            values: const ["OH Sling", "1 Bolt Triangle", "Other"],
-            onChangeValue: (value) {
-              cageModel.typeOfCableAttachmentToCar =
-                  jsonData['type_of_cable_attachment_to_car'][value];
-            },
-            isTextField: true,
-            fieldLabelTitle: "Other",
-          ),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

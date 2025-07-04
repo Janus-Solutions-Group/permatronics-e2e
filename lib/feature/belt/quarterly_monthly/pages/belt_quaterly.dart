@@ -19,6 +19,7 @@ import 'package:manlift_app/feature/belt/quarterly_monthly/widget/top_landing.da
 import 'package:manlift_app/feature/belt/quarterly_monthly/widget/top_landing_safeties.dart';
 import 'package:manlift_app/feature/common/widgets/header_form.dart';
 import 'package:manlift_app/feature/common/widgets/image_picking_last.dart';
+import 'package:manlift_app/feature/common/widgets/reference_text.dart';
 import 'package:manlift_app/feature/final/final_page.dart';
 import 'package:manlift_app/provider/selection_ref_provider.dart';
 import 'package:provider/provider.dart';
@@ -148,6 +149,45 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
     pw.Image? image1 =
         signature != null ? pw.Image(pw.MemoryImage(signature!)) : null;
     var selectionsRef = context.read<SelectionRefProvider>().selectionsRef;
+    selectionsRef.sort((a, b) {
+      var id1 = int.tryParse(a['id']!.split('_').last) ?? 0;
+      var id2 = int.tryParse(b['id']!.split('_').last) ?? 0;
+      return id1.compareTo(id2);
+    });
+
+    var tailList = selectionsRef
+        .where((a) => a['id']!.split('_').first == "tail")
+        .toList();
+    var bottomLandingSafetiesList = selectionsRef
+        .where((a) => a['id']!.startsWith('bottom_landing_safeties'))
+        .toList();
+    var bottomLandingList = selectionsRef
+        .where((a) => a['id']!.startsWith("bottom_landing"))
+        .toList();
+    var bottomLandingHoodList = selectionsRef
+        .where((a) => a['id']!.startsWith("bottom_landing_hood"))
+        .toList();
+    var beltingList =
+        selectionsRef.where((a) => a['id']!.startsWith("belting")).toList();
+
+    var handholdsList =
+        selectionsRef.where((a) => a['id']!.startsWith("handholds")).toList();
+    var stepList =
+        selectionsRef.where((a) => a['id']!.startsWith("steps")).toList();
+
+    var intermediateList = selectionsRef
+        .where((a) => a['id']!.startsWith("intermediate_landing"))
+        .toList();
+
+    var topLandingList =
+        selectionsRef.where((a) => a['id']!.startsWith("top_landing")).toList();
+    var driveAssemblyList = selectionsRef
+        .where((a) => a['id']!.startsWith("drive_assembly"))
+        .toList();
+    var topLandingSafeties = selectionsRef
+        .where((a) => a['id']!.startsWith("top_landing_safeties"))
+        .toList();
+
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
@@ -162,24 +202,17 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
             ...List.generate(
                 headerList.length, (index) => pw.Text(headerList[index])),
             pw.SizedBox(height: 10),
-            ...List.generate(
-                selectionsRef.length,
-                (index) => pw.Padding(
-                      padding: const pw.EdgeInsets.only(bottom: 10),
-                      child: pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.start,
-                        children: [
-                          pw.Text(
-                            selectionsRef[index]['title'].toString(),
-                            style: pw.TextStyle(
-                              fontSize: 16,
-                              fontWeight: pw.FontWeight.bold,
-                            ),
-                          ),
-                          pw.Text(selectionsRef[index]['value'].toString()),
-                        ],
-                      ),
-                    )),
+            referenceText(tailList, 'Tail Section'),
+            referenceText(bottomLandingSafetiesList, 'Bottom Landing Safeties'),
+            referenceText(bottomLandingList, 'Bottom Landing'),
+            referenceText(bottomLandingHoodList, 'Bottom Landing Hood'),
+            referenceText(beltingList, 'Belting'),
+            referenceText(handholdsList, 'Handholds'),
+            referenceText(stepList, 'Steps'),
+            referenceText(intermediateList, 'Intermediate Landing'),
+            referenceText(topLandingList, 'Top Landing'),
+            referenceText(driveAssemblyList, 'Drive Assembly'),
+            referenceText(topLandingSafeties, 'Top Landing Safeties'),
             pw.Container(
               alignment: pw.Alignment.centerRight,
               height: 100,

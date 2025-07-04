@@ -210,7 +210,8 @@
   },
   "hoistway_door_unlocking_device": {
     "yes": "",
-    "no": "There are no hoistway door unlocking devices on the bottom and top landing, it is required that one be provided at both landings."
+    "no": "There are no hoistway door unlocking devices on the bottom and top landing, it is required that one be provided at both landings.",
+    "n/a":""
   },
   "hoistway_door_interlock_type": {
     "default": "",

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class CageInspection {
   String? bottomPlatform;
   String? pit;

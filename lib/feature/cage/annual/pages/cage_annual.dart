@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 import 'dart:ui' as ui;
 
@@ -7,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
-import 'package:manlift_app/feature/Home/pages/homepage.dart';
 import 'package:manlift_app/feature/cage/annual/widgets/add_landing_form.dart';
 import 'package:manlift_app/feature/cage/annual/widgets/cab_form.dart';
 import 'package:manlift_app/feature/cage/annual/widgets/car_counterweight_form.dart';
@@ -15,18 +13,20 @@ import 'package:manlift_app/feature/cage/annual/widgets/drive_support.dart';
 import 'package:manlift_app/feature/cage/annual/widgets/electrical_control.dart';
 import 'package:manlift_app/feature/cage/annual/widgets/load_test.dart';
 import 'package:manlift_app/feature/cage/model/cage_model.dart';
+import 'package:manlift_app/feature/cage/model/pit_model.dart';
 import 'package:manlift_app/feature/common/widgets/header_form.dart';
 import 'package:manlift_app/feature/cage/annual/widgets/yearly_pit_form.dart';
 import 'package:manlift_app/feature/common/widgets/image_picking_last.dart';
+import 'package:manlift_app/feature/common/widgets/reference_text.dart';
 import 'package:manlift_app/feature/common/widgets/signature_pad.dart';
 import 'package:manlift_app/provider/selection_ref_provider.dart';
 
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:provider/provider.dart';
+import 'package:screenshot/screenshot.dart';
 
 import '../../../../data/models/header.dart';
-import '../../../common/widgets/radio_tile.dart';
 import '../../../final/final_page.dart';
 
 class CageAnnualyPage extends StatefulWidget {
@@ -39,6 +39,7 @@ class CageAnnualyPage extends StatefulWidget {
 class _CageAnnualyPageState extends State<CageAnnualyPage> {
   final pageController = PageController();
   final cageModel = CageInspection();
+  final pitModel = PitModel();
   final headerModel = HeaderModel();
 
   Map<String, dynamic> data = {};
@@ -51,11 +52,47 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
     });
   }
 
+  List<ScreenshotController> screenshotController = List.generate(
+    10,
+    (i) => ScreenshotController(),
+  );
+
   @override
   void initState() {
     fetchJsonData();
     super.initState();
   }
+
+  // Future<void> _capture() async {
+  //   final pdf = pw.Document();
+  //   pw.Image? image1 =
+  //       signature != null ? pw.Image(pw.MemoryImage(signature!)) : null;
+  //   pdf.addPage(
+  //     pw.MultiPage(
+  //       pageFormat: PdfPageFormat.a4,
+  //       build: (pw.Context context) {
+  //         return [
+  //           pw.Align(
+  //             alignment: pw.Alignment.center,
+  //             child: pw.Text('Inspection Reference',
+  //                 style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+  //           ),
+  //           pw.Container(
+  //             alignment: pw.Alignment.centerRight,
+  //             height: 100,
+  //             child: image1,
+  //           ),
+  //         ];
+  //       },
+  //     ),
+  //   );
+  //   final directory = Directory("/storage/emulated/0/Download");
+  //   final path = directory.path;
+  //   await Directory(path).create(recursive: true);
+  //   final file = File(
+  //       "$path/cage_annual_ref_image_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf");
+  //   await file.writeAsBytes(await pdf.save());
+  // }
 
   Future<void> createinspectionPdf() async {
     List<String> list = [];
@@ -149,6 +186,24 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
     pw.Image? image1 =
         signature != null ? pw.Image(pw.MemoryImage(signature!)) : null;
     var selectionsRef = context.read<SelectionRefProvider>().selectionsRef;
+    selectionsRef.sort((a, b) {
+      var id1 = int.tryParse(a['id']!.split('_').last) ?? 0;
+      var id2 = int.tryParse(b['id']!.split('_').last) ?? 0;
+      return id1.compareTo(id2);
+    });
+
+    var pitList = selectionsRef.where((a) => a['id']!.contains('pit')).toList();
+    var landing =
+        selectionsRef.where((a) => a['id']!.contains('landing')).toList();
+    var cabList = selectionsRef.where((a) => a['id']!.contains('cab')).toList();
+    var carCounterweight =
+        selectionsRef.where((a) => a['id']!.contains('car')).toList();
+    var driveList =
+        selectionsRef.where((a) => a['id']!.contains('drive')).toList();
+    var electrical =
+        selectionsRef.where((a) => a['id']!.contains('electrical')).toList();
+    var loadList =
+        selectionsRef.where((a) => a['id']!.contains('load')).toList();
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
@@ -163,24 +218,13 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
             ...List.generate(
                 headerList.length, (index) => pw.Text(headerList[index])),
             pw.SizedBox(height: 10),
-            ...List.generate(
-                selectionsRef.length,
-                (index) => pw.Padding(
-                      padding: const pw.EdgeInsets.only(bottom: 10),
-                      child: pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.start,
-                        children: [
-                          pw.Text(
-                            selectionsRef[index]['title'].toString(),
-                            style: pw.TextStyle(
-                              fontSize: 14,
-                              fontWeight: pw.FontWeight.bold,
-                            ),
-                          ),
-                          pw.Text(selectionsRef[index]['value'].toString()),
-                        ],
-                      ),
-                    )),
+            referenceText(pitList, 'Pit'),
+            referenceText(landing, 'Landing'),
+            referenceText(cabList, 'Cab Form'),
+            referenceText(carCounterweight, 'Car Counter Weight'),
+            referenceText(driveList, 'Drive Support'),
+            referenceText(electrical, 'Electrical Control'),
+            referenceText(loadList, 'Load Test'),
             pw.Container(
               alignment: pw.Alignment.centerRight,
               height: 100,
@@ -218,6 +262,11 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
           title: const Text("Cage Yearly Form"),
           automaticallyImplyLeading: false,
         ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () async {
+        //     await captureAllPages();
+        //   },
+        // ),
         body: SafeArea(
           child: PageView(
             controller: pageController,

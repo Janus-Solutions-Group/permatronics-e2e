@@ -35,7 +35,7 @@ class _TopLandingState extends State<TopLanding> {
             const FormHeaderTitle(title: "TOP LANDING#"),
             CustomRadioTile(
               id: "top_landing_belt_annual_1",
-              title: '“Authorized Personnel Only” Sign: (2” letters)',
+              title: '"Authorized Personnel Only" Sign: (2" letters)',
               values: const ['Yes', 'No', 'Non-Compliant'],
               onChangeValue: (value) {
                 widget.beltModel.topLandingAuthorizedPersonnelSign =
@@ -44,7 +44,7 @@ class _TopLandingState extends State<TopLanding> {
             ),
             CustomRadioTile(
               id: "top_landing_belt_annual_2",
-              title: 'Instruction Sign: (1” letters)',
+              title: 'Instruction Sign: (1" letters)',
               values: const ['Yes', 'No', 'Non-Compliant'],
               onChangeValue: (value) {
                 widget.beltModel.topLandingInstructionSign =
@@ -53,7 +53,7 @@ class _TopLandingState extends State<TopLanding> {
             ),
             CustomRadioTile(
               id: "top_landing_belt_annual_3",
-              title: '“TOP FLOOR – GET OFF” Sign: (2” letters)',
+              title: '"TOP FLOOR - GET OFF" Sign: (2" letters)',
               values: const ['Yes', 'No', 'Non-Compliant'],
               onChangeValue: (value) {
                 // beltModel.top =
@@ -162,7 +162,7 @@ class _TopLandingState extends State<TopLanding> {
                 title: 'Guard Rail Height “Upside”:'),
             CustomTextField(
                 id: "top_landing_belt_annual_24",
-                title: 'Guard Rail Height “Downside”:'),
+                title: 'Guard Rail Height "Downside":'),
             CustomRadioTile(
               id: "top_landing_belt_annual_25",
               title: 'Guard Rail Material Used:',
@@ -233,7 +233,7 @@ class _TopLandingState extends State<TopLanding> {
             ),
             CustomRadioTile(
               id: "top_landing_belt_annual_34",
-              title: 'Add’l Toeboard Required:',
+              title: 'Add\'l Toeboard Required:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
                 widget.beltModel.topLandingAddlToeboard =
@@ -281,7 +281,7 @@ class _TopLandingState extends State<TopLanding> {
             ),
             CustomRadioTile(
               id: "top_landing_belt_annual_42",
-              title: 'Facing the “UP” Travel, is Rope on the:',
+              title: 'Facing the "UP" Travel, is Rope on the:',
               values: const ['Left', 'Right'],
               onChangeValue: (value) {
                 // beltModel.facing =
@@ -359,7 +359,7 @@ class _TopLandingState extends State<TopLanding> {
             ),
             CustomRadioTile(
               id: "top_landing_belt_annual_55",
-              title: 'Facing “Up” Travel Side, are the Ladder Rungs on:',
+              title: 'Facing "UP" Travel Side, are the Ladder Rungs on:',
               values: const ['Left', 'Right'],
               onChangeValue: (value) {},
             ),
@@ -400,7 +400,7 @@ class _TopLandingState extends State<TopLanding> {
             ),
             CustomRadioTile(
               id: "top_landing_belt_annual_61",
-              title: 'Hood Clearance: (Minimum 7’6”)',
+              title: 'Hood Clearance: (Minimum 7\'6")',
               values: const ['OK', 'Non-Compliant'],
               onChangeValue: (value) {
                 widget.beltModel.topLandingHoodClearance =
@@ -427,7 +427,7 @@ class _TopLandingState extends State<TopLanding> {
             CustomRadioTile(
               id: "top_landing_belt_annual_66",
               title: 'Location of Hinges:',
-              values: const ['6”', 'More than 6” with Obstruction', 'Other'],
+              values: const ['6"', 'More than 6" with Obstruction', 'Other'],
               onChangeValue: (value) {},
             ),
             CustomRadioTile(
@@ -482,7 +482,7 @@ class _TopLandingState extends State<TopLanding> {
             ),
             CustomRadioTile(
               id: "top_landing_belt_annual_74",
-              title: 'Need Add’l:',
+              title: 'Need Add\'l:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
                 widget.beltModel.topLandingNeedAddlRopeGuides =
@@ -515,7 +515,7 @@ class _TopLandingState extends State<TopLanding> {
             CustomRadioTile(
               id: "top_landing_belt_annual_79",
               title: 'Lateral Bracing:',
-              values: const ['OK', 'Needs Add’l'],
+              values: const ['OK', 'Needs Add\'l'],
               onChangeValue: (value) {
                 widget.beltModel.topLandingLateralBracing =
                     jsonData['top_landing_lateralbracing'][value];

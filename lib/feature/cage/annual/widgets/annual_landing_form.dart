@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:manlift_app/data/models/original_model.dart';
 import 'package:manlift_app/feature/cage/annual/model/annnual_landing.dart';
 
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/custom_title.dart';
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
 class AnnualLandingForm extends StatefulWidget {
@@ -32,7 +33,7 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
         children: [
           const FormHeaderTitle(title: "LANDING"),
           CustomRadioTile(
-            id: 'landing${widget.index}_cage_annual_1',
+            id: 'landing_${widget.index}_cage_annual_1',
             title: 'Hoistway Controls',
             values: const ["OK", "Inoperable", "None"],
             type: widget.model.hoistwayControls,
@@ -41,26 +42,26 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             },
           ),
           CustomTextField(
-            id: 'landing${widget.index}_cage_annual_2',
+            id: 'landing_${widget.index}_cage_annual_2',
             title: "Hoistway Door",
             controller: widget.model.hoistwayDoor,
           ),
           CustomRadioTile(
-            id: 'landing${widget.index}_cage_annual_3',
+            id: 'landing_${widget.index}_cage_annual_3',
             title: 'Hoistway Door Unlocking Device:',
-            values: const ["Yes", "No"],
+            values: const ["Yes", "No", "N/A"],
             type: widget.model.hoistwayDoorUnlockingDevice,
             onChangeValue: (value) {
               widget.model.hoistwayDoorUnlockingDevice = value;
             },
           ),
           CustomTextField(
-            id: 'landing${widget.index}_cage_annual_4',
+            id: 'landing_${widget.index}_cage_annual_4',
             title: "Hoistway Door Interlock Type:",
             controller: widget.model.hoistwayDoorInterlockType,
           ),
           CustomRadioTile(
-            id: 'landing${widget.index}_cage_annual_5',
+            id: 'landing_${widget.index}_cage_annual_5',
             title: 'Location:',
             type: widget.model.hoistwayDoorInterlockLocation,
             values: const ["Left", "Right ", "Top", "Middle"],
@@ -72,7 +73,7 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             },
           ),
           CustomRadioTile(
-            id: 'landing${widget.index}_cage_annual_6',
+            id: 'landing_${widget.index}_cage_annual_6',
             title: 'Hoistway Door Interlock Condition:',
             values: const ["OK", "Replace ", "Other"],
             type: widget.model.hoistwayDoorInterlockCondition,
@@ -84,21 +85,37 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             },
           ),
           CustomTextField(
-            id: 'landing${widget.index}_cage_annual_7',
+            id: 'landing_${widget.index}_cage_annual_7',
             title: "Hoistway Door Electric Contact Type:",
             controller: widget.model.electricContactType,
           ),
-          CustomRadioTile(
-            id: 'landing${widget.index}_cage_annual_8',
-            title: 'Door Electric Contact Location:',
-            values: const ["Left", "Right ", "Top", "Middle"],
-            type: widget.model.hoistwayDoorElectricContactLocation,
-            onChangeValue: (value) {
-              widget.model.hoistwayDoorElectricContactLocation = value;
+          // CustomRadioTile(
+          //   id: 'landing_${widget.index}_cage_annual_8',
+          //   title: 'Door Electric Contact Location:',
+          //   values: const ["Left", "Right ", "Top", "Middle"],
+          //   type: widget.model.hoistwayDoorElectricContactLocation,
+          //   onChangeValue: (value) {
+          //     widget.model.hoistwayDoorElectricContactLocation = value;
+          //   },
+          // ),
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'landing_${widget.index}_cage_annual_8',
+              title: 'Door Electric Contact Location:',
+              values: const ["Left", "Right ", "Top", "Middle"],
+            ),
+            onSelectionChanged: (val) {
+              //  String res = "";
+              List<String> ref = [];
+              for (var e in val) {
+                ref.add(e);
+                // res += jsonData['pit_switch'][e] + "\n";
+              }
+              widget.model.hoistwayDoorElectricContactLocation = ref.join('\n');
             },
           ),
           CustomRadioTile(
-            id: 'landing${widget.index}_cage_annual_9',
+            id: 'landing_${widget.index}_cage_annual_9',
             title: 'Hoistway Door Electric Contact Condition:',
             values: const ["OK", "Replace", "Other"],
             type: widget.model.hoistwayDoorElectricContactCondition,
@@ -107,7 +124,7 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             },
           ),
           CustomRadioTile(
-            id: 'landing${widget.index}_cage_annual_10',
+            id: 'landing_${widget.index}_cage_annual_10',
             title: 'Hoistway Door Hinge:',
             values: const ["Left", "Right"],
             type: widget.model.hoistwayDoorHinge,
@@ -116,7 +133,7 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             },
           ),
           CustomRadioTile(
-            id: 'landing${widget.index}_cage_annual_11',
+            id: 'landing_${widget.index}_cage_annual_11',
             title: 'Hoistway Door Self Closer:',
             values: const ["Yes", "No", "Inoperable", "N/A"],
             type: widget.model.hoistwayDoorSelfCloser,
@@ -125,7 +142,7 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             },
           ),
           CustomRadioTile(
-            id: 'landing${widget.index}_cage_annual_12',
+            id: 'landing_${widget.index}_cage_annual_12',
             title: 'Hoistway Door Signs:',
             values: const ["Yes", "No"],
             type: widget.model.hoistwayDoorSigns,
@@ -138,35 +155,49 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             children: [
               Expanded(
                   child: CustomTextField(
-                id: 'landing${widget.index}_cage_annual_13',
+                id: 'landing_${widget.index}_cage_annual_13',
                 title: "Height",
                 controller: widget.model.enclosureHeight,
               )),
               Expanded(
                   child: CustomTextField(
-                id: 'landing${widget.index}_cage_annual_14',
+                id: 'landing_${widget.index}_cage_annual_14',
                 title: "Width",
                 controller: widget.model.enclosureWidth,
               )),
               Expanded(
                   child: CustomTextField(
-                id: 'landing${widget.index}_cage_annual_15',
+                id: 'landing_${widget.index}_cage_annual_15',
                 title: "Depth",
                 controller: widget.model.enclosureWidth,
               )),
             ],
           ),
-          CustomRadioTile(
-            id: 'landing${widget.index}_cage_annual_16',
-            title: 'Enclosure Material:',
-            values: const ["Expanded Metal", "Solid Panels", "Concrete"],
-            type: widget.model.enclosureMaterial,
-            onChangeValue: (value) {
-              widget.model.enclosureMaterial = value;
+          // CustomRadioTile(
+          //   id: 'landing_${widget.index}_cage_annual_16',
+          //   title: 'Enclosure Material:',
+          //   values: const ["Expanded Metal", "Solid Panels", "Concrete"],
+          //   type: widget.model.enclosureMaterial,
+          //   onChangeValue: (value) {
+          //     widget.model.enclosureMaterial = value;
+          //   },
+          // ),
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'landing_${widget.index}_cage_annual_16',
+              title: 'Enclosure Material:',
+              values: const ["Expanded Metal", "Solid Panels", "Concrete"],
+            ),
+            onSelectionChanged: (val) {
+              List<String> ref = [];
+              for (var e in val) {
+                ref.add(e);
+              }
+              widget.model.enclosureMaterial = ref.join('\n');
             },
           ),
           CustomRadioTile(
-            id: 'landing${widget.index}_cage_annual_17',
+            id: 'landing_${widget.index}_cage_annual_17',
             title: 'Enclosure Panels:',
             values: const ["2", "3", "4", "Other"],
             type: widget.model.enclosurePanels,
@@ -178,7 +209,7 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             fieldValue: 'other',
           ),
           CustomRadioTile(
-            id: 'landing${widget.index}_cage_annual_18',
+            id: 'landing_${widget.index}_cage_annual_18',
             title: 'Landing Zone Switch:',
             values: const ["Yes", "No", "N/A"],
             type: widget.model.landingZoneSwitch,
@@ -188,7 +219,7 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
           ),
           if (widget.model.landingZoneSwitch == "yes")
             CustomRadioTile(
-              id: 'landing${widget.index}_cage_annual_19',
+              id: 'landing_${widget.index}_cage_annual_19',
               title: 'Condition',
               values: const ["Ok", "Inoperable"],
               type: widget.model.landingZoneSwitchCondition,
@@ -197,7 +228,7 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
               },
             ),
           CustomTextField(
-            id: 'landing${widget.index}_cage_annual_20',
+            id: 'landing_${widget.index}_cage_annual_20',
             title: "Landing Comments",
             controller: widget.model.landingComments,
           ),

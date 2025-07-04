@@ -16,6 +16,7 @@ import 'package:manlift_app/feature/cage/quarterly/drive_support_form.dart';
 import 'package:manlift_app/feature/cage/quarterly/pit_form.dart';
 import 'package:manlift_app/feature/common/widgets/header_form.dart';
 import 'package:manlift_app/feature/common/widgets/image_picking_last.dart';
+import 'package:manlift_app/feature/common/widgets/reference_text.dart';
 import 'package:manlift_app/feature/common/widgets/signature_pad.dart';
 import 'package:manlift_app/feature/final/final_page.dart';
 import 'package:manlift_app/provider/selection_ref_provider.dart';
@@ -149,6 +150,24 @@ class _CageQuaterlyPageState extends State<CageQuaterlyPage> {
     pw.Image? image1 =
         signature != null ? pw.Image(pw.MemoryImage(signature!)) : null;
     var selectionsRef = context.read<SelectionRefProvider>().selectionsRef;
+    selectionsRef.sort((a, b) {
+      var id1 = int.tryParse(a['id']!.split('_').last) ?? 0;
+      var id2 = int.tryParse(b['id']!.split('_').last) ?? 0;
+      return id1.compareTo(id2);
+    });
+
+    var pitList =
+        selectionsRef.where((a) => a['id']!.split('_').first == "pit").toList();
+    var landing = selectionsRef
+        .where((a) => a['id']!.split('_').first == "landing")
+        .toList();
+    var cabList =
+        selectionsRef.where((a) => a['id']!.split('_').first == "cab").toList();
+    var carCounterweight =
+        selectionsRef.where((a) => a['id']!.split('_').first == "car").toList();
+    var driveList = selectionsRef
+        .where((a) => a['id']!.split('_').first == "drive")
+        .toList();
 
     pdf.addPage(
       pw.MultiPage(
@@ -164,24 +183,11 @@ class _CageQuaterlyPageState extends State<CageQuaterlyPage> {
             ...List.generate(
                 headerList.length, (index) => pw.Text(headerList[index])),
             pw.SizedBox(height: 10),
-            ...List.generate(
-                selectionsRef.length,
-                (index) => pw.Padding(
-                      padding: const pw.EdgeInsets.only(bottom: 10),
-                      child: pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.start,
-                        children: [
-                          pw.Text(
-                            selectionsRef[index]['title'].toString(),
-                            style: pw.TextStyle(
-                              fontSize: 16,
-                              fontWeight: pw.FontWeight.bold,
-                            ),
-                          ),
-                          pw.Text(selectionsRef[index]['value'].toString()),
-                        ],
-                      ),
-                    )),
+            referenceText(pitList, 'Pit'),
+            referenceText(landing, 'Landing'),
+            referenceText(cabList, 'Cab Form'),
+            referenceText(carCounterweight, 'Car Counter Weight'),
+            referenceText(driveList, 'Drive Support'),
             pw.Container(
               alignment: pw.Alignment.centerRight,
               height: 100,
@@ -215,16 +221,6 @@ class _CageQuaterlyPageState extends State<CageQuaterlyPage> {
     return CageQuarterlyJson(
       data: data,
       child: Scaffold(
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: () {
-        //     log(context
-        //         .read<SelectionRefProvider>()
-        //         .selectionsRef
-        //         .length
-        //         .toString());
-        //   },
-        //   child: const Icon(Icons.ads_click),
-        // ),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Text("Cage ${widget.title} form"),

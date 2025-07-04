@@ -88,11 +88,12 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                 widget.cageModel.pitSwitch = jsonData['pit_switch'][value];
               },
             ),
-            if (cageInspection.pitSwitch == "yes")
+            if (cageInspection.pitSwitch == "yes" ||
+                cageInspection.pitSwitch == "inoperable")
               CustomRadioTile(
                 id: 'pit_10',
                 title: "Switch Location",
-                values: const ["YES", "NO", "Inoperable"],
+                values: const ["OK", "Relocate"],
                 isTextField: true,
                 fieldLabelTitle: 'Reason',
                 onChangeValue: (value) {
@@ -239,11 +240,11 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               },
             ),
             const CustomTitle(title: "Under Car Size, measurement from:"),
-            Row(
+            const Row(
               children: [
                 Expanded(
                     child: CustomTextField(id: 'pit_24', title: "Front/Back")),
-                const Text(
+                Text(
                   " X  ",
                   style: TextStyle(fontSize: 16),
                 ),
@@ -255,8 +256,8 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               id: 'pit_26',
               title: "Travel Cable Connection and Condition:",
               values: const ["Ok", "Replace"],
-              isTextField: true,
               fieldLabelTitle: 'Reason',
+              fieldValue: 'replace',
               onChangeValue: (value) {
                 widget.cageModel.travelCableConnectionAndCondition =
                     jsonData['travel_cable_connection_and_condition'][value];
@@ -443,29 +444,69 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               isTextField: true,
               fieldLabelTitle: "Other",
             ),
-            CustomRadioTile(
-              id: 'pit_44',
-              title: "Counterweight Guide Rail Brackets",
-              values: const ["Wooden", "Steel", "Bolted", "Welded"],
-              onChangeValue: (value) {
-                widget.cageModel.counterweightGuideRailBrackets =
-                    jsonData['counterweight_guide_rail_brackets'][value];
+            // CustomRadioTile(
+            //   id: 'pit_44',
+            //   title: "Counterweight Guide Rail Brackets",
+            //   values: const ["Wooden", "Steel", "Bolted", "Welded"],
+            //   onChangeValue: (value) {
+            //     widget.cageModel.counterweightGuideRailBrackets =
+            //         jsonData['counterweight_guide_rail_brackets'][value];
+            //   },
+            // ),
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'pit_44',
+                title: "Counterweight Guide Rail Brackets",
+                values: const ["Wooden", "Steel", "Bolted", "Welded"],
+              ),
+              onSelectionChanged: (val) {
+                String res = "";
+                List<String> ref = [];
+                for (var e in val) {
+                  ref.add(e);
+                  res +=
+                      jsonData['counterweight_guide_rail_brackets'][e] + "\n";
+                }
+                widget.cageModel.counterweightGuideRailBrackets = res;
               },
             ),
             CustomTextField(id: 'pit_45', title: 'CW Dimension'),
-            CustomRadioTile(
-              id: 'pit_46',
-              title: "CW Material",
-              values: const [
-                "Cast",
-                "Steel",
-                "Solid",
-                "Plates",
-                "Bolted",
-                "Welded"
-              ],
-              onChangeValue: (value) {
-                widget.cageModel.cwMaterial = jsonData['cw_material'][value];
+            // CustomRadioTile(
+            //   id: 'pit_46',
+            //   title: "CW Material",
+            //   values: const [
+            //     "Cast",
+            //     "Steel",
+            //     "Solid",
+            //     "Plates",
+            //     "Bolted",
+            //     "Welded"
+            //   ],
+            //   onChangeValue: (value) {
+            //     widget.cageModel.cwMaterial = jsonData['cw_material'][value];
+            //   },
+            // ),
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'pit_46',
+                title: "CW Material",
+                values: const [
+                  "Cast",
+                  "Steel",
+                  "Solid",
+                  "Plates",
+                  "Bolted",
+                  "Welded"
+                ],
+              ),
+              onSelectionChanged: (val) {
+                String res = "";
+                List<String> ref = [];
+                for (var e in val) {
+                  ref.add(e);
+                  res += jsonData['cw_material'][e] + "\n";
+                }
+                widget.cageModel.cwMaterial = res;
               },
             ),
             CustomRadioTile(

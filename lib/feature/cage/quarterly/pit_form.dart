@@ -11,7 +11,7 @@ import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
 class PitInspectionForm extends StatefulWidget {
-  PitInspectionForm(
+  const PitInspectionForm(
       {super.key, required this.pageController, required this.cageModel});
 
   final PageController pageController;
@@ -216,15 +216,29 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
                     jsonData['safety_location'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'pit_14',
-              title: "Safety Condition",
-              values: const ["OK", "Frozen", "Replace"],
-              isTextField: true,
-              fieldLabelTitle: 'If not, Why:',
-              onChangeValue: (value) {
-                widget.cageModel.safetyCondition =
-                    jsonData['safety_condition'][value];
+            // CustomRadioTile(
+            //   id: 'pit_14',
+            //   title: "Safety Condition",
+            //   values: const ["OK", "Frozen", "Replace"],
+            //   isTextField: true,
+            //   fieldLabelTitle: 'If not, Why:',
+            //   onChangeValue: (value) {
+            //     widget.cageModel.safetyCondition =
+            //         jsonData['safety_condition'][value];
+            //   },
+            // ),
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'pit_14',
+                title: "Safety Condition",
+                values: const ["OK", "Frozen", "Replace"],
+              ),
+              onSelectionChanged: (val) {
+                String res = "";
+                for (var e in val) {
+                  res += jsonData['safety_condition'][e] + "\n";
+                }
+                widget.cageModel.safetyCondition = res;
               },
             ),
             // CustomRadioTile(

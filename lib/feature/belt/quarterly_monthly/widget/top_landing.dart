@@ -28,7 +28,7 @@ class TopLanding extends StatelessWidget {
             const FormHeaderTitle(title: "TOP LANDING#"),
             CustomRadioTile(
               id: 'top_landing_1',
-              title: '“Authorized Personnel Only” Sign: (2” letters)',
+              title: '"Authorized Personnel Only" Sign: (2" letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
                 beltModel.topLandingAuthorizedPersonnelSign =
@@ -37,7 +37,7 @@ class TopLanding extends StatelessWidget {
             ),
             CustomRadioTile(
               id: 'top_landing_2',
-              title: 'Instruction Sign: (1” letters)',
+              title: 'Instruction Sign: (1" letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
                 beltModel.topLandingInstructionSign =
@@ -46,7 +46,7 @@ class TopLanding extends StatelessWidget {
             ),
             CustomRadioTile(
               id: 'top_landing_3',
-              title: '“TOP FLOOR – GET OFF” Sign: (2” letters)',
+              title: '"TOP FLOOR - GET OFF" Sign: (2" letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
                 //  beltModel. =
@@ -122,7 +122,7 @@ class TopLanding extends StatelessWidget {
             ),
             CustomRadioTile(
               id: 'top_landing_12',
-              title: 'Add’l Toeboard Required:',
+              title: 'Add\'l Toeboard Required:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
                 beltModel.topLandingAddlToeboard =
@@ -254,7 +254,7 @@ class TopLanding extends StatelessWidget {
             CustomRadioTile(
               id: 'top_landing_28',
               title: 'Lateral Bracing:',
-              values: const ['OK', 'Needs Add’l,'],
+              values: const ['OK', 'Needs Add\'l,'],
               onChangeValue: (value) {
                 beltModel.topLandingLateralBracing =
                     jsonData['top_landing_lateralbracing'][value];

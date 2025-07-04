@@ -109,6 +109,8 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
                       currentVal = value;
                       widget.onChangeValue(value);
                     });
+
+                    print(currentVal);
                   },
                 ),
                 // CupertinoRadio(value: value, groupValue: groupValue, onChanged: onChanged)
@@ -127,7 +129,7 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
             child: TextField(
               maxLines: null,
               onChanged: (value) {
-                String id = "${widget.id} dropdownline";
+                String id = "dropdownline_${widget.id}";
                 context.read<SelectionRefProvider>().updateSelection(
                     id, widget.fieldLabelTitle ?? widget.fieldValue, value);
                 if (widget.onFieldChange != null) widget.onFieldChange!(value);

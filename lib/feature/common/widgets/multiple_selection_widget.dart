@@ -99,3 +99,23 @@ class _MultipleSelectionWidgetState extends State<MultipleSelectionWidget> {
     );
   }
 }
+
+// Example
+// MultipleSelectionWidget(
+//               original: OriginalModel(
+//                 id: 'pit_2',
+//                 title: "Pit Switch",
+//                 values: const ["YES", "NO", "Inoperable"],
+//               ),
+//               onSelectionChanged: (val) {
+//                 String res = "";
+//                 List<String> ref = [];
+//                 for (var e in val) {
+//                   ref.add(e);
+//                   res += jsonData['pit_switch'][e] + "\n";
+//                 }
+//                 pitref.pitSwitch = ref.toSet();
+//                 widget.cageModel.pitSwitch = res;
+//                 setState(() {});
+//               },
+//             ),
