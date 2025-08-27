@@ -71,7 +71,7 @@ class _TopLandingState extends State<TopLanding> {
             ),
             CustomRadioTile(
               id: "top_landing_belt_annual_5",
-              title: 'Within 24” of Ceiling:',
+              title: 'Within 24" of Ceiling:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
                 // beltModel.w =
@@ -118,21 +118,21 @@ class _TopLandingState extends State<TopLanding> {
               onChangeValue: (value) {},
             ),
             CustomTextField(
-                id: "top_landing_belt_annual_11", title: 'Diameter “Upside”:'),
+                id: "top_landing_belt_annual_11", title: 'Diameter "Upside":'),
             CustomTextField(
                 id: "top_landing_belt_annual_12",
-                title: 'Diameter “Downside”:'),
+                title: 'Diameter "Downside":'),
             CustomTextField(
                 id: "top_landing_belt_annual_13",
                 title:
-                    'Distance from Face of Belt to Back Edge of Floor Opening “Upside”:'),
+                    'Distance from Face of Belt to Back Edge of Floor Opening "Upside":'),
             CustomTextField(
                 id: "top_landing_belt_annual_14",
                 title:
-                    'Distance from Face of Belt to Back Edge of Floor Opening “Downside”:'),
+                    'Distance from Face of Belt to Back Edge of Floor Opening "Downside":'),
             CustomRadioTile(
               id: "top_landing_belt_annual_15",
-              title: 'Distance from Floor Opening to Guard Rail “Upside”:',
+              title: 'Distance from Floor Opening to Guard Rail "Upside":',
               values: const ['Compliant', 'Non-Compliant'],
               onChangeValue: (value) {},
             ),
@@ -150,7 +150,7 @@ class _TopLandingState extends State<TopLanding> {
                 title: 'Right'),
             CustomRadioTile(
               id: "top_landing_belt_annual_19",
-              title: 'Distance From Floor Opening to Guard Rail “Downside”:',
+              title: 'Distance From Floor Opening to Guard Rail "Downside":',
               values: ['Compliant', 'Non-Compliant'],
               onChangeValue: (value) {},
             ),
@@ -159,7 +159,7 @@ class _TopLandingState extends State<TopLanding> {
             DistanceTextField(id: "top_landing_belt_annual_22", title: 'Right'),
             CustomTextField(
                 id: "top_landing_belt_annual_23",
-                title: 'Guard Rail Height “Upside”:'),
+                title: 'Guard Rail Height "Upside":'),
             CustomTextField(
                 id: "top_landing_belt_annual_24",
                 title: 'Guard Rail Height "Downside":'),
@@ -349,12 +349,12 @@ class _TopLandingState extends State<TopLanding> {
               values: const ['OK', 'Replace Damaged'],
               onChangeValue: (value) {},
             ),
-            CustomTextField(
+            const CustomTextField(
                 id: "top_landing_belt_annual_53", title: 'How Many:'),
             CustomRadioTile(
               id: "top_landing_belt_annual_54",
               title: 'Distance Between:',
-              values: const ['12”', 'Other'],
+              values: const ['12"', 'Other'],
               onChangeValue: (value) {},
             ),
             CustomRadioTile(

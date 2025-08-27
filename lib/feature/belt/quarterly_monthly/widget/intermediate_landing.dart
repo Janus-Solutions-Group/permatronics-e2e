@@ -64,7 +64,8 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                     jsonData['intermediate_landing_maze'][value];
               },
             ),
-            if (intermediateLanding!.intermediateLandingMaze == "yes") ...[
+            if (intermediateLanding != null &&
+                intermediateLanding!.intermediateLandingMaze == "yes") ...[
               CustomTextField(
                 id: 'intermediate_landing_quartmonth_${widget.index}_4',
                 title: 'Description',

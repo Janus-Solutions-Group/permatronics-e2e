@@ -246,7 +246,7 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
   Widget build(BuildContext context) {
     return BeltJson(
       data: data,
-      runFunction: fetchJsonData,
+      // runFunction: fetchJsonData,
       child: Scaffold(
         appBar: AppBar(
           title: Text("Belt ${widget.title} form"),
@@ -343,11 +343,11 @@ class BeltJson extends InheritedWidget {
     super.key,
     required super.child,
     required this.data,
-    required this.runFunction,
+    // required this.runFunction,
   });
 
   final Map<String, dynamic> data;
-  final Function() runFunction;
+  // final Function() runFunction;
 
   static BeltJson? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<BeltJson>();

@@ -194,7 +194,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
             CustomRadioTile(
               id: "drive_assembly_annual_17",
               title: 'Size:',
-              values: const ['20”', '21”'],
+              values: const ['20"', '21"'],
               onChangeValue: (value) {
                 widget.beltModel.driveAssemblyPulleySize =
                     jsonData['drive_assembly_pulleysize'][value];

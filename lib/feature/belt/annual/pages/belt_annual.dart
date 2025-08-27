@@ -259,7 +259,6 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
   Widget build(BuildContext context) {
     return BeltAnnualJson(
       data: data,
-      runFunction: fetchJsonData,
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
@@ -362,14 +361,9 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
 }
 
 class BeltAnnualJson extends InheritedWidget {
-  const BeltAnnualJson(
-      {super.key,
-      required this.data,
-      required this.runFunction,
-      required super.child});
+  const BeltAnnualJson({super.key, required this.data, required super.child});
 
   final Map<String, dynamic> data;
-  final Function() runFunction;
 
   static BeltAnnualJson? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<BeltAnnualJson>();

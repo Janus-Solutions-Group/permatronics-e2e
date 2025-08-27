@@ -36,15 +36,27 @@ class _AddAnnualLandingFormPageState extends State<AddAnnualLandingFormPage>
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () {
                   // moveTo(context, CageLandingForm());
-                  Scaffold.of(context).showBottomSheet(
-                    (context) => AnnualLandingForm(
-                      index: index,
-                      model: landingModels[index],
-                      onSubmit: (val) {
-                        landingModels[index] = val;
-                      },
-                    ),
-                  );
+                  showModalBottomSheet(
+                      isScrollControlled: true,
+                      useSafeArea: true,
+                      context: context,
+                      builder: (context) => AnnualLandingForm(
+                            index: index,
+                            model: landingModels[index],
+                            onSubmit: (val) {
+                              landingModels[index] = val;
+                            },
+                          ));
+
+                  // Scaffold.of(context).showBottomSheet(
+                  //   (context) => AnnualLandingForm(
+                  //     index: index,
+                  //     model: landingModels[index],
+                  //     onSubmit: (val) {
+                  //       landingModels[index] = val;
+                  //     },
+                  //   ),
+                  // );
                 },
                 child: Card(
                   child: Padding(

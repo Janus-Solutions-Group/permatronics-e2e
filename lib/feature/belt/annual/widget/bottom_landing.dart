@@ -37,7 +37,7 @@ class _BottomLandingState extends State<BottomLanding> {
             const FormHeaderTitle(title: "BOTTOM LANDING = LANDING#1"),
             CustomRadioTile(
               id: "bottom_landing_annual_1",
-              title: '"Authorized Personnel Only" Sign: (2" letters)',
+              title: 'Authorized Personnel Only" Sign: (2" letters)',
               values: const ["Yes", "No", "Non-Compliant"],
               onChangeValue: (value) {
                 widget.beltModel.bottomLandingAuthorizedPersonnelOnlySign =
@@ -171,7 +171,7 @@ class _BottomLandingState extends State<BottomLanding> {
               ),
             CustomRadioTile(
               id: "bottom_landing_annual_12",
-              title: 'Does Manlift Use “UP” Side Platform:',
+              title: 'Does Manlift Use "UP" Side Platform:',
               values: const ['Yes', 'No', 'Non Compliant'],
               onChangeValue: (value) {
                 widget.beltModel.bottomLandingDoesManliftUseUpSidePlatform =
@@ -195,7 +195,7 @@ class _BottomLandingState extends State<BottomLanding> {
             ),
             CustomRadioTile(
               id: "bottom_landing_annual_18",
-              title: 'Distance From Floor Opening to Guard Rail “Upside”:',
+              title: 'Distance From Floor Opening to Guard Rail "Upside":',
               values: const ['Compliant', 'Non-Compliant'],
               onChangeValue: (value) {
                 widget.beltModel
@@ -219,7 +219,7 @@ class _BottomLandingState extends State<BottomLanding> {
             ),
             CustomRadioTile(
               id: "bottom_landing_annual_22",
-              title: 'Does Manlift Use “DOWN” Side Platform:',
+              title: 'Does Manlift Use "DOWN" Side Platform:',
               values: const ['Yes', 'No', 'Non Compliant'],
               onChangeValue: (value) {
                 widget.beltModel
@@ -245,7 +245,7 @@ class _BottomLandingState extends State<BottomLanding> {
             CustomRadioTile(
               id: "bottom_landing_annual_28",
               title:
-                  'Is There a Wall in Front of Dismount Platform Within 48” From Face of Belt:',
+                  'Is There a Wall in Front of Dismount Platform Within 48" From Face of Belt:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
                 widget.beltModel
@@ -257,7 +257,7 @@ class _BottomLandingState extends State<BottomLanding> {
             ),
             CustomRadioTile(
               id: "bottom_landing_annual_28",
-              title: 'Distance From Floor Opening to Guard Rail “Downside”:',
+              title: 'Distance From Floor Opening to Guard Rail "Downside":',
               values: const ['Compliant', 'Non-Compliant'],
               onChangeValue: (value) {
                 widget.beltModel
@@ -295,7 +295,7 @@ class _BottomLandingState extends State<BottomLanding> {
               CustomRadioTile(
                 id: "bottom_landing_annual_33",
                 title: 'Distance Between Rungs',
-                values: const ['12”', 'Other'],
+                values: const ['12"', 'Other'],
                 onChangeValue: (value) {
                   widget.beltModel.bottomLandingDistanceBetweenRungs =
                       jsonData["bottom_landing_distance_between_rungs"][value];
@@ -407,7 +407,7 @@ class _BottomLandingState extends State<BottomLanding> {
             if (beltVariable.bottomLandingToeboard == "yes")
               CustomRadioTile(
                 id: "bottom_landing_annual_43",
-                title: 'Add’l Toeboard Required:',
+                title: 'Add\'l Toeboard Required:',
                 values: const ["Yes", "No"],
                 onChangeValue: (value) {
                   widget.beltModel.bottomLandingAddToeboard =
@@ -449,18 +449,18 @@ class _BottomLandingState extends State<BottomLanding> {
             ), // CustomTextField for Upside
             CustomTextField(
               id: "bottom_landing_annual_49",
-              title: '“Downside”:',
+              title: '"Downside":',
               onChanged: (val) {},
             ), // CustomTextField for Downside
             const CustomTitle(title: 'Guard Rail Height:'),
             CustomTextField(
               id: "bottom_landing_annual_51",
-              title: '“Upside”:',
+              title: '"Upside":',
               onChanged: (val) {},
             ), // Guard Rail Height - Upside
             CustomTextField(
               id: "bottom_landing_annual_52",
-              title: '“Downside”:',
+              title: '"Downside":',
               onChanged: (val) {},
             ), // Guard Rail Height - Downside
             CustomRadioTile(

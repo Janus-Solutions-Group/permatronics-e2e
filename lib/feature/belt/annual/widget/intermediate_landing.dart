@@ -40,7 +40,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
             const FormHeaderTitle(title: "INTERMEDIATE LANDING#"),
             CustomRadioTile(
               id: 'landing${widget.index}_belt_annual_1',
-              title: '“Authorized Personnel Only” Sign: (2” letters)',
+              title: '"Authorized Personnel Only" Sign: (2" letters)',
               values: const ['Yes', 'No', 'Non-Compliant'],
               onChangeValue: (value) {
                 widget.model.intermediateLandingAuthorizedPersonnelSign =
@@ -50,7 +50,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
             ),
             CustomRadioTile(
               id: 'landing${widget.index}_belt_annual_2',
-              title: 'Instruction Sign: (1” letters)',
+              title: 'Instruction Sign: (1" letters)',
               values: const ['Yes', 'No', 'Non-Compliant'],
               onChangeValue: (value) {
                 widget.model.intermediateLandingInstructionSign =
@@ -79,21 +79,21 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
             ),
             CustomTextField(
                 id: 'landing${widget.index}_belt_annual_5',
-                title: 'Diameter “Upside”'),
+                title: 'Diameter "Upside"'),
             CustomTextField(
                 id: 'landing${widget.index}_belt_annual_6',
-                title: 'Diameter “Downside”'),
+                title: 'Diameter "Downside"'),
             const CustomTitle(
                 title:
                     'Distance from Face of Belt to Back Edge of Floor Opening:'),
             CustomTextField(
-                id: 'landing${widget.index}_belt_annual_7', title: '“Upside”:'),
+                id: 'landing${widget.index}_belt_annual_7', title: '"Upside":'),
             CustomTextField(
                 id: 'landing${widget.index}_belt_annual_8',
-                title: '“Downside”:'),
+                title: '"Downside":'),
             CustomRadioTile(
               id: 'landing${widget.index}_belt_annual_9',
-              title: 'Distance from Floor Opening to Guard Rail “Upside”:',
+              title: 'Distance from Floor Opening to Guard Rail "Upside":',
               values: const ['Compliant', 'Non-Compliant'],
               onChangeValue: (value) {
                 // beltModel
@@ -106,7 +106,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
             DistanceTextField(title: 'Right'),
             CustomRadioTile(
               id: 'landing${widget.index}_belt_annual_10',
-              title: 'Distance from Floor Opening to Guard Rail “Downside”:',
+              title: 'Distance from Floor Opening to Guard Rail "Downside":',
               values: const ['Compliant', 'Non-Compliant'],
               onChangeValue: (value) {
                 // beltModel.distanceFromOpeningDownside = value;
@@ -121,10 +121,10 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
             const CustomTitle(title: 'Guard Rail Height:'),
             CustomTextField(
                 id: 'landing${widget.index}_belt_annual_11',
-                title: '“Upside”:'),
+                title: '"Upside":'),
             CustomTextField(
                 id: 'landing${widget.index}_belt_annual_12',
-                title: '“Downside”:'),
+                title: '"Downside":'),
             CustomRadioTile(
               id: 'landing${widget.index}_belt_annual_13',
               title: 'Guard Rail Material Used:',
@@ -240,7 +240,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
             ),
             CustomRadioTile(
               id: 'landing${widget.index}_belt_annual_26',
-              title: 'Hood Clearance: : (Minimum 7’6”)',
+              title: 'Hood Clearance: : (Minimum 7’6")',
               values: const ['OK', 'Non-Compliant'],
               onChangeValue: (value) {
                 widget.model.intermediateLandingHoodClearance =
@@ -272,7 +272,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
             CustomRadioTile(
               id: 'landing${widget.index}_belt_annual_31',
               title: 'Location of Hinges:',
-              values: const ['6”', 'More than 6” with Obstruction', 'Other'],
+              values: const ['6"', 'More than 6" with Obstruction', 'Other'],
               onChangeValue: (value) {
                 // beltModel.hinge = value;
               },
@@ -340,7 +340,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
             CustomRadioTile(
               id: 'landing${widget.index}_belt_annual_39',
               title: 'Distance Between Rungs:',
-              values: const ['12”', 'Other'],
+              values: const ['12"', 'Other'],
               onChangeValue: (value) {
                 // beltModel.distanceb = value;
               },
@@ -349,7 +349,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
             ),
             CustomRadioTile(
               id: 'landing${widget.index}_belt_annual_40',
-              title: 'Facing “Up” Travel Side, Are the Ladder Rungs On:',
+              title: 'Facing "Up" Travel Side, Are the Ladder Rungs On:',
               values: const ['Left', 'Right'],
               onChangeValue: (value) {},
             ),

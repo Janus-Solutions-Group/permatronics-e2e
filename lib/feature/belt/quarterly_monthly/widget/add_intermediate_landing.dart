@@ -37,16 +37,28 @@ class _AddQuarterlyIntermediateLandingFormPageState
               separatorBuilder: (context, index) => const SizedBox(height: 10),
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () {
-                  Scaffold.of(context).showBottomSheet(
-                    (context) => IntermediateLanding(
-                      index: index,
-                      model: landingModels[index],
-                      // selectedValues: landingSelectedValues[index],
-                      // onSubmit: (val) {
-                      //   landingModels[index] = val;
-                      // },
-                    ),
-                  );
+                  showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      useSafeArea: true,
+                      builder: (context) => IntermediateLanding(
+                            index: index,
+                            model: landingModels[index],
+                            // selectedValues: landingSelectedValues[index],
+                            // onSubmit: (val) {
+                            //   landingModels[index] = val;
+                            // },
+                          ));
+                  // Scaffold.of(context).showBottomSheet(
+                  //   (context) => IntermediateLanding(
+                  //     index: index,
+                  //     model: landingModels[index],
+                  //     // selectedValues: landingSelectedValues[index],
+                  //     // onSubmit: (val) {
+                  //     //   landingModels[index] = val;
+                  //     // },
+                  //   ),
+                  // );
                 },
                 child: Card(
                   child: Padding(
