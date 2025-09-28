@@ -19,10 +19,10 @@ class IntermediateLanding extends StatefulWidget {
 
 class _IntermediateLandingState extends State<IntermediateLanding> {
   IntermediateLandingModel? intermediateLanding;
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
     var jsonData = BeltJson.of(context)!.data;
 
     return SingleChildScrollView(
