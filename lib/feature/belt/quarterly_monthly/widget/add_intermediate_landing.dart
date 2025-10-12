@@ -3,6 +3,8 @@ import 'package:manlift_app/feature/belt/model/intermediate_landing.dart';
 import 'package:manlift_app/feature/belt/quarterly_monthly/widget/intermediate_landing.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 
+import '../pages/belt_quaterly.dart';
+
 class AddQuarterlyIntermediateLandingFormPage extends StatefulWidget {
   const AddQuarterlyIntermediateLandingFormPage(
       {super.key, required this.pageController});
@@ -21,6 +23,8 @@ class _AddQuarterlyIntermediateLandingFormPageState
 
   @override
   Widget build(BuildContext context) {
+    var jsonData = BeltJson.of(context)!.data;
+
     super.build(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -44,6 +48,7 @@ class _AddQuarterlyIntermediateLandingFormPageState
                       builder: (context) => IntermediateLanding(
                             index: index,
                             model: landingModels[index],
+                            jsonData: jsonData,
                             // selectedValues: landingSelectedValues[index],
                             // onSubmit: (val) {
                             //   landingModels[index] = val;

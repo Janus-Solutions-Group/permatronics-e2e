@@ -15,10 +15,11 @@ class IntermediateLanding extends StatefulWidget {
       {super.key,
       required this.model,
       // required this.selectedValues,
-      required this.index});
+      required this.index, required this.jsonData});
   final int index;
   final IntermediateLandingModel model;
   // final IntermediateLandingModel selectedValues;
+  final Map<String, dynamic> jsonData;
 
   @override
   State<IntermediateLanding> createState() => _IntermediateLandingState();
@@ -28,7 +29,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    var jsonData = BeltAnnualJson.of(context)!.data;
+    var jsonData = widget.jsonData;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),

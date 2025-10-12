@@ -8,10 +8,11 @@ import '../pages/belt_quaterly.dart';
 
 class IntermediateLanding extends StatefulWidget {
   const IntermediateLanding(
-      {super.key, required this.index, required this.model});
+      {super.key, required this.index, required this.model, required this.jsonData});
 
   final int index;
   final IntermediateLandingModel model;
+  final Map<String, dynamic> jsonData;
 
   @override
   State<IntermediateLanding> createState() => _IntermediateLandingState();
@@ -23,7 +24,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
 
   @override
   Widget build(BuildContext context) {
-    var jsonData = BeltJson.of(context)!.data;
+    var jsonData = widget.jsonData;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
