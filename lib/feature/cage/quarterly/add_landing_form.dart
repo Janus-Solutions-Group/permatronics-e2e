@@ -36,14 +36,26 @@ class _AddLandingFormPageState extends State<AddLandingFormPage>
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () {
                   // moveTo(context, CageLandingForm());
-                  Scaffold.of(context).showBottomSheet(
-                    (context) => CageLandingForm(
-                      model: landingModels[index],
-                      onSubmit: (val) {
-                        landingModels[index] = val;
-                      },
-                    ),
-                  );
+                  showModalBottomSheet(
+                      context: context,
+                      useSafeArea: true,
+                      isScrollControlled: true,
+                      builder: (context) => CageLandingForm(
+                            index: index,
+                            model: landingModels[index],
+                            onSubmit: (val) {
+                              landingModels[index] = val;
+                            },
+                          ),);
+                  // Scaffold.of(context).showBottomSheet(
+                  //   (context) => CageLandingForm(
+                  //     index: index,
+                  //     model: landingModels[index],
+                  //     onSubmit: (val) {
+                  //       landingModels[index] = val;
+                  //     },
+                  //   ),
+                  // );
                   // controller.setState;
                   // showBottomSheet(
                   //   context: context,
@@ -71,7 +83,7 @@ class _AddLandingFormPageState extends State<AddLandingFormPage>
                         ),
                         IconButton(
                           onPressed: () {
-                            landingFormList.removeAt(index);
+                            landingModels.removeAt(index);
                             setState(() {});
                           },
                           icon: const Icon(Icons.cancel),

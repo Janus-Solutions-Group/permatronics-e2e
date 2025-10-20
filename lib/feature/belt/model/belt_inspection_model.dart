@@ -14,9 +14,7 @@ class BeltInspection {
   String? tailSectionFootAssemblyFootShaftDiameter;
   String? tailSectionFootAssemblyFootShaftLength;
   String? tailSectionFootAssemblyFootShaftCondition;
-  String? tailSectionFootAssemblyDoesFootShaftHaveKey;
-  String? tailSectionFootAssemblyDoesFootShaftHaveBushing;
-  String? tailSectionFootAssemblyDoesFootShaftHaveSetScrews;
+  String? tailSectionFootAssemblyDoesFootShaftHave;
   String? tailSectionFootAssemblyDistanceFromFloorToCenterlineOfFootShaft;
   String? tailSectionFootAssemblyFootPulleyCondition;
   String? tailSectionFootAssemblyTypeOfBeltAdjustment;
@@ -30,6 +28,7 @@ class BeltInspection {
   String? tailSectionFootAssemblyComments;
 
   // Bottom Landing Safeties Variables
+  String? bottomLandingSafeties;
   String? bottomLandingSafetiesType1;
   String? bottomLandingSafetiesType1Condition;
   String? bottomLandingSafetiesType2;
@@ -51,6 +50,8 @@ class BeltInspection {
   String? bottomLandingRedWarningLight;
   String? bottomLandingLightLocation;
   String? bottomLandingIsManliftInABelowGradePit;
+  String? bottomLandingGradePitWidth;
+  String? bottomLandingGradePitDepth;
   String? bottomLandingManliftClean;
   String? bottomLandingDoesManliftUseUpSidePlatform;
   String? bottomLandingDescribeOpening;
@@ -68,8 +69,10 @@ class BeltInspection {
   String? bottomLandingAreGatesSelfClosing;
   String? bottomLandingOpenOutward;
   String? bottomLandingAreGatesMissing;
+  String? bottomLandingGatesMissingCount;
   String? bottomLandingToeboard;
   String? bottomLandingAddToeboard;
+  String? bottomLandingToeboardLength;
   String? bottomLandingToeboardHeight;
   String? bottomLandingDistanceFromFaceOfBeltToBackEdgeOfFloorOpening;
   String? bottomLandingBottomLandingNotesComments;
@@ -231,6 +234,7 @@ class BeltInspection {
   String? driveAssemblyCouplerCondition;
   String? driveAssemblyGearboxType;
   String? driveAssemblyGearboxCondition;
+  String? driveAssemblyGearboxId;
   String? driveAssemblyMotorType;
   String? driveAssemblyMotorId;
   String? driveAssemblyHp;
@@ -248,9 +252,14 @@ class BeltInspection {
   String? driveAssemblyTopLandingSafetiesType1;
   String? driveAssemblyTopLandingSafetiesType1Condition;
   String? driveAssemblyTopLandingSafetiesType2;
+  String? driveAssemblyTopLandingSafetiesType2Location;
   String? driveAssemblyTopLandingSafetiesType2Condition;
   String? driveAssemblyTopLandingSafetiesType3Condition;
+  String? driveAssemblyTopLandingSafetiesType3Location;
   String? driveAssemblyTopLandingSafetiesType3;
+  String? driveAssemblyTopLandingSafetiesType4Condition;
+  String? driveAssemblyTopLandingSafetiesType4Location;
+  String? driveAssemblyTopLandingSafetiesType4;
   String? driveAssemblyTopLandingSafetiesTopReset;
   String? driveAssemblyTopLandingSafetiesTopResetLocation;
   String? driveAssemblyTopLandingSafetiesTopResetCompliant;
@@ -289,9 +298,7 @@ class BeltInspection {
     this.tailSectionFootAssemblyFootShaftDiameter,
     this.tailSectionFootAssemblyFootShaftLength,
     this.tailSectionFootAssemblyFootShaftCondition,
-    this.tailSectionFootAssemblyDoesFootShaftHaveKey,
-    this.tailSectionFootAssemblyDoesFootShaftHaveBushing,
-    this.tailSectionFootAssemblyDoesFootShaftHaveSetScrews,
+    this.tailSectionFootAssemblyDoesFootShaftHave,
     this.tailSectionFootAssemblyDistanceFromFloorToCenterlineOfFootShaft,
     this.tailSectionFootAssemblyFootPulleyCondition,
     this.tailSectionFootAssemblyTypeOfBeltAdjustment,
@@ -324,6 +331,8 @@ class BeltInspection {
     this.bottomLandingRedWarningLight,
     this.bottomLandingLightLocation,
     this.bottomLandingIsManliftInABelowGradePit,
+    this.bottomLandingGradePitWidth,
+    this.bottomLandingGradePitDepth,
     this.bottomLandingManliftClean,
     this.bottomLandingDoesManliftUseUpSidePlatform,
     this.bottomLandingDescribeOpening,
@@ -339,8 +348,10 @@ class BeltInspection {
     this.bottomLandingAreGatesSelfClosing,
     this.bottomLandingOpenOutward,
     this.bottomLandingAreGatesMissing,
+    this.bottomLandingGatesMissingCount,
     this.bottomLandingToeboard,
     this.bottomLandingAddToeboard,
+    this.bottomLandingToeboardLength,
     this.bottomLandingToeboardHeight,
     this.bottomLandingDistanceFromFaceOfBeltToBackEdgeOfFloorOpening,
     this.bottomLandingBottomLandingNotesComments,
@@ -491,6 +502,7 @@ class BeltInspection {
     this.driveAssemblyCouplerCondition,
     this.driveAssemblyGearboxType,
     this.driveAssemblyGearboxCondition,
+    this.driveAssemblyGearboxId,
     this.driveAssemblyMotorType,
     this.driveAssemblyMotorId,
     this.driveAssemblyHp,
@@ -509,8 +521,13 @@ class BeltInspection {
     this.driveAssemblyTopLandingSafetiesType1Condition,
     this.driveAssemblyTopLandingSafetiesType2,
     this.driveAssemblyTopLandingSafetiesType2Condition,
+    this.driveAssemblyTopLandingSafetiesType2Location,
     this.driveAssemblyTopLandingSafetiesType3,
+    this.driveAssemblyTopLandingSafetiesType3Location,
     this.driveAssemblyTopLandingSafetiesType3Condition,
+    this.driveAssemblyTopLandingSafetiesType4,
+    this.driveAssemblyTopLandingSafetiesType4Location,
+    this.driveAssemblyTopLandingSafetiesType4Condition,
     this.driveAssemblyTopLandingSafetiesTopReset,
     this.driveAssemblyTopLandingSafetiesTopResetLocation,
     this.driveAssemblyTopLandingSafetiesTopResetCompliant,
@@ -558,12 +575,8 @@ class BeltInspection {
           tailSectionFootAssemblyFootShaftLength,
       'tailSectionFootAssemblyFootShaftCondition':
           tailSectionFootAssemblyFootShaftCondition,
-      'tailSectionFootAssemblyDoesFootShaftHaveKey':
-          tailSectionFootAssemblyDoesFootShaftHaveKey,
-      'tailSectionFootAssemblyDoesFootShaftHaveBushing':
-          tailSectionFootAssemblyDoesFootShaftHaveBushing,
-      'tailSectionFootAssemblyDoesFootShaftHaveSetScrews':
-          tailSectionFootAssemblyDoesFootShaftHaveSetScrews,
+      'tailSectionFootAssemblyDoesFootShaftHave':
+          tailSectionFootAssemblyDoesFootShaftHave,
       'tailSectionFootAssemblyDistanceFromFloorToCenterlineOfFootShaft':
           tailSectionFootAssemblyDistanceFromFloorToCenterlineOfFootShaft,
       'tailSectionFootAssemblyFootPulleyCondition':
@@ -616,6 +629,8 @@ class BeltInspection {
       'bottomLandingLightLocation': bottomLandingLightLocation,
       'bottomLandingIsManliftInABelowGradePit':
           bottomLandingIsManliftInABelowGradePit,
+      'bottomLandingGradePitWidth': bottomLandingGradePitWidth,
+      'bottomLandingGradePitDepth': bottomLandingGradePitDepth,
       'bottomLandingManliftClean': bottomLandingManliftClean,
       'bottomLandingDoesManliftUseUpSidePlatform':
           bottomLandingDoesManliftUseUpSidePlatform,
@@ -636,8 +651,10 @@ class BeltInspection {
       'bottomLandingAreGatesSelfClosing': bottomLandingAreGatesSelfClosing,
       'bottomLandingOpenOutward': bottomLandingOpenOutward,
       'bottomLandingAreGatesMissing': bottomLandingAreGatesMissing,
+      'bottomLandingGatesMissingCount': bottomLandingGatesMissingCount,
       'bottomLandingToeboard': bottomLandingToeboard,
       'bottomLandingAddToeboard': bottomLandingAddToeboard,
+      'bottomLandingToeboardLength': bottomLandingToeboardLength,
       'bottomLandingToeboardHeight': bottomLandingToeboardHeight,
       'bottomLandingDistanceFromFaceOfBeltToBackEdgeOfFloorOpening':
           bottomLandingDistanceFromFaceOfBeltToBackEdgeOfFloorOpening,
@@ -821,6 +838,7 @@ class BeltInspection {
       'driveAssemblyCouplerCondition': driveAssemblyCouplerCondition,
       'driveAssemblyGearboxType': driveAssemblyGearboxType,
       'driveAssemblyGearboxCondition': driveAssemblyGearboxCondition,
+      'driveAssemblyGearboxId': driveAssemblyGearboxId,
       'driveAssemblyMotorType': driveAssemblyMotorType,
       'driveAssemblyMotorId': driveAssemblyMotorId,
       'driveAssemblyHp': driveAssemblyHp,
@@ -842,12 +860,22 @@ class BeltInspection {
           driveAssemblyTopLandingSafetiesType1Condition,
       'driveAssemblyTopLandingSafetiesType2':
           driveAssemblyTopLandingSafetiesType2,
+      'driveAssemblyTopLandingSafetiesType2Location':
+          driveAssemblyTopLandingSafetiesType2Location,
       'driveAssemblyTopLandingSafetiesType2Condition':
           driveAssemblyTopLandingSafetiesType2Condition,
       'driveAssemblyTopLandingSafetiesType3Condition':
           driveAssemblyTopLandingSafetiesType3Condition,
+      'driveAssemblyTopLandingSafetiesType3Location':
+          driveAssemblyTopLandingSafetiesType3Location,
       'driveAssemblyTopLandingSafetiesType3':
           driveAssemblyTopLandingSafetiesType3,
+      'driveAssemblyTopLandingSafetiesType4Condition':
+          driveAssemblyTopLandingSafetiesType4Condition,
+      'driveAssemblyTopLandingSafetiesType4Location':
+          driveAssemblyTopLandingSafetiesType4Location,
+      'driveAssemblyTopLandingSafetiesType4':
+          driveAssemblyTopLandingSafetiesType4,
       'driveAssemblyTopLandingSafetiesTopReset':
           driveAssemblyTopLandingSafetiesTopReset,
       'driveAssemblyTopLandingSafetiesTopResetLocation':
@@ -905,12 +933,8 @@ class BeltInspection {
           map['tailSectionFootAssemblyFootShaftLength'],
       tailSectionFootAssemblyFootShaftCondition:
           map['tailSectionFootAssemblyFootShaftCondition'],
-      tailSectionFootAssemblyDoesFootShaftHaveKey:
-          map['tailSectionFootAssemblyDoesFootShaftHaveKey'],
-      tailSectionFootAssemblyDoesFootShaftHaveBushing:
-          map['tailSectionFootAssemblyDoesFootShaftHaveBushing'],
-      tailSectionFootAssemblyDoesFootShaftHaveSetScrews:
-          map['tailSectionFootAssemblyDoesFootShaftHaveSetScrews'],
+      tailSectionFootAssemblyDoesFootShaftHave:
+          map['tailSectionFootAssemblyDoesFootShaftHave'],
       tailSectionFootAssemblyDistanceFromFloorToCenterlineOfFootShaft: map[
           'tailSectionFootAssemblyDistanceFromFloorToCenterlineOfFootShaft'],
       tailSectionFootAssemblyFootPulleyCondition:
@@ -967,6 +991,8 @@ class BeltInspection {
       bottomLandingLightLocation: map['bottomLandingLightLocation'],
       bottomLandingIsManliftInABelowGradePit:
           map['bottomLandingIsManliftInABelowGradePit'],
+      bottomLandingGradePitWidth: map['bottomLandingGradePitWidth'],
+      bottomLandingGradePitDepth: map['bottomLandingGradePitDepth'],
       bottomLandingManliftClean: map['bottomLandingManliftClean'],
       bottomLandingDoesManliftUseUpSidePlatform:
           map['bottomLandingDoesManliftUseUpSidePlatform'],
@@ -989,8 +1015,10 @@ class BeltInspection {
       bottomLandingAreGatesSelfClosing: map['bottomLandingAreGatesSelfClosing'],
       bottomLandingOpenOutward: map['bottomLandingOpenOutward'],
       bottomLandingAreGatesMissing: map['bottomLandingAreGatesMissing'],
+      bottomLandingGatesMissingCount: map['bottomLandingGatesMissingCount'],
       bottomLandingToeboard: map['bottomLandingToeboard'],
       bottomLandingAddToeboard: map['bottomLandingAddToeboard'],
+      bottomLandingToeboardLength: map['bottomLandingToeboardLength'],
       bottomLandingToeboardHeight: map['bottomLandingToeboardHeight'],
       bottomLandingDistanceFromFaceOfBeltToBackEdgeOfFloorOpening:
           map['bottomLandingDistanceFromFaceOfBeltToBackEdgeOfFloorOpening'],
@@ -1183,6 +1211,7 @@ class BeltInspection {
       driveAssemblyCouplerCondition: map['driveAssemblyCouplerCondition'],
       driveAssemblyGearboxType: map['driveAssemblyGearboxType'],
       driveAssemblyGearboxCondition: map['driveAssemblyGearboxCondition'],
+      driveAssemblyGearboxId: map['driveAssemblyGearboxId'],
       driveAssemblyMotorType: map['driveAssemblyMotorType'],
       driveAssemblyMotorId: map['driveAssemblyMotorId'],
       driveAssemblyHp: map['driveAssemblyHp'],
@@ -1204,12 +1233,22 @@ class BeltInspection {
           map['driveAssemblyTopLandingSafetiesType1Condition'],
       driveAssemblyTopLandingSafetiesType2:
           map['driveAssemblyTopLandingSafetiesType2'],
+      driveAssemblyTopLandingSafetiesType2Location:
+          map['driveAssemblyTopLandingSafetiesType2Location'],
       driveAssemblyTopLandingSafetiesType2Condition:
           map['driveAssemblyTopLandingSafetiesType2Condition'],
       driveAssemblyTopLandingSafetiesType3Condition:
           map['driveAssemblyTopLandingSafetiesType3Condition'],
+      driveAssemblyTopLandingSafetiesType3Location:
+          map['driveAssemblyTopLandingSafetiesType3Location'],
       driveAssemblyTopLandingSafetiesType3:
           map['driveAssemblyTopLandingSafetiesType3'],
+      driveAssemblyTopLandingSafetiesType4Condition:
+          map['driveAssemblyTopLandingSafetiesType4Condition'],
+      driveAssemblyTopLandingSafetiesType4Location:
+          map['driveAssemblyTopLandingSafetiesType4Location'],
+      driveAssemblyTopLandingSafetiesType4:
+          map['driveAssemblyTopLandingSafetiesType4'],
       driveAssemblyTopLandingSafetiesTopReset:
           map['driveAssemblyTopLandingSafetiesTopReset'],
       driveAssemblyTopLandingSafetiesTopResetLocation:

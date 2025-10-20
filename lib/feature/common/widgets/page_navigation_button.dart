@@ -16,12 +16,12 @@ class PageNavigationButton extends StatelessWidget {
           if (right) {
             pageController.nextPage(
               duration: const Duration(milliseconds: 400),
-              curve: Curves.linear,
+              curve: Curves.easeInOut,
             );
           } else {
             pageController.previousPage(
               duration: const Duration(milliseconds: 400),
-              curve: Curves.linear,
+              curve: Curves.easeInOut,
             );
           }
         },

@@ -108,7 +108,7 @@
     "inoperable": "The switch on the car safeties must be repaired or replaced."
   },
   "car_guide_rails_type": {
-    "t_rail": "",
+    "t-rail": "",
     "angle": "",
     "wood": ""
   },
@@ -151,11 +151,11 @@
     "rear": ""
   },
   "counterweight_guide_rail_type": {
-    "t_rail": "",
-    "angle": "",
-    "box": "",
-    "enclosed": "",
-    "c_channel": ""
+    "t-rail": "a",
+    "angle": "b",
+    "box": "c",
+    "enclosed": "d",
+    "c-channel": "e"
   },
   "counterweight_guide_rail_size": {
     "default": ""
@@ -193,7 +193,7 @@
   },
   "cw_condition": {
     "ok": "",
-    "worn": "The counter weight guide inserts are showing wear and will require further monitoring.",
+    "worn_but_ok": "The counter weight guide inserts are showing wear and will require further monitoring.",
     "replace": "The counterweight guide inserts are worn or damaged and must be replaced. Or The car guide inserts are not code compliant and must be replaced."
   },
   "hoistway_ladder": {
@@ -210,7 +210,8 @@
   },
   "hoistway_door_unlocking_device": {
     "yes": "",
-    "no": "There are no hoistway door unlocking devices on the bottom and top landing, it is required that one be provided at both landings."
+    "no": "There are no hoistway door unlocking devices on the bottom and top landing, it is required that one be provided at both landings.",
+    "n/a":""
   },
   "hoistway_door_interlock_type": {
     "default": "",
@@ -274,7 +275,7 @@
   "landing_zone_switch": {
     "yes": "",
     "no": "The landing zone switch on landing {i} was not found at the time of inspection. It is required that one be installed.",
-    "n_a": ""
+    "n/a": ""
   },
   "landing_zone_switch_condition": {
     "ok": "",
@@ -291,7 +292,8 @@
     },
     "location": {
       "left": "",
-      "right": ""
+      "right": "",
+      "middle":""
     },
     "condition": {
       "ok": "",
@@ -409,11 +411,13 @@
     },
     "hoist_cable_number": {
       "2": "",
-      "3": ""
+      "3": "",
+      "4": ""
     },
     "size": {
       "3_8": "",
-      "1_2": ""
+      "1_2": "",
+      "5_8": ""
     },
     "condition": {
       "ok": "",
@@ -422,7 +426,8 @@
     },
     "governor_cable_size": {
       "3_8": "",
-      "1_2": ""
+      "1_2": "",
+      "5_8": ""
     },
     "governor_cable_condition": {
       "ok": "",
@@ -604,8 +609,8 @@
   },
   "electrical_control_panel": {
     "nema": {
-      "4_dust_tight": "",
-      "9_explosive_dust": ""
+      "4-dust_tight": "",
+      "9-explosive_dust": ""
     },
     "voltage": {
       "208": "",

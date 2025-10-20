@@ -4,9 +4,14 @@ import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
 class CageLandingForm extends StatefulWidget {
-  const CageLandingForm(
-      {super.key, required this.model, required this.onSubmit});
+  const CageLandingForm({
+    super.key,
+    required this.model,
+    required this.onSubmit,
+    required this.index,
+  });
 
+  final int index;
   final CageQuarterlyLanding model;
   final ValueChanged<CageQuarterlyLanding> onSubmit;
 
@@ -26,6 +31,7 @@ class _CageLandingFormState extends State<CageLandingForm>
         children: [
           const FormHeaderTitle(title: "LANDING"),
           CustomRadioTile(
+              id: 'landing_${widget.index}_cage_monthly_1',
               title: 'Hoistway Controls',
               values: const ["OK", "Inoperable", "None"],
               type: widget.model.hoistwayControls,
@@ -33,32 +39,39 @@ class _CageLandingFormState extends State<CageLandingForm>
                 widget.model.hoistwayControls = value;
               }),
           CustomRadioTile(
+            id: 'landing_${widget.index}_cage_monthly_2',
             title: 'Hoistway Door Unlocking Device:',
-            values: const ["Yes", "No"],
+            values: const ["Yes", "No", "N/A"],
             type: widget.model.hoistwayDoorUnlockingDevice,
             onChangeValue: (value) {
               widget.model.hoistwayDoorUnlockingDevice = value;
             },
           ),
           CustomRadioTile(
+            id: 'landing_${widget.index}_cage_monthly_3',
             title: 'Hoistway Door Interlock Condition:',
             values: const ["OK", "Replace ", "Other"],
             isTextField: true,
-            fieldTitle: 'Other',
+            fieldValue: "other",
+            fieldLabelTitle: 'Other',
             type: widget.model.hoistwayDoorInterlockDevice,
             onChangeValue: (value) {
               widget.model.hoistwayDoorInterlockDevice = value;
             },
           ),
           CustomRadioTile(
+            id: 'landing_${widget.index}_cage_monthly_4',
             title: 'Hoistway Door Electric Contact Condition:',
             values: const ["OK", "Replace", "Other"],
             type: widget.model.hoistwayDoorElectricContactCondition,
             onChangeValue: (value) {
               widget.model.hoistwayDoorElectricContactCondition = value;
             },
+            fieldValue: "other",
+            fieldLabelTitle: "Other",
           ),
           CustomRadioTile(
+            id: 'landing_${widget.index}_cage_monthly_5',
             title: 'Hoistway Door Self Closer:',
             values: const ["Yes", "No", "Inoperable", "N/A"],
             type: widget.model.hoistwayDoorSelfCloser,
@@ -67,6 +80,7 @@ class _CageLandingFormState extends State<CageLandingForm>
             },
           ),
           CustomRadioTile(
+            id: 'landing_${widget.index}_cage_monthly_6',
             title: 'Landing Zone Switch:',
             values: const ["Yes", "No", "N/A"],
             type: widget.model.landingZoneSwitch,
@@ -76,6 +90,7 @@ class _CageLandingFormState extends State<CageLandingForm>
           ),
           CustomRadioTile(
             title: 'Condition',
+            id: 'landing_${widget.index}_cage_monthly_7',
             values: const ["Ok", "Inoperable"],
             type: widget.model.landingZoneSwitchCondition,
             onChangeValue: (value) {

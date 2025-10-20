@@ -15,7 +15,6 @@ class AddAnnualLandingFormPage extends StatefulWidget {
 
 class _AddAnnualLandingFormPageState extends State<AddAnnualLandingFormPage>
     with AutomaticKeepAliveClientMixin {
-  List<AnnualLandingForm> landingFormList = [];
   List<CageAnnualLanding> landingModels = [];
 
   @override
@@ -37,14 +36,27 @@ class _AddAnnualLandingFormPageState extends State<AddAnnualLandingFormPage>
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () {
                   // moveTo(context, CageLandingForm());
-                  Scaffold.of(context).showBottomSheet(
-                    (context) => AnnualLandingForm(
-                      model: landingModels[index],
-                      onSubmit: (val) {
-                        landingModels[index] = val;
-                      },
-                    ),
-                  );
+                  showModalBottomSheet(
+                      isScrollControlled: true,
+                      useSafeArea: true,
+                      context: context,
+                      builder: (context) => AnnualLandingForm(
+                            index: index,
+                            model: landingModels[index],
+                            onSubmit: (val) {
+                              landingModels[index] = val;
+                            },
+                          ));
+
+                  // Scaffold.of(context).showBottomSheet(
+                  //   (context) => AnnualLandingForm(
+                  //     index: index,
+                  //     model: landingModels[index],
+                  //     onSubmit: (val) {
+                  //       landingModels[index] = val;
+                  //     },
+                  //   ),
+                  // );
                 },
                 child: Card(
                   child: Padding(
@@ -61,7 +73,7 @@ class _AddAnnualLandingFormPageState extends State<AddAnnualLandingFormPage>
                         ),
                         IconButton(
                           onPressed: () {
-                            landingFormList.removeAt(index);
+                            landingModels.removeAt(index);
                             setState(() {});
                           },
                           icon: const Icon(Icons.cancel),
@@ -83,7 +95,6 @@ class _AddAnnualLandingFormPageState extends State<AddAnnualLandingFormPage>
               ElevatedButton(
                 onPressed: () {
                   landingModels.add(CageAnnualLanding());
-
                   setState(() {});
                 },
                 child: const Icon(Icons.add),

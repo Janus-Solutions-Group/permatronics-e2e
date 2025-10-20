@@ -4,14 +4,27 @@ import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
-class Belting extends StatelessWidget {
-  const Belting({super.key, required this.pageController});
+import '../../model/belt_inspection_model.dart';
+import '../pages/belt_annual.dart';
+
+class Belting extends StatefulWidget {
+  const Belting(
+      {super.key, required this.pageController, required this.beltModel});
 
   final PageController pageController;
+  final BeltInspection beltModel;
 
   @override
+  State<Belting> createState() => _BeltingState();
+}
+
+class _BeltingState extends State<Belting> {
+  var beltVariable = BeltInspection();
+  final formKey = GlobalKey<FormState>();
+  @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
+    var jsonData = BeltAnnualJson.of(context)!.data;
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Form(
@@ -19,84 +32,163 @@ class Belting extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FormHeaderTitle(title: "BELTING"),
+            const FormHeaderTitle(title: "BELTING"),
             CustomRadioTile(
+              id: "belting_annual_1",
               title: 'Belting Type',
               values: const ['PVC', 'Cotton', 'Rubber'],
-              onChangeValue: (value) {},
+              onChangeValue: (value) {
+                widget.beltModel.beltingBeltingType =
+                    jsonData['belting_belting_type'][value];
+              },
             ),
             CustomRadioTile(
+              id: "belting_annual_2",
               title: 'Belting Condition',
               values: const ['OK', 'Cuts', 'Frayed Edges', 'Replace Damaged'],
-              onChangeValue: (value) {},
+              onChangeValue: (value) {
+                widget.beltModel.beltingBeltingCondition =
+                    jsonData['belting_belting_condition'][value];
+              },
             ),
             CustomRadioTile(
+              id: "belting_annual_3",
               title: 'Width',
               values: const ['12”', '14”', '16”'],
-              onChangeValue: (value) {},
+              onChangeValue: (value) {
+                widget.beltModel.beltingWidth =
+                    jsonData['belting_width'][value];
+              },
             ),
             CustomRadioTile(
+              id: "belting_annual_4",
               title: 'Color',
-              values: const ['Black', 'Yellow', '16”'],
-              onChangeValue: (value) {},
+              values: const ['Black', 'Yellow', 'Other'],
+              onChangeValue: (value) {
+                widget.beltModel.beltingColor =
+                    jsonData['belting_color'][value];
+              },
+              fieldValue: "other",
+              fieldLabelTitle: "Other",
+              onFieldChange: (value) {
+                widget.beltModel.beltingColor = value;
+              },
             ),
             CustomRadioTile(
+              id: "belting_annual_5",
               title: 'Splice Type',
               values: const ['Lap', 'Butt'],
-              onChangeValue: (value) {},
+              onChangeValue: (value) {
+                widget.beltModel.beltingSpliceType =
+                    jsonData['belting_splice_type'][value];
+              },
             ),
-            CustomTextField(title: 'Splice Length:'),
-            CustomTextField(title: 'Number of Bolts:'),
+            CustomTextField(
+              id: "belting_annual_6",
+              title: 'Splice Length:',
+              onChanged: (value) {
+                widget.beltModel.beltingSpliceLength = value;
+              },
+            ),
+            CustomTextField(
+              id: "belting_annual_7",
+              title: 'Number of Bolts:',
+              onChanged: (value) {
+                widget.beltModel.beltingNumberOfBolts = value;
+              },
+            ),
             CustomRadioTile(
+              id: "belting_annual_8",
               title: 'Missing Bolts',
               values: const ['Yes', 'No'],
-              onChangeValue: (value) {},
+              onChangeValue: (value) {
+                setState(() {
+                  beltVariable.stepsMissingBolts = value;
+                });
+                widget.beltModel.stepsMissingBolts =
+                    jsonData['belting_missing_bolts'][value];
+              },
             ),
-            CustomTextField(title: 'How Many:'),
+            if (beltVariable.stepsMissingBolts == "yes")
+              CustomTextField(
+                id: "belting_annual_9",
+                title: 'How Many:',
+                onChanged: (value) {
+                  widget.beltModel.beltingMissingBoltsNumber = value;
+                },
+              ),
             CustomRadioTile(
+              id: "belting_annual_10",
               title: 'Splice Bolt Condition:',
               values: const [
                 'OK',
-                'worn, but OK',
+                'Worn, but OK',
                 'Replace Damaged',
                 'Replace Worn'
               ],
-              onChangeValue: (value) {},
+              onChangeValue: (value) {
+                widget.beltModel.beltingSpliceBoltCondition =
+                    jsonData['belting_splice_bolt_condition'][value];
+              },
             ),
             CustomRadioTile(
+              id: "belting_annual_11",
               title: 'Instructions Stenciled on the Belt:',
-              values: const ['OK', 'Non- Compliant', 'Faded'],
-              onChangeValue: (value) {},
+              values: const ['OK', 'Non-Compliant', 'Faded'],
+              onChangeValue: (value) {
+                widget.beltModel.beltingInstructionsStenciledOnTheBelt =
+                    jsonData['belting_instructions_stenciled_on_the_belt']
+                        [value];
+              },
             ),
             CustomRadioTile(
+              id: "belting_annual_12",
               title: 'Directional Arrows Stenciled on the Belt:',
               values: const ['Yes', 'No', 'Faded'],
-              onChangeValue: (value) {},
+              onChangeValue: (value) {
+                widget.beltModel.beltingDirectionalArrowsStenciledOnTheBelt =
+                    jsonData['belting_directional_arrows_stenciled_on_the_belt']
+                        [value];
+              },
             ),
             CustomRadioTile(
+              id: "belting_annual_13",
               title: 'Compressive Flex Failure:',
               values: const ['No', 'Slight', 'Extreme'],
-              onChangeValue: (value) {},
+              onChangeValue: (value) {
+                widget.beltModel.beltingCompressiveFlexFailure =
+                    jsonData['belting_compressive_flex_failure'][value];
+              },
             ),
             CustomRadioTile(
+              id: "belting_annual_13",
               title: 'Tension of Belt:',
               values: const ['Good', 'Needs to be adjusted'],
-              onChangeValue: (value) {},
+              onChangeValue: (value) {
+                widget.beltModel.beltingTensionOfBelt =
+                    jsonData['belting_tension_of_belt'][value];
+              },
             ),
-            CustomTextField(title: 'Belt Condition Comments:'),
+            CustomTextField(
+              id: "belting_annual_14",
+              title: 'Belt Condition Comments:',
+              onChanged: (value) {
+                widget.beltModel.beltingBeltConditionComments = value;
+              },
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 PageNavigationButton(
-                  pageController: pageController,
+                  pageController: widget.pageController,
                   right: false,
                 ),
                 PageNavigationButton(
-                  pageController: pageController,
+                  pageController: widget.pageController,
                   right: true,
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

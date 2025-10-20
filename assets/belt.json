@@ -1,7 +1,7 @@
 {
   "tail_section_foot_assembly_leg_condition": {
     "ok": "",
-    "worn_but_ok": "The manlift legs are showing wear and will require further monitoring.",
+    "worn": "The manlift legs are showing wear and will require further monitoring.",
     "replace_damaged": "The manlift legs are damaged and must be replaced.",
     "replace_worn": "The manlift legs are worn and must be replaced."
   },
@@ -86,6 +86,7 @@
     "no": "No debris deflector was found to be present at the time of inspection. It is required that a debris deflector be installed."
   },
   "tail_section_foot_assembly_debris_deflector_condition": {
+    "ok":"",
     "replace_damaged": "The debris deflector is damaged and must be replaced.",
     "replace_worn": "The debris deflector is worn and must be replaced."
   },
@@ -106,7 +107,7 @@
   "bottom_landing_safeties_type_1": { "treadle": "", "photo_eye": "" },
   "bottom_landing_safeties_type_1_condition": {
     "ok": "",
-    "inoperative": "The bottom treadle safety switch is inoperable and must be replaced.",
+    "inoperable": "The bottom treadle safety switch is inoperable and must be replaced.",
     "replace_switch": "The bottom treadle safety switch is inoperable and must be replaced.",
     "replace_whole_assembly": "The bottom treadle safety assembly must be replaced."
   },
@@ -118,7 +119,7 @@
   "bottom_landing_safeties_type_2_location": "",
   "bottom_landing_safeties_type_2_condition": {
     "ok": "",
-    "inoperative": "The bottom photo eye/ in-rail safety is inoperable and must be repaired or replaced.",
+    "inoperable": "The bottom photo eye/ in-rail safety is inoperable and must be repaired or replaced.",
     "replace_switch": "The bottom photo eye/ in-track switch must be replaced.",
     "replace_whole_assembly": "The bottom photo eye/ in-track assembly must be replaced."
   },
@@ -130,7 +131,7 @@
   "bottom_landing_safeties_type_3_location": "",
   "bottom_landing_safeties_type_3_condition": {
     "ok": "",
-    "inoperative": "The bottom photo eye is inoperable and must be repaired or replaced.",
+    "inoperable": "The bottom photo eye is inoperable and must be repaired or replaced.",
     "replace_switch": "The bottom in-rail or photo eye switch must be replaced.",
     "replace_whole_assembly": "The bottom in-rail or photo eye assembly must be replaced."
   },
@@ -148,7 +149,7 @@
   },
   "bottom_landing_safeties_bottom_reset_condition": {
     "ok": "",
-    "inoperative": "The bottom reset was inoperable and must be repaired or replaced."
+    "inoperable": "The bottom reset was inoperable and must be repaired or replaced."
   },
   "bottom_landing_safeties_visual_audible_alerting_system": {
     "yes": "",
@@ -185,6 +186,7 @@
   },
   "bottom_landing_is_manlift_in_a_below_grade_pit": {
     "yes": "",
+    "no":"",
     "non_compliant": "The pit is not compliant."
   },
   "bottom_landing_manlift_clean": {
@@ -303,7 +305,7 @@
     "yes": "",
     "no": "The hood does not have a rolled edge and must be repaired or replaced."
   },
-  "bottom_landing_hood_if_moveable,_does_the_switch_work": {
+  "bottom_landing_hood_if_moveable_does_the_switch_work": {
     "yes": "",
     "no": "The switch on the bottom landing hood was inoperable at the time of inspection, it is required that it be repaired or replaced."
   },
@@ -348,13 +350,14 @@
     "faded": "The stenciled directional arrows on the belt are faded and must be re-stenciled."
   },
   "belting_compressive_flex_failure": {
-    "no": true,
+    "no": "true",
     "slight": "The belt has slight compressive flex failure and must be monitored.",
     "extreme": "The belt compressive flex failure is extreme and the belt must be replaced."
   },
   "belting_tension_of_belt": {
     "good": "",
-    "needs_to_be_adjusted": "The belt tension needs to be adjusted."
+    "needs_to_be_adjusted": "The belt tension needs to be adjusted.",
+    "adjusted_on_site":""
   },
   "belting_belt_condition_comments": "",
   "handholds_handhold_type": { "l55": "", "cup": "", "open": "" },
@@ -714,222 +717,221 @@
     "yes": "",
     "no": "Hardware attachments were not in place. It is required that hardware attachments be installed."
   },
-  "driveassembly_headcircletype": { "cast": "", "bands": "", "none": "" },
-  "driveassembly_circlecondition": {
+  "drive_assembly_headcircletype": { "cast": "", "bands": "", "none": "" },
+  "drive_assembly_circlecondition": {
     "ok": "",
-    "wornbutok": "The head circles are showing wear and will require further monitoring",
-    "replacedamaged": "The head circles are damaged and must be replaced",
-    "replaceworn": "The head circles are worn and must be replaced.",
+    "worn_but_ok": "The head circles are showing wear and will require further monitoring",
+    "replace_damaged": "The head circles are damaged and must be replaced",
+    "replace_worn": "The head circles are worn and must be replaced.",
     "no": ""
   },
-  "driveassembly_belttracking": {
+  "drive_assembly_belttracking": {
     "ok": "",
     "off": "The belt tracking is off",
-    "uparrow": "",
-    "downarrow": "",
-    "rightarrow": "",
-    "leftarrow": "",
+    "up": "",
+    "down": "",
+    "right": "",
+    "left": "",
     "measurement": ""
   },
-  "driveassembly_laggingcondition": {
+  "drive_assembly_laggingcondition": {
     "ok": "",
-    "wornbutok": "The lagging is showing wear and will require further monitoring.",
-    "replacedamaged": "The lagging is damaged and must be replaced",
-    "replaceworn": "The lagging is worn and must be replaced."
+    "worn_but_ok": "The lagging is showing wear and will require further monitoring.",
+    "replace_damaged": "The lagging is damaged and must be replaced",
+    "replace_worn": "The lagging is worn and must be replaced."
   },
-  "driveassembly_fasteningmethod": { "bolt": "", "drivescrews": "" },
-  "driveassembly_headshaftbearing": {
+  "drive_assembly_fasteningmethod": { "bolt": "", "drivescrews": "" },
+  "drive_assembly_headshaftbearing": {
     "number": 0,
-    "type": { "pillowblock": "", "highbox": "" },
+    "type": { "pillow_block": "", "high_box": "" },
     "size": ""
   },
-  "driveassembly_bearingcondition": {
+  "drive_assembly_bearingcondition": {
     "ok": "",
-    "wornbutok": "The head shaft bearings are showing wear and will require further monitoring",
+    "worn_but_ok": "The head shaft bearings are showing wear and will require further monitoring",
     "dry": "The head shaft is dry and needs to be lubricated.",
-    "replacedamaged": "Head Shaft Bearings are damaged and must be replaced.",
-    "replaceworn": "Head Shaft Bearings are worn and must be replaced."
+    "replace_damaged": "Head Shaft Bearings are damaged and must be replaced.",
+    "replace_worn": "Head Shaft Bearings are worn and must be replaced."
   },
-  "driveassembly_headshaftdiameter": "",
-  "driveassembly_headshaftlength": "",
-  "driveassembly_key": { "yes": "", "no": "" },
-  "driveassembly_bushings": { "yes": "", "no": "" },
-  "driveassembly_setscrews": { "yes": "", "no": "" },
-  "driveassembly_shaftcondition": {
+  "drive_assembly_headshaftdiameter": "",
+  "drive_assembly_headshaftlength": "",
+  "drive_assembly_key": { "yes": "", "no": "" },
+  "drive_assembly_bushings": { "yes": "", "no": "" },
+  "drive_assembly_setscrews": { "yes": "", "no": "" },
+  "drive_assembly_shaftcondition": {
     "ok": "",
-    "wornbutok": "The head shaft is showing wear and will require further monitoring.",
-    "replacedamaged": "The Head Shaft is damaged and must be replaced.",
-    "replaceworn": "The Head Shaft is worn and must be replaced."
+    "worn_but_ok": "The head shaft is showing wear and will require further monitoring.",
+    "replace_damaged": "The Head Shaft is damaged and must be replaced.",
+    "replace_worn": "The Head Shaft is worn and must be replaced."
   },
-  "driveassembly_headpulleytype": { "spoked": "", "solid": "" },
-  "driveassembly_pulleysize": { "20inch": "", "21inch": "" },
-  "driveassembly_pulleycondition": {
+  "drive_assembly_headpulleytype": { "spoked": "", "solid": "" },
+  "drive_assembly_pulleysize": { "20inch": "", "21inch": "" },
+  "drive_assembly_pulleycondition": {
     "ok": "",
-    "wornbutok": "The head pulley is showing wear and will require further monitoring.",
-    "replacedamaged": "Pulley is damaged and must be replaced.",
-    "replaceworn": "Pulley is worn and must be replaced."
+    "worn_but_ok": "The head pulley is showing wear and will require further monitoring.",
+    "replace_damaged": "Pulley is damaged and must be replaced.",
+    "replace_worn": "Pulley is worn and must be replaced."
   },
-  "driveassembly_isheadpulleycentered": {
+  "drive_assembly_isheadpulleycentered": {
     "yes": "",
     "no": "The Head Pulley was not centered at time of the inspection. It is required that the Head Pulley be centered."
   },
-  "driveassembly_isheadpulleylevel": {
+  "drive_assembly_isheadpulleylevel": {
     "yes": "",
     "no": "The head pulley was not level at the time of inspection. It is recommended that the head pulley be properly leveled."
   },
-  "driveassembly_couplertype": {
-    "oldstyle": "",
+  "drive_assembly_couplertype": {
+    "old_style": "",
     "flender": "",
-    "highspeed": "",
-    "davidbrown": "",
+    "high_speed": "",
+    "david_brown": "",
     "other": ""
   },
-  "driveassembly_couplercondition": {
+  "drive_assembly_couplercondition": {
     "ok": "",
     "worn": "The coupler is showing wear and will require further monitoring.",
-    "replaceinserts": "The coupler inserts are worn and must be replaced.",
-    "replacedamaged": "The coupler is damaged and must be replaced.",
-    "replaceworn": "The coupler is worn and must be replaced."
+    "replace_inserts": "The coupler inserts are worn and must be replaced.",
+    "replace_damaged": "The coupler is damaged and must be replaced.",
+    "replace_worn": "The coupler is worn and must be replaced."
   },
-  "driveassembly_gearboxtype": {
+  "drive_assembly_gearboxtype": {
     "reliance": "",
     "dodge": "",
     "falk": "",
     "ehrsam": "",
     "other": ""
   },
-  "driveassembly_gearboxcondition": {
+  "drive_assembly_gearboxcondition": {
     "ok": "",
     "worn": "The gearbox is showing wear and will require further monitoring.",
     "sealleaks": "The gearbox seals were observed to be leaking at the time of the inspection and must be repaired.",
-    "replacedamaged": "The gearbox is damaged and must be replaced.",
-    "replaceworn": "The gearbox is worn and must be repaired or replaced."
+    "replace_damaged": "The gearbox is damaged and must be replaced.",
+    "replace_worn": "The gearbox is worn and must be repaired or replaced."
   },
-  "driveassembly_motortype": {
+  "drive_assembly_motortype": {
     "reliance": "",
     "dodge": "",
     "usmotors": "",
     "ge": "",
     "other": ""
   },
-  "driveassembly_motorid": "",
-  "driveassembly_hp": "",
-  "driveassembly_voltage": { "208": "", "230/240": "", "460/480": "" },
-  "driveassembly_braketype": {
+  "drive_assembly_motorid": "",
+  "drive_assembly_hp": "",
+  "drive_assembly_voltage": { "208": "", "230/240": "", "460/480": "" },
+  "drive_assembly_braketype": {
     "reliance": "",
     "dodge": "",
     "dings": "",
     "sterns": "",
-    "bandclamptype": "",
+    "bandclamp_type": "",
     "other": ""
   },
-  "driveassembly_brakeid": "",
-  "driveassembly_ftlbs": "",
-  "driveassembly_isdriveskip": {
+  "drive_assembly_brakeid": "",
+  "drive_assembly_ftlbs": "",
+  "drive_assembly_isdriveskip": {
     "yes": "There was a skip in the drive due to {{skipReason}}, it is recommended that the coupler, washer and set screws be replaced.",
     "no": ""
   },
-  "driveassembly_skipreason": {
-    "couplerplay": "A skip in the drive was observed at the time of inspection, due to play in the coupler.",
-    "worngearbox": "A skip in the drive was observed at the time of inspection due the gearbox being worn.",
-    "keyway": "A skip in the drive was observed at the time of inspection due to key way wear.",
-    "loosesetscrews": "A skip in the drive was observed at the time of inspection due to loose set screws in the coupler."
+  "drive_assembly_skipreason": {
+    "coupler_play": "A skip in the drive was observed at the time of inspection, due to play in the coupler.",
+    "worn_gear_box": "A skip in the drive was observed at the time of inspection due the gearbox being worn.",
+    "key_way": "A skip in the drive was observed at the time of inspection due to key way wear.",
+    "loose_set_screws": "A skip in the drive was observed at the time of inspection due to loose set screws in the coupler."
   },
-  "driveassembly_saftstopbrake": {
+  "drive_assembly_saftstopbrake": {
     "yes": "",
     "no": "Saf-T-Stop Brake was not observed at the time of inspection."
   },
-  "driveassembly_saftstoplinkage": {
+  "drive_assembly_saftstoplinkage": {
     "ok": "",
-    "replacedamaged": "The Saf-T-Stop Linkage is damaged and must be replaced.",
-    "replaceworn": "The Saf-T-Stop linkage is worn and must be replaced."
+    "replace_damaged": "The Saf-T-Stop Linkage is damaged and must be replaced.",
+    "replace_worn": "The Saf-T-Stop linkage is worn and must be replaced."
   },
-  "driveassembly_overallsaftstopcondition": {
+  "drive_assembly_overallsaftstopcondition": {
     "ok": "",
     "monitor": "The Saf-T-Stop Brake needs further monitoring.",
-    "replacedamage": "The Saf-T-Stop Brake is damaged and must be replaced.",
-    "replaceworn": "The Saf-T-Stop Brake is worn and must be replaced."
+    "replace_damage": "The Saf-T-Stop Brake is damaged and must be replaced.",
+    "replace_worn": "The Saf-T-Stop Brake is worn and must be replaced."
   },
-  "driveassembly_drivesupporttype": { "aframe": "", "beam": "", "other": "" },
-  "driveassembly_drivecomments": "",
-  "driveassembly_toplandingsafeties": {
-    "type1": {
-      "knockoutbar": "",
-      "photoeye": "",
-      "condition": {
-        "ok": "",
-        "inoperative": "Top landing overhead safety is inoperative and must be repaired or replaced.",
-        "replaceswitch": "The top overhead safety switch must be replaced.",
-        "replacewholeassembly": "The whole assembly of the top landing safety must be replaced."
-      }
-    },
-    "type2": {
-      "photoeye": "",
-      "intrack": "",
-      "splitrail": "",
-      "location": { "right": "", "left": "" },
-      "condition": {
-        "ok": "",
-        "inoperative": "The top landing safety is inoperable and must be repaired or replaced.",
-        "replaceswitch": "The top landing safety switch must be replaced.",
-        "replacewholeassembly": "The whole assembly of the top landing must be replaced."
-      }
-    },
-    "type3": {
-      "photoeye": "",
-      "intrack": "",
-      "splitrail": "",
-      "location": { "right": "", "left": "" },
-      "condition": {
-        "ok": "",
-        "inoperative": "Top landing safety is inoperable and must be repaired or replaced.",
-        "replaceswitch": "Top in-rail limit switches must be replaced.",
-        "replacewholeassembly": "The whole assembly of top landing safety needs to be replaced."
-      }
-    },
-    "type4": {
-      "photoeye": "",
-      "intrack": "",
-      "splitrail": "",
-      "location": { "right": "", "left": "" },
-      "condition": {
-        "ok": "",
-        "inoperative": "Top landing safety is inoperable and must be repaired or replaced.",
-        "replaceswitch": "Top landing safety switch must be replaced.",
-        "replacewholeassembly": "The whole assembly of top landing safety must be replaced."
-      }
-    },
-    "topreset": {
-      "yes": "",
-      "no": "The Top Reset was not observed at the time of inspection. It is required that a Top Reset be installed",
-      "location": {
-        "good": "",
-        "relocated": "The top reset is non-compliant and must be relocated."
-      }
-    },
-    "compliant": {
-      "yes": "",
-      "no": "The top reset button is non-compliant and must be relocated."
-    },
-    "topresetcondition": {
+  "drive_assembly_drivesupporttype": { "aframe": "", "beam": "", "other": "" },
+  "drive_assembly_drivecomments": "",
+
+  "drive_assembly_toplandingsafeties_type1": {
+    "knockoutbar": "",
+    "photoeye": "",
+    "condition": {
       "ok": "",
-      "inoperative": "Top Reset is inoperable and must be replaced."
-    },
-    "safetydeviceswitches": { "manual": "", "selfresetting": "", "both": "" },
-    "hasalertingsystem": {
-      "yes": "",
-      "no": "No Visual and/or Audible Alerting System was found to be present at the time of inspection. It is required that a Visual and/or Audible Alerting System be installed."
-    },
-    "topsafetiescomments": ""
+      "inoperable": "Top landing overhead safety is inoperable and must be repaired or replaced.",
+      "replace_switch": "The top overhead safety switch must be replaced.",
+      "replace_whole_assembly": "The whole assembly of the top landing safety must be replaced."
+    }
   },
-  "electrical_nematype": { "4": "", "7": "", "9": "" },
+  "drive_assembly_toplandingsafeties_type2": {
+    "photoeye": "",
+    "intrack": "",
+    "splitrail": "",
+    "location": { "right": "", "left": "" },
+    "condition": {
+      "ok": "",
+      "inoperable": "The top landing safety is inoperable and must be repaired or replaced.",
+      "replace_switch": "The top landing safety switch must be replaced.",
+      "replace_whole_assembly": "The whole assembly of the top landing must be replaced."
+    }
+  },
+  "drive_assembly_toplandingsafeties_type3": {
+    "photoeye": "",
+    "intrack": "",
+    "splitrail": "",
+    "location": { "right": "", "left": "" },
+    "condition": {
+      "ok": "",
+      "inoperable": "Top landing safety is inoperable and must be repaired or replaced.",
+      "replace_switch": "Top in-rail limit switches must be replaced.",
+      "replace_whole_assembly": "The whole assembly of top landing safety needs to be replaced."
+    }
+  },
+  "drive_assembly_toplandingsafeties_type4": {
+    "photoeye": "",
+    "intrack": "",
+    "splitrail": "",
+    "location": { "right": "", "left": "" },
+    "condition": {
+      "ok": "",
+      "inoperable": "Top landing safety is inoperable and must be repaired or replaced.",
+      "replace_switch": "Top landing safety switch must be replaced.",
+      "replace_whole_assembly": "The whole assembly of top landing safety must be replaced."
+    }
+  },
+  "drive_assembly_toplandingsafeties_topreset": {
+    "yes": "",
+    "no": "The Top Reset was not observed at the time of inspection. It is required that a Top Reset be installed",
+    "location": {
+      "good": "",
+      "relocated": "The top reset is non-compliant and must be relocated."
+    }
+  },
+  "compliant": {
+    "yes": "",
+    "no": "The top reset button is non-compliant and must be relocated."
+  },
+  "drive_assembly_toplandingsafeties_topresetcondition": {
+    "ok": "",
+    "inoperable": "Top Reset is inoperable and must be replaced."
+  },
+  "safetydeviceswitches": { "manual": "", "selfresetting": "", "both": "" },
+  "hasalertingsystem": {
+    "yes": "",
+    "no": "No Visual and/or Audible Alerting System was found to be present at the time of inspection. It is required that a Visual and/or Audible Alerting System be installed."
+  },
+  "drive_assembly_toplandingsafeties_topsafetiescomments": "",
+  "electrical_nematype": { "4_(dust_tight)": "", "7_(explosive_vapors)": "", "9_(explosive_dust)": "" },
   "electrical_voltage": { "208": "", "230/240": "", "460/480": "" },
   "electrical_hascontrolpanel": {
     "yes": "",
     "no": "A Manlift Control Panel was not observed at the time of inspection. It is recommended a Manlift Control Panel be installed.",
-    "location": { "bymanlift": "", "inmccroom": "" }
+    "location": { "by_manlift": "", "in_mcc_room": "" }
   },
-  "electrical_individualcontrollocation": { "bymanlift": "", "inmccroom": "" },
+  "electrical_individualcontrollocation": { "by_manlift": "", "in_mcc_room": "" },
   "electrical_hasstarter": {
     "yes": "",
     "no": " A starter was not observed at the time of inspection. It is required that a Starter be installed."
@@ -946,11 +948,11 @@
     "yes": "",
     "no": "A 3-pole contactor was not observed at the time of inspection. It is required that a 3-pole contactor be installed."
   },
-  "loadtest_testresult": {
+  "load_test_testresult": {
     "pass": "The unit did pass a full load test.",
     "fail": "This unit did not pass a full load test."
   },
-  "loadtest_weightused": "",
-  "loadtest_stoppingdistance": "",
-  "loadtest_beltmanliftspeed": ""
+  "load_test_weightused": "",
+  "load_test_stoppingdistance": "",
+  "load_test_beltmanliftspeed": ""
 }

@@ -30,13 +30,12 @@ class CagePage extends StatelessWidget {
                 itemBuilder: (context, index) => GestureDetector(
                   onTap: () {
                     if (index == 0) {
-                      moveTo(context,
-                          CageQuaterlyPage(title: "Cage Monthly Form"));
+                      moveTo(context, const CageQuaterlyPage(title: "Monthly"));
                     } else if (index == 1) {
-                      moveTo(context,
-                          CageQuaterlyPage(title: "Cage Quaterly Form"));
+                      moveTo(
+                          context, const CageQuaterlyPage(title: "Quaterly"));
                     } else if (index == 2) {
-                      moveTo(context, CageAnnualyPage());
+                      moveTo(context, const CageAnnualyPage());
                     }
                   },
                   child: Card(

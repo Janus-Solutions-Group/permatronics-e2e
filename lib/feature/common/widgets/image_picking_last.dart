@@ -1,12 +1,15 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:manlift_app/feature/belt/model/belt_inspection_model.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 
 class ImagePickingWidget extends StatefulWidget {
-  const ImagePickingWidget({super.key, required this.pageController});
+  const ImagePickingWidget(
+      {super.key, required this.pageController, this.beltModel, this.onSubmit});
   final PageController pageController;
+  final BeltInspection? beltModel;
+  final Function()? onSubmit;
 
   @override
   State<ImagePickingWidget> createState() => _ImagePickingWidgetState();
@@ -37,7 +40,9 @@ class _ImagePickingWidgetState extends State<ImagePickingWidget> {
           ),
           const SizedBox(height: 10),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              _pickImage(ImageSource.gallery);
+            },
             child: const Text('Pick From Gallery'),
           ),
           const SizedBox(height: 30),
@@ -86,8 +91,8 @@ class _ImagePickingWidgetState extends State<ImagePickingWidget> {
                 right: false,
               ),
               ElevatedButton(
-                onPressed: () => _pickImage(ImageSource.gallery),
-                child: const Text('Submit'),
+                onPressed: widget.onSubmit,
+                child: const Text("Submit"),
               ),
             ],
           ),

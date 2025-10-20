@@ -1,24 +1,37 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:manlift_app/provider/selection_ref_provider.dart';
+import 'package:provider/provider.dart';
 
 class CustomRadioTile extends StatefulWidget {
-  const CustomRadioTile({
-    super.key,
-    this.title,
-    required this.values,
-    this.valueStyle,
-    this.isTextField = false,
-    this.fieldTitle,
-    required this.onChangeValue,
-    this.type,
-  });
+  const CustomRadioTile(
+      {super.key,
+      this.id = "default",
+      this.title,
+      required this.values,
+      this.valueStyle,
+      this.isTextField = false,
+      this.fieldLabelTitle,
+      required this.onChangeValue,
+      this.type,
+      this.onFieldChange,
+      this.fieldValue});
 
+  final String id;
   final String? title;
   final List<String> values;
   final TextStyle? valueStyle;
-  final bool isTextField;
-  final String? fieldTitle;
   final ValueChanged<String?> onChangeValue;
   final String? type;
+
+  final String? fieldValue; // required for adding textfield
+  final String?
+      fieldLabelTitle; // label text for the textfield - by default field value acts as label
+  final bool isTextField;
+  final ValueChanged<String>? onFieldChange;
+
   // final TextEditingController
   @override
   State<CustomRadioTile> createState() => _CustomRadioTileState();
@@ -29,24 +42,36 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
 
   @override
   void initState() {
-    currentVal = widget.type;
+    currentVal = GetStorage().read(widget.id) ?? '';
+    // widget.onChangeValue(currentVal);
+    // currentVal = widget.type ?? GetStorage().read(widget.id!);
     if (mounted) setState(() {});
     super.initState();
   }
+
+  getLocalValueById() {}
 
   String formatString(String input) {
     // Convert to lowercase
     String result = input.toLowerCase();
 
     // Replace spaces and commas with underscores
-    result = result
-        .replaceAll(' ', '_')
-        .replaceAll(',', '')
-        .replaceAll('-', '_')
-        .replaceAll('/', '');
+    result =
+        result.replaceAll(' ', '_').replaceAll(',', '').replaceAll('-', '-');
 
     return result;
   }
+
+  // void updateSelection(String id, String? title, String? value) {
+  //   setState(() {
+  //     final index = selectionsRef.indexWhere((element) => element['id'] == id);
+  //     if (index >= 0) {
+  //       selectionsRef[index]['value'] = value;
+  //     } else {
+  //       selectionsRef.add({'id': id, 'title': title, 'value': value});
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -70,15 +95,25 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
                 Radio.adaptive(
                   value: formatString(widget.values[index]),
                   groupValue: currentVal,
-                  onChanged: (value) {
+                  onChanged: (value) async {
+                    if (widget.id != null) {
+                      context.read<SelectionRefProvider>().updateSelection(
+                          widget.id.toString(), widget.title, value);
+                    } else {
+                      log('id is null');
+                    }
+                    final box = GetStorage();
+                    await box.write(widget.id!, value);
+
                     setState(() {
                       currentVal = value;
                       widget.onChangeValue(value);
                     });
+
+                    print(currentVal);
                   },
                 ),
                 // CupertinoRadio(value: value, groupValue: groupValue, onChanged: onChanged)
-
                 Text(
                   widget.values[index],
                   style: widget.valueStyle,
@@ -87,29 +122,21 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
             ),
           ),
         ),
-        // Wrap(
-        //   children: List.generate(
-        //     widget.values.length,
-        //     (index) => RadioListTile.adaptive(
-        //       value: widget.values[index],
-        //       groupValue: currentVal,
-        //       onChanged: (value) {
-        //         setState(() {
-        //           currentVal = value;
-        //           widget.onChangeValue(value);
-        //         });
-        //       },
-        //       title: Text(widget.values[index], style: widget.valueStyle),
-        //     ),
-        //   ),
-        // ),
-        if (widget.isTextField)
+
+        if (currentVal != null && currentVal == widget.fieldValue)
           Padding(
             padding: const EdgeInsets.only(bottom: 25, left: 18, right: 18),
             child: TextField(
-              // controller: ,
               maxLines: null,
-              decoration: InputDecoration(labelText: widget.fieldTitle),
+              onChanged: (value) {
+                String id = "dropdownline_${widget.id}";
+                context.read<SelectionRefProvider>().updateSelection(
+                    id, widget.fieldLabelTitle ?? widget.fieldValue, value);
+                if (widget.onFieldChange != null) widget.onFieldChange!(value);
+              },
+              decoration: InputDecoration(
+                labelText: widget.fieldLabelTitle ?? widget.fieldValue,
+              ),
             ),
           ),
         // const SizedBox(height: 0),
