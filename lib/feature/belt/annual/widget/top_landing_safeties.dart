@@ -7,6 +7,9 @@ import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 import '../../../common/widgets/page_navigation_button.dart';
 import '../pages/belt_annual.dart';
 
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
+import 'package:manlift_app/data/models/original_model.dart';
+
 class TopLandingSafeties extends StatefulWidget {
   const TopLandingSafeties(
       {super.key, required this.pageController, required this.beltModel});
@@ -211,6 +214,15 @@ class _TopLandingSafetiesState extends State<TopLandingSafeties> {
                               .driveAssemblyTopLandingSafetiesTopResetCompliant =
                           jsonData['compliant'][value];
                     },
+                    conditionalBuilder: (selected) {
+                      if (selected == 'no') {
+                        return CustomTextField(
+                          id: "top_landing_safeties_15a",
+                          title: 'Specify',
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
                   ),
                   CustomRadioTile(
                     id: "top_landing_safeties_16",
@@ -224,14 +236,23 @@ class _TopLandingSafetiesState extends State<TopLandingSafeties> {
                               [value];
                     },
                   ),
-                  CustomRadioTile(
-                    id: "top_landing_safeties_17",
-                    title: 'Are Safety Stop Device Switches:',
-                    values: const ['Manual', 'Self-Resetting', 'Both'],
-                    onChangeValue: (value) {
-                      widget.beltModel
-                              .driveAssemblyTopLandingSafetiesSafetyDeviceSwitches =
-                          jsonData['safetydeviceswitches'][value];
+                  MultipleSelectionWidget(
+                    original: OriginalModel(
+                      id: 'top_landing_safeties_17',
+                      title: 'Are Safety Stop Device Switches:',
+                      values: const ['Manual', 'Self-Resetting'],
+                    ),
+                    onSelectionChanged: (selectedValues) {
+                      // Convert selection into readable or mapped result
+                      String result = "";
+                      for (var val in selectedValues) {
+                        // Safely look up in jsonData and fallback to the label itself
+                        final mapped = jsonData['safetydeviceswitches']?[val] ?? val;
+                        result += "$mapped\n";
+                      }
+                      // Update model
+                      widget.beltModel.driveAssemblyTopLandingSafetiesSafetyDeviceSwitches = result;
+
                     },
                   ),
                   CustomRadioTile(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manlift_app/feature/belt/annual/widget/intermediate_landing.dart';
 import 'package:manlift_app/feature/cage/quarterly/landing_form.dart';
 import 'package:manlift_app/feature/cage/quarterly/models/landing_model.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
@@ -35,38 +36,41 @@ class _AddLandingFormPageState extends State<AddLandingFormPage>
               separatorBuilder: (context, index) => const SizedBox(height: 10),
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () {
-                  // moveTo(context, CageLandingForm());
+                  
                   showModalBottomSheet(
-                      context: context,
-                      useSafeArea: true,
-                      isScrollControlled: true,
-                      builder: (context) => CageLandingForm(
+                    context: context,
+                    isScrollControlled: true, // 👈 allows it to resize with keyboard
+                    useSafeArea: true,
+                    backgroundColor: Colors.white,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                    ),
+                    builder: (context) => DraggableScrollableSheet(
+                      expand: false,
+                      initialChildSize: 0.9, // optional: covers ~90% of screen
+                      minChildSize: 0.5,
+                      maxChildSize: 0.95,
+                      builder: (_, scrollController) => Padding(
+                        padding: EdgeInsets.only(
+                          left: 16,
+                          right: 16,
+                          top: 16,
+                          bottom: MediaQuery.of(context).viewInsets.bottom + 20, // 👈 keyboard safe padding
+                        ),
+                        child: SingleChildScrollView(
+                          controller: scrollController,
+                          child: CageLandingForm(
                             index: index,
                             model: landingModels[index],
+
                             onSubmit: (val) {
                               landingModels[index] = val;
                             },
-                          ),);
-                  // Scaffold.of(context).showBottomSheet(
-                  //   (context) => CageLandingForm(
-                  //     index: index,
-                  //     model: landingModels[index],
-                  //     onSubmit: (val) {
-                  //       landingModels[index] = val;
-                  //     },
-                  //   ),
-                  // );
-                  // controller.setState;
-                  // showBottomSheet(
-                  //   context: context,
-                  //   // isScrollControlled: true,
-                  //   constraints: BoxConstraints.expand(
-                  //     height: MediaQuery.of(context).size.height * 0.9,
-                  //   ),
-                  //   builder: (context) {
-                  //     return landingFormList[index];
-                  //   },
-                  // );
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
                 },
                 child: Card(
                   child: Padding(

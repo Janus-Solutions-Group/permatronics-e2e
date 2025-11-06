@@ -50,6 +50,15 @@ class _HandholdsState extends State<Handholds> {
                 widget.beltModel.handholdsHandholdColor =
                     jsonData['handholds_handhold_color'][value];
               },
+              conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: "handholds_annual_2a",
+                    title: 'Specify Other',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
               fieldLabelTitle: "Other Color",
               fieldValue: "other",
               onFieldChange: (value) {
@@ -65,7 +74,7 @@ class _HandholdsState extends State<Handholds> {
             ),
             CustomRadioTile(
               id: "handholds_annual_4",
-              title: 'Depth: (3”)',
+              title: 'Depth: (3")',
               values: const ['OK', 'Non-Compliant'],
               onChangeValue: (value) {
                 widget.beltModel.handholdsDepth =
@@ -74,7 +83,7 @@ class _HandholdsState extends State<Handholds> {
             ),
             CustomRadioTile(
               id: "handholds_annual_5",
-              title: 'Distance from Belt: (2”)',
+              title: 'Distance from Belt: (2")',
               values: const ['OK', 'Non-Compliant'],
               onChangeValue: (value) {
                 widget.beltModel.handholdsDistanceFromBelt =
@@ -83,7 +92,7 @@ class _HandholdsState extends State<Handholds> {
             ),
             CustomRadioTile(
               id: "handholds_annual_6",
-              title: 'Distance from Step: (48”-56”)',
+              title: 'Distance from Step: (48"-56")',
               values: const ['OK', 'Non-Compliant'],
               onChangeValue: (value) {
                 widget.beltModel.handholdsDistanceFromStep =
@@ -93,10 +102,20 @@ class _HandholdsState extends State<Handholds> {
             CustomRadioTile(
               id: "handholds_annual_7",
               title: 'Punching Pattern:',
-              values: const ['8 7/8”', '9” ', 'Other'],
+              values: const ['8 7/8"', '9" ', 'Other'],
               onChangeValue: (value) {
                 widget.beltModel.handholdsPunchingPattern =
                     jsonData['handholds_punching_pattern'][value];
+              },
+
+              conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: "handholds_annual_7a",
+                    title: 'Specify Other',
+                  );
+                }
+                return const SizedBox.shrink();
               },
               fieldValue: "other",
               fieldLabelTitle: "Other",

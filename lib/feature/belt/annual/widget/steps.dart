@@ -92,6 +92,16 @@ class _StepsState extends State<Steps> {
               onFieldChange: (value) {
                 widget.beltModel.stepsTreadColor = value;
               },
+
+              conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: "step_belt_annual_5a",
+                    title: 'Specify Other',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
             CustomRadioTile(
               id: "step_belt_annual_6",
@@ -124,18 +134,21 @@ class _StepsState extends State<Steps> {
                 widget.beltModel.stepsMissingBolts =
                     jsonData['steps_missing_bolts'][value];
               },
-            ),
-            CustomTextField(
-              id: "step_belt_annual_9",
-              title: 'How Many',
-              onChanged: (value) {
-                beltVariable.stepsMissingStepBolts = value;
+              conditionalBuilder: (selected) {
+                if (selected == 'yes') {
+                  return CustomTextField(
+                    id: 'step_belt_annual_9',
+                    title: 'How Many',
+                  );
+                } 
+                return const SizedBox.shrink();
               },
+            
             ),
             CustomTextField(
               id: "step_belt_annual_10",
               title: 'Step Bar Bolt Hole Pattern:',
-              subtitle: '” Centerline',
+              subtitle: '" Centerline',
               onChanged: (value) {
                 widget.beltModel.stepsStepBarBoltHolePattern = value;
               },
@@ -143,7 +156,7 @@ class _StepsState extends State<Steps> {
             CustomTextField(
               id: "step_belt_annual_11",
               title: 'Step Bar to Step Bar Centers:',
-              subtitle: '” to Centerline of Bolts',
+              subtitle: '" to Centerline of Bolts',
               onChanged: (value) {
                 widget.beltModel.stepsStepBarToStepBarCenters = value;
               },

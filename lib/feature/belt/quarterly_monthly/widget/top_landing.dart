@@ -85,30 +85,42 @@ class TopLanding extends StatelessWidget {
               title: 'Maze:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                //  beltModel.topLandingMaze =
-                //     jsonData['top_landing_maze'][value];
+                 beltModel.topLandingMaze =
+                    jsonData['top_landing_maze'][value];
               },
-            ),
-            CustomTextField(
-              id: 'top_landing_8',
-              title: 'Description',
-            ),
-            CustomRadioTile(
-              id: 'top_landing_9',
-              title: 'Self Closing Gate:',
-              values: const ['1', '2', '3', '4'],
-              onChangeValue: (value) {
-                //  beltModel.topLandingInstructionSign =
-                //     jsonData['top_landing_instructionsign'][value];
-              },
-            ),
-            CustomRadioTile(
-              id: 'top_landing_10',
-              title: 'Open Outward:',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {
-                beltModel.topLandingOpenOutward =
-                    jsonData['top_landing_openoutward'][value];
+               conditionalBuilder: (selected) {
+                if (selected == 'yes') {
+                  return CustomTextField(
+                    id: 'top_landing_8',
+                    title: 'Description',
+                  );
+                } else if (selected == 'no') {
+                  return Column(
+                    children: [
+                      CustomRadioTile(
+                       id: 'top_landing_9',
+                        title: 'Self Closing Gate:',
+                        values: const ['1', '2', '3', '4'],
+                        onChangeValue: (value) {
+
+                          beltModel.topLandingInstructionSign =
+                              jsonData['top_landing_instructionsign'][value];
+                        },
+                      ),
+                      CustomRadioTile(
+                       id: 'top_landing_10',
+                        title: 'Open Outward:',
+                        values: const ['Yes', 'No'],
+                        onChangeValue: (value) {
+
+                          beltModel.topLandingOpenOutward =
+                              jsonData['top_landing_openoutward'][value];
+                        },
+                      ),
+                    ],
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
             CustomRadioTile(
@@ -140,6 +152,15 @@ class TopLanding extends StatelessWidget {
               onChangeValue: (value) {
                 //  beltModel. =
                 //     jsonData['top_landing_instructionsign'][value];
+              },
+              conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: "top_landing_14a",
+                    title: 'Specify Other Material',
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
             CustomTextField(
@@ -254,10 +275,21 @@ class TopLanding extends StatelessWidget {
             CustomRadioTile(
               id: 'top_landing_28',
               title: 'Lateral Bracing:',
-              values: const ['OK', 'Needs Add\'l,'],
+              values: const ['OK', 'Needs Additional'],
               onChangeValue: (value) {
                 beltModel.topLandingLateralBracing =
                     jsonData['top_landing_lateralbracing'][value];
+              },
+
+              conditionalBuilder: (selected) {
+                debugPrint('Selected value: $selected');
+                if (selected == 'needs_additional') {
+                  return CustomTextField(
+                    id: "top_landing_28a",
+                    title: 'Add Additional',
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
             CustomRadioTile(
@@ -271,19 +303,29 @@ class TopLanding extends StatelessWidget {
                 beltModel.topLandingCheckAttachmentBolts =
                     jsonData['top_landing_checkattachmentbolts'][value];
               },
-            ),
-            CustomRadioTile(
-              id: 'top_landing_30',
-              title: 'Condition:',
-              values: const ['OK', 'Missing'],
-              onChangeValue: (value) {
-                //  beltModel.topLandingInstructionSign =
-                //     jsonData['top_landing_instructionsign'][value];
+              conditionalBuilder: (selected) {
+                if (selected == 'yes')  {
+                  return Column(
+                    children: [
+                    CustomRadioTile(
+                      id: 'top_landing_30',
+                      title: 'Condition:',
+                      values: const ['OK', 'Missing'],
+                      onChangeValue: (value) {
+                        //  beltModel.topLandingInstructionSign =
+                        //     jsonData['top_landing_instructionsign'][value];
+                      },
+                    ),
+                    CustomTextField(
+                      id: 'top_landing_31',
+                      title: 'How Many',
+                    )
+                  ],
+                  );
+                }
+                return const SizedBox.shrink();
               },
-            ),
-            CustomTextField(
-              id: 'top_landing_31',
-              title: 'How Many',
+            
             ),
             CustomTextField(
               id: 'top_landing_32',

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:manlift_app/provider/selection_ref_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 
 class CustomRadioTile extends StatefulWidget {
   const CustomRadioTile(
@@ -17,7 +18,8 @@ class CustomRadioTile extends StatefulWidget {
       required this.onChangeValue,
       this.type,
       this.onFieldChange,
-      this.fieldValue});
+      this.fieldValue,
+      this.conditionalBuilder});
 
   final String id;
   final String? title;
@@ -27,6 +29,7 @@ class CustomRadioTile extends StatefulWidget {
   final String? type;
 
   final String? fieldValue; // required for adding textfield
+  final Widget Function(String)? conditionalBuilder; // 👈 new field
   final String?
       fieldLabelTitle; // label text for the textfield - by default field value acts as label
   final bool isTextField;
@@ -140,6 +143,23 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
             ),
           ),
         // const SizedBox(height: 0),
+        // Case 2: Automatically handle “Non-Compliant"
+        if (currentVal != null && currentVal!.toLowerCase() == 'non-compliant')
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, top: 8.0, bottom: 16),
+            child: CustomTextField(
+              id: "${widget.id}a", // <- new ID
+              title: 'Non-Compliant Reason',
+              onChanged: (reason) {
+                context.read<SelectionRefProvider>().updateSelection(
+                    "${widget.id}a",
+                    "Non-Compliant Reason",
+                    reason);
+              },
+            ),
+          ),
+        if (currentVal != null && widget.conditionalBuilder != null)
+          widget.conditionalBuilder!(currentVal!), // 👈 renders conditionally
       ],
     );
   }

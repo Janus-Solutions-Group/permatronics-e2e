@@ -24,7 +24,6 @@ class _BeltingState extends State<Belting> {
   @override
   Widget build(BuildContext context) {
     var jsonData = BeltJson.of(context)!.data;
-
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Form(
@@ -92,7 +91,10 @@ class _BeltingState extends State<Belting> {
               id: 'belting_7',
               title: 'Instructions Stenciled on the Belt:',
               values: const ['OK', 'Non-Compliant', 'Faded'],
-              onChangeValue: (value) {
+              onChangeValue: (value) { 
+                setState(() {
+                  beltVariable.beltingInstructionsStenciledOnTheBelt = value;
+                });
                 widget.beltModel.beltingInstructionsStenciledOnTheBelt =
                     jsonData['belting_instructions_stenciled_on_the_belt']
                         [value];

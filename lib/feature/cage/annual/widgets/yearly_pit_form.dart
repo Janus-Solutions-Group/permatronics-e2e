@@ -239,7 +239,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                 // widget.cageModel.pitComments = value;
               },
             ),
-            const CustomTitle(title: "Under Car Size, measurement from:"),
+            const  CustomTextField(id:'pit_23a', title: "Under Car Size, measurement from:"),
             const Row(
               children: [
                 Expanded(

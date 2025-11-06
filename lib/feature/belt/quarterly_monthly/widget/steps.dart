@@ -92,6 +92,16 @@ class _StepsState extends State<Steps> {
               onFieldChange: (value) {
                 widget.beltModel.stepsTreadColor = value;
               },
+
+              conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: "steps_5a",
+                    title: 'Specify Other',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
             CustomRadioTile(
               id: 'steps_6',

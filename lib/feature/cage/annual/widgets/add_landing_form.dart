@@ -35,28 +35,40 @@ class _AddAnnualLandingFormPageState extends State<AddAnnualLandingFormPage>
               separatorBuilder: (context, index) => const SizedBox(height: 10),
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () {
-                  // moveTo(context, CageLandingForm());
                   showModalBottomSheet(
-                      isScrollControlled: true,
-                      useSafeArea: true,
-                      context: context,
-                      builder: (context) => AnnualLandingForm(
+                    context: context,
+                    isScrollControlled: true, // 👈 allows it to resize with keyboard
+                    useSafeArea: true,
+                    backgroundColor: Colors.white,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                    ),
+                    builder: (context) => DraggableScrollableSheet(
+                      expand: false,
+                      initialChildSize: 0.9, // optional: covers ~90% of screen
+                      minChildSize: 0.5,
+                      maxChildSize: 0.95,
+                      builder: (_, scrollController) => Padding(
+                        padding: EdgeInsets.only(
+                          left: 16,
+                          right: 16,
+                          top: 16,
+                          bottom: MediaQuery.of(context).viewInsets.bottom + 20, // 👈 keyboard safe padding
+                        ),
+                        child: SingleChildScrollView(
+                          controller: scrollController,
+                          child: AnnualLandingForm(
                             index: index,
                             model: landingModels[index],
+
                             onSubmit: (val) {
                               landingModels[index] = val;
                             },
-                          ));
-
-                  // Scaffold.of(context).showBottomSheet(
-                  //   (context) => AnnualLandingForm(
-                  //     index: index,
-                  //     model: landingModels[index],
-                  //     onSubmit: (val) {
-                  //       landingModels[index] = val;
-                  //     },
-                  //   ),
-                  // );
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
                 },
                 child: Card(
                   child: Padding(

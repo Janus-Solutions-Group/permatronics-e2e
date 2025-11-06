@@ -137,29 +137,33 @@ class _TopLandingState extends State<TopLanding> {
               onChangeValue: (value) {},
             ),
             DistanceTextField(
-                // id: "top_landing_belt_annual_16",
-
-                title: 'Back'),
+                id: "top_landing_belt_annual_16",
+                title: 'Back',
+                onChangeValue: (value) {}
+            ),
             DistanceTextField(
-                // id: "top_landing_belt_annual_17",
-
+                id: "top_landing_belt_annual_17",
+                onChangeValue: (value) {},
                 title: 'Left'),
             DistanceTextField(
-                // id: "top_landing_belt_annual_18",
-
+                id: "top_landing_belt_annual_18",
+                onChangeValue: (value) {},
                 title: 'Right'),
             CustomRadioTile(
               id: "top_landing_belt_annual_19",
               title: 'Distance From Floor Opening to Guard Rail "Downside":',
-              values: ['Compliant', 'Non-Compliant'],
+              values: const ['Compliant', 'Non-Compliant'],
               onChangeValue: (value) {},
             ),
-            DistanceTextField(id: "top_landing_belt_annual_20", title: 'Back'),
-            DistanceTextField(id: "top_landing_belt_annual_21", title: 'Left'),
-            DistanceTextField(id: "top_landing_belt_annual_22", title: 'Right'),
+            DistanceTextField(id: "top_landing_belt_annual_20", title: 'Back',
+                onChangeValue: (value) {},),
+            DistanceTextField(id: "top_landing_belt_annual_21", title: 'Left',
+                onChangeValue: (value) {},),
+            DistanceTextField(id: "top_landing_belt_annual_22", title: 'Right',
+                onChangeValue: (value) {},),
             CustomTextField(
                 id: "top_landing_belt_annual_23",
-                title: 'Guard Rail Height "Upside":'),
+                title: 'Guard Rail Height "Upside":',),
             CustomTextField(
                 id: "top_landing_belt_annual_24",
                 title: 'Guard Rail Height "Downside":'),
@@ -177,51 +181,55 @@ class _TopLandingState extends State<TopLanding> {
               title: 'Maze:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                widget.beltModel.topLandingMaze =
+                 widget.beltModel.topLandingMaze =
                     jsonData['top_landing_maze'][value];
               },
-            ),
-            CustomTextField(
-                id: "top_landing_belt_annual_27", title: 'Description:'),
-            CustomRadioTile(
-              id: "top_landing_belt_annual_28",
-              title: 'Self-Closing Gate:',
-              values: const ['1', '2', '3', '4'],
-              onChangeValue: (value) {
-                // --values are diffe... in json
-                // beltModel.topLandingSelfClosingGates =
-                //     jsonData['top_landing_selfclosinggates'][value];
+               conditionalBuilder: (selected) {
+                if (selected == 'Yes') {
+                  return CustomTextField(
+                    id: 'top_landing_belt_annual_27',
+                    title: 'Description',
+                  );
+                } else if (selected == 'No') {
+                  return Column(
+                    children: [
+                      CustomRadioTile(
+                       id: 'top_landing_belt_annual_28',
+                        title: 'Self Closing Gate:',
+                        values: const ['1', '2', '3', '4'],
+                        onChangeValue: (value) {
+
+                          widget.beltModel.topLandingInstructionSign =
+                              jsonData['top_landing_instructionsign'][value];
+                        },
+                      ),
+                      CustomRadioTile(
+                       id: 'top_landing_belt_annual_30',
+                        title: 'Open Outward:',
+                        values: const ['Yes', 'No'],
+                        onChangeValue: (value) {
+
+                          widget.beltModel.topLandingOpenOutward =
+                              jsonData['top_landing_openoutward'][value];
+                        },
+                      ),
+                      CustomRadioTile(
+                        id: "top_landing_belt_annual_31",
+                        title: 'Are Gates Missing:',
+                        values: const ['Yes', 'No'],
+                        onChangeValue: (value) {
+                          widget.beltModel.topLandingAreGatesMissing =
+                              jsonData['top_landing_aregatesmissing'][value];
+                        },
+                      ),
+                      CustomTextField(
+                          id: "top_landing_belt_annual_32", title: 'How Many:'),
+                    ],
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
-            CustomRadioTile(
-              id: "top_landing_belt_annual_29",
-              title: 'Are Gates Self-Closing:',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {
-                widget.beltModel.topLandingAreGatesSelfClosing =
-                    jsonData['top_landing_aregatesselfclosing'][value];
-              },
-            ),
-            CustomRadioTile(
-              id: "top_landing_belt_annual_30",
-              title: 'Open Outward:',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {
-                widget.beltModel.topLandingOpenOutward =
-                    jsonData['top_landing_openoutward'][value];
-              },
-            ),
-            CustomRadioTile(
-              id: "top_landing_belt_annual_31",
-              title: 'Are Gates Missing:',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {
-                widget.beltModel.topLandingAreGatesMissing =
-                    jsonData['top_landing_aregatesmissing'][value];
-              },
-            ),
-            CustomTextField(
-                id: "top_landing_belt_annual_32", title: 'How Many:'),
             CustomRadioTile(
               id: "top_landing_belt_annual_33",
               title: 'Toeboard:',
@@ -288,13 +296,13 @@ class _TopLandingState extends State<TopLanding> {
                 //     jsonData['top_landing_instructionsign'][value];
               },
             ),
-            CustomTextField(
+          const  CustomTextField(
                 id: "top_landing_belt_annual_43",
                 title: 'C/L of Head Shaft to Floor:'),
-            CustomTextField(
+          const  CustomTextField(
                 id: "top_landing_belt_annual_44",
                 title: 'C/L of Head Shaft to Ceiling/Obstruction:'),
-            DistanceTextField(
+           const DistanceTextField(
                 id: "top_landing_belt_annual_45",
                 title: 'Measurement from Top of this Floor to Top of Floor#'),
             CustomRadioTile(
@@ -429,6 +437,16 @@ class _TopLandingState extends State<TopLanding> {
               title: 'Location of Hinges:',
               values: const ['6"', 'More than 6" with Obstruction', 'Other'],
               onChangeValue: (value) {},
+
+              conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: "top_landing_belt_annual_66a",
+                    title: 'Specify Other',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
             CustomRadioTile(
               id: "top_landing_belt_annual_67",

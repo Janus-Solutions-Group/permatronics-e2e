@@ -150,10 +150,32 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
         signature != null ? pw.Image(pw.MemoryImage(signature!)) : null;
     var selectionsRef = context.read<SelectionRefProvider>().selectionsRef;
     selectionsRef.sort((a, b) {
-      var id1 = int.tryParse(a['id']!.split('_').last) ?? 0;
-      var id2 = int.tryParse(b['id']!.split('_').last) ?? 0;
-      return id1.compareTo(id2);
+      final id1 = a['id']!;
+      final id2 = b['id']!;
+
+      final regex = RegExp(r'(\d+|\D+)');
+      final parts1 = regex.allMatches(id1).map((m) => m.group(0)!).toList();
+      final parts2 = regex.allMatches(id2).map((m) => m.group(0)!).toList();
+
+      for (var i = 0; i < parts1.length && i < parts2.length; i++) {
+        final p1 = parts1[i];
+        final p2 = parts2[i];
+
+        final n1 = int.tryParse(p1);
+        final n2 = int.tryParse(p2);
+
+        if (n1 != null && n2 != null) {
+          final diff = n1.compareTo(n2);
+          if (diff != 0) return diff;
+        } else {
+          final diff = p1.compareTo(p2);
+          if (diff != 0) return diff;
+        }
+      }
+
+      return parts1.length.compareTo(parts2.length);
     });
+
 
     var tailList = selectionsRef
         .where((a) => a['id']!.split('_').first == "tail")
@@ -169,7 +191,7 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
         .toList();
     var beltingList =
         selectionsRef.where((a) => a['id']!.startsWith("belting")).toList();
-
+    debugPrint(beltingList.toString());
     var handholdsList =
         selectionsRef.where((a) => a['id']!.startsWith("handholds")).toList();
     var stepList =

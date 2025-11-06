@@ -54,7 +54,7 @@ class _BeltingState extends State<Belting> {
             CustomRadioTile(
               id: "belting_annual_3",
               title: 'Width',
-              values: const ['12”', '14”', '16”'],
+              values: const ['12"', '14"', '16"'],
               onChangeValue: (value) {
                 widget.beltModel.beltingWidth =
                     jsonData['belting_width'][value];
@@ -72,6 +72,16 @@ class _BeltingState extends State<Belting> {
               fieldLabelTitle: "Other",
               onFieldChange: (value) {
                 widget.beltModel.beltingColor = value;
+              },
+
+              conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: "belting_annual_4a",
+                    title: 'Specify Other',
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
             CustomRadioTile(
@@ -136,9 +146,12 @@ class _BeltingState extends State<Belting> {
               title: 'Instructions Stenciled on the Belt:',
               values: const ['OK', 'Non-Compliant', 'Faded'],
               onChangeValue: (value) {
+                debugPrint(value);
+                setState(() {
+                  beltVariable.beltingInstructionsStenciledOnTheBelt = value;
+                });
                 widget.beltModel.beltingInstructionsStenciledOnTheBelt =
-                    jsonData['belting_instructions_stenciled_on_the_belt']
-                        [value];
+                    jsonData['belting_instructions_stenciled_on_the_belt'][value];
               },
             ),
             CustomRadioTile(

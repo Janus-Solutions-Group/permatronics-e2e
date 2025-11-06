@@ -21,7 +21,11 @@ class IntermediateLanding extends StatefulWidget {
 class _IntermediateLandingState extends State<IntermediateLanding> {
   IntermediateLandingModel? intermediateLanding;
   final formKey = GlobalKey<FormState>();
-
+  @override
+  void initState() {
+    super.initState();
+    intermediateLanding = widget.model; // or create a new instance
+  }
   @override
   Widget build(BuildContext context) {
     var jsonData = widget.jsonData;
@@ -58,65 +62,45 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               title: 'Maze:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                setState(() {
-                  intermediateLanding!.intermediateLandingMaze = value;
-                });
-                widget.model.intermediateLandingMaze =
+                 widget.model.intermediateLandingMaze =
                     jsonData['intermediate_landing_maze'][value];
               },
+               conditionalBuilder: (selected) {
+                if (selected == 'yes') {
+                  return CustomTextField(
+                    id: 'intermediate_landing_quartmonth_${widget.index}_4',
+                    title: 'Description',
+                  );
+                } else if (selected == 'no') {
+                  return Column(
+                    children: [
+                      CustomRadioTile(
+                       id: 'intermediate_landing_quartmonth_${widget.index}_5',
+                        title: 'Self Closing Gate:',
+                        values: const ['1', '2', '3', '4'],
+                        onChangeValue: (value) {
+
+                          widget.model.intermediateLandingInstructionSign =
+                              jsonData['intermediate_landing_instructionsign'][value];
+                        },
+                      ),
+                      CustomRadioTile(
+                       id: 'intermediate_landing_quartmonth_${widget.index}_6',
+                        title: 'Open Outward:',
+                        values: const ['Yes', 'No'],
+                        onChangeValue: (value) {
+
+                          widget.model.intermediateLandingOpenOutward =
+                              jsonData['intermediate_landing_openoutward'][value];
+                        },
+                      ),
+                    ],
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
-            if (intermediateLanding != null &&
-                intermediateLanding!.intermediateLandingMaze == "yes") ...[
-              CustomTextField(
-                id: 'intermediate_landing_quartmonth_${widget.index}_4',
-                title: 'Description',
-                onChanged: (val) {
-                  // model.stepsStepDescription = val;
-                },
-              ),
-            ] else ...[
-              CustomRadioTile(
-                id: 'intermediate_landing_quartmonth_${widget.index}_5',
-                title: 'Self Closing Gate:',
-                values: const ['1', '2', '3', '4'],
-                onChangeValue: (value) {
-                  // json keys are different--
-                  // model.intermediateLandingSelfClosingGates =
-                  //   jsonData['intermediate_landing_selfclosinggates'][value];
-                },
-              ),
-              CustomRadioTile(
-                id: 'intermediate_landing_quartmonth_${widget.index}_5_1',
-                title: 'Are Gates Self Closing',
-                values: const ['Yes', "No"],
-                onChangeValue: (value) {
-                  // json keys are different--
-                  widget.model.intermediateLandingAreGatesSelfClosing =
-                      jsonData['intermediate_landing_aregatesselfclosing']
-                          [value];
-                },
-              ),
-              CustomRadioTile(
-                id: 'intermediate_landing_quartmonth_${widget.index}_6',
-                title: 'Open Outward:',
-                values: const ['Yes', 'No'],
-                onChangeValue: (value) {
-                  widget.model.intermediateLandingOpenOutward =
-                      jsonData['intermediate_landing_openoutward'][value];
-                },
-              ),
-              CustomRadioTile(
-                id: 'intermediate_landing_quartmonth_${widget.index}_6_1',
-                title: 'Are Gates Missing:',
-                values: const ['Yes', 'No'],
-                onChangeValue: (value) {
-                  widget.model.intermediateLandingAreGatesMissing =
-                      jsonData['intermediate_landing_aregatesmissing'][value];
-                },
-                fieldValue: "yes",
-                fieldLabelTitle: "How Many Missing",
-              ),
-            ],
+            
             CustomRadioTile(
               id: 'intermediate_landing_quartmonth_${widget.index}_7',
               title: 'Toeboard:',

@@ -35,6 +35,16 @@ class Handholds extends StatelessWidget {
                 beltModel.handholdsHandholdColor =
                     jsonData['handholds_handhold_color'][value];
               },
+
+              conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: "handholds_1a",
+                    title: 'Specify Other',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
               fieldLabelTitle: "Other Color",
               fieldValue: "other",
               onFieldChange: (value) {

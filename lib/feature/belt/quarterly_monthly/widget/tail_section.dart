@@ -105,7 +105,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
               },
             ),
             CustomRadioTile(
-              title: "Bearing Bearing Condition",
+              title: "Bottom Bearing Condition",
               id: "tail_section_19",
               values: const [
                 "OK",
@@ -199,21 +199,41 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
                 widget.beltModel.driveAssemblyBeltTracking =
                     jsonData['tail_section_foot_assembly_belt_tracking'][value];
               },
-            ),
-            if (beltVariable.tailSectionFootAssemblyBeltTracking == 'off')
-              CustomRadioTile(
-                values: const ["up", "down"],
-                id: "tail_section_11",
-                onChangeValue: (value) {},
-                valueStyle: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-            if (beltVariable.tailSectionFootAssemblyBeltTracking == 'off')
-              CustomRadioTile(
-                values: const ["left", "right"],
-                id: "tail_section_12",
-                onChangeValue: (value) {},
-                valueStyle: const TextStyle(fontWeight: FontWeight.bold),
-              ),
+              conditionalBuilder: (selected) {
+                    if (selected == 'off') {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomRadioTile(
+                      title: "Up/down",
+                      values: const ["up", "down"],
+                      id: "tail_section_10a",
+                      onChangeValue: (value) {},
+                      valueStyle: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    CustomRadioTile(
+                      title: "Left/right",
+                      values: const ["left", "right"],
+                      id: "tail_section_10b",
+                      onChangeValue: (value) {},
+                      valueStyle: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    CustomTextField(
+                      id: "tail_section_10c",
+                      title: 'Inches Off:',
+                      onChanged: (value) {
+                        // widget.beltModel.driveAssemblyBeltTrackingInchesOff = value;
+                      },
+                    ),
+                  ],
+                );
+              }
+
+              // Default fallback when condition not met
+              return const SizedBox.shrink();
+            },
+                        ),
+            
             CustomRadioTile(
               title: "Debris Deflector",
               id: "tail_section_13",

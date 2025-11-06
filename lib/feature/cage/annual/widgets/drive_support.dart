@@ -307,7 +307,7 @@ class _AnnualCageDriveSupportFormState
                   jsonData['drive_support']['brake_condition'][value];
             },
           ),
-          const CustomTitle(title: 'Head Drive Measurements:'),
+          const CustomTextField(id: 'drive_support_40',title: 'Head Drive Measurements:'),
           const Row(
             children: [
               Expanded(
@@ -318,7 +318,7 @@ class _AnnualCageDriveSupportFormState
                       CustomTextField(id: 'drive_support_42', title: 'Width'))
             ],
           ),
-          const CustomTitle(title: 'From Walls'),
+          const CustomTextField(id: 'drive_support_42a', title: 'From Walls'),
           const Row(
             children: [
               Expanded(

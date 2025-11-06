@@ -150,7 +150,7 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
               widget.model.hoistwayDoorSigns = value;
             },
           ),
-          const CustomTitle(title: "Enclosure:"),
+          CustomTextField(id: 'landing_${widget.index}_cage_annual_12a', title: "Enclosure:"),
           Row(
             children: [
               Expanded(

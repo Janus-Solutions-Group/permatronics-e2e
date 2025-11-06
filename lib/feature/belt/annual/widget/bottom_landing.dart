@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:manlift_app/data/models/original_model.dart';
 import 'package:manlift_app/feature/belt/model/belt_inspection_model.dart';
 import 'package:manlift_app/feature/common/widgets/custom_title.dart';
@@ -7,6 +8,8 @@ import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
+import 'package:manlift_app/provider/selection_ref_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../pages/belt_annual.dart';
 
@@ -206,16 +209,25 @@ class _BottomLandingState extends State<BottomLanding> {
               },
             ),
             DistanceTextField(
-              // id: "bottom_landing_annual_19",
+              id: "bottom_landing_annual_19",
               title: 'Back',
+              onChangeValue: (value) {
+                widget.beltModel.bottomLandingBackDistance = value;
+              },
             ),
             DistanceTextField(
-              // id: "bottom_landing_annual_20",
+              id: "bottom_landing_annual_20",
               title: 'Left',
+              onChangeValue: (value) {
+                widget.beltModel.bottomLandingLeftDistance = value;
+              },
             ),
             DistanceTextField(
-              // id: "bottom_landing_annual_21",
+              id: "bottom_landing_annual_21",
               title: 'Right',
+              onChangeValue: (value) {
+                widget.beltModel.bottomLandingRightDistance = value;
+              },
             ),
             CustomRadioTile(
               id: "bottom_landing_annual_22",
@@ -243,42 +255,30 @@ class _BottomLandingState extends State<BottomLanding> {
               },
             ),
             CustomRadioTile(
-              id: "bottom_landing_annual_28",
+              id: "bottom_landing_annual_28a",
               title:
                   'Is There a Wall in Front of Dismount Platform Within 48" From Face of Belt:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
                 widget.beltModel
-                        .bottomLandingIsThereAWallInFrontOfDismountPlatformWithin48FromFaceOfBelt =
-                    jsonData[
-                            "bottom_landing_is_there_a_wall_in_front_of_dismount_platform_within_48_from_face_of_belt"]
-                        [value];
+                        .bottomLandingIsThereAWallInFrontOfDismountPlatformWithin48FromFaceOfBelt = value;
               },
             ),
             CustomRadioTile(
-              id: "bottom_landing_annual_28",
+              id: "bottom_landing_annual_28a",
               title: 'Distance From Floor Opening to Guard Rail "Downside":',
               values: const ['Compliant', 'Non-Compliant'],
               onChangeValue: (value) {
                 widget.beltModel
-                        .bottomLandingDistanceFromFloorOpeningToGuardRailDownSide =
-                    jsonData[
-                            "bottom_landing_distance_from_floor_opening_to_guard_rail_down_side"]
-                        [value];
+                        .bottomLandingDistanceFromFloorOpeningToGuardRailDownSide = value;
               },
             ),
-            DistanceTextField(
-                // id: "bottom_landing_annual_29",
-
-                title: 'Back'),
-            DistanceTextField(
-                // id: "bottom_landing_annual_30",
-
-                title: 'Left'),
-            DistanceTextField(
-                // id: "bottom_landing_annual_31",
-
-                title: 'Right'),
+            DistanceTextField(id: "bottom_landing_annual_29", title: 'Back',
+                onChangeValue: (value) {},),
+            DistanceTextField(id: "bottom_landing_annual_30", title: 'Left',
+                onChangeValue: (value) {},),
+            DistanceTextField(id: "bottom_landing_annual_31", title: 'Right',
+                onChangeValue: (value) {},),
             CustomRadioTile(
               id: "bottom_landing_annual_32",
               title: 'Ladder Rungs',
@@ -327,71 +327,69 @@ class _BottomLandingState extends State<BottomLanding> {
                       jsonData["bottom_landing_ladder_rungs_condition"][value];
                 },
               ),
+
+            
             CustomRadioTile(
               id: "bottom_landing_annual_36",
-              title: 'Maze',
-              values: const ['Yes', 'No', 'NA'],
+              title: 'Maze:',
+              values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                setState(() {
-                  beltVariable.bottomLandingMaze = value;
-                });
-                widget.beltModel.bottomLandingMaze =
-                    jsonData["bottom_landing_maze"][value];
+                 widget.beltModel.bottomLandingMaze =
+                    jsonData['bottom_landing_maze'][value];
+              },
+               conditionalBuilder: (selected) {
+                if (selected == 'yes') {
+                  return const CustomTextField(
+                    id: 'bottom_landing_annual_37',
+                    title: 'Description',
+                  );
+                } else if (selected == 'no') {
+                  return Column(
+                    children: [
+                      CustomRadioTile(
+                       id: 'bottom_landing_annual_38',
+                        title: 'Self Closing Gate:',
+                        values: const ['1', '2', '3', '4'],
+                        onChangeValue: (value) {
+                          if (jsonData['bottom_landing_instructionsign'] != null) {
+                              widget.beltModel.bottomLandingInstructionSign =
+                                  jsonData['bottom_landing_instructionsign'][value];
+                            }
+
+                        },
+                      ),
+                      CustomRadioTile(
+                       id: 'bottom_landing_annual_39',
+                        title: 'Open Outward:',
+                        values: const ['Yes', 'No'],
+                        onChangeValue: (value) {
+
+                          widget.beltModel.bottomLandingOpenOutward =
+                              jsonData['bottom_landing_openoutward'][value];
+                        },
+                      ),
+                      CustomRadioTile(
+                       id: 'bottom_landing_annual_40',
+                        title: 'Are Gates Missing:',
+                        values: const ['Yes', 'No'],
+                        onChangeValue: (value) {},
+                        conditionalBuilder: (selected) {
+                          if (selected == 'yes') {
+                            return CustomTextField(
+                              id: 'bottom_landing_annual_41',
+                              title: 'How Many',
+                            );
+                          } 
+                          return const SizedBox.shrink();
+                        },
+                      
+                      ),
+                    ],
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
-            if (beltVariable.bottomLandingMaze == "no" ||
-                beltVariable.bottomLandingMaze == "na")
-              CustomRadioTile(
-                id: "bottom_landing_annual_37",
-                title: 'Self Closing Gates',
-                values: const ['Yes', 'No', "NA"],
-                onChangeValue: (value) {
-                  setState(() {
-                    beltVariable.bottomLandingSelfClosingGates = value;
-                  });
-                  widget.beltModel.bottomLandingSelfClosingGates =
-                      jsonData["bottom_landing_self_closing_gates"][value];
-                },
-              ),
-            if (beltVariable.bottomLandingSelfClosingGates == "yes")
-              CustomRadioTile(
-                id: "bottom_landing_annual_38",
-                title: 'Are Gates-Self Closing',
-                values: const ['Yes', 'No'],
-                onChangeValue: (value) {
-                  widget.beltModel.bottomLandingAreGatesSelfClosing =
-                      jsonData["bottom_landing_are_gates_self_closing"][value];
-                },
-              ),
-            if (beltVariable.bottomLandingSelfClosingGates == "yes")
-              CustomRadioTile(
-                id: "bottom_landing_annual_39",
-                title: 'Are Gates Needed',
-                values: const ['Yes', 'No'],
-                onChangeValue: (value) {
-                  widget.beltModel.bottomLandingAreGatesMissing =
-                      jsonData["bottom_landing_are_gates_missing"][value];
-                },
-              ),
-            if (beltVariable.bottomLandingSelfClosingGates == "yes")
-              CustomRadioTile(
-                id: "bottom_landing_annual_40",
-                title: 'How Many',
-                values: const ['1', '2', '3'],
-                onChangeValue: (value) {
-                  widget.beltModel.bottomLandingGatesMissingCount = value;
-                },
-              ),
-            if (beltVariable.bottomLandingSelfClosingGates == "yes")
-              CustomRadioTile(
-                id: "bottom_landing_annual_41",
-                title: 'Open Outward',
-                values: const ["Yes", "No"],
-                onChangeValue: (value) {
-                  widget.beltModel.bottomLandingOpenOutward =
-                      jsonData["bottom_landing_open_outward"][value];
-                },
-              ),
             CustomRadioTile(
               id: "bottom_landing_annual_42",
               title: 'Toeboard',
@@ -439,12 +437,14 @@ class _BottomLandingState extends State<BottomLanding> {
                   widget.beltModel.bottomLandingToeboardHeight = value;
                 },
               ),
-            const CustomTitle(
+            CustomTextField(
+              id: "bottom_landing_annual_47",
+              onChanged: (val) {},
                 title:
                     'Distance from Face of Belt to Back Edge of Floor Opening:'),
             CustomTextField(
               id: "bottom_landing_annual_48",
-              title: '“Upside”:',
+              title: '"Upside":',
               onChanged: (val) {},
             ), // CustomTextField for Upside
             CustomTextField(
@@ -452,7 +452,10 @@ class _BottomLandingState extends State<BottomLanding> {
               title: '"Downside":',
               onChanged: (val) {},
             ), // CustomTextField for Downside
-            const CustomTitle(title: 'Guard Rail Height:'),
+            CustomTextField(
+              id: "bottom_landing_annual_48",
+              onChanged: (val) {},
+              title:'Guard Rail Height:'),
             CustomTextField(
               id: "bottom_landing_annual_51",
               title: '"Upside":',
@@ -500,49 +503,110 @@ class _BottomLandingState extends State<BottomLanding> {
   }
 }
 
-class DistanceTextField extends StatelessWidget {
+class DistanceTextField extends StatefulWidget {
   const DistanceTextField({
     super.key,
-    this.id,
+    required this.id,
     required this.title,
     this.keyboard,
-    this.from,
-    this.to,
+    this.onChangeValue,
   });
-  final String? id;
+
+  final String id;
   final String title;
   final TextInputType? keyboard;
-  final TextEditingController? from;
-  final TextEditingController? to;
+  final ValueChanged<String>? onChangeValue;
+
+  @override
+  State<DistanceTextField> createState() => _DistanceTextFieldState();
+}
+
+class _DistanceTextFieldState extends State<DistanceTextField> {
+  late TextEditingController fromController;
+  late TextEditingController toController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Load stored values
+    final box = GetStorage();
+    final fromValue = box.read('${widget.id}_from') ?? '';
+    final toValue = box.read('${widget.id}_to') ?? '';
+
+    fromController = TextEditingController(text: fromValue);
+    toController = TextEditingController(text: toValue);
+
+    // Initialize provider state
+    context.read<SelectionRefProvider>().updateSelection(
+          '${widget.id}_from',
+          '${widget.title} From',
+          fromValue,
+        );
+    context.read<SelectionRefProvider>().updateSelection(
+          '${widget.id}_to',
+          '${widget.title} To',
+          toValue,
+        );
+  }
+
+  @override
+  void dispose() {
+    fromController.dispose();
+    toController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _onChanged(String type, String value) async {
+    final idKey = '${widget.id}_$type';
+    final title = '${widget.title} ${type[0].toUpperCase()}${type.substring(1)}';
+
+    context.read<SelectionRefProvider>().updateSelection(idKey, title, value);
+    await GetStorage().write(idKey, value);
+
+    widget.onChangeValue?.call('$title: $value');
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            title,
+            widget.title,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
           ),
-          TextFormField(
-            controller: from,
-            maxLines: null,
-            keyboardType: keyboard,
-            decoration: const InputDecoration(suffix: Text("inch")),
-          ),
-          const Center(
-            child: Text(
-              'to ?',
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          TextFormField(
-            controller: to,
-            maxLines: null,
-            keyboardType: keyboard,
-            decoration: const InputDecoration(suffix: Text("inch")),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Expanded(
+                child: TextFormField(
+                  controller: fromController,
+                  keyboardType: widget.keyboard,
+                  onChanged: (val) => _onChanged('from', val),
+                  decoration: const InputDecoration(
+                    labelText: 'From',
+                    suffixText: 'inch',
+                    isDense: true,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: TextFormField(
+                  controller: toController,
+                  keyboardType: widget.keyboard,
+                  onChanged: (val) => _onChanged('to', val),
+                  decoration: const InputDecoration(
+                    labelText: 'To',
+                    suffixText: 'inch',
+                    isDense: true,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

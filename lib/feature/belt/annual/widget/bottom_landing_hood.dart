@@ -106,10 +106,19 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                           id: "bottom_landing_hood_annual_7",
                           title: 'Location of Hinges',
                           values: const [
-                            '6”',
-                            'More than 6” with obstruction',
+                            '6"',
+                            'More than 6" with obstruction',
                             'Other'
                           ],
+                          conditionalBuilder: (selected) {
+                            if (selected == 'other') {
+                              return CustomTextField(
+                                id: "bottom_landing_hood_annual_7a",
+                                title: 'Specify Other',
+                              );
+                            }
+                            return const SizedBox.shrink();
+                          },
                           onChangeValue: (value) {
                             widget.beltModel
                                 .bottomLandingHoodLocationOfHinges = jsonData[
@@ -153,7 +162,7 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                     id: "bottom_landing_hood_annual_10",
                     title: 'Hood Clearance:',
                     values: const [
-                      '(Minimum 7’6”)',
+                      '(Minimum 7’6")',
                       'Compliant',
                       'Non-Compliant'
                     ],

@@ -20,6 +20,7 @@ class BeltInspection {
   String? tailSectionFootAssemblyTypeOfBeltAdjustment;
   String? tailSectionFootAssemblyIsFootPulleyCentered;
   String? tailSectionFootAssemblyBeltTracking;
+  String? tailSectionFootAssemblyInchesOff;
   String? tailSectionFootAssemblyDebrisDeflector;
   String? tailSectionFootAssemblyDebrisDeflectorCondition;
   String? tailSectionFootAssemblyRopeSheaves;
@@ -60,7 +61,11 @@ class BeltInspection {
   String? bottomLandingDoesManliftUseDownSidePlatform;
   String?
       bottomLandingIsThereAWallInFrontOfDismountPlatformWithin48FromFaceOfBelt;
-  String? bottomLandingDistanceFromFloorOpeningToGuardRailDownSide;
+  String? bottomLandingDistanceFromFloorOpeningToGuardRailDownSide; 
+  String? bottomLandingBackDistance;
+  String? bottomLandingLeftDistance;
+  String? bottomLandingRightDistance;
+
   String? bottomLandingLadderRungs;
   String? bottomLandingDistanceBetweenRungs;
   String? bottomLandingLadderRungsCondition;
@@ -102,6 +107,7 @@ class BeltInspection {
   String? beltingMissingBoltsNumber;
   String? beltingSpliceBoltCondition;
   String? beltingInstructionsStenciledOnTheBelt;
+  String? beltingInstructionsNonCompliantReason;
   String? beltingDirectionalArrowsStenciledOnTheBelt;
   String? beltingCompressiveFlexFailure;
   String? beltingTensionOfBelt;

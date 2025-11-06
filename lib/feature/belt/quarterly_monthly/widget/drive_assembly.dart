@@ -48,6 +48,34 @@ class DriveAssembly extends StatelessWidget {
                 beltModel.driveAssemblyBeltTracking =
                     jsonData['drive_assembly_belttracking'][value];
               },
+              conditionalBuilder: (selected) {
+                if (selected == 'off') {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomRadioTile(
+                        id: "drive_assembly_2a",
+                        title: 'Direction:',
+                        values: const ['Up', 'Down', 'Left', 'Right'],
+                        onChangeValue: (value) {
+                          // widget.beltModel.driveAssemblyBeltTrackingDirection = value;
+                        },
+                      ),
+                      CustomTextField(
+                        id: "drive_assembly_2b",
+                        title: 'Inches Off:',
+                        onChanged: (value) {
+                          // widget.beltModel.driveAssemblyBeltTrackingInchesOff = value;
+                        },
+                      ),
+                    ],
+                  );
+                }
+
+                // Default fallback when condition not met
+                return const SizedBox.shrink();
+              },
+              
             ),
             CustomRadioTile(
               id: 'drive_assembly_3',
@@ -75,6 +103,21 @@ class DriveAssembly extends StatelessWidget {
               onChangeValue: (value) {
                 beltModel.driveAssemblyShaftCondition =
                     jsonData['drive_assembly_shaftcondition'][value];
+              },
+            ),
+            CustomRadioTile(
+              id: 'drive_assembly_4a',
+              title: 'Head Shaft Bearing Condition:',
+              values: const [
+                'OK',
+                'Worn, but OK',
+                'Replace Damaged',
+                'Replace Worn',
+                'Dry'
+              ],
+              onChangeValue: (value) {
+                beltModel.driveAssemblyBearingCondition =
+                    jsonData['drive_assembly_bearingcondition'][value];
               },
             ),
             CustomRadioTile(
@@ -125,6 +168,16 @@ class DriveAssembly extends StatelessWidget {
                 beltModel.driveAssemblyCouplerType =
                     jsonData['drive_assembly_couplertype'][value];
               },
+
+               conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: "drive_assembly_8a",
+                    title: 'Specify Other Type',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
             CustomRadioTile(
               id: 'drive_assembly_9',
@@ -149,6 +202,16 @@ class DriveAssembly extends StatelessWidget {
               onChangeValue: (value) {
                 beltModel.driveAssemblyGearboxType =
                     jsonData['drive_assembly_gearboxtype'][value];
+              },
+
+               conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: "drive_assembly_10a",
+                    title: 'Specify Other Type',
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
             CustomRadioTile(
@@ -175,6 +238,16 @@ class DriveAssembly extends StatelessWidget {
                 beltModel.driveAssemblyMotorType =
                     jsonData['drive_assembly_motortype'][value];
               },
+
+               conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: "drive_assembly_12a",
+                    title: 'Specify Other Type',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
             CustomRadioTile(
               id: 'drive_assembly_13',
@@ -193,6 +266,16 @@ class DriveAssembly extends StatelessWidget {
                 beltModel.driveAssemblyBrakeType =
                     jsonData['drive_assembly_braketype'][value];
               },
+
+               conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: "drive_assembly_13a",
+                    title: 'Specify Other',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
             CustomRadioTile(
               id: 'drive_assembly_14',
@@ -202,6 +285,25 @@ class DriveAssembly extends StatelessWidget {
                 beltModel.driveAssemblyIsDriveSkip =
                     jsonData['drive_assembly_isdriveskip'][value];
               },
+              
+               conditionalBuilder: (selected) {
+                if (selected == 'yes') {
+                  return CustomRadioTile(
+                    id: "drive_assembly_14a",
+                    title: 'Skip reason',
+                    values: const [
+                      'Coupler Play',
+                      'Worn Gearbox',
+                      'Key Way',
+                      'Loose Set Screws'
+                    ],
+                    onChangeValue: (value) {
+                    },
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+       
             ),
             CustomRadioTile(
               id: 'drive_assembly_15',
@@ -265,6 +367,16 @@ class DriveAssembly extends StatelessWidget {
               values: const ['OK', 'Other'],
               onChangeValue: (value) {
                 // beltModel.drivesup = value;
+              },
+
+               conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: "drive_assembly_20a",
+                    title: 'Specify Other',
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
             CustomTextField(

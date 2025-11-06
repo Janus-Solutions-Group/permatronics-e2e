@@ -88,7 +88,7 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
           CustomRadioTile(
             id: 'car_conterweight_6',
             title: 'Size',
-            values: const ["3/8”", "1/2”"],
+            values: const ["3/8\"", "1/2\""],
             onChangeValue: (value) {
               cageModel.ccfHoistcableSize =
                   jsonData['car_and_counterweight_fastening']['size'][value];
@@ -107,7 +107,7 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
           CustomRadioTile(
             id: 'car_conterweight_8',
             title: 'Governor Cable Size:',
-            values: const ["3/8”", "1/2”"],
+            values: const ["3/8\"", "1/2\""],
             onChangeValue: (value) {
               cageModel.ccfGovernorCableSize =
                   jsonData['car_and_counterweight_fastening']

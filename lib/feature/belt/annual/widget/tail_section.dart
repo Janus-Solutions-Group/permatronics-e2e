@@ -232,32 +232,53 @@ class _TailSectionState extends State<TailSection> {
                       [value];
             },
           ),
-          CustomRadioTile(
-            id: "tail_section_17",
-            title: "Belt Tracking",
-            values: const ["OK", "Off"],
-            onChangeValue: (value) {
-              setState(() {
-                beltVariable.tailSectionFootAssemblyBeltTracking = value;
-              });
-              widget.beltModel.tailSectionFootAssemblyBeltTracking =
-                  jsonData["tail_section_foot_assembly_belt_tracking"][value];
+
+            CustomRadioTile(
+              title: "Belt Tracking",
+              id: "tail_section_17",
+              values: const ["OK", "Off"],
+              onChangeValue: (value) {
+                setState(() {
+                  beltVariable.tailSectionFootAssemblyBeltTracking = value;
+                });
+                widget.beltModel.driveAssemblyBeltTracking =
+                    jsonData['tail_section_foot_assembly_belt_tracking'][value];
+              },
+              conditionalBuilder: (selected) {
+                    if (selected == 'off') {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomRadioTile(
+                      title: "Up/down",
+                      values: const ["up", "down"],
+                      id: "tail_section_18a",
+                      onChangeValue: (value) {},
+                      valueStyle: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    CustomRadioTile(
+                      title: "Left/right",
+                      values: const ["left", "right"],
+                      id: "tail_section_18b",
+                      onChangeValue: (value) {},
+                      valueStyle: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    CustomTextField(
+                      id: "tail_section_19",
+                      title: 'Inches Off:',
+                      onChanged: (value) {
+                        // widget.beltModel.driveAssemblyBeltTrackingInchesOff = value;
+                      },
+                    ),
+                  ],
+                );
+              }
+
+              // Default fallback when condition not met
+              return const SizedBox.shrink();
             },
-          ),
-          if (beltVariable.tailSectionFootAssemblyBeltTracking == 'off')
-            CustomRadioTile(
-              id: "tail_section_18",
-              values: const ["up", "down"],
-              onChangeValue: (value) {},
-              valueStyle: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          if (beltVariable.tailSectionFootAssemblyBeltTracking == 'off')
-            CustomRadioTile(
-              id: "tail_section_19",
-              values: const ["left", "right"],
-              onChangeValue: (value) {},
-              valueStyle: const TextStyle(fontWeight: FontWeight.bold),
-            ),
+          ),  
+            
           CustomRadioTile(
             id: "tail_section_20",
             title: "Debris Deflector",
@@ -284,27 +305,23 @@ class _TailSectionState extends State<TailSection> {
               },
             ),
           CustomRadioTile(
-            id: "tail_section_22",
+            id: "tail_section_22a",
             title: "Rope Sheaves",
             values: const ["Yes", "No"],
             onChangeValue: (value) {
               setState(() {
                 beltVariable.tailSectionFootAssemblyRopeSheaves = value;
               });
-              widget.beltModel.tailSectionFootAssemblyRopeSheaves =
-                  jsonData["tail_section_foot_assembly_rope_sheaves"][value];
+              widget.beltModel.tailSectionFootAssemblyRopeSheaves = value;
             },
           ),
           if (beltVariable.tailSectionFootAssemblyRopeSheaves == "yes")
             CustomRadioTile(
-              id: "tail_section_22",
+              id: "tail_section_22b",
               title: "Rope Sheaves Condition",
               values: const ["OK", "Replace Damaged", "Replace Worn"],
               onChangeValue: (value) {
-                widget.beltModel.tailSectionFootAssemblyRopeSheavesCondition =
-                    jsonData[
-                            "tail_section_foot_assembly_rope_sheaves_condition"]
-                        [value];
+                widget.beltModel.tailSectionFootAssemblyRopeSheavesCondition = value;
               },
             ),
           if (beltVariable.tailSectionFootAssemblyRopeSheaves == "no")
