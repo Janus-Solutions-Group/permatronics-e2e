@@ -381,6 +381,17 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               onChangeValue: (value) {
                 // beltModel.distanceb = value;
               },
+
+
+              conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: 'landing${widget.index}_belt_annual_39a',
+                    title: 'Specify Other',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
               isTextField: true,
               fieldLabelTitle: 'Other',
             ),

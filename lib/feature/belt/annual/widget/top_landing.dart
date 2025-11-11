@@ -257,6 +257,16 @@ class _TopLandingState extends State<TopLanding> {
                 // beltModel.toeboard =
                 //     jsonData['top_landing_instructionsign'][value];
               },
+
+              conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: "top_landing_belt_annual_36",
+                    title: 'Specify Other',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
             CustomTextField(
                 id: "top_landing_belt_annual_37", title: 'Toeboard Height:'),

@@ -265,7 +265,7 @@ class _BottomLandingState extends State<BottomLanding> {
               },
             ),
             CustomRadioTile(
-              id: "bottom_landing_annual_28a",
+              id: "bottom_landing_annual_28b",
               title: 'Distance From Floor Opening to Guard Rail "Downside":',
               values: const ['Compliant', 'Non-Compliant'],
               onChangeValue: (value) {
@@ -303,6 +303,16 @@ class _BottomLandingState extends State<BottomLanding> {
                 fieldValue: "other",
                 onFieldChange: (value) {
                   widget.beltModel.bottomLandingDistanceBetweenRungs = value;
+                },
+
+                conditionalBuilder: (selected) {
+                  if (selected == 'other') {
+                    return CustomTextField(
+                      id: "bottom_landing_annual_33a",
+                      title: 'Specify Other',
+                    );
+                  }
+                  return const SizedBox.shrink();
                 },
               ),
 
@@ -363,9 +373,10 @@ class _BottomLandingState extends State<BottomLanding> {
                         title: 'Open Outward:',
                         values: const ['Yes', 'No'],
                         onChangeValue: (value) {
-
-                          widget.beltModel.bottomLandingOpenOutward =
-                              jsonData['bottom_landing_openoutward'][value];
+                          if (jsonData['bottom_landing_openoutward'] != null) {
+                            widget.beltModel.bottomLandingOpenOutward =
+                                jsonData['bottom_landing_openoutward'][value];
+                          }
                         },
                       ),
                       CustomRadioTile(
@@ -427,6 +438,16 @@ class _BottomLandingState extends State<BottomLanding> {
                 onChangeValue: (value) {
                   // beltModel.toeboard =
                   //     jsonData["bottom_landing_toeboard_height"][value];
+                },
+
+                conditionalBuilder: (selected) {
+                  if (selected == 'other') {
+                    return CustomTextField(
+                      id: "bottom_landing_annual_45a",
+                      title: 'Specify Other',
+                    );
+                  }
+                  return const SizedBox.shrink();
                 },
               ),
             if (beltVariable.bottomLandingToeboard == "yes")

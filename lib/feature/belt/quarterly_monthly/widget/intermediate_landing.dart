@@ -142,6 +142,16 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               },
               fieldValue: "other",
               fieldLabelTitle: "Other",
+
+              conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: 'intermediate_landing_quartmonth_${widget.index}_10a',
+                    title: 'Specify Other',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
             CustomTextField(
               id: 'intermediate_landing_quartmonth_${widget.index}_11',
