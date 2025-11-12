@@ -162,7 +162,7 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                     id: "bottom_landing_hood_annual_10",
                     title: 'Hood Clearance:',
                     values: const [
-                      '(Minimum 7’6")',
+                      '(Minimum 7\'6")',
                       'Compliant',
                       'Non-Compliant'
                     ],

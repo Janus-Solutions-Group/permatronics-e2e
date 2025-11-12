@@ -212,17 +212,6 @@ class _AnnualCageDriveSupportFormState
                   jsonData['drive_support']['traction_sheave_condition'][value];
             },
           ),
-          CustomRadioTile(
-            id: 'drive_support_23',
-            title: 'Replace',
-            values: const ["Yes", "No"],
-            onChangeValue: (value) {
-              // cageModel.replace = value;
-            },
-            isTextField: true,
-            fieldLabelTitle: "if yes, why: ",
-            fieldValue: "yes",
-          ),
           const CustomTextField(
             id: 'drive_support_24',
             title: 'Shaft Size',

@@ -63,7 +63,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
             CustomRadioTile(
               id: 'landing${widget.index}_belt_annual_3',
               title: 'Floor Opening Shape',
-              values: const ['Circular', 'Shape'],
+              values: const ['Circular', 'Square'],
               onChangeValue: (value) {
                 widget.model.intermediateLandingFloorOpeningShape =
                     jsonData['intermediate_landing_flooropeningshape'][value];
@@ -207,21 +207,31 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                 widget.model.intermediateLandingToeboard =
                     jsonData['intermediate_landing_toeboard'][value];
               },
-            ),
-            if (widget.model.intermediateLandingToeboard == "yes")
-            CustomRadioTile(
-              id: 'landing${widget.index}_belt_annual_21',
-              title: 'Add\'l Toeboard Required:',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {
-                widget.model.intermediateLandingAddlToeboard =
-                    jsonData['intermediate_landing_addltoeboardrequired']
-                        [value];
+               conditionalBuilder: (selected) {
+                if (selected == 'yes') {
+                  return CustomRadioTile(
+                    id: 'landing${widget.index}_belt_annual_21',
+                    title: 'Add\'l Toeboard Required:',
+                    values: const ['Yes', 'No'],
+                    onChangeValue: (value) {
+                      widget.model.intermediateLandingAddlToeboard =
+                          jsonData['intermediate_landing_addltoeboardrequired']
+                              [value];
+                    },
+                    conditionalBuilder: (selected) {
+                      if (selected == 'yes') {
+                        return CustomTextField(
+                          id: 'landing${widget.index}_belt_annual_22',
+                          title: 'Length',
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
-            if (widget.model.intermediateLandingAddlToeboard == "yes")
-            CustomTextField(
-                id: 'landing${widget.index}_belt_annual_22', title: 'Length'),
             CustomRadioTile(
               id: 'landing${widget.index}_belt_annual_23a',
               title: 'Toeboard Material:',
@@ -267,7 +277,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
             ),
             CustomRadioTile(
               id: 'landing${widget.index}_belt_annual_26',
-              title: 'Hood Clearance: : (Minimum 7’6")',
+              title: 'Hood Clearance: : (Minimum 7\'6")',
               values: const ['OK', 'Non-Compliant'],
               onChangeValue: (value) {
                 widget.model.intermediateLandingHoodClearance =
@@ -374,6 +384,23 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
             ),
             CustomTextField(
                 id: 'landing${widget.index}_belt_annual_38', title: 'How Many'),
+
+            CustomRadioTile(
+              id: 'landing${widget.index}_belt_annual_38a',
+              title: 'Need Additional Ladder Rungs:',
+              values: const ['Yes', 'No'],
+              onChangeValue: (value) {
+              },
+               conditionalBuilder: (selected) {
+                if (selected == 'yes') { 
+                  return CustomTextField(
+                    id: 'landing${widget.index}_belt_annual_38b',
+                    title: 'How Many',
+                  );
+                } 
+                return const SizedBox.shrink();
+              },
+            ),
             CustomRadioTile(
               id: 'landing${widget.index}_belt_annual_39',
               title: 'Distance Between Rungs:',
@@ -428,17 +455,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                     jsonData['intermediate_landing_tensionofbelt'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'landing${widget.index}_belt_annual_45',
-              title: 'Need Add’l:',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {
-                widget.model.intermediateLandingConditionOfRopeGuides =
-                    jsonData['intermediate_landing_needaddlropeguides'][value];
-              },
-            ),
-            CustomTextField(
-                id: 'landing${widget.index}_belt_annual_46', title: 'How Many'),
+        
             DistanceTextField(
                 id: 'landing${widget.index}_belt_annual_46a',
                 title: 'Measurement from Top of this Floor to Top of Floor #'),
@@ -463,10 +480,19 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
             CustomRadioTile(
               id: 'landing${widget.index}_belt_annual_49',
               title: 'Lateral Bracing:',
-              values: const ['OK', 'Needs Add’l'],
+              values: const ['OK', 'Needs Additional'],
               onChangeValue: (value) {
                 widget.model.intermediateLandingLateralBracing =
                     jsonData['intermediate_landing_lateralbracing'][value];
+              },
+              conditionalBuilder: (selected) {
+                if (selected == 'needs_additional') { 
+                  return CustomTextField(
+                    id: 'landing${widget.index}_belt_annual_49a',
+                    title: 'How Many',
+                  );
+                } 
+                return const SizedBox.shrink();
               },
             ),
             CustomRadioTile(
@@ -484,9 +510,16 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               title: 'Condition:',
               values: const ['OK', 'Missing'],
               onChangeValue: (value) {},
+               conditionalBuilder: (selected) {
+                if (selected == 'missing') { 
+                  return CustomTextField(
+                    id: 'landing${widget.index}_belt_annual_52',
+                    title: 'How Many',
+                  );
+                } 
+                return const SizedBox.shrink();
+              },
             ),
-            CustomTextField(
-                id: 'landing${widget.index}_belt_annual_52', title: 'How Many'),
             CustomRadioTile(
               id: 'landing${widget.index}_belt_annual_53',
               title: 'Is there a visual and audible alerting system:',

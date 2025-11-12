@@ -112,26 +112,32 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                   widget.model.intermediateLandingToeboard = value;
                 });
               },
+              conditionalBuilder: (selected) {
+                if (selected == 'yes') {
+                  return CustomRadioTile(
+                   id: 'intermediate_landing_quartmonth_${widget.index}_8',
+                    title: 'Add\'l Toeboard Required:',
+                    values: const ['Yes', 'No'],
+                    onChangeValue: (value) {
+                      widget.model.intermediateLandingAddlToeboard =
+                          jsonData['intermediate_landing_addltoeboardrequired']
+                              [value];
+                    },
+                    conditionalBuilder: (selected) {
+                      if (selected == 'yes') {
+                        return CustomTextField(
+                          id: 'intermediate_landing_quartmonth_${widget.index}_9',
+                          title: 'Length',
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+           
             ),
-            if (widget.model.intermediateLandingToeboard == "yes")
-              CustomRadioTile(
-                id: 'intermediate_landing_quartmonth_${widget.index}_8',
-                title: 'Add 1 Toeboard Required:',
-                values: const ['Yes', 'No'],
-                onChangeValue: (value) {
-                  widget.model.intermediateLandingAddlToeboard =
-                      jsonData['intermediate_landing_addltoeboardrequired']
-                          [value];
-                },
-                fieldValue: "yes",
-                fieldLabelTitle: "Length of Extra Toeboard",
-              ),
-            if (widget.model.intermediateLandingToeboard == "no")
-              CustomTextField(
-                id: 'intermediate_landing_quartmonth_${widget.index}_9',
-                title: 'Length',
-                onChanged: (val) {},
-              ),
             CustomRadioTile(
               id: 'intermediate_landing_quartmonth_${widget.index}_10',
               title: 'Toeboard Material:',
@@ -236,10 +242,20 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
             CustomRadioTile(
               id: 'intermediate_landing_quartmonth_${widget.index}_19',
               title: 'Lateral Bracing:',
-              values: const ['OK', 'Needs Add’l,'],
+              values: const ['OK', 'Needs Additional'],
               onChangeValue: (value) {
                 widget.model.intermediateLandingLateralBracing =
                     jsonData['intermediate_landing_lateralbracing'][value];
+              },
+
+              conditionalBuilder: (selected) {
+                if (selected == 'needs_additional') { 
+                  return CustomTextField(
+                   id: 'intermediate_landing_quartmonth_${widget.index}_19a',
+                    title: 'How Many',
+                  );
+                } 
+                return const SizedBox.shrink();
               },
             ),
             CustomRadioTile(
@@ -254,6 +270,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                     jsonData['intermediate_landing_checkattachmentbolts']
                         [value];
               },
+
             ),
             CustomRadioTile(
               id: 'intermediate_landing_quartmonth_${widget.index}_21',
@@ -263,11 +280,15 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                 // model.intermediatecondition =
                 //   jsonData['steps_step_rollers_bolts'][value];
               },
-            ),
-            CustomTextField(
+              conditionalBuilder: (selected) {
+                if (selected == 'missing') { 
+                  return CustomTextField(
               id: 'intermediate_landing_quartmonth_${widget.index}_22',
-              title: 'How Many',
-              onChanged: (val) {},
+                    title: 'How Many',
+                  );
+                } 
+                return const SizedBox.shrink();
+              },
             ),
             CustomTextField(
               id: 'intermediate_landing_quartmonth_${widget.index}_23',

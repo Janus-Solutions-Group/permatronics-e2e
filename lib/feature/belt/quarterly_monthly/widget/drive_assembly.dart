@@ -48,34 +48,40 @@ class DriveAssembly extends StatelessWidget {
                 beltModel.driveAssemblyBeltTracking =
                     jsonData['drive_assembly_belttracking'][value];
               },
-              conditionalBuilder: (selected) {
-                if (selected == 'off') {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CustomRadioTile(
-                        id: "drive_assembly_2a",
-                        title: 'Direction:',
-                        values: const ['Up', 'Down', 'Left', 'Right'],
-                        onChangeValue: (value) {
-                          // widget.beltModel.driveAssemblyBeltTrackingDirection = value;
-                        },
-                      ),
-                      CustomTextField(
-                        id: "drive_assembly_2b",
-                        title: 'Inches Off:',
-                        onChanged: (value) {
-                          // widget.beltModel.driveAssemblyBeltTrackingInchesOff = value;
-                        },
-                      ),
-                    ],
-                  );
-                }
+               conditionalBuilder: (selected) {
+                    if (selected == 'off') {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomRadioTile(
+                      title: "Up/down",
+                      values: const ["up", "down"],
+                      id: "drive_assembly_2a",
+                      onChangeValue: (value) {},
+                      valueStyle: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    CustomRadioTile(
+                      title: "Left/right",
+                      values: const ["left", "right"],
+                      id: "drive_assembly_2b",
+                      onChangeValue: (value) {},
+                      valueStyle: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    CustomTextField(
+                      id: "drive_assembly_2c",
+                      title: 'Inches Off:',
+                      onChanged: (value) {
+                        // widget.beltModel.driveAssemblyBeltTrackingInchesOff = value;
+                      },
+                    ),
+                  ],
+                );
+              }
 
-                // Default fallback when condition not met
-                return const SizedBox.shrink();
-              },
-              
+              // Default fallback when condition not met
+              return const SizedBox.shrink();
+            },
+          
             ),
             CustomRadioTile(
               id: 'drive_assembly_3',
@@ -215,7 +221,7 @@ class DriveAssembly extends StatelessWidget {
               },
             ),
             CustomRadioTile(
-              id: 'drive_assembly_11',
+              id: 'drive_assembly_11a',
               title: 'Gear Box Condition:',
               values: const [
                 'OK',
@@ -304,20 +310,6 @@ class DriveAssembly extends StatelessWidget {
                 return const SizedBox.shrink();
               },
        
-            ),
-            CustomRadioTile(
-              id: 'drive_assembly_15',
-              title: 'Reason',
-              values: const [
-                'Coupler Play',
-                'Worn Gearbox',
-                'Key Way',
-                'Loose Set Screws'
-              ],
-              onChangeValue: (value) {
-                beltModel.driveAssemblySkipReason =
-                    jsonData['drive_assembly_skipreason'][value];
-              },
             ),
             CustomRadioTile(
               id: 'drive_assembly_16',

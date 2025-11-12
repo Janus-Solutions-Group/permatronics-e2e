@@ -59,26 +59,32 @@ class _DriveAssemblyState extends State<DriveAssembly> {
             CustomRadioTile(
               id: "drive_assembly_annual_3",
               title: 'Belt Tracking:',
-              values: const ['OK', 'Off', 'Up', 'Down', 'Left', 'Right'],
+              values: const ['OK', 'Off'],
               onChangeValue: (value) {
                 widget.beltModel.driveAssemblyBeltTracking =
                     jsonData['drive_assembly_belttracking'][value];
               },
               conditionalBuilder: (selected) {
-              if (selected == 'off') {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                    if (selected == 'off') {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomRadioTile(
+                      title: "Up/down",
+                      values: const ["up", "down"],
+                      id: "drive_assembly_annual_3a",
+                      onChangeValue: (value) {},
+                      valueStyle: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     CustomRadioTile(
-                      id: "drive_assembly_annual_3_direction",
-                      title: 'Direction:',
-                      values: const ['Up', 'Down', 'Left', 'Right'],
-                      onChangeValue: (value) {
-                        // widget.beltModel.driveAssemblyBeltTrackingDirection = value;
-                      },
+                      title: "Left/right",
+                      values: const ["left", "right"],
+                      id: "drive_assembly_annual_3b",
+                      onChangeValue: (value) {},
+                      valueStyle: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     CustomTextField(
-                      id: "drive_assembly_annual_3_inches_off",
+                      id: "drive_assembly_annual_3c",
                       title: 'Inches Off:',
                       onChanged: (value) {
                         // widget.beltModel.driveAssemblyBeltTrackingInchesOff = value;
@@ -91,7 +97,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               // Default fallback when condition not met
               return const SizedBox.shrink();
             },
-            ),
+          ), 
             CustomRadioTile(
               id: "drive_assembly_annual_4",
               title: 'Lagging Condition:',

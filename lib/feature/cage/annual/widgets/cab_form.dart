@@ -207,6 +207,11 @@ class AnnualCageCABForm extends StatelessWidget {
                   jsonData['manual_backup_car_alarm'][value];
             },
           ),
+
+          const CustomTextField(
+            id: 'cab_21a',
+            title: "Manual Back Up Car Alarm Type:",
+          ),
           CustomRadioTile(
             id: 'cab_22',
             title: 'Data Plate',
@@ -225,18 +230,6 @@ class AnnualCageCABForm extends StatelessWidget {
             },
             fieldValue: 'other',
             fieldLabelTitle: "Other",
-          ),
-          const CustomTextField(
-            id: 'cab_24',
-            title: "Manual Back Up Car Alarm Type:",
-          ),
-          CustomRadioTile(
-            id: 'cab_25',
-            title: 'Data Plate:',
-            values: const ["Yes", "No"],
-            onChangeValue: (value) {
-              cageModel.dataPlate = jsonData['data_plate'][value];
-            },
           ),
 
           Row(

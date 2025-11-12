@@ -80,6 +80,16 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             isTextField: true,
             fieldLabelTitle: 'Other',
             fieldValue: 'other',
+
+            conditionalBuilder: (selected) {
+              if (selected == 'other') {
+                return CustomTextField(
+                  id: 'landing_${widget.index}_cage_annual_6a',
+                  title: 'Specify Other',
+                );
+              }
+              return const SizedBox.shrink();
+            },
             onChangeValue: (value) {
               widget.model.hoistwayDoorInterlockCondition = value;
             },
@@ -121,6 +131,16 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             type: widget.model.hoistwayDoorElectricContactCondition,
             onChangeValue: (value) {
               widget.model.hoistwayDoorElectricContactCondition = value;
+            },
+
+            conditionalBuilder: (selected) {
+              if (selected == 'other') {
+                return CustomTextField(
+                  id: 'landing_${widget.index}_cage_annual_9a',
+                  title: 'Specify Other',
+                );
+              }
+              return const SizedBox.shrink();
             },
           ),
           CustomRadioTile(
@@ -207,6 +227,16 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             isTextField: true,
             fieldLabelTitle: "Other",
             fieldValue: 'other',
+
+            conditionalBuilder: (selected) {
+              if (selected == 'other') {
+                return CustomTextField(
+                  id: 'landing_${widget.index}_cage_annual_17a',
+                    title: 'Specify Other',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
           ),
           CustomRadioTile(
             id: 'landing_${widget.index}_cage_annual_18',
@@ -216,17 +246,22 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             onChangeValue: (value) {
               widget.model.landingZoneSwitch = value;
             },
-          ),
-          if (widget.model.landingZoneSwitch == "yes")
-            CustomRadioTile(
-              id: 'landing_${widget.index}_cage_annual_19',
-              title: 'Condition',
-              values: const ["Ok", "Inoperable"],
-              type: widget.model.landingZoneSwitchCondition,
-              onChangeValue: (value) {
-                widget.model.landingZoneSwitchCondition = value;
+
+            conditionalBuilder: (selected) {
+              if (selected == 'yes') {
+                return CustomRadioTile(
+                  id: 'landing_${widget.index}_cage_annual_19',
+                  title: 'Condition',
+                  values: const ["Ok", "Inoperable"],
+                  type: widget.model.landingZoneSwitchCondition,
+                  onChangeValue: (value) {
+                    widget.model.landingZoneSwitchCondition = value;
+                  });
+                }
+                return const SizedBox.shrink();
               },
-            ),
+          ),
+            
           CustomTextField(
             id: 'landing_${widget.index}_cage_annual_20',
             title: "Landing Comments",

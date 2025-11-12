@@ -195,14 +195,21 @@ class _TopLandingSafetiesState extends State<TopLandingSafeties> {
                           jsonData['drive_assembly_toplandingsafeties_topreset']
                               [value];
                     },
-                  ),
-                  CustomTextField(
-                    id: "top_landing_safeties_14",
-                    title: 'Location',
-                    onChanged: (value) {
-                      widget.beltModel
-                              .driveAssemblyTopLandingSafetiesTopResetLocation =
-                          value;
+                    
+                    conditionalBuilder: (selected) {
+                      if (selected == 'yes') {
+                        return CustomTextField(
+                          id: 'top_landing_safeties_14',
+                          title: 'Location',
+
+                          onChanged: (value) {
+                            widget.beltModel
+                                    .driveAssemblyTopLandingSafetiesTopResetLocation =
+                                value;
+                          }
+                        );
+                      } 
+                      return const SizedBox.shrink();
                     },
                   ),
                   CustomRadioTile(
