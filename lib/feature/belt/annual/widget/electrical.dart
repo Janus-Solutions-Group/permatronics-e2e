@@ -77,15 +77,6 @@ class _ElectricalState extends State<Electrical> {
                 },
               ),
             CustomRadioTile(
-              id: "electrical_annual_6",
-              title: 'Individual Control Location:',
-              values: const ['By Manlift', 'In MCC Room'],
-              onChangeValue: (value) {
-                widget.beltModel.electricalIndividualControlLocation =
-                    jsonData['electrical_individualcontrollocation'][value];
-              },
-            ),
-            CustomRadioTile(
               id: "electrical_annual_8",
               title: 'Starter:',
               values: const ['Yes', 'No'],

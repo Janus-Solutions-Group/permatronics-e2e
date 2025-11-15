@@ -185,12 +185,12 @@ class _TopLandingState extends State<TopLanding> {
                     jsonData['top_landing_maze'][value];
               },
               conditionalBuilder: (selected) {
-                if (selected == 'Yes') {
+                if (selected == 'yes') {
                   return CustomTextField(
                     id: 'top_landing_belt_annual_27',
                     title: 'Description',
                   );
-                } else if (selected == 'No') {
+                } else if (selected == 'no') {
                   return Column(
                     children: [
                       CustomRadioTile(
@@ -424,100 +424,142 @@ class _TopLandingState extends State<TopLanding> {
               values: const ['Yes', 'No'],
               onChangeValue: (value) {},
             ),
-            CustomRadioTile(
+           
+           CustomRadioTile(
               id: "top_landing_belt_annual_59",
               title: 'Type of Hood:',
-              values: const ['Stationary', 'Moveable', 'Moveable Mini'],
-              onChangeValue: (value) {},
-            ),
-            CustomRadioTile(
-              id: "top_landing_belt_annual_60",
-              title: 'Hood Condition:',
-              values: const [
-                'OK',
-                'Damaged, but OK',
-                'Replace Damaged',
-                'Replace Worn'
-              ],
+              values: const ['Stationary', 'Moveable', 'Moveable Mini', 'None'],
               onChangeValue: (value) {
-                widget.beltModel.topLandingHoodCondition =
-                    jsonData['top_landing_hoodcondition'][value];
+                // beltModel. = value;
               },
-            ),
-            CustomRadioTile(
-              id: "top_landing_belt_annual_61",
-              title: 'Hood Clearance: (Minimum 7\'6")',
-              values: const ['OK', 'Non-Compliant'],
-              onChangeValue: (value) {
-                widget.beltModel.topLandingHoodClearance =
-                    jsonData['top_landing_hoodclearance'][value];
-              },
-            ),
-            CustomTextField(
-                id: "top_landing_belt_annual_62",
-                title: 'If Stationary, Distance from Face of Belt:'),
-            CustomTextField(
-                id: "top_landing_belt_annual_63", title: 'Angle of Slope: °'),
-            CustomRadioTile(
-              id: "top_landing_belt_annual_64",
-              title: 'Shape:',
-              values: const ['Circular', 'Square'],
-              onChangeValue: (value) {},
-            ),
-            CustomRadioTile(
-              id: "top_landing_belt_annual_65",
-              title: 'If Moveable, What Type of Switch:',
-              values: const ['Mercury', 'Micro-Switch'],
-              onChangeValue: (value) {},
-            ),
-            CustomRadioTile(
-              id: "top_landing_belt_annual_66",
-              title: 'Location of Hinges:',
-              values: const ['6"', 'More than 6" with Obstruction', 'Other'],
-              onChangeValue: (value) {},
-
               conditionalBuilder: (selected) {
-                if (selected == 'other') {
-                  return CustomTextField(
-                    id: "top_landing_belt_annual_66a",
-                    title: 'Specify Other',
-                  );
-                }
+              final sel = selected.toLowerCase();
+
+              // If NONE → return nothing
+              if (sel == "none" || sel.isEmpty) {
                 return const SizedBox.shrink();
-              },
+              }
+
+              // Prepare list to fill
+              List<Widget> widgets = [];
+
+              // ----------------------------------------
+              // CASE 1: STATIONARY
+              // ----------------------------------------
+              if (sel == "stationary") {
+                widgets.addAll([
+                  CustomTextField(
+                    id: "top_landing_belt_annual_60",
+                    title: 'Distance from Face of Belt:',
+                  ),
+                  CustomTextField(
+                    id: "top_landing_belt_annual_61",
+                    title: 'Angle of Slope:',
+                  ),
+                  CustomRadioTile(
+                    id: "top_landing_belt_annual_62",
+                    title: 'Shape',
+                    values: const ['Circular', 'Square'],
+                    onChangeValue: (value) {},
+                  ),
+                ]);
+              }
+
+              // ----------------------------------------
+              // CASE 2: MOVEABLE
+              // ----------------------------------------
+              else if (sel == "moveable") {
+                widgets.addAll([
+                  CustomRadioTile(
+                    id: "top_landing_belt_annual_63",
+                    title: 'What Type of Switch:',
+                    values: const ['Mercury', 'Micro-Switch'],
+                    onChangeValue: (value) {},
+                  ),
+                  CustomRadioTile(
+                    id: "top_landing_belt_annual_64",
+                    title: 'Does the Switch Work',
+                    values: const ['Yes', 'No'],
+                    onChangeValue: (value) {},
+                  ),
+                  CustomRadioTile(
+                    id: "top_landing_belt_annual_65",
+                    title: 'Location of Hinges',
+                    values: const ['6"', 'More than 6" with obstruction', 'Other'],
+                    onChangeValue: (value) {},
+                    fieldValue: "other",
+                    fieldLabelTitle: "Measurement in inches",
+                  ),
+                ]);
+              }
+
+              widgets.addAll([
+                CustomRadioTile(
+                    id: "top_landing_belt_annual_66",
+                  title: 'Counterweighted',
+                  values: const ['Yes', 'No'],
+                  onChangeValue: (value) {
+                  },
+                ),
+                CustomRadioTile(
+                    id: "top_landing_belt_annual_67",
+                  title: 'Hood Condition',
+                  values: const [
+                    "OK",
+                    "Damaged, but OK",
+                    "Replace Damaged",
+                    'Replace Worn'
+                  ],
+                  onChangeValue: (value) {
+                  },
+                ),
+                CustomRadioTile(
+                  id: "top_landing_belt_annual_68",
+                  title: 'Hood Clearance:',
+                  values: const [
+                    '(Minimum 7\'6")',
+                    'Compliant',
+                    'Non-Compliant'
+                  ],
+                  onChangeValue: (value) {
+                  },
+                ),
+                CustomRadioTile(
+                  id: "top_landing_belt_annual_69",
+                  title: 'Does Hood have a Rolled Edge',
+                  values: const ['Yes', 'No'],
+                  onChangeValue: (value) {
+                  },
+                  conditionalBuilder: (selected) {
+                    if (selected == 'yes') {
+                      return  CustomRadioTile(
+                        id: "top_landing_belt_annual_70",
+                        title: 'Condition of Rolled Edge:',
+                        values: const [
+                          'OK',
+                          'Damaged, but OK',
+                          'Replace Damaged',
+                          'Replace Worn'
+                        ],
+                        onChangeValue: (value) {
+                        },
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  },
+                ),
+                CustomTextField(
+                    id: "top_landing_belt_annual_70a",
+                title: 'Hood Comments:',
+                onChanged: (value) {},
+              ),
+              ]);
+
+              return Column(children: widgets);
+            },
+
             ),
-            CustomRadioTile(
-              id: "top_landing_belt_annual_67",
-              title: 'Counterweighted:',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {},
-            ),
-            CustomTextField(
-                id: "top_landing_belt_annual_68",
-                title: 'Measurement From Top of This Floor to Top of Floor #:'),
-            CustomRadioTile(
-              id: "top_landing_belt_annual_69",
-              title: 'Does Hood Have a Rolled Edge:',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {
-                widget.beltModel.topLandingDoesHoodHaveRolledEdge =
-                    jsonData['top_landing_doeshoodhaverollededge'][value];
-              },
-            ),
-            CustomRadioTile(
-              id: "top_landing_belt_annual_70",
-              title: 'Condition:',
-              values: const [
-                'OK',
-                'Damaged, but OK',
-                'Replace Damaged',
-                'Replace Worn'
-              ],
-              onChangeValue: (value) {
-                widget.beltModel.topLandingConditionOfRolledEdge =
-                    jsonData['top_landing_conditionofrollededge'][value];
-              },
-            ),
+            
             CustomRadioTile(
               id: "top_landing_belt_annual_71",
               title: 'Rope Guide Type:',
@@ -583,6 +625,30 @@ class _TopLandingState extends State<TopLanding> {
               onChangeValue: (value) {
                 widget.beltModel.topLandingCheckAttachmentBolts =
                     jsonData['top_landing_checkattachmentbolts'][value];
+              },
+
+              conditionalBuilder: (selected) {
+                if (selected == 'yes')  {
+                  return CustomRadioTile(
+                      id: "top_landing_belt_annual_80a",
+                      title: 'Condition:',
+                      values: const ['OK', 'Missing'],
+                      onChangeValue: (value) {
+                        //  beltModel.topLandingInstructionSign =
+                        //     jsonData['top_landing_instructionsign'][value];
+                      },
+                      conditionalBuilder: (selected) {
+                        if (selected == 'missing') {
+                          return const CustomTextField(
+                            id: "top_landing_belt_annual_80b",
+                            title: 'How Many',
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    );
+                }
+                return const SizedBox.shrink();
               },
             ),
             CustomRadioTile(

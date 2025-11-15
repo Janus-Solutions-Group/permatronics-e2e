@@ -305,9 +305,7 @@ class TopLanding extends StatelessWidget {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'yes')  {
-                  return Column(
-                    children: [
-                    CustomRadioTile(
+                  return CustomRadioTile(
                       id: 'top_landing_30',
                       title: 'Condition:',
                       values: const ['OK', 'Missing'],
@@ -315,13 +313,16 @@ class TopLanding extends StatelessWidget {
                         //  beltModel.topLandingInstructionSign =
                         //     jsonData['top_landing_instructionsign'][value];
                       },
-                    ),
-                    CustomTextField(
-                      id: 'top_landing_31',
-                      title: 'How Many',
-                    )
-                  ],
-                  );
+                      conditionalBuilder: (selected) {
+                        if (selected == 'missing') {
+                          return const   CustomTextField(
+                            id: 'top_landing_31',
+                            title: 'How Many',
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    );
                 }
                 return const SizedBox.shrink();
               },

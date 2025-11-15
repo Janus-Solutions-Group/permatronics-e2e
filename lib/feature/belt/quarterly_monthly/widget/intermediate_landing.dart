@@ -271,6 +271,30 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                         [value];
               },
 
+              conditionalBuilder: (selected) {
+                if (selected == 'yes')  {
+                  return CustomRadioTile(
+                    id: 'intermediate_landing_quartmonth_${widget.index}_20a',
+                    title: 'Condition:',
+                    values: const ['OK', 'Missing'],
+                    onChangeValue: (value) {
+                      //  beltModel.topLandingInstructionSign =
+                      //     jsonData['top_landing_instructionsign'][value];
+                    },
+                    conditionalBuilder: (selected) {
+                      if (selected == 'missing') {
+                        return CustomTextField(
+                          id: 'intermediate_landing_quartmonth_${widget.index}_20b',
+                          title: 'How Many',
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+
             ),
             CustomRadioTile(
               id: 'intermediate_landing_quartmonth_${widget.index}_21',
