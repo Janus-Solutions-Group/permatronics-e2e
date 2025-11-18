@@ -77,19 +77,26 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                   ),
                 ],
               ),
-            CustomRadioTile(
-              id: 'pit_9',
-              title: "Pit Switch",
-              values: const ["YES", "NO", "Inoperable"],
-              onChangeValue: (value) {
+             MultipleSelectionWidget(
+              original: OriginalModel(
+                id: "pit_9",
+                title: "Pit Switch",
+                values: const ['Yes', 'No', 'Inoperable'],
+              ),
+              onSelectionChanged: (val) {
+                String res = "";
+                String res1 = "";
+                for (var e in val) {
+                  res += jsonData['pit_switch'][e] + "\n";
+                  res1 += e + "\n";
+                }
                 setState(() {
-                  cageInspection.pitSwitch = value;
+                  cageInspection.pitSwitch = res1;
                 });
-                widget.cageModel.pitSwitch = jsonData['pit_switch'][value];
+                widget.cageModel.pitSwitch = res;
               },
             ),
-            if (cageInspection.pitSwitch == "yes" ||
-                cageInspection.pitSwitch == "inoperable")
+            if ((cageInspection.pitSwitch ?? "").toLowerCase().contains("yes") ||  (cageInspection.pitSwitch ?? "").toLowerCase().contains("inoperable"))
               CustomRadioTile(
                 id: 'pit_10',
                 title: "Switch Location",
@@ -100,28 +107,49 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                   widget.cageModel.switchLocation =
                       jsonData['switch_location'][value];
                 },
+                conditionalBuilder: (selected) {
+                  if (selected == 'relocate') {
+                    return CustomTextField(
+                      id: "pit_10a",
+                      title: 'Reason for Relocation',
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
               ),
-            CustomRadioTile(
-              id: 'pit_11',
+              
+             MultipleSelectionWidget(
+              original: OriginalModel(
+                id: "pit_11",
               title: "Pit Light",
               values: const ["YES", "NO", "Inoperable"],
-              onChangeValue: (value) {
-                widget.cageModel.pitLight = jsonData['pit_light'][value];
+              ),
+              onSelectionChanged: (val) {
+                String res = "";
+                for (var e in val) {
+                  res += jsonData['pit_light'][e] + "\n";
+                }
+                widget.cageModel.pitLight = res;
               },
             ),
-            CustomRadioTile(
+             MultipleSelectionWidget(
+              original: OriginalModel(
               id: 'pit_12',
               title: "Pit Light Switch",
               values: const ["YES", "NO", "Inoperable"],
-              onChangeValue: (value) {
-                widget.cageModel.pitLightSwitch =
-                    jsonData['pit_light_switch'][value];
+              ),
+              onSelectionChanged: (val) {
+                String res = "";
+                for (var e in val) {
+                  res += jsonData['pit_light_switch'][e] + "\n";
+                }
+                widget.cageModel.pitLightSwitch = res;
               },
             ),
-            CustomRadioTile(
-              id: 'pit_13',
-              title: "Car Buffers:",
-              values: const ["YES", "NO"],
+          CustomRadioTile(
+            id: 'pit_13',
+            title: "Car Buffers:",
+            values: const ["YES", "NO"],
               onChangeValue: (value) {
                 setState(() {
                   cageInspection.carBuffers = value;
@@ -214,22 +242,33 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                     jsonData['condition_governor_cable_tensioner'][value];
               },
             ),
-            CustomRadioTile(
+             MultipleSelectionWidget(
+              original: OriginalModel(
               id: 'pit_21',
               title: "Bottom Normal Terminal",
               values: const ["Ok", "inoperable", "Replace", "None"],
-              onChangeValue: (value) {
-                widget.cageModel.bottomNormalTerminal =
-                    jsonData['bottom_normal_terminal'][value];
+              ),
+              onSelectionChanged: (val) {
+                String res = "";
+                for (var e in val) {
+                  res += jsonData['bottom_normal_terminal'][e] + "\n";
+                }
+                widget.cageModel.bottomNormalTerminal = res;
               },
             ),
-            CustomRadioTile(
+             MultipleSelectionWidget(
+              original: OriginalModel(
+                
               id: 'pit_22',
               title: "Bottom Final Terminal:",
               values: const ["Ok", "inoperable", "Replace", "None"],
-              onChangeValue: (value) {
-                widget.cageModel.bottomFinalTerminal =
-                    jsonData['bottom_final_terminal'][value];
+              ),
+              onSelectionChanged: (val) {
+                String res = "";
+                for (var e in val) {
+                  res += jsonData['bottom_final_terminal'][e] + "\n";
+                }
+                widget.cageModel.bottomFinalTerminal = res;
               },
             ),
             CustomTextField(
@@ -239,19 +278,8 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                 // widget.cageModel.pitComments = value;
               },
             ),
-            const  CustomTextField(id:'pit_23a', title: "Under Car Size, measurement from:"),
-            const Row(
-              children: [
-                Expanded(
-                    child: CustomTextField(id: 'pit_24', title: "Front/Back")),
-                Text(
-                  " X  ",
-                  style: TextStyle(fontSize: 16),
-                ),
-                Expanded(
-                    child: CustomTextField(id: 'pit_25', title: "Right/Left"))
-              ],
-            ),
+            CustomTextField(id: 'pit_24', title: "Under Car Size, Front/Back measurement"),
+            CustomTextField(id: 'pit_25', title: "Under Car Size, Right/Left measurement"),
             CustomRadioTile(
               id: 'pit_26',
               title: "Travel Cable Connection and Condition:",
@@ -443,6 +471,16 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               },
               isTextField: true,
               fieldLabelTitle: "Other",
+
+              conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: "pit_43a",
+                    title: 'Specify Other Condition',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
             // CustomRadioTile(
             //   id: 'pit_44',

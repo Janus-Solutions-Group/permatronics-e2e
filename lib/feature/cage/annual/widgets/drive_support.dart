@@ -102,8 +102,16 @@ class _AnnualCageDriveSupportFormState
                   jsonData['drive_support']['governor_condition'][value];
             },
             isTextField: true,
-            fieldLabelTitle: "Why",
-            fieldValue: "replace",
+            
+            conditionalBuilder: (selected) {
+              if (selected == 'replace') {
+                return CustomTextField(
+                 id: 'drive_support_10a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           CustomRadioTile(
             id: 'drive_support_11',
@@ -188,7 +196,16 @@ class _AnnualCageDriveSupportFormState
                     jsonData['drive_support']['sheave_break_condition'][value];
               },
               isTextField: true,
-              fieldValue: "other",
+              
+            conditionalBuilder: (selected) {
+              if (selected == 'other') {
+                return CustomTextField(
+                 id: 'drive_support_10a',
+                  title: 'Reason for other',
+                );
+              }
+              return const SizedBox.shrink();
+            },
             ),
           CustomRadioTile(
             id: 'drive_support_19',

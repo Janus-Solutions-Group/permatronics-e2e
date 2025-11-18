@@ -170,25 +170,24 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
               widget.model.hoistwayDoorSigns = value;
             },
           ),
-          CustomTextField(id: 'landing_${widget.index}_cage_annual_12a', title: "Enclosure:"),
           Row(
             children: [
               Expanded(
                   child: CustomTextField(
                 id: 'landing_${widget.index}_cage_annual_13',
-                title: "Height",
+                title: "Enclosure Height",
                 controller: widget.model.enclosureHeight,
               )),
               Expanded(
                   child: CustomTextField(
                 id: 'landing_${widget.index}_cage_annual_14',
-                title: "Width",
+                title: "Enclosure Width",
                 controller: widget.model.enclosureWidth,
               )),
               Expanded(
                   child: CustomTextField(
                 id: 'landing_${widget.index}_cage_annual_15',
-                title: "Depth",
+                title: "Enclosure Depth",
                 controller: widget.model.enclosureWidth,
               )),
             ],

@@ -210,6 +210,21 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
         .where((a) => a['id']!.startsWith("top_landing_safeties"))
         .toList();
 
+    final landingGroups = <String, List<Map<String, String?>>>{};
+
+    for (var item in selectionsRef) {
+      final id = item['id']!;
+      final parts = id.split('_');
+
+      if (parts.first == "intermediate") {
+        final index = parts[3]; // extract the landing index
+
+        landingGroups.putIfAbsent(index, () => []);
+        landingGroups[index]!.add(item);
+      }
+    }
+
+
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
@@ -231,7 +246,11 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
             referenceText(beltingList, 'Belting'),
             referenceText(handholdsList, 'Handholds'),
             referenceText(stepList, 'Steps'),
-            referenceText(intermediateList, 'Intermediate Landing'),
+            ...landingGroups.entries.map((entry) {
+              final index = int.parse(entry.key) + 1;
+              final items = entry.value;
+              return referenceText(items, 'Intermediate Landing $index');
+            }),
             referenceText(topLandingList, 'Top Landing'),
             referenceText(driveAssemblyList, 'Drive Assembly'),
             referenceText(topLandingSafeties, 'Top Landing Safeties'),

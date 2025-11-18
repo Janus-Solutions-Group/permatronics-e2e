@@ -122,6 +122,15 @@ class DriveSupportForm extends StatelessWidget {
               }
               cageModel.driveSupportGovernorCondition = res;
             },
+            conditionalBuilder: (selected) {
+              if (selected.contains('other')) {
+                return CustomTextField(
+                 id: 'drive_support_form_6a',
+                  title: 'Reason for other',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           CustomRadioTile(
             id: 'drive_support_form_7',
@@ -177,16 +186,16 @@ class DriveSupportForm extends StatelessWidget {
               }
               cageModel.driveSupportRopeGripperCondition = res;
             },
+            conditionalBuilder: (selected) {
+              if (selected.contains('other')) {
+                return CustomTextField(
+                 id: 'drive_support_form_10a',
+                  title: 'Specify Other',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
-          // CustomRadioTile(
-          //   id: 'drive_support_form_11',
-          //   title: 'Sheave Break:',
-          //   values: const ["Yes", "No", "N/A"],
-          //   onChangeValue: (value) {
-          //     cageModel.driveSupportSheaveBreak =
-          //         jsonData['drive_support']['sheave_break'][value];
-          //   },
-          // ),
           MultipleSelectionWidget(
             original: OriginalModel(
               id: 'drive_support_form_11',
@@ -230,13 +239,21 @@ class DriveSupportForm extends StatelessWidget {
               }
               cageModel.driveSupportSheaveBreakCondition = res;
             },
-            fieldValues: const ["other"],
             onFieldChange: (value) {
               context.read<SelectionRefProvider>().updateSelection(
                     "drive_support_form_other_12",
                     "Other",
                     value,
                   );
+            },
+            conditionalBuilder: (selected) {
+              if (selected.contains('other')) {
+                return CustomTextField(
+                 id: 'drive_support_form_12a',
+                  title: 'Specify Other',
+                );
+              }
+              return const SizedBox.shrink();
             },
           ),
           CustomRadioTile(
@@ -260,20 +277,6 @@ class DriveSupportForm extends StatelessWidget {
           //             [value];
           //   },
           // ),
-          const CustomTextField(
-              id: 'drive_support_form_24', title: "Traction Sheave Type"),
-          CustomRadioTile(
-            id: 'drive_support_form_25',
-            title: 'Traction Sheave Condition',
-            values: const ["OK", "Replace"],
-            onChangeValue: (value) {
-              cageModel.travelCableConnectionAndCondition =
-                  jsonData['drive_support']['traction_sheave_condition'][value];
-            },
-          ),
-          const CustomTextField(
-              id: 'drive_support_form_26',
-              title: "Traction Sheave & Bushing Size"),
           MultipleSelectionWidget(
             original: OriginalModel(
               id: 'drive_support_form_14',
@@ -288,21 +291,28 @@ class DriveSupportForm extends StatelessWidget {
               }
               cageModel.driveSupportSheaveBreakCondition = res;
             },
-            fieldValues: const ["other"],
-            fieldLabelTitle: 'Other',
+            conditionalBuilder: (selected) {
+              if (selected.contains('other')) {
+                return CustomTextField(
+                 id: 'drive_support_form_14a',
+                  title: 'Specify Other',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           Row(
             children: [
               Expanded(
                 child: CustomTextField(
                   id: 'drive_support_form_15',
-                  title: 'Couple Sizer',
+                  title: 'Couple Size',
                 ),
               ),
               Expanded(
                 child: CustomTextField(
                   id: 'drive_support_form_16',
-                  title: 'Couple Type',
+                  title: 'Coupler Type',
                 ),
               ),
             ],
@@ -312,10 +322,18 @@ class DriveSupportForm extends StatelessWidget {
             title: 'Coupler Condition:',
             values: const ["OK", "Replace", "Other"],
             isTextField: true,
-            fieldLabelTitle: "Other",
             onChangeValue: (value) {
               cageModel.driveSupportCouplerCondition =
                   jsonData['drive_support']['coupler_condition'][value];
+            },
+            conditionalBuilder: (selected) {
+              if (selected == 'other') {
+                return CustomTextField(
+                 id: 'drive_support_form_17a',
+                  title: 'Specify Other',
+                );
+              }
+              return const SizedBox.shrink();
             },
           ),
           CustomRadioTile(
@@ -364,6 +382,12 @@ class DriveSupportForm extends StatelessWidget {
               cageModel.driveSupportOverheadLiftingSupports =
                   jsonData['drive_support']['overhead_lifting_supports'][value];
             },
+          ),
+
+          CustomTextField(
+            id: "drive_support_form_23",
+            title: "Top landing comment",
+            onChanged: (val) {},
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

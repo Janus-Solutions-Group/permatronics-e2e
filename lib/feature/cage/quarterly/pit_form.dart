@@ -82,6 +82,16 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
                   widget.cageModel.switchLocation =
                       jsonData['switch_location'][value];
                 },
+
+                conditionalBuilder: (selected) {
+                  if (selected == 'relocate') {
+                    return CustomTextField(
+                      id: "pit_10a",
+                      title: 'Reason for Relocation',
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
               ),
             // CustomRadioTile(
             //   id: 'pit_4',
@@ -192,11 +202,18 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
               title: "Travel Cable Connection and Condition:",
               values: const ["Ok", "Replace"],
               isTextField: true,
-              fieldValue: 'replace',
-              fieldLabelTitle: 'Reason',
               onChangeValue: (value) {
                 widget.cageModel.travelCableConnectionAndCondition =
                     jsonData['travel_cable_connection_and_condition'][value];
+              },
+              conditionalBuilder: (selected) {
+                if (selected == 'replace') {
+                  return CustomTextField(
+                    id: "pit_11a",
+                    title: 'Reason for Replacement',
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
             CustomRadioTile(
@@ -241,6 +258,7 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
                 widget.cageModel.safetyCondition = res;
               },
             ),
+
             // CustomRadioTile(
             //   id: 'pit_15',
             //   title: "Switch on Safeties:",

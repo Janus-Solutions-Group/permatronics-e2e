@@ -190,6 +190,19 @@ class _CageQuaterlyPageState extends State<CageQuaterlyPage> {
     var driveList = selectionsRef
         .where((a) => a['id']!.split('_').first == "drive")
         .toList();
+    final landingGroups = <String, List<Map<String, String?>>>{};
+
+    for (var item in selectionsRef) {
+      final id = item['id']!;
+      final parts = id.split('_');
+
+      if (parts.first == "landing") {
+        final index = parts[1]; // extract the landing index
+
+        landingGroups.putIfAbsent(index, () => []);
+        landingGroups[index]!.add(item);
+      }
+    }
 
     pdf.addPage(
       pw.MultiPage(
@@ -206,7 +219,11 @@ class _CageQuaterlyPageState extends State<CageQuaterlyPage> {
                 headerList.length, (index) => pw.Text(headerList[index])),
             pw.SizedBox(height: 10),
             referenceText(pitList, 'Pit'),
-            referenceText(landing, 'Landing'),
+            ...landingGroups.entries.map((entry) {
+              final index = int.parse(entry.key) + 1;
+              final items = entry.value;
+              return referenceText(items, 'Landing $index');
+            }),
             referenceText(cabList, 'Cab Form'),
             referenceText(carCounterweight, 'Car Counter Weight'),
             referenceText(driveList, 'Drive Support'),

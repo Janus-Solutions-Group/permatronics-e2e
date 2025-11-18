@@ -12,6 +12,7 @@ class MultipleSelectionWidget extends StatefulWidget {
     this.fieldValues,
     this.fieldLabelTitle,
     this.onFieldChange,
+    this.conditionalBuilder, // NEW
   });
 
   final OriginalModel original;
@@ -21,7 +22,7 @@ class MultipleSelectionWidget extends StatefulWidget {
   final List<String>? fieldValues;
   final String? fieldLabelTitle;
   final ValueChanged<String>? onFieldChange;
-
+  final Widget Function(List<String>)? conditionalBuilder;
   @override
   State<MultipleSelectionWidget> createState() =>
       _MultipleSelectionWidgetState();
@@ -95,6 +96,9 @@ class _MultipleSelectionWidgetState extends State<MultipleSelectionWidget> {
               ),
             ),
           ),
+
+        if (widget.conditionalBuilder != null)
+          widget.conditionalBuilder!(selectedItems),
       ],
     );
   }

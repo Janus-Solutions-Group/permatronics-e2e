@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:manlift_app/feature/cage/quarterly/models/landing_model.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
+import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 
 class CageLandingForm extends StatefulWidget {
   const CageLandingForm({
@@ -67,8 +68,16 @@ class _CageLandingFormState extends State<CageLandingForm>
             onChangeValue: (value) {
               widget.model.hoistwayDoorElectricContactCondition = value;
             },
-            fieldValue: "other",
-            fieldLabelTitle: "Other",
+
+            conditionalBuilder: (selected) {
+              if (selected == 'other') {
+                return CustomTextField(
+                 id: 'landing_${widget.index}_cage_monthly_4a',
+                  title: 'Specify Other',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           CustomRadioTile(
             id: 'landing_${widget.index}_cage_monthly_5',
@@ -87,6 +96,20 @@ class _CageLandingFormState extends State<CageLandingForm>
             onChangeValue: (value) {
               widget.model.landingZoneSwitch = value;
             },
+
+            conditionalBuilder: (selected) {
+              if (selected == 'yes') {
+                return CustomRadioTile(
+                  id: 'landing_${widget.index}_cage_monthly_6a',
+                  title: 'Condition',
+                  values: const ["Ok", "Inoperable"],
+                  type: widget.model.landingZoneSwitchCondition,
+                  onChangeValue: (value) {
+                    widget.model.landingZoneSwitchCondition = value;
+                  });
+                }
+                return const SizedBox.shrink();
+              },
           ),
           CustomRadioTile(
             title: 'Condition',

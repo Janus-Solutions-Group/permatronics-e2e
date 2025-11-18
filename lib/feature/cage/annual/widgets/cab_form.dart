@@ -206,10 +206,19 @@ class AnnualCageCABForm extends StatelessWidget {
               cageModel.manualBackupCarAlarm =
                   jsonData['manual_backup_car_alarm'][value];
             },
+            conditionalBuilder: (selected) {
+              if (selected == 'inoperable') {
+                return CustomTextField(
+                 id: 'cab_21a',
+                  title: 'Specify',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
 
           const CustomTextField(
-            id: 'cab_21a',
+            id: 'cab_21b',
             title: "Manual Back Up Car Alarm Type:",
           ),
           CustomRadioTile(

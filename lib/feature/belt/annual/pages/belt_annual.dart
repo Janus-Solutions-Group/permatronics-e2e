@@ -220,6 +220,19 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
         .toList();
     var loadTestList =
         selectionsRef.where((a) => a['id']!.startsWith("load_test")).toList();
+    final landingGroups = <String, List<Map<String, String?>>>{};
+    for (var item in selectionsRef) {
+      final id = item['id']!;
+      final parts = id.split('_');
+
+      if (parts.first == "landing") {
+        final index = parts[1]; // extract the landing index
+
+        landingGroups.putIfAbsent(index, () => []);
+        landingGroups[index]!.add(item);
+      }
+    }
+    print(landingGroups);
 
     pdf.addPage(
       pw.MultiPage(
@@ -242,7 +255,11 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
             referenceText(beltingList, 'Belting'),
             referenceText(handholdsList, 'Handholds'),
             referenceText(stepList, 'Steps'),
-            referenceText(intermediateList, 'Intermediate Landing'),
+            ...landingGroups.entries.map((entry) {
+              final index = int.parse(entry.key) + 1;
+              final items = entry.value;
+              return referenceText(items, 'Intermediate Landing $index');
+            }),
             referenceText(topLandingList, 'Top Landing'),
             referenceText(driveAssemblyList, 'Drive Assembly'),
             referenceText(topLandingSafeties, 'Top Landing Safeties'),
