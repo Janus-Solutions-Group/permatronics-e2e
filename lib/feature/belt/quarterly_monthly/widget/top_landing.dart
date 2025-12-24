@@ -3,6 +3,8 @@ import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
+import 'package:manlift_app/data/models/original_model.dart';
 import '../../../common/widgets/page_navigation_button.dart';
 import '../../model/belt_inspection_model.dart';
 import '../pages/belt_quaterly.dart';
@@ -26,31 +28,44 @@ class TopLanding extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const FormHeaderTitle(title: "TOP LANDING#"),
-            CustomRadioTile(
-              id: 'top_landing_1',
-              title: '"Authorized Personnel Only" Sign: (2" letters)',
-              values: const ["Yes", "No", "Non-Compliant"],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'top_landing_1',
+                title: '"Authorized Personnel Only" Sign: (2" letters)',
+                values: const ['Yes', 'No', 'Non-Compliant'],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+                final selected = val.last;
                 beltModel.topLandingAuthorizedPersonnelSign =
-                    jsonData['top_landing_authorizedpersonnelsign'][value];
+                    jsonData['top_landing_authorizedpersonnelsign'][selected];
               },
             ),
-            CustomRadioTile(
-              id: 'top_landing_2',
-              title: 'Instruction Sign: (1" letters)',
-              values: const ["Yes", "No", "Non-Compliant"],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'top_landing_2',
+                title: 'Instruction Sign: (1" letters)',
+                values: const ['Yes', 'No', 'Non-Compliant'],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+                final selected = val.last;
                 beltModel.topLandingInstructionSign =
-                    jsonData['top_landing_instructionsign'][value];
+                    jsonData['top_landing_instructionsign'][selected];
               },
             ),
-            CustomRadioTile(
-              id: 'top_landing_3',
-              title: '"TOP FLOOR - GET OFF" Sign: (2" letters)',
-              values: const ["Yes", "No", "Non-Compliant"],
-              onChangeValue: (value) {
-                //  beltModel. =
-                //     jsonData['top_landing_instructionsign'][value];
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'top_landing_3',
+                title: '"TOP FLOOR - GET OFF" Sign: (2" letters)',
+                values: const ['Yes', 'No', 'Non-Compliant'],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+                final selected = val.last;
+                // If you have a JSON mapping, use it here:
+                // beltModel.topLandingTopFloorGetOffSign =
+                //     jsonData['top_landing_top_floor_get_off_sign'][selected];
               },
             ),
             CustomRadioTile(
@@ -62,13 +77,17 @@ class TopLanding extends StatelessWidget {
                 //     jsonData['top_landing_instructionsign'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'top_landing_5',
-              title: "Red Warning Light:",
-              values: const ['Yes', 'No', 'Inoperable'],
-              onChangeValue: (value) {
-                //  beltModel.topLandingInstructionSign =
-                //     jsonData['top_landing_instructionsign'][value];
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'top_landing_5',
+                title: 'Red Warning Light:',
+                values: const ['Yes', 'No', 'Inoperable'],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+                final selected = val.last;
+                // If you have a JSON mapping for this field, use it here:
+                // beltModel.topLandingRedWarningLight = jsonData['top_landing_red_warning_light'][selected];
               },
             ),
             CustomRadioTile(
@@ -85,10 +104,9 @@ class TopLanding extends StatelessWidget {
               title: 'Maze:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                 beltModel.topLandingMaze =
-                    jsonData['top_landing_maze'][value];
+                beltModel.topLandingMaze = jsonData['top_landing_maze'][value];
               },
-               conditionalBuilder: (selected) {
+              conditionalBuilder: (selected) {
                 if (selected == 'yes') {
                   return CustomTextField(
                     id: 'top_landing_8',
@@ -98,21 +116,19 @@ class TopLanding extends StatelessWidget {
                   return Column(
                     children: [
                       CustomRadioTile(
-                       id: 'top_landing_9',
+                        id: 'top_landing_9',
                         title: 'Self Closing Gate:',
                         values: const ['1', '2', '3', '4'],
                         onChangeValue: (value) {
-
                           beltModel.topLandingInstructionSign =
                               jsonData['top_landing_instructionsign'][value];
                         },
                       ),
                       CustomRadioTile(
-                       id: 'top_landing_10',
+                        id: 'top_landing_10',
                         title: 'Open Outward:',
                         values: const ['Yes', 'No'],
                         onChangeValue: (value) {
-
                           beltModel.topLandingOpenOutward =
                               jsonData['top_landing_openoutward'][value];
                         },
@@ -126,7 +142,7 @@ class TopLanding extends StatelessWidget {
             CustomRadioTile(
               id: 'top_landing_11',
               title: 'Toeboard:',
-              values: const ['Yes', 'No'],
+              values: const ['Yes', 'No', "Some"],
               onChangeValue: (value) {
                 beltModel.topLandingToeboard =
                     jsonData['top_landing_toeboard'][value];
@@ -238,20 +254,24 @@ class TopLanding extends StatelessWidget {
                 //     jsonData['top_landing_instructionsign'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'top_landing_25',
-              title: 'Guide Rail Condition:',
-              values: const [
-                'OK',
-                'Worn, but OK',
-                "Bowed",
-                "Grooved",
-                "Replace Damaged",
-                "Replace Worn"
-              ],
-              onChangeValue: (value) {
-                //  beltModel.topLandingInstructionSign =
-                //     jsonData['top_landing_instructionsign'][value];
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'top_landing_25',
+                title: 'Guide Rail Condition:',
+                values: const [
+                  'OK',
+                  'Worn, but OK',
+                  'Bowed',
+                  'Grooved',
+                  'Replace Damaged',
+                  'Replace Worn',
+                ],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+                final selected = val.last; // single-selection behavior
+                // If you have a JSON mapping for this field:
+                // beltModel.topLandingGuideRailCondition = jsonData['top_landing_guide_rail_condition'][selected];
               },
             ),
             CustomRadioTile(
@@ -280,7 +300,6 @@ class TopLanding extends StatelessWidget {
                 beltModel.topLandingLateralBracing =
                     jsonData['top_landing_lateralbracing'][value];
               },
-
               conditionalBuilder: (selected) {
                 debugPrint('Selected value: $selected');
                 if (selected == 'needs_additional') {
@@ -304,29 +323,28 @@ class TopLanding extends StatelessWidget {
                     jsonData['top_landing_checkattachmentbolts'][value];
               },
               conditionalBuilder: (selected) {
-                if (selected == 'yes')  {
+                if (selected == 'yes') {
                   return CustomRadioTile(
-                      id: 'top_landing_30',
-                      title: 'Condition:',
-                      values: const ['OK', 'Missing'],
-                      onChangeValue: (value) {
-                        //  beltModel.topLandingInstructionSign =
-                        //     jsonData['top_landing_instructionsign'][value];
-                      },
-                      conditionalBuilder: (selected) {
-                        if (selected == 'missing') {
-                          return const   CustomTextField(
-                            id: 'top_landing_31',
-                            title: 'How Many',
-                          );
-                        }
-                        return const SizedBox.shrink();
-                      },
-                    );
+                    id: 'top_landing_30',
+                    title: 'Condition:',
+                    values: const ['OK', 'Missing'],
+                    onChangeValue: (value) {
+                      //  beltModel.topLandingInstructionSign =
+                      //     jsonData['top_landing_instructionsign'][value];
+                    },
+                    conditionalBuilder: (selected) {
+                      if (selected == 'missing') {
+                        return const CustomTextField(
+                          id: 'top_landing_31',
+                          title: 'How Many',
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
+                  );
                 }
                 return const SizedBox.shrink();
               },
-            
             ),
             CustomTextField(
               id: 'top_landing_32',

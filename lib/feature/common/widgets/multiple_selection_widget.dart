@@ -3,6 +3,7 @@ import 'package:manlift_app/data/models/original_model.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 import 'package:manlift_app/provider/selection_ref_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 
 class MultipleSelectionWidget extends StatefulWidget {
   const MultipleSelectionWidget({
@@ -40,6 +41,8 @@ class _MultipleSelectionWidgetState extends State<MultipleSelectionWidget> {
 
     return result;
   }
+
+  bool get hasNonCompliant => selectedItems.any((e) => e == 'non-compliant');
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +99,21 @@ class _MultipleSelectionWidgetState extends State<MultipleSelectionWidget> {
               ),
             ),
           ),
-
+        if (hasNonCompliant)
+          Padding(
+            padding: const EdgeInsets.only(left: 16, top: 8, bottom: 16),
+            child: CustomTextField(
+              id: "${widget.original.id}a", // 👈 derived ID
+              title: 'Non-Compliant Reason',
+              onChanged: (reason) {
+                context.read<SelectionRefProvider>().updateSelection(
+                      "${widget.original.id}a",
+                      "Non-Compliant Reason",
+                      reason,
+                    );
+              },
+            ),
+          ),
         if (widget.conditionalBuilder != null)
           widget.conditionalBuilder!(selectedItems),
       ],

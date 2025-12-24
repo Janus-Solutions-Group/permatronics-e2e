@@ -7,6 +7,9 @@ import '../../../common/widgets/page_navigation_button.dart';
 import '../../../common/widgets/radio_tile.dart';
 import '../pages/belt_quaterly.dart';
 
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
+import 'package:manlift_app/data/models/original_model.dart';
+
 class DriveAssembly extends StatelessWidget {
   const DriveAssembly(
       {super.key, required this.pageController, required this.beltModel});
@@ -48,40 +51,41 @@ class DriveAssembly extends StatelessWidget {
                 beltModel.driveAssemblyBeltTracking =
                     jsonData['drive_assembly_belttracking'][value];
               },
-               conditionalBuilder: (selected) {
-                    if (selected == 'off') {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomRadioTile(
-                      title: "Up/down",
-                      values: const ["up", "down"],
-                      id: "drive_assembly_2a",
-                      onChangeValue: (value) {},
-                      valueStyle: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    CustomRadioTile(
-                      title: "Left/right",
-                      values: const ["left", "right"],
-                      id: "drive_assembly_2b",
-                      onChangeValue: (value) {},
-                      valueStyle: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    CustomTextField(
-                      id: "drive_assembly_2c",
-                      title: 'Inches Off:',
-                      onChanged: (value) {
-                        // widget.beltModel.driveAssemblyBeltTrackingInchesOff = value;
-                      },
-                    ),
-                  ],
-                );
-              }
+              conditionalBuilder: (selected) {
+                if (selected == 'off') {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomRadioTile(
+                        title: "Up/down",
+                        values: const ["up", "down"],
+                        id: "drive_assembly_2a",
+                        onChangeValue: (value) {},
+                        valueStyle:
+                            const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      CustomRadioTile(
+                        title: "Left/right",
+                        values: const ["left", "right"],
+                        id: "drive_assembly_2b",
+                        onChangeValue: (value) {},
+                        valueStyle:
+                            const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      CustomTextField(
+                        id: "drive_assembly_2c",
+                        title: 'Inches Off:',
+                        onChanged: (value) {
+                          // widget.beltModel.driveAssemblyBeltTrackingInchesOff = value;
+                        },
+                      ),
+                    ],
+                  );
+                }
 
-              // Default fallback when condition not met
-              return const SizedBox.shrink();
-            },
-          
+                // Default fallback when condition not met
+                return const SizedBox.shrink();
+              },
             ),
             CustomRadioTile(
               id: 'drive_assembly_3',
@@ -100,30 +104,30 @@ class DriveAssembly extends StatelessWidget {
             CustomRadioTile(
               id: 'drive_assembly_4',
               title: 'Head Shaft Condition:',
-              values: const [
-                'OK',
-                'Worn, but OK',
-                'Replace Damaged',
-                'Replace Worn'
-              ],
+              values: const ['OK', 'Replace Damaged', 'Replace Worn'],
               onChangeValue: (value) {
                 beltModel.driveAssemblyShaftCondition =
                     jsonData['drive_assembly_shaftcondition'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'drive_assembly_4a',
-              title: 'Head Shaft Bearing Condition:',
-              values: const [
-                'OK',
-                'Worn, but OK',
-                'Replace Damaged',
-                'Replace Worn',
-                'Dry'
-              ],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'drive_assembly_4a',
+                title: 'Head Shaft Bearing Condition:',
+                values: const [
+                  'OK',
+                  'Worn, but OK',
+                  'Replace Damaged',
+                  'Replace Worn',
+                  'Dry',
+                ],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+                final selected = val.last; // single-selection behavior
+                // Map to beltModel field if JSON mapping exists
                 beltModel.driveAssemblyBearingCondition =
-                    jsonData['drive_assembly_bearingcondition'][value];
+                    jsonData['drive_assembly_bearingcondition'][selected];
               },
             ),
             CustomRadioTile(
@@ -174,8 +178,7 @@ class DriveAssembly extends StatelessWidget {
                 beltModel.driveAssemblyCouplerType =
                     jsonData['drive_assembly_couplertype'][value];
               },
-
-               conditionalBuilder: (selected) {
+              conditionalBuilder: (selected) {
                 if (selected == 'other') {
                   return CustomTextField(
                     id: "drive_assembly_8a",
@@ -209,8 +212,7 @@ class DriveAssembly extends StatelessWidget {
                 beltModel.driveAssemblyGearboxType =
                     jsonData['drive_assembly_gearboxtype'][value];
               },
-
-               conditionalBuilder: (selected) {
+              conditionalBuilder: (selected) {
                 if (selected == 'other') {
                   return CustomTextField(
                     id: "drive_assembly_10a",
@@ -244,8 +246,7 @@ class DriveAssembly extends StatelessWidget {
                 beltModel.driveAssemblyMotorType =
                     jsonData['drive_assembly_motortype'][value];
               },
-
-               conditionalBuilder: (selected) {
+              conditionalBuilder: (selected) {
                 if (selected == 'other') {
                   return CustomTextField(
                     id: "drive_assembly_12a",
@@ -272,8 +273,7 @@ class DriveAssembly extends StatelessWidget {
                 beltModel.driveAssemblyBrakeType =
                     jsonData['drive_assembly_braketype'][value];
               },
-
-               conditionalBuilder: (selected) {
+              conditionalBuilder: (selected) {
                 if (selected == 'other') {
                   return CustomTextField(
                     id: "drive_assembly_13a",
@@ -291,9 +291,21 @@ class DriveAssembly extends StatelessWidget {
                 beltModel.driveAssemblyIsDriveSkip =
                     jsonData['drive_assembly_isdriveskip'][value];
               },
-              
-               conditionalBuilder: (selected) {
-                if (selected == 'yes') {
+            ),
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'drive_assembly_14',
+                title: 'Is there a Skip in the Drive',
+                values: const ['Yes', 'No'],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+                final selected = val.last; // single-selection behavior
+                beltModel.driveAssemblyIsDriveSkip =
+                    jsonData['drive_assembly_isdriveskip'][selected];
+              },
+              conditionalBuilder: (selected) {
+                if (selected.contains('yes')) {
                   return CustomRadioTile(
                     id: "drive_assembly_14a",
                     title: 'Skip reason',
@@ -303,13 +315,11 @@ class DriveAssembly extends StatelessWidget {
                       'Key Way',
                       'Loose Set Screws'
                     ],
-                    onChangeValue: (value) {
-                    },
+                    onChangeValue: (value) {},
                   );
                 }
                 return const SizedBox.shrink();
               },
-       
             ),
             CustomRadioTile(
               id: 'drive_assembly_16',
@@ -360,8 +370,7 @@ class DriveAssembly extends StatelessWidget {
               onChangeValue: (value) {
                 // beltModel.drivesup = value;
               },
-
-               conditionalBuilder: (selected) {
+              conditionalBuilder: (selected) {
                 if (selected == 'other') {
                   return CustomTextField(
                     id: "drive_assembly_20a",

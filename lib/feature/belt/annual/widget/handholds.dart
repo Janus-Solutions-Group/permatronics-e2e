@@ -59,8 +59,6 @@ class _HandholdsState extends State<Handholds> {
                 }
                 return const SizedBox.shrink();
               },
-              fieldLabelTitle: "Other Color",
-              fieldValue: "other",
               onFieldChange: (value) {
                 // widget.beltModel.handholdsHandholdColor = value;
               },
@@ -107,7 +105,6 @@ class _HandholdsState extends State<Handholds> {
                 widget.beltModel.handholdsPunchingPattern =
                     jsonData['handholds_punching_pattern'][value];
               },
-
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
                   return CustomTextField(
@@ -117,8 +114,6 @@ class _HandholdsState extends State<Handholds> {
                 }
                 return const SizedBox.shrink();
               },
-              fieldValue: "other",
-              fieldLabelTitle: "Other",
               onFieldChange: (value) {
                 // widget.beltModel.handholdsPunchingPattern = value;
               },

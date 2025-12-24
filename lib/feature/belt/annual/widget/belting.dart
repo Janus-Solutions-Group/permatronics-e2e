@@ -3,6 +3,8 @@ import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
+import 'package:manlift_app/data/models/original_model.dart';
 
 import '../../model/belt_inspection_model.dart';
 import '../pages/belt_annual.dart';
@@ -42,13 +44,19 @@ class _BeltingState extends State<Belting> {
                     jsonData['belting_belting_type'][value];
               },
             ),
-            CustomRadioTile(
-              id: "belting_annual_2",
-              title: 'Belting Condition',
-              values: const ['OK', 'Cuts', 'Frayed Edges', 'Replace Damaged'],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: "belting_annual_2",
+                title: 'Belting Condition',
+                values: const ['OK', 'Cuts', 'Frayed Edges', 'Replace Damaged'],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+
+                final selected = val.last; // enforce radio-style behavior
+
                 widget.beltModel.beltingBeltingCondition =
-                    jsonData['belting_belting_condition'][value];
+                    jsonData['belting_belting_condition'][selected];
               },
             ),
             CustomRadioTile(
@@ -68,12 +76,9 @@ class _BeltingState extends State<Belting> {
                 widget.beltModel.beltingColor =
                     jsonData['belting_color'][value];
               },
-              fieldValue: "other",
-              fieldLabelTitle: "Other",
               onFieldChange: (value) {
                 widget.beltModel.beltingColor = value;
               },
-
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
                   return CustomTextField(
@@ -141,27 +146,42 @@ class _BeltingState extends State<Belting> {
                     jsonData['belting_splice_bolt_condition'][value];
               },
             ),
-            CustomRadioTile(
-              id: "belting_annual_11",
-              title: 'Instructions Stenciled on the Belt:',
-              values: const ['OK', 'Non-Compliant', 'Faded'],
-              onChangeValue: (value) {
-                debugPrint(value);
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: "belting_annual_11",
+                title: 'Instructions Stenciled on the Belt:',
+                values: const ['OK', 'Non-Compliant', 'Faded'],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+
+                final selected = val.last;
+
+                debugPrint(selected);
+
                 setState(() {
-                  beltVariable.beltingInstructionsStenciledOnTheBelt = value;
+                  beltVariable.beltingInstructionsStenciledOnTheBelt = selected;
                 });
+
                 widget.beltModel.beltingInstructionsStenciledOnTheBelt =
-                    jsonData['belting_instructions_stenciled_on_the_belt'][value];
+                    jsonData['belting_instructions_stenciled_on_the_belt']
+                        [selected];
               },
             ),
-            CustomRadioTile(
-              id: "belting_annual_12",
-              title: 'Directional Arrows Stenciled on the Belt:',
-              values: const ['Yes', 'No', 'Faded'],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: "belting_annual_12",
+                title: 'Directional Arrows Stenciled on the Belt:',
+                values: const ['Yes', 'Non-Compliant', 'Faded'],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+
+                final selected = val.last;
+
                 widget.beltModel.beltingDirectionalArrowsStenciledOnTheBelt =
                     jsonData['belting_directional_arrows_stenciled_on_the_belt']
-                        [value];
+                        [selected];
               },
             ),
             CustomRadioTile(

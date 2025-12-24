@@ -4,11 +4,16 @@ import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
+import 'package:manlift_app/data/models/original_model.dart';
 import '../pages/belt_quaterly.dart';
 
 class IntermediateLanding extends StatefulWidget {
   const IntermediateLanding(
-      {super.key, required this.index, required this.model, required this.jsonData});
+      {super.key,
+      required this.index,
+      required this.model,
+      required this.jsonData});
 
   final int index;
   final IntermediateLandingModel model;
@@ -26,6 +31,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
     super.initState();
     intermediateLanding = widget.model; // or create a new instance
   }
+
   @override
   Widget build(BuildContext context) {
     var jsonData = widget.jsonData;
@@ -38,23 +44,35 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const FormHeaderTitle(title: "INTERMEDIATE LANDING#"),
-            CustomRadioTile(
-              id: 'intermediate_landing_quartmonth_${widget.index}_1',
-              title: '"Authorized Personnel Only" Sign: (2" letters)',
-              values: const ['Yes', 'No', 'Non-Compliant'],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'intermediate_landing_quartmonth_${widget.index}_1',
+                title: '"Authorized Personnel Only" Sign: (2" letters)',
+                values: const ['Yes', 'No', 'Non-Compliant'],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+
+                final selected = val.last;
+
                 widget.model.intermediateLandingAuthorizedPersonnelSign =
                     jsonData['intermediate_landing_authorizedpersonnelsign']
-                        [value];
+                        [selected];
               },
             ),
-            CustomRadioTile(
-              id: 'intermediate_landing_quartmonth_${widget.index}_2',
-              title: 'Instruction Sign: (1" letters)',
-              values: const ['Yes', 'No', 'Non-Compliant'],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'intermediate_landing_quartmonth_${widget.index}_2',
+                title: 'Instruction Sign: (1" letters)',
+                values: const ['Yes', 'No', 'Non-Compliant'],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+
+                final selected = val.last;
+
                 widget.model.intermediateLandingInstructionSign =
-                    jsonData['intermediate_landing_instructionsign'][value];
+                    jsonData['intermediate_landing_instructionsign'][selected];
               },
             ),
             CustomRadioTile(
@@ -62,10 +80,10 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               title: 'Maze:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                 widget.model.intermediateLandingMaze =
+                widget.model.intermediateLandingMaze =
                     jsonData['intermediate_landing_maze'][value];
               },
-               conditionalBuilder: (selected) {
+              conditionalBuilder: (selected) {
                 if (selected == 'yes') {
                   return CustomTextField(
                     id: 'intermediate_landing_quartmonth_${widget.index}_4',
@@ -75,23 +93,23 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                   return Column(
                     children: [
                       CustomRadioTile(
-                       id: 'intermediate_landing_quartmonth_${widget.index}_5',
+                        id: 'intermediate_landing_quartmonth_${widget.index}_5',
                         title: 'Self Closing Gate:',
                         values: const ['1', '2', '3', '4'],
                         onChangeValue: (value) {
-
                           widget.model.intermediateLandingInstructionSign =
-                              jsonData['intermediate_landing_instructionsign'][value];
+                              jsonData['intermediate_landing_instructionsign']
+                                  [value];
                         },
                       ),
                       CustomRadioTile(
-                       id: 'intermediate_landing_quartmonth_${widget.index}_6',
+                        id: 'intermediate_landing_quartmonth_${widget.index}_6',
                         title: 'Open Outward:',
                         values: const ['Yes', 'No'],
                         onChangeValue: (value) {
-
                           widget.model.intermediateLandingOpenOutward =
-                              jsonData['intermediate_landing_openoutward'][value];
+                              jsonData['intermediate_landing_openoutward']
+                                  [value];
                         },
                       ),
                     ],
@@ -100,11 +118,10 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                 return const SizedBox.shrink();
               },
             ),
-            
             CustomRadioTile(
               id: 'intermediate_landing_quartmonth_${widget.index}_7',
               title: 'Toeboard:',
-              values: const ['Yes', 'No'],
+              values: const ['Yes', 'No', "Some"],
               onChangeValue: (value) {
                 widget.model.intermediateLandingToeboard =
                     jsonData['intermediate_landing_toeboard'][value];
@@ -115,7 +132,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               conditionalBuilder: (selected) {
                 if (selected == 'yes') {
                   return CustomRadioTile(
-                   id: 'intermediate_landing_quartmonth_${widget.index}_8',
+                    id: 'intermediate_landing_quartmonth_${widget.index}_8',
                     title: 'Add\'l Toeboard Required:',
                     values: const ['Yes', 'No'],
                     onChangeValue: (value) {
@@ -136,7 +153,6 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                 }
                 return const SizedBox.shrink();
               },
-           
             ),
             CustomRadioTile(
               id: 'intermediate_landing_quartmonth_${widget.index}_10',
@@ -148,7 +164,6 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               },
               fieldValue: "other",
               fieldLabelTitle: "Other",
-
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
                   return CustomTextField(
@@ -247,14 +262,13 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                 widget.model.intermediateLandingLateralBracing =
                     jsonData['intermediate_landing_lateralbracing'][value];
               },
-
               conditionalBuilder: (selected) {
-                if (selected == 'needs_additional') { 
+                if (selected == 'needs_additional') {
                   return CustomTextField(
-                   id: 'intermediate_landing_quartmonth_${widget.index}_19a',
+                    id: 'intermediate_landing_quartmonth_${widget.index}_19a',
                     title: 'How Many',
                   );
-                } 
+                }
                 return const SizedBox.shrink();
               },
             ),
@@ -270,9 +284,8 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                     jsonData['intermediate_landing_checkattachmentbolts']
                         [value];
               },
-
               conditionalBuilder: (selected) {
-                if (selected == 'yes')  {
+                if (selected == 'yes') {
                   return CustomRadioTile(
                     id: 'intermediate_landing_quartmonth_${widget.index}_20a',
                     title: 'Condition:',
@@ -294,7 +307,6 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                 }
                 return const SizedBox.shrink();
               },
-
             ),
             CustomRadioTile(
               id: 'intermediate_landing_quartmonth_${widget.index}_21',
@@ -305,12 +317,12 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                 //   jsonData['steps_step_rollers_bolts'][value];
               },
               conditionalBuilder: (selected) {
-                if (selected == 'missing') { 
+                if (selected == 'missing') {
                   return CustomTextField(
-              id: 'intermediate_landing_quartmonth_${widget.index}_22',
+                    id: 'intermediate_landing_quartmonth_${widget.index}_22',
                     title: 'How Many',
                   );
-                } 
+                }
                 return const SizedBox.shrink();
               },
             ),

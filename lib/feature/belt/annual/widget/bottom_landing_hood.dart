@@ -74,13 +74,14 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                         ),
                       ],
                     ),
-                  if (beltVariable.bottomLandingHoodTypeOfHood == "moveable")
+                  if (['moveable', 'moveable_mini']
+                      .contains(beltVariable.bottomLandingHoodTypeOfHood))
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomRadioTile(
                           id: "bottom_landing_hood_annual_5",
-                          title: 'If Moveable, What Type of Switch:',
+                          title: 'What Type of Switch:',
                           values: const ['Mercury', 'Micro-Switch'],
                           onChangeValue: (value) {
                             widget.beltModel
@@ -125,8 +126,6 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                                     "bottom_landing_hood_location_of_hinges"]
                                 [value];
                           },
-                          fieldValue: "other",
-                          fieldLabelTitle: "Mesurment in inches",
                           onFieldChange: (value) {
                             widget.beltModel.bottomLandingHoodLocationOfHinges =
                                 value;
@@ -134,16 +133,6 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                         ),
                       ],
                     ),
-                  CustomRadioTile(
-                    id: "bottom_landing_hood_annual_8",
-                    title: 'Counterweighted',
-                    values: const ['Yes', 'No'],
-                    onChangeValue: (value) {
-                      widget.beltModel.bottomLandingHoodCounterweighted =
-                          jsonData["bottom_landing_hood_counterweighted"]
-                              [value];
-                    },
-                  ),
                   CustomRadioTile(
                     id: "bottom_landing_hood_annual_9",
                     title: 'Hood Condition',

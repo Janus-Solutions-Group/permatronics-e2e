@@ -5,6 +5,8 @@ import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
+import 'package:manlift_app/data/models/original_model.dart';
 import '../pages/belt_quaterly.dart';
 
 class BottomLanding extends StatefulWidget {
@@ -32,33 +34,52 @@ class _BottomLandingState extends State<BottomLanding> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const FormHeaderTitle(title: "BOTTOM LANDING = LANDING#1"),
-            CustomRadioTile(
-              id: 'bottom_landing_1',
-              title: '"Authorized Personnel Only" Sign: (2" letters)',
-              values: const ["Yes", "No", "Non-Compliant"],
-              onChangeValue: (value) {
-                // Update the beltModel's corresponding field
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'bottom_landing_1',
+                title: '"Authorized Personnel Only" Sign: (2" letters)',
+                values: const ['Yes', 'No', 'Non-Compliant'],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+
+                final selected = val.last;
+
                 widget.beltModel.bottomLandingAuthorizedPersonnelOnlySign =
                     jsonData['bottom_landing_authorized_personnel_only_sign']
-                        [value];
+                        [selected];
               },
             ),
-            CustomRadioTile(
-              id: 'bottom_landing_2',
-              title: 'Instruction Sign: (1" letters)',
-              values: const ["Yes", "No", "Non-Compliant"],
-              onChangeValue: (value) {
-                widget.beltModel.bottomLandingInstructionSign =
-                    jsonData['bottom_landing_instruction_sign'][value];
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'bottom_landing_1',
+                title: '"Authorized Personnel Only" Sign: (2" letters)',
+                values: const ['Yes', 'No', 'Non-Compliant'],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+
+                final selected = val.last;
+
+                widget.beltModel.bottomLandingAuthorizedPersonnelOnlySign =
+                    jsonData['bottom_landing_authorized_personnel_only_sign']
+                        [selected];
               },
             ),
-            CustomRadioTile(
-              id: 'bottom_landing_3',
-              title: 'BOTTOM FLOOR - GET OFF" Sign: (2" letters)',
-              values: const ["Yes", "No", "Non-Compliant"],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'bottom_landing_3',
+                title: '"BOTTOM FLOOR - GET OFF" Sign: (2" letters)',
+                values: const ['Yes', 'No', 'Non-Compliant'],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+
+                final selected = val.last;
+
                 widget.beltModel.bottomLandingBottomFloorGetOffSign =
-                    jsonData['bottom_landing_bottom_floor_get_off_sign'][value];
+                    jsonData['bottom_landing_bottom_floor_get_off_sign']
+                        [selected];
               },
             ),
 
@@ -86,7 +107,7 @@ class _BottomLandingState extends State<BottomLanding> {
                 },
               ),
             CustomTextField(
-              id: "bottom_landing_annual_6",
+              id: "bottom_landing_6",
               title: 'Bottom Landing Comments:',
               onChanged: (value) {
                 widget.beltModel.bottomLandingBottomLandingNotesComments =

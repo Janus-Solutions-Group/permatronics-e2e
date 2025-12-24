@@ -38,37 +38,58 @@ class _BottomLandingState extends State<BottomLanding> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const FormHeaderTitle(title: "BOTTOM LANDING = LANDING#1"),
-            CustomRadioTile(
-              id: "bottom_landing_annual_1",
-              title: 'Authorized Personnel Only" Sign: (2" letters)',
-              values: const ["Yes", "No", "Non-Compliant"],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: "bottom_landing_annual_1",
+                title: 'Authorized Personnel Only" Sign: (2" letters)',
+                values: const ["Yes", "No", "Non-Compliant"],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+
+                final selected = val.last; // enforce single selection
+
                 widget.beltModel.bottomLandingAuthorizedPersonnelOnlySign =
                     jsonData["bottom_landing_authorized_personnel_only_sign"]
-                        [value];
+                        [selected];
               },
             ),
-            CustomRadioTile(
-              id: "bottom_landing_annual_2",
-              title: 'Instruction Sign: (1" letters)',
-              values: const ["Yes", "No", "Non-Compliant"],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: "bottom_landing_annual_2",
+                title: 'Instruction Sign: (1" letters)',
+                values: const ["Yes", "No", "Non-Compliant"],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+
+                final selected = val.last;
+
                 widget.beltModel.bottomLandingInstructionSign =
-                    jsonData["bottom_landing_instruction_sign"][value];
+                    jsonData["bottom_landing_instruction_sign"][selected];
               },
             ),
-            CustomRadioTile(
-              id: "bottom_landing_annual_3",
-              title: '"BOTTOM FLOOR - GET OFF" Sign: (2" letters) ',
-              values: const ["Yes", "No", "Non-Compliant"],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: "bottom_landing_annual_3",
+                title: '"BOTTOM FLOOR - GET OFF" Sign: (2" letters)',
+                values: const ["Yes", "No", "Non-Compliant"],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+
+                final selected = val.last;
+
                 setState(() {
-                  beltVariable.bottomLandingBottomFloorGetOffSign = value;
+                  beltVariable.bottomLandingBottomFloorGetOffSign = selected;
                 });
+
                 widget.beltModel.bottomLandingBottomFloorGetOffSign =
-                    jsonData["bottom_landing_bottom_floor_get_off_sign"][value];
+                    jsonData["bottom_landing_bottom_floor_get_off_sign"]
+                        [selected];
               },
             ),
+
             if (beltVariable.bottomLandingBottomFloorGetOffSign == "yes")
               CustomRadioTile(
                 id: "bottom_landing_annual_4",
@@ -261,7 +282,8 @@ class _BottomLandingState extends State<BottomLanding> {
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
                 widget.beltModel
-                        .bottomLandingIsThereAWallInFrontOfDismountPlatformWithin48FromFaceOfBelt = value;
+                        .bottomLandingIsThereAWallInFrontOfDismountPlatformWithin48FromFaceOfBelt =
+                    value;
               },
             ),
             CustomRadioTile(
@@ -270,15 +292,25 @@ class _BottomLandingState extends State<BottomLanding> {
               values: const ['Compliant', 'Non-Compliant'],
               onChangeValue: (value) {
                 widget.beltModel
-                        .bottomLandingDistanceFromFloorOpeningToGuardRailDownSide = value;
+                        .bottomLandingDistanceFromFloorOpeningToGuardRailDownSide =
+                    value;
               },
             ),
-            DistanceTextField(id: "bottom_landing_annual_29", title: 'Back',
-                onChangeValue: (value) {},),
-            DistanceTextField(id: "bottom_landing_annual_30", title: 'Left',
-                onChangeValue: (value) {},),
-            DistanceTextField(id: "bottom_landing_annual_31", title: 'Right',
-                onChangeValue: (value) {},),
+            DistanceTextField(
+              id: "bottom_landing_annual_29",
+              title: 'Back',
+              onChangeValue: (value) {},
+            ),
+            DistanceTextField(
+              id: "bottom_landing_annual_30",
+              title: 'Left',
+              onChangeValue: (value) {},
+            ),
+            DistanceTextField(
+              id: "bottom_landing_annual_31",
+              title: 'Right',
+              onChangeValue: (value) {},
+            ),
             CustomRadioTile(
               id: "bottom_landing_annual_32",
               title: 'Ladder Rungs',
@@ -300,11 +332,6 @@ class _BottomLandingState extends State<BottomLanding> {
                   widget.beltModel.bottomLandingDistanceBetweenRungs =
                       jsonData["bottom_landing_distance_between_rungs"][value];
                 },
-                fieldValue: "other",
-                onFieldChange: (value) {
-                  widget.beltModel.bottomLandingDistanceBetweenRungs = value;
-                },
-
                 conditionalBuilder: (selected) {
                   if (selected == 'other') {
                     return CustomTextField(
@@ -338,16 +365,15 @@ class _BottomLandingState extends State<BottomLanding> {
                 },
               ),
 
-            
             CustomRadioTile(
               id: "bottom_landing_annual_36",
               title: 'Maze:',
               values: const ['Yes', 'No'],
               onChangeValue: (value) {
-                 widget.beltModel.bottomLandingMaze =
+                widget.beltModel.bottomLandingMaze =
                     jsonData['bottom_landing_maze'][value];
               },
-               conditionalBuilder: (selected) {
+              conditionalBuilder: (selected) {
                 if (selected == 'yes') {
                   return const CustomTextField(
                     id: 'bottom_landing_annual_37',
@@ -357,19 +383,20 @@ class _BottomLandingState extends State<BottomLanding> {
                   return Column(
                     children: [
                       CustomRadioTile(
-                       id: 'bottom_landing_annual_38',
+                        id: 'bottom_landing_annual_38',
                         title: 'Self Closing Gate:',
                         values: const ['1', '2', '3', '4'],
                         onChangeValue: (value) {
-                          if (jsonData['bottom_landing_instructionsign'] != null) {
-                              widget.beltModel.bottomLandingInstructionSign =
-                                  jsonData['bottom_landing_instructionsign'][value];
-                            }
-
+                          if (jsonData['bottom_landing_instructionsign'] !=
+                              null) {
+                            widget.beltModel.bottomLandingInstructionSign =
+                                jsonData['bottom_landing_instructionsign']
+                                    [value];
+                          }
                         },
                       ),
                       CustomRadioTile(
-                       id: 'bottom_landing_annual_39',
+                        id: 'bottom_landing_annual_39',
                         title: 'Open Outward:',
                         values: const ['Yes', 'No'],
                         onChangeValue: (value) {
@@ -380,7 +407,7 @@ class _BottomLandingState extends State<BottomLanding> {
                         },
                       ),
                       CustomRadioTile(
-                       id: 'bottom_landing_annual_40',
+                        id: 'bottom_landing_annual_40',
                         title: 'Are Gates Missing:',
                         values: const ['Yes', 'No'],
                         onChangeValue: (value) {},
@@ -390,10 +417,9 @@ class _BottomLandingState extends State<BottomLanding> {
                               id: 'bottom_landing_annual_41',
                               title: 'How Many',
                             );
-                          } 
+                          }
                           return const SizedBox.shrink();
                         },
-                      
                       ),
                     ],
                   );
@@ -404,7 +430,7 @@ class _BottomLandingState extends State<BottomLanding> {
             CustomRadioTile(
               id: "bottom_landing_annual_42",
               title: 'Toeboard',
-              values: const ["Yes", "No"],
+              values: const ["Yes", "No", 'Some'],
               onChangeValue: (value) {
                 setState(() {
                   beltVariable.bottomLandingToeboard = value;
@@ -431,23 +457,30 @@ class _BottomLandingState extends State<BottomLanding> {
               },
             ),
             if (beltVariable.bottomLandingToeboard == "yes")
-              CustomRadioTile(
-                id: "bottom_landing_annual_45",
-                title: 'Toeboard Material:',
-                values: const ["Steel", "Raised Concrete", "Other"],
-                onChangeValue: (value) {
-                  // beltModel.toeboard =
-                  //     jsonData["bottom_landing_toeboard_height"][value];
+              MultipleSelectionWidget(
+                original: OriginalModel(
+                  id: "bottom_landing_annual_45",
+                  title: 'Toeboard Material:',
+                  values: const ["Steel", "Raised Concrete", "Other"],
+                ),
+
+                // show textfield only when "other" is selected
+                fieldValues: const ["other"],
+                fieldLabelTitle: "Specify Other",
+
+                onSelectionChanged: (val) {
+                  // if (val.isEmpty) return;
+
+                  // final selected = val.last; // enforce single-selection
+
+                  // Uncomment when mapping is ready
+                  // widget.beltModel.toeboardMaterial =
+                  //     jsonData["bottom_landing_toeboard_material"][selected];
                 },
 
-                conditionalBuilder: (selected) {
-                  if (selected == 'other') {
-                    return CustomTextField(
-                      id: "bottom_landing_annual_45a",
-                      title: 'Specify Other',
-                    );
-                  }
-                  return const SizedBox.shrink();
+                onFieldChange: (value) {
+                  // handle "Specify Other" input
+                  // widget.beltModel.toeboardMaterialOther = value;
                 },
               ),
             if (beltVariable.bottomLandingToeboard == "yes")
@@ -459,8 +492,8 @@ class _BottomLandingState extends State<BottomLanding> {
                 },
               ),
             CustomTextField(
-              id: "bottom_landing_annual_47",
-              onChanged: (val) {},
+                id: "bottom_landing_annual_47",
+                onChanged: (val) {},
                 title:
                     'Distance from Face of Belt to Back Edge of Floor Opening:'),
             CustomTextField(
@@ -474,9 +507,9 @@ class _BottomLandingState extends State<BottomLanding> {
               onChanged: (val) {},
             ), // CustomTextField for Downside
             CustomTextField(
-              id: "bottom_landing_annual_48",
-              onChanged: (val) {},
-              title:'Guard Rail Height:'),
+                id: "bottom_landing_annual_50",
+                onChanged: (val) {},
+                title: 'Guard Rail Height:'),
             CustomTextField(
               id: "bottom_landing_annual_51",
               title: '"Upside":',
@@ -487,15 +520,19 @@ class _BottomLandingState extends State<BottomLanding> {
               title: '"Downside":',
               onChanged: (val) {},
             ), // Guard Rail Height - Downside
-            CustomRadioTile(
-              id: "bottom_landing_annual_53",
-              title: 'Guard Rail Material Used:',
-              values: const ["Angle", "Square Tubing", "Round Tubing"],
-              onChangeValue: (value) {
-                // beltModel.guardrailmat =
-                //     jsonData["bottom_landing_distance_from_floor_opening_to_guard_rail_up_side"][value];
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: "bottom_landing_annual_53",
+                title: 'Guard Rail Material Used:',
+                values: const ["Angle", "Square Tubing", "Round Tubing"],
+              ),
+              onSelectionChanged: (val) {
+                // Uncomment when mapping is ready
+                // widget.beltModel.guardRailMaterialUsed =
+                //     jsonData["bottom_landing_guard_rail_material_used"][selected];
               },
             ),
+
             CustomTextField(
               id: "bottom_landing_annual_54",
               title: 'Bottom Landing Notes/Comments:',
@@ -580,7 +617,8 @@ class _DistanceTextFieldState extends State<DistanceTextField> {
 
   Future<void> _onChanged(String type, String value) async {
     final idKey = '${widget.id}_$type';
-    final title = '${widget.title} ${type[0].toUpperCase()}${type.substring(1)}';
+    final title =
+        '${widget.title} ${type[0].toUpperCase()}${type.substring(1)}';
 
     context.read<SelectionRefProvider>().updateSelection(idKey, title, value);
     await GetStorage().write(idKey, value);

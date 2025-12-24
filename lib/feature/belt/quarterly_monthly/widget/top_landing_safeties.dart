@@ -38,19 +38,23 @@ class TopLandingSafeties extends StatelessWidget {
                     jsonData['drive_assembly_toplandingsafeties_type1'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'top_landing_safeties_2',
-              title: 'Type 1: Condition',
-              values: const [
-                'OK',
-                'Inoperable',
-                'Replace Switch',
-                'Replace Whole Assembly'
-              ],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'top_landing_safeties_2',
+                title: 'Type 1: Condition',
+                values: const [
+                  'OK',
+                  'Inoperable',
+                  'Replace Switch',
+                  'Replace Whole Assembly'
+                ],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+                final selected = val.last; // single-selection behavior
                 beltModel.driveAssemblyTopLandingSafetiesType1Condition =
                     jsonData['drive_assembly_toplandingsafeties_type1']
-                        ['condition'][value];
+                        ['condition'][selected];
               },
             ),
             CustomRadioTile(
@@ -72,19 +76,23 @@ class TopLandingSafeties extends StatelessWidget {
                         ['location'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'top_landing_safeties_5',
-              title: 'Type 2: Condition',
-              values: const [
-                'OK',
-                'Inoperable',
-                'Replace Switch',
-                'Replace Whole Assembly'
-              ],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'top_landing_safeties_5',
+                title: 'Type 2: Condition',
+                values: const [
+                  'OK',
+                  'Inoperable',
+                  'Replace Switch',
+                  'Replace Whole Assembly'
+                ],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+                final selected = val.last; // behave like a radio tile
                 beltModel.driveAssemblyTopLandingSafetiesType2Condition =
                     jsonData['drive_assembly_toplandingsafeties_type2']
-                        ['condition'][value];
+                        ['condition'][selected];
               },
             ),
             CustomRadioTile(
@@ -106,19 +114,23 @@ class TopLandingSafeties extends StatelessWidget {
                         ['location'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'top_landing_safeties_8',
-              title: 'Type 3: Condition',
-              values: const [
-                'OK',
-                'Inoperable',
-                'Replace Switch',
-                'Replace Whole Assembly'
-              ],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'top_landing_safeties_8',
+                title: 'Type 3: Condition',
+                values: const [
+                  'OK',
+                  'Inoperable',
+                  'Replace Switch',
+                  'Replace Whole Assembly'
+                ],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+                final selected = val.last; // behave like a radio tile
                 beltModel.driveAssemblyTopLandingSafetiesType3Condition =
                     jsonData['drive_assembly_toplandingsafeties_type3']
-                        ['condition'][value];
+                        ['condition'][selected];
               },
             ),
             CustomRadioTile(
@@ -140,19 +152,23 @@ class TopLandingSafeties extends StatelessWidget {
                         ['location'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'top_landing_safeties_11',
-              title: 'Type 4: Condition',
-              values: const [
-                'OK',
-                'Inoperable',
-                'Replace Switch',
-                'Replace Whole Assembly'
-              ],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'top_landing_safeties_11',
+                title: 'Type 4: Condition',
+                values: const [
+                  'OK',
+                  'Inoperable',
+                  'Replace Switch',
+                  'Replace Whole Assembly'
+                ],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+                final selected = val.last; // behaves like a radio tile
                 beltModel.driveAssemblyTopLandingSafetiesType4Condition =
                     jsonData['drive_assembly_toplandingsafeties_type4']
-                        ['condition'][value];
+                        ['condition'][selected];
               },
             ),
             CustomRadioTile(
@@ -164,14 +180,13 @@ class TopLandingSafeties extends StatelessWidget {
                     jsonData['drive_assembly_toplandingsafeties_topreset']
                         [value];
               },
-
               conditionalBuilder: (selected) {
                 if (selected == 'yes') {
                   return const CustomTextField(
                     id: 'top_landing_safeties_13',
                     title: 'Location',
                   );
-                } 
+                }
                 return const SizedBox.shrink();
               },
             ),
@@ -183,7 +198,6 @@ class TopLandingSafeties extends StatelessWidget {
                 beltModel.driveAssemblyTopLandingSafetiesTopResetCompliant =
                     jsonData['compliant'][value];
               },
-
               conditionalBuilder: (selected) {
                 if (selected == 'no') {
                   return CustomTextField(
@@ -214,17 +228,16 @@ class TopLandingSafeties extends StatelessWidget {
               onSelectionChanged: (selectedValues) {
                 // Convert selection into readable or mapped result
                 String result = "";
-                  for (var val in selectedValues) {
-                    // Safely look up in jsonData and fallback to the label itself
-                    final mapped = jsonData['safetydeviceswitches']?[val] ?? val;
-                    result += "$mapped\n";
-                  }
+                for (var val in selectedValues) {
+                  // Safely look up in jsonData and fallback to the label itself
+                  final mapped = jsonData['safetydeviceswitches']?[val] ?? val;
+                  result += "$mapped\n";
+                }
                 // Update model
-                beltModel.driveAssemblyTopLandingSafetiesSafetyDeviceSwitches = result;
-
+                beltModel.driveAssemblyTopLandingSafetiesSafetyDeviceSwitches =
+                    result;
               },
             ),
-
             CustomRadioTile(
               id: 'top_landing_safeties_17',
               title: 'Is there a visual and audible alerting system',

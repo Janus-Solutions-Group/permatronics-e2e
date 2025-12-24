@@ -88,11 +88,6 @@ class _StepsState extends State<Steps> {
                 widget.beltModel.stepsTreadColor =
                     jsonData['steps_tread_color'][value];
               },
-              fieldValue: 'other',
-              onFieldChange: (value) {
-                widget.beltModel.stepsTreadColor = value;
-              },
-
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
                   return CustomTextField(
@@ -140,10 +135,9 @@ class _StepsState extends State<Steps> {
                     id: 'step_belt_annual_9',
                     title: 'How Many',
                   );
-                } 
+                }
                 return const SizedBox.shrink();
               },
-            
             ),
             CustomTextField(
               id: "step_belt_annual_10",

@@ -4,6 +4,8 @@ import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
+import 'package:manlift_app/data/models/original_model.dart';
 import '../../../common/widgets/page_navigation_button.dart';
 import '../pages/belt_annual.dart';
 
@@ -41,19 +43,26 @@ class _DriveAssemblyState extends State<DriveAssembly> {
                     jsonData['drive_assembly_headcircletype'][value];
               },
             ),
-            CustomRadioTile(
-              id: "drive_assembly_annual_2",
-              title: 'Circle Condition:',
-              values: const [
-                'OK',
-                'Worn, but OK',
-                'Replace',
-                'Damaged',
-                'Replace Worn'
-              ],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: "drive_assembly_annual_2",
+                title: 'Head Circle Condition:',
+                values: const [
+                  'OK',
+                  'Worn, but OK',
+                  'Replace',
+                  'Damaged',
+                  'Replace Worn'
+                ],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+
+                // radio-style behavior
+                final selected = val.last;
+
                 widget.beltModel.driveAssemblyCircleCondition =
-                    jsonData['drive_assembly_circlecondition'][value];
+                    jsonData['drive_assembly_circlecondition'][selected];
               },
             ),
             CustomRadioTile(
@@ -65,39 +74,41 @@ class _DriveAssemblyState extends State<DriveAssembly> {
                     jsonData['drive_assembly_belttracking'][value];
               },
               conditionalBuilder: (selected) {
-                    if (selected == 'off') {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomRadioTile(
-                      title: "Up/down",
-                      values: const ["up", "down"],
-                      id: "drive_assembly_annual_3a",
-                      onChangeValue: (value) {},
-                      valueStyle: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    CustomRadioTile(
-                      title: "Left/right",
-                      values: const ["left", "right"],
-                      id: "drive_assembly_annual_3b",
-                      onChangeValue: (value) {},
-                      valueStyle: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    CustomTextField(
-                      id: "drive_assembly_annual_3c",
-                      title: 'Inches Off:',
-                      onChanged: (value) {
-                        // widget.beltModel.driveAssemblyBeltTrackingInchesOff = value;
-                      },
-                    ),
-                  ],
-                );
-              }
+                if (selected == 'off') {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomRadioTile(
+                        title: "Up/down",
+                        values: const ["up", "down"],
+                        id: "drive_assembly_annual_3a",
+                        onChangeValue: (value) {},
+                        valueStyle:
+                            const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      CustomRadioTile(
+                        title: "Left/right",
+                        values: const ["left", "right"],
+                        id: "drive_assembly_annual_3b",
+                        onChangeValue: (value) {},
+                        valueStyle:
+                            const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      CustomTextField(
+                        id: "drive_assembly_annual_3c",
+                        title: 'Inches Off:',
+                        onChanged: (value) {
+                          // widget.beltModel.driveAssemblyBeltTrackingInchesOff = value;
+                        },
+                      ),
+                    ],
+                  );
+                }
 
-              // Default fallback when condition not met
-              return const SizedBox.shrink();
-            },
-          ), 
+                // Default fallback when condition not met
+                return const SizedBox.shrink();
+              },
+            ),
             CustomRadioTile(
               id: "drive_assembly_annual_4",
               title: 'Lagging Condition:',
@@ -146,18 +157,26 @@ class _DriveAssemblyState extends State<DriveAssembly> {
                 widget.beltModel.driveAssemblyHeadShaftBearingSize = value;
               },
             ),
-            CustomRadioTile(
-              id: "drive_assembly_annual_9",
-              title: 'Condition:',
-              values: const [
-                'OK',
-                'Worn, but OK',
-                'Dry',
-                'Replace Damaged',
-                'Replace Worn'
-              ],
-              onChangeValue: (value) {
-                // beltModel.driveAssemblyShaftCondition = jsonData['drive_assembly_shaftcondition'][value];
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: "drive_assembly_annual_9",
+                title: 'Head Shaft Bearing Condition:',
+                values: const [
+                  'OK',
+                  'Worn, but OK',
+                  'Dry',
+                  'Replace Damaged',
+                  'Replace Worn'
+                ],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+
+                // radio-style behavior (take latest selection)
+                final selected = val.last;
+
+                // widget.beltModel.driveAssemblyShaftCondition =
+                //     jsonData['drive_assembly_shaftcondition'][selected];
               },
             ),
             CustomTextField(
@@ -204,31 +223,10 @@ class _DriveAssemblyState extends State<DriveAssembly> {
             CustomRadioTile(
               id: "drive_assembly_annual_15",
               title: 'Shaft Condition:',
-              values: const [
-                'OK',
-                'Worn, but OK',
-                'Replace Damaged',
-                'Replace Worn'
-              ],
+              values: const ['OK', 'Replace Damaged', 'Replace Worn'],
               onChangeValue: (value) {
                 widget.beltModel.driveAssemblyShaftCondition =
                     jsonData['drive_assembly_shaftcondition'][value];
-              },
-            ),
-
-            CustomRadioTile(
-              id: 'drive_assembly_annual_15a',
-              title: 'Head Shaft Bearing Condition:',
-              values: const [
-                'OK',
-                'Worn, but OK',
-                'Replace Damaged',
-                'Replace Worn',
-                'Dry'
-              ],
-              onChangeValue: (value) {
-                widget.beltModel.driveAssemblyBearingCondition =
-                    jsonData['drive_assembly_bearingcondition'][value];
               },
             ),
             CustomRadioTile(
@@ -295,11 +293,10 @@ class _DriveAssemblyState extends State<DriveAssembly> {
                 widget.beltModel.driveAssemblyCouplerType =
                     jsonData['drive_assembly_couplertype'][value];
               },
-              fieldValue: "other",
               onFieldChange: (value) {
                 widget.beltModel.driveAssemblyCouplerType = value;
               },
-               conditionalBuilder: (selected) {
+              conditionalBuilder: (selected) {
                 if (selected == 'other') {
                   return CustomTextField(
                     id: "drive_assembly_annual_21a",
@@ -311,7 +308,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
             ),
             CustomRadioTile(
               id: "drive_assembly_annual_22",
-              title: 'Condition:',
+              title: 'Coupler Condition:',
               values: const [
                 'OK',
                 'Worn, but OK',
@@ -328,23 +325,18 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               id: "drive_assembly_annual_23",
               title: 'Gear Box Type:',
               values: const ['Reliance', 'Dodge', 'Falk', 'Ehrsam', 'Other'],
-              onChangeValue: (value) {
-                widget.beltModel.driveAssemblyGearboxType =
-                    jsonData['drive_assembly_gearboxtype'][value];
-              },
-              fieldValue: "other",
-              onFieldChange: (value) {
-                widget.beltModel.driveAssemblyGearboxType = value;
-              },
-
-               conditionalBuilder: (selected) {
+              conditionalBuilder: (selected) {
                 if (selected == 'other') {
                   return CustomTextField(
                     id: "drive_assembly_annual_23a",
-                    title: 'Specify Other Type',
+                    title: 'Specify Other',
                   );
                 }
                 return const SizedBox.shrink();
+              },
+              onChangeValue: (value) {
+                widget.beltModel.driveAssemblyGearboxType =
+                    jsonData['drive_assembly_gearboxtype'][value];
               },
             ),
             CustomTextField(
@@ -354,19 +346,26 @@ class _DriveAssemblyState extends State<DriveAssembly> {
                 widget.beltModel.driveAssemblyGearboxId = value;
               },
             ),
-            CustomRadioTile(
-              id: "drive_assembly_annual_15",
-              title: 'Condition:',
-              values: const [
-                'OK',
-                'Worn, but OK',
-                'Seal Leaks',
-                'Replace Damaged',
-                'Replace Worn'
-              ],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: "drive_assembly_annual_15",
+                title: 'Condition:',
+                values: const [
+                  'OK',
+                  'Worn, but OK',
+                  'Seal Leaks',
+                  'Replace Damaged',
+                  'Replace Worn'
+                ],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+
+                // radio-style behavior → take last selected
+                final selected = val.last;
+
                 widget.beltModel.driveAssemblyGearboxCondition =
-                    jsonData['drive_assembly_gearboxcondition'][value];
+                    jsonData['drive_assembly_gearboxcondition'][selected];
               },
             ),
             CustomRadioTile(
@@ -377,12 +376,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
                 widget.beltModel.driveAssemblyMotorType =
                     jsonData['drive_assembly_motortype'][value];
               },
-              fieldValue: "other",
-              onFieldChange: (value) {
-                widget.beltModel.driveAssemblyMotorType = value;
-              },
-
-               conditionalBuilder: (selected) {
+              conditionalBuilder: (selected) {
                 if (selected == 'other') {
                   return CustomTextField(
                     id: "drive_assembly_annual_26a",
@@ -430,12 +424,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
                 widget.beltModel.driveAssemblyBrakeType =
                     jsonData['drive_assembly_braketype'][value];
               },
-              fieldValue: "other",
-              onFieldChange: (value) {
-                widget.beltModel.driveAssemblyBrakeType = value;
-              },
-
-               conditionalBuilder: (selected) {
+              conditionalBuilder: (selected) {
                 if (selected == 'other') {
                   return CustomTextField(
                     id: "drive_assembly_annual_23a",
@@ -467,26 +456,34 @@ class _DriveAssemblyState extends State<DriveAssembly> {
                 widget.beltModel.driveAssemblyIsDriveSkip =
                     jsonData['drive_assembly_isdriveskip'][value];
               },
-
-               conditionalBuilder: (selected) {
+              conditionalBuilder: (selected) {
                 if (selected == 'yes') {
-                  return CustomRadioTile(
-                    id: "drive_assembly_annual_34",
-                    title: 'Skip reason',
-                    values: const [
-                      'Coupler Play',
-                      'Worn Gearbox',
-                      'Key Way',
-                      'Loose Set Screws'
-                    ],
-                    onChangeValue: (value) {
+                  return MultipleSelectionWidget(
+                    original: OriginalModel(
+                      id: "drive_assembly_annual_34",
+                      title: 'Skip Reason',
+                      values: const [
+                        'Coupler Play',
+                        'Worn Gearbox',
+                        'Key Way',
+                        'Loose Set Screws'
+                      ],
+                    ),
+                    onSelectionChanged: (val) {
+                      if (val.isEmpty) return;
+
+                      String result = '';
+                      for (final v in val) {
+                        result += v + '\n';
+                      }
+
+                      // widget.beltModel.driveAssemblySkipReason = result;
                     },
                   );
                 }
                 return const SizedBox.shrink();
               },
             ),
-            
             CustomRadioTile(
               id: "drive_assembly_annual_35",
               title: 'Saf-T-Stop Brake:',
@@ -536,8 +533,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
                 // beltModel.driveAssemblyOverallSafTStopCondition =
                 //     jsonData['drive_assembly_saftstoplinkage'][value];
               },
-              
-               conditionalBuilder: (selected) {
+              conditionalBuilder: (selected) {
                 if (selected == 'other') {
                   return CustomTextField(
                     id: "drive_assembly_annual_21a",

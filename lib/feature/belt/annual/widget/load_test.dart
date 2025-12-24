@@ -35,6 +35,15 @@ class LoadTest extends StatelessWidget {
                 beltModel.loadTestTestResult =
                     jsonData['load_test_testresult'][value];
               },
+              conditionalBuilder: (selected) {
+                if (selected == 'fail') {
+                  return CustomTextField(
+                    id: "load_test_annual_1a",
+                    title: 'If Fail, Reason:',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
             CustomTextField(
               id: "load_test_annual_2",

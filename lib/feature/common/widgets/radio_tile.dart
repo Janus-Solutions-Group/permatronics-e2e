@@ -152,9 +152,7 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
               title: 'Non-Compliant Reason',
               onChanged: (reason) {
                 context.read<SelectionRefProvider>().updateSelection(
-                    "${widget.id}a",
-                    "Non-Compliant Reason",
-                    reason);
+                    "${widget.id}a", "Non-Compliant Reason", reason);
               },
             ),
           ),

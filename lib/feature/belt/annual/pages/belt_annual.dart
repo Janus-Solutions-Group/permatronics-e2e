@@ -181,10 +181,12 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
       return parts1.length.compareTo(parts2.length);
     });
 
-
     var tailList = selectionsRef
         .where((a) => a['id']!.split('_').first == "tail")
         .toList();
+    print(selectionsRef
+        .where((a) => a['id']!.split('_').first == "tail")
+        .toList());
     var bottomLandingSafetiesList = selectionsRef
         .where((a) => a['id']!.startsWith('Bottom Landing Safeties'))
         .toList();

@@ -59,20 +59,27 @@ class _TopLandingSafetiesState extends State<TopLandingSafeties> {
                               [value];
                     },
                   ),
-                  CustomRadioTile(
-                    id: "top_landing_safeties_2",
-                    title: 'Type 1 Condition:',
-                    values: const [
-                      'OK',
-                      'Inoperable',
-                      'Replace Switch',
-                      'Replace Whole Assembly'
-                    ],
-                    onChangeValue: (value) {
+                  MultipleSelectionWidget(
+                    original: OriginalModel(
+                      id: "top_landing_safeties_2",
+                      title: 'Type 1 Condition:',
+                      values: const [
+                        'OK',
+                        'Inoperable',
+                        'Replace Switch',
+                        'Replace Whole Assembly'
+                      ],
+                    ),
+                    onSelectionChanged: (val) {
+                      if (val.isEmpty) return;
+
+                      // radio-style behavior → last selected
+                      final selected = val.last;
+
                       widget.beltModel
                               .driveAssemblyTopLandingSafetiesType1Condition =
                           jsonData['drive_assembly_toplandingsafeties_type1']
-                              ['condition'][value];
+                              ['condition'][selected];
                     },
                   ),
                   CustomRadioTile(
@@ -96,20 +103,27 @@ class _TopLandingSafetiesState extends State<TopLandingSafeties> {
                               ['location'][value];
                     },
                   ),
-                  CustomRadioTile(
-                    id: "top_landing_safeties_6",
-                    title: 'Type 2 Condition:',
-                    values: const [
-                      'OK',
-                      'Inoperable',
-                      'Replace Switch',
-                      'Replace Whole Assembly'
-                    ],
-                    onChangeValue: (value) {
+                  MultipleSelectionWidget(
+                    original: OriginalModel(
+                      id: "top_landing_safeties_6",
+                      title: 'Type 2 Condition:',
+                      values: const [
+                        'OK',
+                        'Inoperable',
+                        'Replace Switch',
+                        'Replace Whole Assembly'
+                      ],
+                    ),
+                    onSelectionChanged: (val) {
+                      if (val.isEmpty) return;
+
+                      // radio-style → last selected
+                      final selected = val.last;
+
                       widget.beltModel
                               .driveAssemblyTopLandingSafetiesType2Condition =
                           jsonData['drive_assembly_toplandingsafeties_type2']
-                              ['condition'][value];
+                              ['condition'][selected];
                     },
                   ),
                   CustomRadioTile(
@@ -133,20 +147,27 @@ class _TopLandingSafetiesState extends State<TopLandingSafeties> {
                               ['location'][value];
                     },
                   ),
-                  CustomRadioTile(
-                    id: "top_landing_safeties_9",
-                    title: 'Type 3 Condition:',
-                    values: const [
-                      'OK',
-                      'Inoperable',
-                      'Replace Switch',
-                      'Replace Whole Assembly'
-                    ],
-                    onChangeValue: (value) {
+                  MultipleSelectionWidget(
+                    original: OriginalModel(
+                      id: "top_landing_safeties_9",
+                      title: 'Type 3 Condition:',
+                      values: const [
+                        'OK',
+                        'Inoperable',
+                        'Replace Switch',
+                        'Replace Whole Assembly'
+                      ],
+                    ),
+                    onSelectionChanged: (val) {
+                      if (val.isEmpty) return;
+
+                      // radio-style → take last selected
+                      final selected = val.last;
+
                       widget.beltModel
                               .driveAssemblyTopLandingSafetiesType3Condition =
                           jsonData['drive_assembly_toplandingsafeties_type3']
-                              ['condition'][value];
+                              ['condition'][selected];
                     },
                   ),
                   CustomRadioTile(
@@ -170,20 +191,27 @@ class _TopLandingSafetiesState extends State<TopLandingSafeties> {
                               ['location'][value];
                     },
                   ),
-                  CustomRadioTile(
-                    id: "top_landing_safeties_12",
-                    title: 'Type 4 Condition:',
-                    values: const [
-                      'OK',
-                      'Inoperable',
-                      'Replace Switch',
-                      'Replace Whole Assembly'
-                    ],
-                    onChangeValue: (value) {
+                  MultipleSelectionWidget(
+                    original: OriginalModel(
+                      id: "top_landing_safeties_12",
+                      title: 'Type 4 Condition:',
+                      values: const [
+                        'OK',
+                        'Inoperable',
+                        'Replace Switch',
+                        'Replace Whole Assembly'
+                      ],
+                    ),
+                    onSelectionChanged: (val) {
+                      if (val.isEmpty) return;
+
+                      // radio-style → last selected
+                      final selected = val.last;
+
                       widget.beltModel
                               .driveAssemblyTopLandingSafetiesType4Condition =
                           jsonData['drive_assembly_toplandingsafeties_type4']
-                              ['condition'][value];
+                              ['condition'][selected];
                     },
                   ),
                   CustomRadioTile(
@@ -195,20 +223,17 @@ class _TopLandingSafetiesState extends State<TopLandingSafeties> {
                           jsonData['drive_assembly_toplandingsafeties_topreset']
                               [value];
                     },
-                    
                     conditionalBuilder: (selected) {
                       if (selected == 'yes') {
                         return CustomTextField(
-                          id: 'top_landing_safeties_14',
-                          title: 'Location',
-
-                          onChanged: (value) {
-                            widget.beltModel
-                                    .driveAssemblyTopLandingSafetiesTopResetLocation =
-                                value;
-                          }
-                        );
-                      } 
+                            id: 'top_landing_safeties_14',
+                            title: 'Location',
+                            onChanged: (value) {
+                              widget.beltModel
+                                      .driveAssemblyTopLandingSafetiesTopResetLocation =
+                                  value;
+                            });
+                      }
                       return const SizedBox.shrink();
                     },
                   ),
@@ -254,12 +279,14 @@ class _TopLandingSafetiesState extends State<TopLandingSafeties> {
                       String result = "";
                       for (var val in selectedValues) {
                         // Safely look up in jsonData and fallback to the label itself
-                        final mapped = jsonData['safetydeviceswitches']?[val] ?? val;
+                        final mapped =
+                            jsonData['safetydeviceswitches']?[val] ?? val;
                         result += "$mapped\n";
                       }
                       // Update model
-                      widget.beltModel.driveAssemblyTopLandingSafetiesSafetyDeviceSwitches = result;
-
+                      widget.beltModel
+                              .driveAssemblyTopLandingSafetiesSafetyDeviceSwitches =
+                          result;
                     },
                   ),
                   CustomRadioTile(

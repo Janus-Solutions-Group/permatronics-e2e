@@ -6,6 +6,8 @@ import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
 import '../pages/belt_quaterly.dart';
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
+import 'package:manlift_app/data/models/original_model.dart';
 
 var beltVariable = BeltInspection();
 
@@ -70,19 +72,26 @@ class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
                           jsonData['bottom_landing_safeties_type_1'][value];
                     },
                   ),
-                  CustomRadioTile(
-                    id: 'bottom_landing_safeties_2',
-                    title: "Type 1 Condition:",
-                    values: const [
-                      'OK',
-                      'Inoperable',
-                      'Replace Switch',
-                      'Replace Whole Assembly'
-                    ],
-                    onChangeValue: (value) {
+                  MultipleSelectionWidget(
+                    original: OriginalModel(
+                      id: 'bottom_landing_safeties_2',
+                      title: 'Type 1 Condition:',
+                      values: const [
+                        'OK',
+                        'Inoperable',
+                        'Replace Switch',
+                        'Replace Whole Assembly',
+                      ],
+                    ),
+                    onSelectionChanged: (val) {
+                      if (val.isEmpty) return;
+
+                      // single-select behavior (radio equivalent)
+                      final selected = val.last;
+
                       widget.beltModel.bottomLandingSafetiesType1Condition =
                           jsonData['bottom_landing_safeties_type_1_condition']
-                              [value];
+                              [selected];
                     },
                   ),
                   Wrap(
@@ -106,19 +115,26 @@ class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
                       ),
                     ],
                   ),
-                  CustomRadioTile(
-                    id: 'bottom_landing_safeties_5',
-                    title: "Condition:",
-                    values: const [
-                      'OK',
-                      'Inoperable',
-                      'Replace Switch',
-                      'Replace Whole Assembly'
-                    ],
-                    onChangeValue: (value) {
+                  MultipleSelectionWidget(
+                    original: OriginalModel(
+                      id: 'bottom_landing_safeties_5',
+                      title: 'Condition:',
+                      values: const [
+                        'OK',
+                        'Inoperable',
+                        'Replace Switch',
+                        'Replace Whole Assembly',
+                      ],
+                    ),
+                    onSelectionChanged: (val) {
+                      if (val.isEmpty) return;
+
+                      // radio-equivalent behavior
+                      final selected = val.last;
+
                       widget.beltModel.bottomLandingSafetiesType2Condition =
                           jsonData['bottom_landing_safeties_type_2_condition']
-                              [value];
+                              [selected];
                     },
                   ),
                   Wrap(
@@ -142,19 +158,26 @@ class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
                       ),
                     ],
                   ),
-                  CustomRadioTile(
-                    id: 'bottom_landing_safeties_8',
-                    title: "Condition:",
-                    values: const [
-                      'OK',
-                      'Inoperable',
-                      'Replace Switch',
-                      'Replace Whole Assembly'
-                    ],
-                    onChangeValue: (value) {
+                  MultipleSelectionWidget(
+                    original: OriginalModel(
+                      id: 'bottom_landing_safeties_8',
+                      title: 'Condition:',
+                      values: const [
+                        'OK',
+                        'Inoperable',
+                        'Replace Switch',
+                        'Replace Whole Assembly',
+                      ],
+                    ),
+                    onSelectionChanged: (val) {
+                      if (val.isEmpty) return;
+
+                      // radio-style single selection
+                      final selected = val.last;
+
                       widget.beltModel.bottomLandingSafetiesType3Condition =
                           jsonData['bottom_landing_safeties_type_3_condition']
-                              [value];
+                              [selected];
                     },
                   ),
                   CustomRadioTile(
