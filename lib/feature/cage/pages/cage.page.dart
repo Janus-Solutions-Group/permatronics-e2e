@@ -33,7 +33,7 @@ class CagePage extends StatelessWidget {
                       moveTo(context, const CageQuaterlyPage(title: "Monthly"));
                     } else if (index == 1) {
                       moveTo(
-                          context, const CageQuaterlyPage(title: "Quaterly"));
+                          context, const CageQuaterlyPage(title: "Quarterly"));
                     } else if (index == 2) {
                       moveTo(context, const CageAnnualyPage());
                     }

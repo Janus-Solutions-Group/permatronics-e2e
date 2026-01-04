@@ -33,7 +33,7 @@ class BeltPage extends StatelessWidget {
                       moveTo(context, const BeltQuaterlyPage(title: "Monthly"));
                     } else if (index == 1) {
                       moveTo(
-                          context, const BeltQuaterlyPage(title: "Quaterly"));
+                          context, const BeltQuaterlyPage(title: "Quarterly"));
                     } else if (index == 2) {
                       moveTo(context,
                           const BeltAnnualPage(title: "Belt Yearly Form"));

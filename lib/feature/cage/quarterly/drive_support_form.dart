@@ -123,10 +123,10 @@ class DriveSupportForm extends StatelessWidget {
               cageModel.driveSupportGovernorCondition = res;
             },
             conditionalBuilder: (selected) {
-              if (selected.contains('other')) {
+              if (selected.contains('replace')) {
                 return CustomTextField(
-                 id: 'drive_support_form_6a',
-                  title: 'Reason for other',
+                  id: 'drive_support_form_6a',
+                  title: 'Why?',
                 );
               }
               return const SizedBox.shrink();
@@ -189,7 +189,7 @@ class DriveSupportForm extends StatelessWidget {
             conditionalBuilder: (selected) {
               if (selected.contains('other')) {
                 return CustomTextField(
-                 id: 'drive_support_form_10a',
+                  id: 'drive_support_form_10a',
                   title: 'Specify Other',
                 );
               }
@@ -203,15 +203,14 @@ class DriveSupportForm extends StatelessWidget {
               values: const [
                 "Yes",
                 "No",
-                // "N/A",  not in the json
+                "N/A", //  not in the json
               ],
             ),
             onSelectionChanged: (val) {
-              String res = "";
-              for (var e in val) {
-                res += jsonData['drive_support']['sheave_break'][e] + "\n";
-              }
-              cageModel.driveSupportSheaveBreak = res;
+              cageModel.driveSupportSheaveBreak = val
+                  .map((e) =>
+                      jsonData['drive_support']?['sheave_break']?[e] ?? e)
+                  .join('\n');
             },
           ),
           // CustomRadioTile(
@@ -249,7 +248,7 @@ class DriveSupportForm extends StatelessWidget {
             conditionalBuilder: (selected) {
               if (selected.contains('other')) {
                 return CustomTextField(
-                 id: 'drive_support_form_12a',
+                  id: 'drive_support_form_12a',
                   title: 'Specify Other',
                 );
               }
@@ -294,7 +293,7 @@ class DriveSupportForm extends StatelessWidget {
             conditionalBuilder: (selected) {
               if (selected.contains('other')) {
                 return CustomTextField(
-                 id: 'drive_support_form_14a',
+                  id: 'drive_support_form_14a',
                   title: 'Specify Other',
                 );
               }
@@ -306,7 +305,7 @@ class DriveSupportForm extends StatelessWidget {
               Expanded(
                 child: CustomTextField(
                   id: 'drive_support_form_15',
-                  title: 'Couple Size',
+                  title: 'Coupler Size',
                 ),
               ),
               Expanded(
@@ -317,34 +316,70 @@ class DriveSupportForm extends StatelessWidget {
               ),
             ],
           ),
-          CustomRadioTile(
-            id: 'drive_support_form_17',
-            title: 'Coupler Condition:',
-            values: const ["OK", "Replace", "Other"],
-            isTextField: true,
-            onChangeValue: (value) {
-              cageModel.driveSupportCouplerCondition =
-                  jsonData['drive_support']['coupler_condition'][value];
+          // CustomRadioTile(
+          //   id: 'drive_support_form_17',
+          //   title: 'Coupler Condition:',
+          //   values: const ["OK", "Replace", "Other"],
+          //   isTextField: true,
+          //   onChangeValue: (value) {
+          //     cageModel.driveSupportCouplerCondition =
+          //         jsonData['drive_support']['coupler_condition'][value];
+          //   },
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'drive_support_form_17',
+              title: 'Coupler Condition:',
+              values: const ["OK", "Replace", "Other"],
+            ),
+            onSelectionChanged: (val) {
+              if (val.isEmpty) return;
+
+              String res = "";
+              for (var e in val) {
+                res += jsonData['drive_support']['coupler_condition'][e] + "\n";
+              }
+              cageModel.driveSupportCouplerCondition = res;
             },
             conditionalBuilder: (selected) {
               if (selected == 'other') {
                 return CustomTextField(
-                 id: 'drive_support_form_17a',
+                  id: 'drive_support_form_17a',
                   title: 'Specify Other',
                 );
               }
               return const SizedBox.shrink();
             },
           ),
-          CustomRadioTile(
-            id: 'drive_support_form_18',
-            title: 'Gearbox Condition:',
-            values: const ["OK", "Excessive Backlash", "Monitor", "Replace"],
-            isTextField: true,
-            fieldLabelTitle: "Other",
-            onChangeValue: (value) {
-              cageModel.driveSupportGearboxCondition =
-                  jsonData['drive_support']['gearbox_condition'][value];
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'drive_support_form_18',
+              title: 'Gearbox Condition:',
+              values: const [
+                "OK",
+                "Excessive Backlash",
+                "Monitor",
+                "Replace",
+                "Other"
+              ],
+            ),
+            onSelectionChanged: (val) {
+              if (val.isEmpty) return;
+
+              String res = "";
+              for (var e in val) {
+                if (e != 'other') {
+                  res +=
+                      jsonData['drive_support']['gearbox_condition'][e] + "\n";
+                }
+              }
+              cageModel.driveSupportGearboxCondition = res;
+            },
+            fieldValues: const [
+              'Other'
+            ], // Show text field only if 'Other' is selected
+            fieldLabelTitle: "Specify Other",
+            onFieldChange: (value) {
+              cageModel.driveSupportGearboxCondition = value;
             },
           ),
           CustomRadioTile(
@@ -363,6 +398,25 @@ class DriveSupportForm extends StatelessWidget {
             onChangeValue: (value) {
               cageModel.driveSupportBrakeCondition =
                   jsonData['drive_support']['brake_condition'][value];
+            },
+          ),
+          CustomRadioTile(
+            id: 'drive_support_20a',
+            title: 'Access to Drive',
+            values: const ["OK", "Other"],
+            onChangeValue: (val) {
+              cageModel.driveSupportAccessToDrive =
+                  jsonData['drive_support']['access_to_drive'][val];
+            },
+            isTextField: true,
+            conditionalBuilder: (selected) {
+              if (selected == 'other') {
+                return CustomTextField(
+                  id: 'drive_support_20b',
+                  title: 'Other',
+                );
+              }
+              return const SizedBox.shrink();
             },
           ),
           CustomRadioTile(

@@ -102,11 +102,10 @@ class _AnnualCageDriveSupportFormState
                   jsonData['drive_support']['governor_condition'][value];
             },
             isTextField: true,
-            
             conditionalBuilder: (selected) {
               if (selected == 'replace') {
                 return CustomTextField(
-                 id: 'drive_support_10a',
+                  id: 'drive_support_10a',
                   title: 'Why?',
                 );
               }
@@ -196,16 +195,15 @@ class _AnnualCageDriveSupportFormState
                     jsonData['drive_support']['sheave_break_condition'][value];
               },
               isTextField: true,
-              
-            conditionalBuilder: (selected) {
-              if (selected == 'other') {
-                return CustomTextField(
-                 id: 'drive_support_10a',
-                  title: 'Reason for other',
-                );
-              }
-              return const SizedBox.shrink();
-            },
+              conditionalBuilder: (selected) {
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: 'drive_support_10a',
+                    title: 'Reason for other',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
           CustomRadioTile(
             id: 'drive_support_19',
@@ -313,7 +311,8 @@ class _AnnualCageDriveSupportFormState
                   jsonData['drive_support']['brake_condition'][value];
             },
           ),
-          const CustomTextField(id: 'drive_support_40',title: 'Head Drive Measurements:'),
+          const CustomTextField(
+              id: 'drive_support_40', title: 'Head Drive Measurements:'),
           const Row(
             children: [
               Expanded(
@@ -351,14 +350,21 @@ class _AnnualCageDriveSupportFormState
           CustomRadioTile(
             id: 'drive_support_49',
             title: 'Access to Drive',
-            values: const ["OK", "Other(Explain)"],
+            values: const ["OK", "Other"],
             onChangeValue: (val) {
               widget.cageModel.driveSupportAccessToDrive =
                   jsonData['drive_support']['access_to_drive'][val];
             },
             isTextField: true,
-            fieldValue: "other(explain)",
-            fieldLabelTitle: "Other(Explain)",
+            conditionalBuilder: (selected) {
+              if (selected == 'other') {
+                return CustomTextField(
+                  id: 'drive_support_49a',
+                  title: 'Other',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           CustomRadioTile(
             id: 'drive_support_50',

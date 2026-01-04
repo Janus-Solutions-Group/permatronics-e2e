@@ -324,7 +324,7 @@ class CABForm extends StatelessWidget {
             original: OriginalModel(
               id: 'cab_form_20',
               title: 'Emergency Escape Hatch Switch:',
-              values: const ["Yes", "No", "Inoperable"],
+              values: const ["Yes", "No", "Inoperable", "N/A"],
             ),
             onSelectionChanged: (val) {
               String res = "";

@@ -80,7 +80,6 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             isTextField: true,
             fieldLabelTitle: 'Other',
             fieldValue: 'other',
-
             conditionalBuilder: (selected) {
               if (selected == 'other') {
                 return CustomTextField(
@@ -132,7 +131,6 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             onChangeValue: (value) {
               widget.model.hoistwayDoorElectricContactCondition = value;
             },
-
             conditionalBuilder: (selected) {
               if (selected == 'other') {
                 return CustomTextField(
@@ -152,12 +150,23 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
               widget.model.hoistwayDoorHinge = value;
             },
           ),
-          CustomRadioTile(
-            id: 'landing_${widget.index}_cage_annual_11',
-            title: 'Hoistway Door Self Closer:',
-            values: const ["Yes", "No", "Inoperable", "N/A"],
-            type: widget.model.hoistwayDoorSelfCloser,
-            onChangeValue: (value) {
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'landing_${widget.index}_cage_annual_11',
+              title: 'Hoistway Door Self Closer:',
+              values: const ["Yes", "No", "Inoperable", "N/A"],
+            ),
+            onSelectionChanged: (val) {
+              if (val.isEmpty) return;
+              final selected =
+                  val.last; // only consider last selected for single selection
+              widget.model.hoistwayDoorSelfCloser = selected;
+            },
+            fieldValues: const [
+              'Inoperable'
+            ], // optional text field if inoperable
+            fieldLabelTitle: 'Specify Issue',
+            onFieldChange: (value) {
               widget.model.hoistwayDoorSelfCloser = value;
             },
           ),
@@ -226,41 +235,42 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             isTextField: true,
             fieldLabelTitle: "Other",
             fieldValue: 'other',
-
             conditionalBuilder: (selected) {
               if (selected == 'other') {
                 return CustomTextField(
                   id: 'landing_${widget.index}_cage_annual_17a',
-                    title: 'Specify Other',
-                  );
-                }
-                return const SizedBox.shrink();
-              },
-          ),
-          CustomRadioTile(
-            id: 'landing_${widget.index}_cage_annual_18',
-            title: 'Landing Zone Switch:',
-            values: const ["Yes", "No", "N/A"],
-            type: widget.model.landingZoneSwitch,
-            onChangeValue: (value) {
-              widget.model.landingZoneSwitch = value;
+                  title: 'Specify Other',
+                );
+              }
+              return const SizedBox.shrink();
             },
-
-            conditionalBuilder: (selected) {
-              if (selected == 'yes') {
-                return CustomRadioTile(
-                  id: 'landing_${widget.index}_cage_annual_19',
-                  title: 'Condition',
-                  values: const ["Ok", "Inoperable"],
-                  type: widget.model.landingZoneSwitchCondition,
-                  onChangeValue: (value) {
-                    widget.model.landingZoneSwitchCondition = value;
-                  });
-                }
-                return const SizedBox.shrink();
-              },
           ),
-            
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'landing_${widget.index}_cage_annual_18',
+              title: 'Landing Zone Switch:',
+              values: const ["Yes", "No", "N/A"],
+            ),
+            onSelectionChanged: (val) {
+              if (val.isEmpty) return;
+              final selected = val.last;
+              widget.model.landingZoneSwitch = selected;
+            },
+            conditionalBuilder: (selected) {
+              if (selected.contains('yes')) {
+                return CustomRadioTile(
+                    id: 'landing_${widget.index}_cage_annual_19',
+                    title: 'Condition',
+                    values: const ["Ok", "Inoperable"],
+                    type: widget.model.landingZoneSwitchCondition,
+                    onChangeValue: (value) {
+                      widget.model.landingZoneSwitchCondition = value;
+                    });
+              }
+              return const SizedBox.shrink();
+            },
+          ),
+
           CustomTextField(
             id: 'landing_${widget.index}_cage_annual_20',
             title: "Landing Comments",

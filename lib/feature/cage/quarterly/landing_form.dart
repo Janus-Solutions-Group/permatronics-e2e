@@ -3,6 +3,8 @@ import 'package:manlift_app/feature/cage/quarterly/models/landing_model.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
+import 'package:manlift_app/data/models/original_model.dart';
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
 
 class CageLandingForm extends StatefulWidget {
   const CageLandingForm({
@@ -68,57 +70,62 @@ class _CageLandingFormState extends State<CageLandingForm>
             onChangeValue: (value) {
               widget.model.hoistwayDoorElectricContactCondition = value;
             },
-
             conditionalBuilder: (selected) {
               if (selected == 'other') {
                 return CustomTextField(
-                 id: 'landing_${widget.index}_cage_monthly_4a',
+                  id: 'landing_${widget.index}_cage_monthly_4a',
                   title: 'Specify Other',
                 );
               }
               return const SizedBox.shrink();
             },
           ),
-          CustomRadioTile(
-            id: 'landing_${widget.index}_cage_monthly_5',
-            title: 'Hoistway Door Self Closer:',
-            values: const ["Yes", "No", "Inoperable", "N/A"],
-            type: widget.model.hoistwayDoorSelfCloser,
-            onChangeValue: (value) {
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'landing_${widget.index}_cage_monthly_5',
+              title: 'Hoistway Door Self Closer:',
+              values: const ["Yes", "No", "Inoperable", "N/A"],
+            ),
+            onSelectionChanged: (val) {
+              if (val.isEmpty) return;
+              final selected = val.last;
+              widget.model.hoistwayDoorSelfCloser = selected;
+            },
+            fieldValues: const ['Inoperable'],
+            fieldLabelTitle: 'Specify Issue',
+            onFieldChange: (value) {
               widget.model.hoistwayDoorSelfCloser = value;
             },
           ),
-          CustomRadioTile(
-            id: 'landing_${widget.index}_cage_monthly_6',
-            title: 'Landing Zone Switch:',
-            values: const ["Yes", "No", "N/A"],
-            type: widget.model.landingZoneSwitch,
-            onChangeValue: (value) {
-              widget.model.landingZoneSwitch = value;
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'landing_${widget.index}_cage_monthly_6',
+              title: 'Landing Zone Switch:',
+              values: const ["Yes", "No", "N/A"],
+            ),
+            onSelectionChanged: (val) {
+              if (val.isEmpty) return;
+              final selected = val.last;
+              widget.model.landingZoneSwitch = selected;
             },
-
             conditionalBuilder: (selected) {
-              if (selected == 'yes') {
+              if (selected.contains('yes')) {
                 return CustomRadioTile(
-                  id: 'landing_${widget.index}_cage_monthly_6a',
-                  title: 'Condition',
-                  values: const ["Ok", "Inoperable"],
-                  type: widget.model.landingZoneSwitchCondition,
-                  onChangeValue: (value) {
-                    widget.model.landingZoneSwitchCondition = value;
-                  });
-                }
-                return const SizedBox.shrink();
-              },
-          ),
-          CustomRadioTile(
-            title: 'Condition',
-            id: 'landing_${widget.index}_cage_monthly_7',
-            values: const ["Ok", "Inoperable"],
-            type: widget.model.landingZoneSwitchCondition,
-            onChangeValue: (value) {
-              widget.model.landingZoneSwitchCondition = value;
+                    id: 'landing_${widget.index}_cage_monthly_6a',
+                    title: 'Condition',
+                    values: const ["Ok", "Inoperable"],
+                    type: widget.model.landingZoneSwitchCondition,
+                    onChangeValue: (value) {
+                      widget.model.landingZoneSwitchCondition = value;
+                    });
+              }
+              return const SizedBox.shrink();
             },
+          ),
+          CustomTextField(
+            id: 'landing_${widget.index}_cage_monthly_7',
+            title: "Landing Comments",
+            controller: widget.model.landingComments,
           ),
           Align(
             alignment: Alignment.centerRight,

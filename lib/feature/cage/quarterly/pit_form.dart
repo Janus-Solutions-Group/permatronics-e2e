@@ -82,11 +82,10 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
                   widget.cageModel.switchLocation =
                       jsonData['switch_location'][value];
                 },
-
                 conditionalBuilder: (selected) {
                   if (selected == 'relocate') {
                     return CustomTextField(
-                      id: "pit_10a",
+                      id: "pit_3a",
                       title: 'Reason for Relocation',
                     );
                   }
@@ -172,24 +171,46 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
                     jsonData['condition_governor_cable_tensioner'][value];
               },
             ),
-            CustomRadioTile(
-              id: 'pit_8',
-              title: "Bottom Normal Terminal",
-              values: const ["Ok", "inoperable", "Replace", "None"],
-              onChangeValue: (value) {
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'pit_8',
+                title: 'Bottom Normal Terminal',
+                values: const ["Ok", "inoperable", "Replace", "None"],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+                final selected = val.last; // single-selection behavior
                 widget.cageModel.bottomNormalTerminal =
-                    jsonData['bottom_normal_terminal'][value];
+                    jsonData['bottom_normal_terminal'][selected];
+              },
+              fieldValues: const [
+                'inoperable'
+              ], // show text field if "inoperable"
+              fieldLabelTitle: 'Specify Issue',
+              onFieldChange: (value) {
+                widget.cageModel.bottomNormalTerminal = value;
               },
             ),
-            CustomRadioTile(
-              id: 'pit_9',
-              title: "Bottom Final Terminal:",
-              values: const ["Ok", "inoperable", "Replace", "None"],
-              onChangeValue: (value) {
+
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'pit_9',
+                title: 'Bottom Final Terminal:',
+                values: const ["Ok", "inoperable", "Replace", "None"],
+              ),
+              onSelectionChanged: (val) {
+                if (val.isEmpty) return;
+                final selected = val.last;
                 widget.cageModel.bottomFinalTerminal =
-                    jsonData['bottom_final_terminal'][value];
+                    jsonData['bottom_final_terminal'][selected];
+              },
+              fieldValues: const ['inoperable'],
+              fieldLabelTitle: 'Specify Issue',
+              onFieldChange: (value) {
+                widget.cageModel.bottomFinalTerminal = value;
               },
             ),
+
             CustomTextField(
               id: 'pit_10',
               title: 'Pit Comment',
@@ -256,6 +277,15 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
                   res += jsonData['safety_condition'][e] + "\n";
                 }
                 widget.cageModel.safetyCondition = res;
+              },
+              conditionalBuilder: (selected) {
+                if (selected.contains('replace')) {
+                  return CustomTextField(
+                    id: "pit_14a",
+                    title: 'Reason for replacement',
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
 

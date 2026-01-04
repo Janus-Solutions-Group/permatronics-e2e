@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class CageQuarterlyLanding {
   String? hoistwayControls;
   String? hoistwayDoorUnlockingDevice;
@@ -6,6 +8,7 @@ class CageQuarterlyLanding {
   String? hoistwayDoorSelfCloser;
   String? landingZoneSwitch;
   String? landingZoneSwitchCondition;
+  TextEditingController? landingComments;
   CageQuarterlyLanding({
     this.hoistwayControls,
     this.hoistwayDoorUnlockingDevice,
@@ -13,6 +16,6 @@ class CageQuarterlyLanding {
     this.hoistwayDoorElectricContactCondition,
     this.hoistwayDoorSelfCloser,
     this.landingZoneSwitch,
-    this.landingZoneSwitchCondition,
+    this.landingComments,
   });
 }
