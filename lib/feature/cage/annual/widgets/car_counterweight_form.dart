@@ -5,6 +5,10 @@ import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
+import 'package:manlift_app/data/models/original_model.dart';
+import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
+
 class AnnualCageCarCounterWeightForm extends StatelessWidget {
   const AnnualCageCarCounterWeightForm(
       {super.key, required this.pageController, required this.cageModel});
@@ -21,22 +25,32 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const FormHeaderTitle(title: "CAR & COUNTERWEIGHT FASTENING"),
-          CustomRadioTile(
-            id: 'car_conterweight_1',
-            title: 'Hoist Cable Fasteners to Car:',
-            values: const [
-              "Poured Babbit",
-              "Cable Clamps",
-              "Fistgrips",
-              "Wedge Socket",
-              "Other"
-            ],
-            onChangeValue: (value) {
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'car_conterweight_1',
+              title: 'Hoist Cable Fasteners to Car:',
+              values: const [
+                'Poured Babbit',
+                'Cable Clamps',
+                'Fistgrips',
+                'Wedge Socket',
+                'Other',
+              ],
+            ),
+            onSelectionChanged: (selected) {
               cageModel.ccfHoistcableFastenersToCar =
                   jsonData['car_and_counterweight_fastening']
-                      ['hoist_cable_fasteners_to_car'][value];
+                      ['hoist_cable_fasteners_to_car'][selected.last];
             },
-            fieldValue: "other",
+            conditionalBuilder: (selected) {
+              if (selected.contains('other')) {
+                return CustomTextField(
+                  id: 'car_conterweight_1a',
+                  title: 'Specify Other',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           CustomRadioTile(
             id: 'car_conterweight_2',
@@ -48,22 +62,32 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
                       ['number_of_fasteners_per_cable'][value];
             },
           ),
-          CustomRadioTile(
-            id: 'car_conterweight_3',
-            title: 'Hoist Cable Fasteners to CW:',
-            values: const [
-              "Poured Babbit",
-              "Cable Clamps",
-              "Fistgrips",
-              "Wedge Socket",
-              "Other"
-            ],
-            onChangeValue: (value) {
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'car_conterweight_3',
+              title: 'Hoist Cable Fasteners to CW:',
+              values: const [
+                'Poured Babbit',
+                'Cable Clamps',
+                'Fistgrips',
+                'Wedge Socket',
+                'Other',
+              ],
+            ),
+            onSelectionChanged: (selected) {
               cageModel.ccfHoistcableFastenersToCW =
                   jsonData['car_and_counterweight_fastening']
-                      ['hoist_cable_fasteners_to_cw'][value];
+                      ['hoist_cable_fasteners_to_cw'][selected.last];
             },
-            fieldValue: "other",
+            conditionalBuilder: (selected) {
+              if (selected.contains('other')) {
+                return CustomTextField(
+                  id: 'car_conterweight_3a',
+                  title: 'Specify Other',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           CustomRadioTile(
             id: 'car_conterweight_4',
@@ -78,7 +102,7 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
           CustomRadioTile(
             id: 'car_conterweight_5',
             title: 'Hoist Cable Number:',
-            values: const ["2", "3"],
+            values: const ["2", "3", '4'],
             onChangeValue: (value) {
               cageModel.ccfHoistcableNumber =
                   jsonData['car_and_counterweight_fastening']
@@ -88,7 +112,7 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
           CustomRadioTile(
             id: 'car_conterweight_6',
             title: 'Size',
-            values: const ["3/8\"", "1/2\""],
+            values: const ["3/8\"", "1/2\"", "5/8\""],
             onChangeValue: (value) {
               cageModel.ccfHoistcableSize =
                   jsonData['car_and_counterweight_fastening']['size'][value];
@@ -107,7 +131,7 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
           CustomRadioTile(
             id: 'car_conterweight_8',
             title: 'Governor Cable Size:',
-            values: const ["3/8\"", "1/2\""],
+            values: const ["3/8\"", "1/2\"", "5/8\""],
             onChangeValue: (value) {
               cageModel.ccfGovernorCableSize =
                   jsonData['car_and_counterweight_fastening']
@@ -124,22 +148,32 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
                       ['governor_cable_condition'][value];
             },
           ),
-          CustomRadioTile(
-            id: 'car_conterweight_10',
-            title: 'Governor Cable Fasteners:',
-            values: const [
-              "Poured Babbit",
-              "Cable Clamps",
-              "Fistgrips",
-              "Wedge Socket",
-              "Other"
-            ],
-            onChangeValue: (value) {
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'car_conterweight_10',
+              title: 'Governor Cable Fasteners:',
+              values: const [
+                'Poured Babbit',
+                'Cable Clamps',
+                'Fistgrips',
+                'Wedge Socket',
+                'Other',
+              ],
+            ),
+            onSelectionChanged: (selected) {
               cageModel.ccfGovernorCablefasteners =
                   jsonData['car_and_counterweight_fastening']
-                      ['governor_cable_fasteners'][value];
+                      ['governor_cable_fasteners'][selected.last];
             },
-            fieldValue: "other",
+            conditionalBuilder: (selected) {
+              if (selected.contains('other')) {
+                return CustomTextField(
+                  id: 'car_conterweight_10a',
+                  title: 'Specify Other',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           CustomRadioTile(
             id: 'car_conterweight_11',

@@ -60,26 +60,37 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             title: "Hoistway Door Interlock Type:",
             controller: widget.model.hoistwayDoorInterlockType,
           ),
-          CustomRadioTile(
-            id: 'landing_${widget.index}_cage_annual_5',
-            title: 'Location:',
-            type: widget.model.hoistwayDoorInterlockLocation,
-            values: const ["Left", "Right ", "Top", "Middle"],
-            isTextField: true,
-            fieldLabelTitle: 'Other',
-            fieldValue: 'other',
-            onChangeValue: (value) {
-              widget.model.hoistwayDoorInterlockLocation = value;
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'landing_${widget.index}_cage_annual_5',
+              title: 'Location:',
+              values: const ['Left', 'Right', 'Top', 'Middle', 'Other'],
+            ),
+            onSelectionChanged: (selected) {
+              // Join selected values for model storage
+              widget.model.hoistwayDoorInterlockLocation = selected.join(', ');
+            },
+            conditionalBuilder: (selected) {
+              if (selected.contains('other')) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 16.0, top: 8),
+                  child: CustomTextField(
+                    id: 'landing_${widget.index}_cage_annual_5a',
+                    title: 'Other',
+                    onChanged: (value) {},
+                  ),
+                );
+              }
+              return const SizedBox.shrink();
             },
           ),
+
           CustomRadioTile(
             id: 'landing_${widget.index}_cage_annual_6',
             title: 'Hoistway Door Interlock Condition:',
             values: const ["OK", "Replace ", "Other"],
             type: widget.model.hoistwayDoorInterlockCondition,
             isTextField: true,
-            fieldLabelTitle: 'Other',
-            fieldValue: 'other',
             conditionalBuilder: (selected) {
               if (selected == 'other') {
                 return CustomTextField(
@@ -123,24 +134,32 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
               widget.model.hoistwayDoorElectricContactLocation = ref.join('\n');
             },
           ),
-          CustomRadioTile(
-            id: 'landing_${widget.index}_cage_annual_9',
-            title: 'Hoistway Door Electric Contact Condition:',
-            values: const ["OK", "Replace", "Other"],
-            type: widget.model.hoistwayDoorElectricContactCondition,
-            onChangeValue: (value) {
-              widget.model.hoistwayDoorElectricContactCondition = value;
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'landing_${widget.index}_cage_annual_9',
+              title: 'Hoistway Door Electric Contact Condition:',
+              values: const ['OK', 'Replace', 'Other'],
+            ),
+            onSelectionChanged: (selected) {
+              // Store selection (single or multi – adjust as needed)
+              widget.model.hoistwayDoorElectricContactCondition =
+                  selected.join(', ');
             },
             conditionalBuilder: (selected) {
-              if (selected == 'other') {
-                return CustomTextField(
-                  id: 'landing_${widget.index}_cage_annual_9a',
-                  title: 'Specify Other',
+              if (selected.contains('other')) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 16.0, top: 8),
+                  child: CustomTextField(
+                    id: 'landing_${widget.index}_cage_annual_9a',
+                    title: 'Specify Other',
+                    onChanged: (value) {},
+                  ),
                 );
               }
               return const SizedBox.shrink();
             },
           ),
+
           CustomRadioTile(
             id: 'landing_${widget.index}_cage_annual_10',
             title: 'Hoistway Door Hinge:',
@@ -233,8 +252,6 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
               widget.model.enclosurePanels = value;
             },
             isTextField: true,
-            fieldLabelTitle: "Other",
-            fieldValue: 'other',
             conditionalBuilder: (selected) {
               if (selected == 'other') {
                 return CustomTextField(

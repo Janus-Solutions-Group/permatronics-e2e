@@ -3,9 +3,11 @@ import 'package:manlift_app/feature/cage/annual/pages/cage_annual.dart';
 import 'package:manlift_app/feature/cage/model/cage_model.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
-import 'package:manlift_app/feature/common/widgets/custom_title.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
+
+import 'package:manlift_app/data/models/original_model.dart';
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
 
 class AnnualCageDriveSupportForm extends StatefulWidget {
   const AnnualCageDriveSupportForm(
@@ -41,22 +43,48 @@ class _AnnualCageDriveSupportFormState
               title: 'Overhead Car Clearance Measurement:'),
           CustomTextField(
               id: 'drive_support_4', title: 'Top of Counterweight Clearance:'),
-          CustomRadioTile(
-            id: 'drive_support_5',
-            title: 'Top Normal Terminal:',
-            values: const ["Yes", "No", "Inoperable", "Replace"],
-            onChangeValue: (value) {
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'drive_support_5',
+              title: 'Top Normal Terminal:',
+              values: const ['Yes', 'No', 'Inoperable', 'Replace'],
+            ),
+            onSelectionChanged: (selected) {
               widget.cageModel.driveSupportTopNormalTerminal =
-                  jsonData['drive_support']['top_normal_terminal'][value];
+                  jsonData['drive_support']['top_normal_terminal']
+                      [selected.last];
+            },
+            conditionalBuilder: (selected) {
+              if (selected.contains('inoperable') ||
+                  selected.contains('replace')) {
+                return CustomTextField(
+                  id: 'drive_support_5a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
             },
           ),
-          CustomRadioTile(
-            id: 'drive_support_6',
-            title: 'Top Final Terminal:',
-            values: const ["Yes", "No", "Inoperable", "Replace"],
-            onChangeValue: (value) {
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'drive_support_6',
+              title: 'Top Final Terminal:',
+              values: const ['Yes', 'No', 'Inoperable', 'Replace'],
+            ),
+            onSelectionChanged: (selected) {
               widget.cageModel.driveSupportTopFinalTerminal =
-                  jsonData['drive_support']['top_final_terminal'][value];
+                  jsonData['drive_support']['top_final_terminal']
+                      [selected.last];
+            },
+            conditionalBuilder: (selected) {
+              if (selected.contains('inoperable') ||
+                  selected.contains('replace')) {
+                return CustomTextField(
+                  id: 'drive_support_6a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
             },
           ),
           CustomRadioTile(
@@ -226,6 +254,15 @@ class _AnnualCageDriveSupportFormState
               widget.cageModel.travelCableConnectionAndCondition =
                   jsonData['drive_support']['traction_sheave_condition'][value];
             },
+            conditionalBuilder: (selected) {
+              if (selected == 'replace') {
+                return CustomTextField(
+                  id: 'drive_support_23',
+                  title: 'Specify Other',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           const CustomTextField(
             id: 'drive_support_24',
@@ -276,13 +313,26 @@ class _AnnualCageDriveSupportFormState
               id: 'drive_support_31', title: 'Gearbox Brand Name:'),
           const CustomTextField(
               id: 'drive_support_32', title: 'Gearbox Numbers:'),
-          CustomRadioTile(
-            id: 'drive_support_33',
-            title: 'Gearbox Condition:',
-            values: const ["OK", "Excessive Backlash", "Monitor", "Replace"],
-            onChangeValue: (value) {
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'drive_support_33',
+              title: 'Gearbox Condition:',
+              values: const ['OK', 'Excessive Backlash', 'Monitor', 'Replace'],
+            ),
+            onSelectionChanged: (selected) {
               widget.cageModel.driveSupportGearboxCondition =
-                  jsonData['drive_support']['gearbox_condition'][value];
+                  jsonData['drive_support']['gearbox_condition'][selected.last];
+            },
+            conditionalBuilder: (selected) {
+              if (selected.contains('replace') ||
+                  selected.contains('excessive backlash') ||
+                  selected.contains('monitor')) {
+                return CustomTextField(
+                  id: 'drive_support_33a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
             },
           ),
           const CustomTextField(
