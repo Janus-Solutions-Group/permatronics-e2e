@@ -549,7 +549,7 @@ class _TopLandingState extends State<TopLanding> {
                 // ----------------------------------------
                 // CASE 2: MOVEABLE
                 // ----------------------------------------
-                else if (sel == "moveable") {
+                else if (sel == "moveable" || sel == "moveable_mini") {
                   widgets.addAll([
                     CustomRadioTile(
                       id: "top_landing_belt_annual_63",
@@ -564,7 +564,7 @@ class _TopLandingState extends State<TopLanding> {
                       onChangeValue: (value) {},
                     ),
                     CustomRadioTile(
-                      id: "top_landing_belt_annual_65",
+                      id: "top_landing_belt_annual_65a",
                       title: 'Location of Hinges',
                       values: const [
                         '6"',
@@ -572,19 +572,26 @@ class _TopLandingState extends State<TopLanding> {
                         'Other'
                       ],
                       onChangeValue: (value) {},
-                      fieldValue: "other",
-                      fieldLabelTitle: "Measurement in inches",
+                      conditionalBuilder: (selected) {
+                        if (selected == 'other') {
+                          return CustomTextField(
+                            id: "top_landing_belt_annual_65b",
+                            title: 'Measurement in inches',
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    ),
+                    CustomRadioTile(
+                      id: "top_landing_belt_annual_65c",
+                      title: 'Counterweighted',
+                      values: const ['Yes', 'No'],
+                      onChangeValue: (value) {},
                     ),
                   ]);
                 }
 
                 widgets.addAll([
-                  CustomRadioTile(
-                    id: "top_landing_belt_annual_66",
-                    title: 'Counterweighted',
-                    values: const ['Yes', 'No'],
-                    onChangeValue: (value) {},
-                  ),
                   CustomRadioTile(
                     id: "top_landing_belt_annual_67",
                     title: 'Hood Condition',
@@ -746,13 +753,13 @@ class _TopLandingState extends State<TopLanding> {
               },
             ),
             CustomRadioTile(
-              id: "top_landing_belt_annual_83",
+              id: "top_landing_belt_annual_83a",
               title: 'Is there a visual and audible alerting system:',
               values: ['Yes', 'No'],
               onChangeValue: (value) {},
             ),
             CustomTextField(
-                id: "top_landing_belt_annual_83",
+                id: "top_landing_belt_annual_83b",
                 title: 'Top Landing Comments:'),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

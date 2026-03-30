@@ -76,7 +76,12 @@ class _MultipleSelectionWidgetState extends State<MultipleSelectionWidget> {
                           context.read<SelectionRefProvider>().updateSelection(
                                 widget.original.id.toString(),
                                 widget.original.title,
-                                selectedItems.join(', '),
+                                selectedItems.map((formatted) {
+                                  return widget.original.values.firstWhere(
+                                    (v) => formatString(v) == formatted,
+                                    orElse: () => formatted,
+                                  );
+                                }).join(', '),
                               );
                         });
                       },

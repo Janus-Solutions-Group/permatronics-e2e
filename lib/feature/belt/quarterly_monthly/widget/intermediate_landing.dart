@@ -112,6 +112,21 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                                   [value];
                         },
                       ),
+                      CustomRadioTile(
+                        id: 'intermediate_landing_quartmonth_${widget.index}_6a',
+                        title: 'Are Gates Missing:',
+                        values: const ['Yes', 'No'],
+                        onChangeValue: (value) {},
+                        conditionalBuilder: (selected) {
+                          if (selected == 'yes') {
+                            return CustomTextField(
+                              id: 'intermediate_landing_quartmonth_${widget.index}_6b',
+                              title: 'How Many',
+                            );
+                          }
+                          return const SizedBox.shrink();
+                        },
+                      ),
                     ],
                   );
                 }
@@ -154,21 +169,19 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                 return const SizedBox.shrink();
               },
             ),
-            CustomRadioTile(
-              id: 'intermediate_landing_quartmonth_${widget.index}_10',
-              title: 'Toeboard Material:',
-              values: const ['Steel', 'Raised Concrete', 'Other'],
-              onChangeValue: (value) {
-                // model. =
-                //   jsonData['steps_step_rollers_bolts'][value];
-              },
-              fieldValue: "other",
-              fieldLabelTitle: "Other",
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'intermediate_landing_quartmonth_${widget.index}_10',
+                title: 'Toeboard Material:',
+                values: const ['Steel', 'Raised Concrete', 'Other'],
+              ),
+              onSelectionChanged: (selected) {},
               conditionalBuilder: (selected) {
-                if (selected == 'other') {
+                if (selected.contains('other')) {
                   return CustomTextField(
                     id: 'intermediate_landing_quartmonth_${widget.index}_10a',
                     title: 'Specify Other',
+                    onChanged: (value) {},
                   );
                 }
                 return const SizedBox.shrink();
@@ -183,61 +196,186 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               id: 'intermediate_landing_quartmonth_${widget.index}_12',
               title: 'Type of Hood:',
               values: const ['Stationary', 'Moveable', 'Moveable Mini', 'None'],
-              onChangeValue: (value) {
-                // model.hood =
-                //   jsonData['steps_step_rollers_bolts'][value];
+              onChangeValue: (value) {},
+              conditionalBuilder: (selected) {
+                final sel = selected.toLowerCase();
+
+                if (sel == 'none' || sel.isEmpty) {
+                  return const SizedBox.shrink();
+                }
+
+                List<Widget> widgets = [];
+
+                // ==========================================================
+                // ====================== STATIONARY ========================
+                // ==========================================================
+                if (sel == 'stationary') {
+                  widgets.addAll([
+                    /// 13 - Hood Condition
+                    CustomRadioTile(
+                      id: 'intermediate_landing_quartmonth_${widget.index}_13',
+                      title: 'Hood Condition',
+                      values: const [
+                        "OK",
+                        "Damaged, but OK",
+                        "Replace Damaged",
+                        "Replace Worn"
+                      ],
+                      onChangeValue: (value) {},
+                    ),
+
+                    /// 14 - Angle of Slope
+                    CustomTextField(
+                      id: 'intermediate_landing_quartmonth_${widget.index}_14',
+                      title: 'Angle of Slope (Measurement):',
+                    ),
+
+                    /// 15 - Hood Clearance
+                    CustomRadioTile(
+                      id: 'intermediate_landing_quartmonth_${widget.index}_15',
+                      title: 'Hood Clearance:',
+                      values: const [
+                        '(Minimum 7\'6")',
+                        'Compliant',
+                        'Non-Compliant'
+                      ],
+                      onChangeValue: (value) {},
+                    ),
+                  ]);
+                }
+
+                // ==========================================================
+                // ================= MOVEABLE / MINI ========================
+                // ==========================================================
+                if (sel == 'moveable' || sel == 'moveable_mini') {
+                  widgets.addAll([
+                    /// 16 - Hood Condition
+                    CustomRadioTile(
+                      id: 'intermediate_landing_quartmonth_${widget.index}_16',
+                      title: 'Hood Condition',
+                      values: const [
+                        "OK",
+                        "Damaged, but OK",
+                        "Replace Damaged",
+                        "Replace Worn"
+                      ],
+                      onChangeValue: (value) {},
+                    ),
+
+                    /// 17 - Does Switch Work
+                    CustomRadioTile(
+                      id: 'intermediate_landing_quartmonth_${widget.index}_17',
+                      title: 'Does the Switch Work?',
+                      values: const ['Yes', 'No'],
+                      onChangeValue: (value) {},
+                    ),
+
+                    /// 19 - Location of Hinges
+                    CustomRadioTile(
+                      id: 'intermediate_landing_quartmonth_${widget.index}_19',
+                      title: 'Location of Hinges:',
+                      values: const ['6"', 'Other'],
+                      onChangeValue: (value) {},
+                      conditionalBuilder: (selected) {
+                        if (selected.toLowerCase() == 'other') {
+                          return CustomTextField(
+                            id: 'intermediate_landing_quartmonth_${widget.index}_20',
+                            title: 'Measurement in inches:',
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    ),
+
+                    /// 21 - Does Hood have a Rolled Edge?
+                    CustomRadioTile(
+                      id: 'intermediate_landing_quartmonth_${widget.index}_21',
+                      title: 'Does Hood have a Rolled Edge?',
+                      values: const ['Yes', 'No'],
+                      onChangeValue: (value) {},
+                      conditionalBuilder: (selected) {
+                        if (selected.toLowerCase() == 'yes') {
+                          return CustomRadioTile(
+                            id: 'intermediate_landing_quartmonth_${widget.index}_22',
+                            title: 'Condition of Rolled Edge:',
+                            values: const [
+                              'OK',
+                              'Worn, but OK',
+                              'Replace Damaged',
+                              'Replace Worn'
+                            ],
+                            onChangeValue: (value) {},
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    ),
+
+                    /// 18 - Hood Clearance
+                    CustomRadioTile(
+                      id: 'intermediate_landing_quartmonth_${widget.index}_18',
+                      title: 'Hood Clearance:',
+                      values: const [
+                        '(Minimum 7\'6")',
+                        'Compliant',
+                        'Non-Compliant'
+                      ],
+                      onChangeValue: (value) {},
+                      conditionalBuilder: (selected) {
+                        if (selected.toLowerCase() == 'non-compliant') {
+                          return CustomTextField(
+                            id: 'intermediate_landing_quartmonth_${widget.index}_18a',
+                            title: 'Non-Compliant Reason:',
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    ),
+                  ]);
+                }
+
+                // ==========================================================
+                // ===================== COMMON SECTION =====================
+                // ==========================================================
+
+                if (sel == 'stationary') {
+                  widgets.add(
+                    CustomRadioTile(
+                      id: 'intermediate_landing_quartmonth_${widget.index}_21',
+                      title: 'Does Hood have a Rolled Edge?',
+                      values: const ['Yes', 'No'],
+                      onChangeValue: (value) {},
+                      conditionalBuilder: (selected) {
+                        if (selected.toLowerCase() == 'yes') {
+                          return CustomRadioTile(
+                            id: 'intermediate_landing_quartmonth_${widget.index}_22',
+                            title: 'Condition of Rolled Edge:',
+                            values: const [
+                              'OK',
+                              'Worn, but OK',
+                              'Replace Damaged',
+                              'Replace Worn'
+                            ],
+                            onChangeValue: (value) {},
+                          );
+                        }
+
+                        /// 23 - Bottom Hood Comments
+                        return CustomTextField(
+                          id: 'intermediate_landing_quartmonth_${widget.index}_23',
+                          title: 'Bottom Hood Comments:',
+                        );
+                      },
+                    ),
+                  );
+                }
+
+                return Column(children: widgets);
               },
             ),
+
             CustomRadioTile(
-              id: 'intermediate_landing_quartmonth_${widget.index}_13',
-              title: 'Hood Condition:',
-              values: const [
-                'OK',
-                'Worn, but OK',
-                'Replace Damaged',
-                'Replace Worn'
-              ],
-              onChangeValue: (value) {
-                widget.model.intermediateLandingHoodCondition =
-                    jsonData['intermediate_landing_hoodcondition'][value];
-              },
-            ),
-            CustomRadioTile(
-              id: 'intermediate_landing_quartmonth_${widget.index}_14',
-              title: 'if Moveable, does Switch work:',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {
-                // model.ifmo =
-                //   jsonData['steps_step_rollers_bolts'][value];
-              },
-            ),
-            CustomRadioTile(
-              id: 'intermediate_landing_quartmonth_${widget.index}_15',
-              title: 'Does Hood have a Rolled Edge:',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {
-                widget.model.intermediateLandingDoesHoodHaveRolledEdge =
-                    jsonData['intermediate_landing_doeshoodhaverollededge']
-                        [value];
-              },
-            ),
-            CustomRadioTile(
-              id: 'intermediate_landing_quartmonth_${widget.index}_16',
-              title: 'Condition of Rolled Edge:',
-              values: const [
-                'OK',
-                'Worn, but OK',
-                'Replace Damaged',
-                'Replace Worn'
-              ],
-              onChangeValue: (value) {
-                widget.model.intermediateLandingConditionOfRolledEdge =
-                    jsonData['intermediate_landing_conditionofrollededge']
-                        [value];
-              },
-            ),
-            CustomRadioTile(
-              id: 'intermediate_landing_quartmonth_${widget.index}_17',
+              id: 'intermediate_landing_quartmonth_${widget.index}_24',
               title: 'Lighting:',
               values: const ['OK', 'Poor,'],
               onChangeValue: (value) {
@@ -246,7 +384,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_quartmonth_${widget.index}_18',
+              id: 'intermediate_landing_quartmonth_${widget.index}_25',
               title: 'Is Landing Clean/Free of Obstructions:',
               values: const ['Yes', 'No,'],
               onChangeValue: (value) {
@@ -255,7 +393,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_quartmonth_${widget.index}_19',
+              id: 'intermediate_landing_quartmonth_${widget.index}_26',
               title: 'Lateral Bracing:',
               values: const ['OK', 'Needs Additional'],
               onChangeValue: (value) {
@@ -265,7 +403,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               conditionalBuilder: (selected) {
                 if (selected == 'needs_additional') {
                   return CustomTextField(
-                    id: 'intermediate_landing_quartmonth_${widget.index}_19a',
+                    id: 'intermediate_landing_quartmonth_${widget.index}_27',
                     title: 'How Many',
                   );
                 }
@@ -273,7 +411,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_quartmonth_${widget.index}_20',
+              id: 'intermediate_landing_quartmonth_${widget.index}_28',
               title: 'Check Attachment Bolts:',
               values: const [
                 'Yes',
@@ -287,7 +425,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               conditionalBuilder: (selected) {
                 if (selected == 'yes') {
                   return CustomRadioTile(
-                    id: 'intermediate_landing_quartmonth_${widget.index}_20a',
+                    id: 'intermediate_landing_quartmonth_${widget.index}_29',
                     title: 'Condition:',
                     values: const ['OK', 'Missing'],
                     onChangeValue: (value) {
@@ -297,7 +435,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                     conditionalBuilder: (selected) {
                       if (selected == 'missing') {
                         return CustomTextField(
-                          id: 'intermediate_landing_quartmonth_${widget.index}_20b',
+                          id: 'intermediate_landing_quartmonth_${widget.index}_30',
                           title: 'How Many',
                         );
                       }
@@ -309,7 +447,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               },
             ),
             CustomRadioTile(
-              id: 'intermediate_landing_quartmonth_${widget.index}_21',
+              id: 'intermediate_landing_quartmonth_${widget.index}_31',
               title: 'Condition:',
               values: const ['OK', 'Missing'],
               onChangeValue: (value) {
@@ -319,7 +457,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               conditionalBuilder: (selected) {
                 if (selected == 'missing') {
                   return CustomTextField(
-                    id: 'intermediate_landing_quartmonth_${widget.index}_22',
+                    id: 'intermediate_landing_quartmonth_${widget.index}_32',
                     title: 'How Many',
                   );
                 }
@@ -327,10 +465,42 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
               },
             ),
             CustomTextField(
-              id: 'intermediate_landing_quartmonth_${widget.index}_23',
+              id: 'intermediate_landing_quartmonth_${widget.index}_33',
               title: 'Intermediate Landing Comments:',
               onChanged: (val) {},
             ),
+
+            const SizedBox(height: 8),
+
+            // Row for button aligned to the end
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 10),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    elevation: 2,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    'Submit',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(height: 28),
           ],
         ),
       ),

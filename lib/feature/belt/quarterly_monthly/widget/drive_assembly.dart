@@ -283,15 +283,6 @@ class DriveAssembly extends StatelessWidget {
                 return const SizedBox.shrink();
               },
             ),
-            CustomRadioTile(
-              id: 'drive_assembly_14',
-              title: 'Is there a Skip in the Drive',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {
-                beltModel.driveAssemblyIsDriveSkip =
-                    jsonData['drive_assembly_isdriveskip'][value];
-              },
-            ),
             MultipleSelectionWidget(
               original: OriginalModel(
                 id: 'drive_assembly_14',

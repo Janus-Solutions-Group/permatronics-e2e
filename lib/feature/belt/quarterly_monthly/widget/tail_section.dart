@@ -99,7 +99,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
               ),
             CustomRadioTile(
               title: "Bottom Circle Condition",
-              id: "tail_section_4",
+              id: "tail_section_4a",
               values: const [
                 "OK",
                 "Worn, but OK",
@@ -115,7 +115,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
             ),
             CustomRadioTile(
               title: "Bottom Bearing Condition",
-              id: "tail_section_19",
+              id: "tail_section_4b",
               values: const [
                 "OK",
                 "Worn, but OK",

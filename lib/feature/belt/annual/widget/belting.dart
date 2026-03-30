@@ -185,7 +185,7 @@ class _BeltingState extends State<Belting> {
               },
             ),
             CustomRadioTile(
-              id: "belting_annual_13",
+              id: "belting_annual_13a",
               title: 'Compressive Flex Failure:',
               values: const ['No', 'Slight', 'Extreme'],
               onChangeValue: (value) {
@@ -194,7 +194,7 @@ class _BeltingState extends State<Belting> {
               },
             ),
             CustomRadioTile(
-              id: "belting_annual_13",
+              id: "belting_annual_13b",
               title: 'Tension of Belt:',
               values: const ['Good', 'Needs to be adjusted'],
               onChangeValue: (value) {

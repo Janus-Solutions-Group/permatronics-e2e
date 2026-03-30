@@ -131,6 +131,12 @@ class _BottomLandingHoodState extends State<BottomLandingHood> {
                                 value;
                           },
                         ),
+                        CustomRadioTile(
+                          id: "bottom_landing_hood_annual_8",
+                          title: 'Counterweighted',
+                          values: const ['Yes', 'No'],
+                          onChangeValue: (value) {},
+                        ),
                       ],
                     ),
                   CustomRadioTile(

@@ -52,18 +52,17 @@ class _BottomLandingState extends State<BottomLanding> {
             ),
             MultipleSelectionWidget(
               original: OriginalModel(
-                id: 'bottom_landing_1',
-                title: '"Authorized Personnel Only" Sign: (2" letters)',
-                values: const ['Yes', 'No', 'Non-Compliant'],
+                id: 'bottom_landing_2',
+                title: 'Instruction Sign: (1" letters)',
+                values: const ["Yes", "No", "Non-Compliant"],
               ),
               onSelectionChanged: (val) {
                 if (val.isEmpty) return;
 
                 final selected = val.last;
 
-                widget.beltModel.bottomLandingAuthorizedPersonnelOnlySign =
-                    jsonData['bottom_landing_authorized_personnel_only_sign']
-                        [selected];
+                widget.beltModel.bottomLandingInstructionSign =
+                    jsonData["bottom_landing_instruction_sign"][selected];
               },
             ),
             MultipleSelectionWidget(

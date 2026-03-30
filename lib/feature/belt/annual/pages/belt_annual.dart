@@ -209,8 +209,11 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
     var intermediateList =
         selectionsRef.where((a) => a['id']!.startsWith("landing")).toList();
 
-    var topLandingList =
-        selectionsRef.where((a) => a['id']!.startsWith("top_landing")).toList();
+    var topLandingList = selectionsRef
+        .where((a) =>
+            a['id']!.startsWith("top_landing") &&
+            !a['id']!.startsWith("top_landing_safeties"))
+        .toList();
     var driveAssemblyList = selectionsRef
         .where((a) => a['id']!.startsWith("drive_assembly"))
         .toList();

@@ -58,6 +58,9 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
   @override
   void initState() {
     fetchJsonData();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<SelectionRefProvider>().selectionsRef.clear();
+    });
     super.initState();
   }
 
@@ -184,27 +187,37 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
         .where((a) => a['id']!.startsWith('bottom_landing_safeties'))
         .toList();
     var bottomLandingList = selectionsRef
-        .where((a) => a['id']!.startsWith("bottom_landing"))
+        .where((a) =>
+            a['id']!.startsWith("bottom_landing") &&
+            !a['id']!.startsWith("bottom_landing_safeties") &&
+            !a['id']!.startsWith("bottom_landing_hood"))
         .toList();
     var bottomLandingHoodList = selectionsRef
         .where((a) => a['id']!.startsWith("bottom_landing_hood"))
         .toList();
-    var beltingList =
-        selectionsRef.where((a) => a['id']!.startsWith("belting")).toList();
+    var beltingList = selectionsRef
+        .where((a) =>
+            a['id']!.startsWith("belting") &&
+            !a['id']!.startsWith("belting_annual"))
+        .toList();
     debugPrint(beltingList.toString());
-    var handholdsList =
-        selectionsRef.where((a) => a['id']!.startsWith("handholds")).toList();
+    var handholdsList = selectionsRef
+        .where((a) =>
+            a['id']!.startsWith("handholds") &&
+            !a['id']!.startsWith("handholds_annual"))
+        .toList();
     var stepList =
         selectionsRef.where((a) => a['id']!.startsWith("steps")).toList();
 
-    var intermediateList = selectionsRef
-        .where((a) => a['id']!.startsWith("intermediate_landing"))
+    var topLandingList = selectionsRef
+        .where((a) =>
+            a['id']!.startsWith("top_landing") &&
+            !a['id']!.startsWith("top_landing_safeties"))
         .toList();
-
-    var topLandingList =
-        selectionsRef.where((a) => a['id']!.startsWith("top_landing")).toList();
     var driveAssemblyList = selectionsRef
-        .where((a) => a['id']!.startsWith("drive_assembly"))
+        .where((a) =>
+            a['id']!.startsWith("drive_assembly") &&
+            !a['id']!.startsWith("drive_assembly_annual"))
         .toList();
     var topLandingSafeties = selectionsRef
         .where((a) => a['id']!.startsWith("top_landing_safeties"))

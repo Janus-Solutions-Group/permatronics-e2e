@@ -258,7 +258,7 @@ class _AnnualCageDriveSupportFormState
               if (selected == 'replace') {
                 return CustomTextField(
                   id: 'drive_support_23',
-                  title: 'Specify Other',
+                  title: 'Why?',
                 );
               }
               return const SizedBox.shrink();
@@ -301,13 +301,20 @@ class _AnnualCageDriveSupportFormState
           CustomRadioTile(
             id: 'drive_support_30',
             title: 'Coupler Condition:',
-            values: const ["OK", "Replace", "Other"],
+            values: const ["OK", "Replace"],
             onChangeValue: (value) {
               widget.cageModel.driveSupportCouplerCondition =
                   jsonData['drive_support']['coupler_condition'][value];
             },
-            isTextField: true,
-            fieldValue: "other",
+            conditionalBuilder: (selected) {
+              if (selected == 'replace') {
+                return CustomTextField(
+                  id: 'drive_support_30a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           const CustomTextField(
               id: 'drive_support_31', title: 'Gearbox Brand Name:'),

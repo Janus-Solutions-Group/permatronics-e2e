@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:manlift_app/feature/belt/annual/widget/bottom_landing.dart';
 // import 'package:manlift_app/feature/belt/model/belt_inspection_model.dart';
 import 'package:manlift_app/feature/belt/model/intermediate_landing.dart';
-import 'package:manlift_app/feature/common/widgets/custom_title.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 // import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
@@ -10,7 +9,6 @@ import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 
 import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
 import 'package:manlift_app/data/models/original_model.dart';
-import '../pages/belt_annual.dart';
 
 class IntermediateLanding extends StatefulWidget {
   const IntermediateLanding(
@@ -349,15 +347,28 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                         'Other'
                       ],
                       onChangeValue: (value) {},
-                      fieldValue: "other",
-                      fieldLabelTitle: "Measurement in inches",
+                      conditionalBuilder: (selected) {
+                        if (selected == 'other') {
+                          return CustomTextField(
+                            id: 'landing_${widget.index}_belt_annual_25g',
+                            title: 'Measurement in inches',
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    ),
+                    CustomRadioTile(
+                      id: 'landing_${widget.index}_belt_annual_25h',
+                      title: 'Counterweighted',
+                      values: const ['Yes', 'No'],
+                      onChangeValue: (value) {},
                     ),
                   ]);
                 }
 
                 widgets.addAll([
                   CustomRadioTile(
-                    id: 'landing_${widget.index}_belt_annual_25h',
+                    id: 'landing_${widget.index}_belt_annual_25i',
                     title: 'Hood Condition',
                     values: const [
                       "OK",
@@ -368,7 +379,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                     onChangeValue: (value) {},
                   ),
                   CustomRadioTile(
-                    id: 'landing_${widget.index}_belt_annual_25i',
+                    id: 'landing_${widget.index}_belt_annual_25j',
                     title: 'Hood Clearance:',
                     values: const [
                       '(Minimum 7\'6")',
@@ -378,14 +389,14 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                     onChangeValue: (value) {},
                   ),
                   CustomRadioTile(
-                    id: 'landing_${widget.index}_belt_annual_25j',
+                    id: 'landing_${widget.index}_belt_annual_25k',
                     title: 'Does Hood have a Rolled Edge',
                     values: const ['Yes', 'No'],
                     onChangeValue: (value) {},
                     conditionalBuilder: (selected) {
                       if (selected == 'yes') {
                         return CustomRadioTile(
-                          id: 'landing_${widget.index}_belt_annual_25k',
+                          id: 'landing_${widget.index}_belt_annual_25l',
                           title: 'Condition of Rolled Edge:',
                           values: const [
                             'OK',
@@ -400,7 +411,7 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                     },
                   ),
                   CustomTextField(
-                    id: 'landing_${widget.index}_belt_annual_25l',
+                    id: 'landing_${widget.index}_belt_annual_25m',
                     title: 'Hood Comments:',
                     onChanged: (value) {},
                   ),

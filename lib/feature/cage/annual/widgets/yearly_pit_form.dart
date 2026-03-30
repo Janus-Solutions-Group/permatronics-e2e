@@ -293,7 +293,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               conditionalBuilder: (selected) {
                 if (selected == 'replace') {
                   return CustomTextField(
-                    id: "pit_26",
+                    id: "pit_26a",
                     title: 'Reason for Replacement',
                   );
                 }
@@ -324,7 +324,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
             CustomRadioTile(
               id: 'pit_29',
               title: "Safety Condition",
-              values: const ["OK", "Frozen", "Replace", "Yes", "No"],
+              values: const ["OK", "Frozen", "Replace"],
               onChangeValue: (value) {
                 widget.cageModel.safetyCondition =
                     jsonData['safety_condition'][value];

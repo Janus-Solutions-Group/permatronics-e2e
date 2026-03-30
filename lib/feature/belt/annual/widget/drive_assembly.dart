@@ -348,8 +348,8 @@ class _DriveAssemblyState extends State<DriveAssembly> {
             ),
             MultipleSelectionWidget(
               original: OriginalModel(
-                id: "drive_assembly_annual_15",
-                title: 'Condition:',
+                id: "drive_assembly_annual_25",
+                title: 'Gear Box Condition:',
                 values: const [
                   'OK',
                   'Worn, but OK',
@@ -410,7 +410,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomRadioTile(
-              id: "drive_assembly_annual_30",
+              id: "drive_assembly_annual_30a",
               title: 'Brake:',
               values: const [
                 'Reliance',
@@ -427,7 +427,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
                   return CustomTextField(
-                    id: "drive_assembly_annual_23a",
+                    id: "drive_assembly_annual_30b",
                     title: 'Specify Other',
                   );
                 }
@@ -526,7 +526,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
             ),
             CustomRadioTile(
-              id: "drive_assembly_annual_39",
+              id: "drive_assembly_annual_39a",
               title: 'Drive Unit Support Condition:',
               values: const ['OK', 'Other'],
               onChangeValue: (value) {
@@ -536,7 +536,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
                   return CustomTextField(
-                    id: "drive_assembly_annual_21a",
+                    id: "drive_assembly_annual_39b",
                     title: 'Specify Other',
                   );
                 }

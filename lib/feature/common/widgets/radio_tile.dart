@@ -46,8 +46,15 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
   @override
   void initState() {
     currentVal = GetStorage().read(widget.id) ?? '';
-    // widget.onChangeValue(currentVal);
-    // currentVal = widget.type ?? GetStorage().read(widget.id!);
+    if (currentVal != null && currentVal!.isNotEmpty) {
+      final originalLabel = widget.values.firstWhere(
+        (v) => formatString(v) == currentVal,
+        orElse: () => currentVal!,
+      );
+      context
+          .read<SelectionRefProvider>()
+          .updateSelection(widget.id, widget.title, originalLabel);
+    }
     if (mounted) setState(() {});
     super.initState();
   }
@@ -101,7 +108,7 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
                   onChanged: (value) async {
                     if (widget.id != null) {
                       context.read<SelectionRefProvider>().updateSelection(
-                          widget.id.toString(), widget.title, value);
+                          widget.id.toString(), widget.title, widget.values[index]);
                     } else {
                       log('id is null');
                     }

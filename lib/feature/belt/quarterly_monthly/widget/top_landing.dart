@@ -133,6 +133,21 @@ class TopLanding extends StatelessWidget {
                               jsonData['top_landing_openoutward'][value];
                         },
                       ),
+                      CustomRadioTile(
+                        id: 'top_landing_10a',
+                        title: 'Are Gates Missing:',
+                        values: const ['Yes', 'No'],
+                        onChangeValue: (value) {},
+                        conditionalBuilder: (selected) {
+                          if (selected == 'yes') {
+                            return CustomTextField(
+                              id: 'top_landing_10b',
+                              title: 'How Many:',
+                            );
+                          }
+                          return const SizedBox.shrink();
+                        },
+                      ),
                     ],
                   );
                 }
@@ -156,24 +171,29 @@ class TopLanding extends StatelessWidget {
                 beltModel.topLandingAddlToeboard =
                     jsonData['top_landing_addltoeboardrequired'][value];
               },
-            ),
-            CustomTextField(
-              id: 'top_landing_13',
-              title: 'Length',
-            ),
-            CustomRadioTile(
-              id: 'top_landing_14',
-              title: 'Toeboard Material:',
-              values: const ['Steel', 'Raised Concrete', 'Other'],
-              onChangeValue: (value) {
-                //  beltModel. =
-                //     jsonData['top_landing_instructionsign'][value];
-              },
               conditionalBuilder: (selected) {
-                if (selected == 'other') {
+                if (selected == 'yes') {
                   return CustomTextField(
-                    id: "top_landing_14a",
+                    id: 'top_landing_13',
+                    title: 'Length',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+            ),
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'top_landing_14',
+                title: 'Toeboard Material:',
+                values: const ['Steel', 'Raised Concrete', 'Other'],
+              ),
+              onSelectionChanged: (selected) {},
+              conditionalBuilder: (selected) {
+                if (selected.contains('other')) {
+                  return CustomTextField(
+                    id: 'top_landing_14a',
                     title: 'Specify Other Material',
+                    onChanged: (value) {},
                   );
                 }
                 return const SizedBox.shrink();
