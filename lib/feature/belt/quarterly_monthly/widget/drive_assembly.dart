@@ -297,16 +297,27 @@ class DriveAssembly extends StatelessWidget {
               },
               conditionalBuilder: (selected) {
                 if (selected.contains('yes')) {
-                  return CustomRadioTile(
-                    id: "drive_assembly_14a",
-                    title: 'Skip reason',
-                    values: const [
-                      'Coupler Play',
-                      'Worn Gearbox',
-                      'Key Way',
-                      'Loose Set Screws'
-                    ],
-                    onChangeValue: (value) {},
+                  return MultipleSelectionWidget(
+                    original: OriginalModel(
+                      id: "drive_assembly_14a",
+                      title: 'Skip Reason',
+                      values: const [
+                        'Coupler Play',
+                        'Worn Gearbox',
+                        'Key Way',
+                        'Loose Set Screws'
+                      ],
+                    ),
+                    onSelectionChanged: (val) {
+                      if (val.isEmpty) return;
+
+                      String result = '';
+                      for (final v in val) {
+                        result += v + '\n';
+                      }
+
+                      // widget.beltModel.driveAssemblySkipReason = result;
+                    },
                   );
                 }
                 return const SizedBox.shrink();

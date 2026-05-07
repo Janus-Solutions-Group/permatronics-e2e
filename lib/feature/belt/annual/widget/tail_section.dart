@@ -4,6 +4,8 @@ import 'package:manlift_app/feature/belt/model/belt_inspection_model.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 
+import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
+import 'package:manlift_app/data/models/original_model.dart';
 import '../../../common/widgets/form_header.dart';
 import '../../../common/widgets/radio_tile.dart';
 
@@ -43,6 +45,15 @@ class _TailSectionState extends State<TailSection> {
               beltVariable.tailSectionFootAssemblyLegCondition = value;
               widget.beltModel.tailSectionFootAssemblyLegCondition =
                   jsonData["tail_section_foot_assembly_leg_condition"][value];
+            },
+            conditionalBuilder: (selected) {
+              if (selected == 'replace damaged' || selected == 'replace worn') {
+                return CustomTextField(
+                  id: "tail_section_1a",
+                  title: 'Why Replace?',
+                );
+              }
+              return const SizedBox.shrink();
             },
           ),
           CustomRadioTile(
@@ -177,15 +188,28 @@ class _TailSectionState extends State<TailSection> {
                   jsonData["tail_section_foot_assembly_foot_shaft_condition"]
                       [value];
             },
+            conditionalBuilder: (selected) {
+              if (selected == 'replace damaged' || selected == 'replace worn') {
+                return CustomTextField(
+                  id: "tail_section_11a",
+                  title: 'Why Replace?',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
-          CustomRadioTile(
-            id: "tail_section_12",
-            title: "Does Foot Shaft Have",
-            values: const ['Key', 'Bushing', 'Set Screws'],
-            onChangeValue: (value) {
-              widget.beltModel.tailSectionFootAssemblyDoesFootShaftHave =
-                  jsonData["tail_section_foot_assembly_does_foot_shaft_have"]
-                      [value];
+          MultipleSelectionWidget(
+            original: OriginalModel(
+              id: 'tail_section_12',
+              title: 'Does Foot Shaft Have',
+              values: const ['Key', 'Bushing', 'Set Screws'],
+            ),
+            onSelectionChanged: (selected) {
+              if (selected.isNotEmpty) {
+                widget.beltModel.tailSectionFootAssemblyDoesFootShaftHave =
+                    jsonData['tail_section_foot_assembly_does_foot_shaft_have']
+                        [selected.last];
+              }
             },
           ),
           CustomTextField(
@@ -232,24 +256,23 @@ class _TailSectionState extends State<TailSection> {
                       [value];
             },
           ),
-
-            CustomRadioTile(
-              title: "Belt Tracking",
-              id: "tail_section_17",
-              values: const ["OK", "Off"],
-              onChangeValue: (value) {
-                setState(() {
-                  beltVariable.tailSectionFootAssemblyBeltTracking = value;
-                });
-                widget.beltModel.driveAssemblyBeltTracking =
-                    jsonData['tail_section_foot_assembly_belt_tracking'][value];
-              },
-              conditionalBuilder: (selected) {
-                    if (selected == 'off') {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomRadioTile(
+          CustomRadioTile(
+            title: "Belt Tracking",
+            id: "tail_section_17",
+            values: const ["OK", "Off"],
+            onChangeValue: (value) {
+              setState(() {
+                beltVariable.tailSectionFootAssemblyBeltTracking = value;
+              });
+              widget.beltModel.driveAssemblyBeltTracking =
+                  jsonData['tail_section_foot_assembly_belt_tracking'][value];
+            },
+            conditionalBuilder: (selected) {
+              if (selected == 'off') {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomRadioTile(
                       title: "Up/down",
                       values: const ["up", "down"],
                       id: "tail_section_18a",
@@ -277,8 +300,7 @@ class _TailSectionState extends State<TailSection> {
               // Default fallback when condition not met
               return const SizedBox.shrink();
             },
-          ),  
-            
+          ),
           CustomRadioTile(
             id: "tail_section_20",
             title: "Debris Deflector",
@@ -321,7 +343,8 @@ class _TailSectionState extends State<TailSection> {
               title: "Rope Sheaves Condition",
               values: const ["OK", "Replace Damaged", "Replace Worn"],
               onChangeValue: (value) {
-                widget.beltModel.tailSectionFootAssemblyRopeSheavesCondition = value;
+                widget.beltModel.tailSectionFootAssemblyRopeSheavesCondition =
+                    value;
               },
             ),
           if (beltVariable.tailSectionFootAssemblyRopeSheaves == "no")

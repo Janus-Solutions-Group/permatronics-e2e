@@ -311,16 +311,21 @@ class _BottomLandingState extends State<BottomLanding> {
               title: 'Right',
               onChangeValue: (value) {},
             ),
-            CustomRadioTile(
-              id: "bottom_landing_annual_32",
-              title: 'Ladder Rungs',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {
-                setState(() {
-                  beltVariable.bottomLandingLadderRungs = value;
-                });
-                widget.beltModel.bottomLandingLadderRungs =
-                    jsonData["bottom_landing_ladder_rungs"][value];
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'bottom_landing_annual_32',
+                title: 'Ladder Rungs',
+                values: const ['Yes', 'No'],
+              ),
+              onSelectionChanged: (selected) {
+                if (selected.isNotEmpty) {
+                  setState(() {
+                    beltVariable.bottomLandingLadderRungs = selected.last;
+                  });
+
+                  widget.beltModel.bottomLandingLadderRungs =
+                      jsonData['bottom_landing_ladder_rungs'][selected.last];
+                }
               },
             ),
             if (beltVariable.bottomLandingLadderRungs == "yes")
@@ -344,16 +349,19 @@ class _BottomLandingState extends State<BottomLanding> {
               ),
 
             if (beltVariable.bottomLandingLadderRungs == "yes")
-              CustomRadioTile(
-                id: "bottom_landing_annual_34",
-                title: 'Ladder Rungs',
-                values: const ['Bolted', 'Welded'],
-                onChangeValue: (value) {
-                  //   beltModel.bottomLandingLadderRungsCondition =
-                  //       jsonData["bottom_landing_ladder_rungs"][value];
+              MultipleSelectionWidget(
+                original: OriginalModel(
+                  id: 'bottom_landing_annual_34',
+                  title: 'Ladder Rungs',
+                  values: const ['Bolted', 'Welded'],
+                ),
+                onSelectionChanged: (selected) {
+                  if (selected.isNotEmpty) {
+                    // widget.beltModel.bottomLandingLadderRungsCondition =
+                    //     jsonData['bottom_landing_ladder_rungs'][selected.last];
+                  }
                 },
               ),
-
             if (beltVariable.bottomLandingLadderRungs == "yes")
               CustomRadioTile(
                 id: "bottom_landing_annual_35",

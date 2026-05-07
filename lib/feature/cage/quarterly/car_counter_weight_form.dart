@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:manlift_app/feature/cage/model/cage_model.dart';
 import 'package:manlift_app/feature/cage/quarterly/cage_quaterly.dart';
+import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
@@ -47,6 +48,15 @@ class CarCounterWeightForm extends StatelessWidget {
                   jsonData['car_and_counterweight_fastening']['condition']
                       [value];
             },
+            conditionalBuilder: (selected) {
+              if (selected == 'replace') {
+                return CustomTextField(
+                  id: 'car_counterweight_3a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           CustomRadioTile(
             id: 'car_counterweight_4',
@@ -66,6 +76,15 @@ class CarCounterWeightForm extends StatelessWidget {
               cageModel.ccfGovernorCableCondition =
                   jsonData['car_and_counterweight_fastening']
                       ['governor_cable_condition'][value];
+            },
+            conditionalBuilder: (selected) {
+              if (selected == 'replace') {
+                return CustomTextField(
+                  id: 'car_counterweight_5a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
             },
           ),
           Row(

@@ -86,9 +86,15 @@ class CABForm extends StatelessWidget {
               cageModel.carConditionAndDescriptionCondition =
                   jsonData['car_condition_and_description']['condition'][value];
             },
-            isTextField: true,
-            fieldValue: "replace",
-            fieldLabelTitle: "why",
+            conditionalBuilder: (selected) {
+              if (selected == 'replace') {
+                return CustomTextField(
+                  id: 'cab_form_4a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           CustomRadioTile(
             id: 'cab_form_5',
@@ -128,9 +134,15 @@ class CABForm extends StatelessWidget {
               cageModel.carDoorCondition =
                   jsonData['car_door_condition'][value];
             },
-            isTextField: true,
-            fieldValue: "replace",
-            fieldLabelTitle: "Why",
+            conditionalBuilder: (selected) {
+              if (selected == 'replace') {
+                return CustomTextField(
+                  id: 'cab_form_7a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           // CustomRadioTile(
           //   id: 'cab_form_8',

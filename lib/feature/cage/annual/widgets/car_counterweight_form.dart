@@ -127,6 +127,15 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
                   jsonData['car_and_counterweight_fastening']['condition']
                       [value];
             },
+            conditionalBuilder: (selected) {
+              if (selected == 'replace') {
+                return CustomTextField(
+                  id: 'car_conterweight_7a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           CustomRadioTile(
             id: 'car_conterweight_8',
@@ -146,6 +155,15 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
               cageModel.ccfGovernorCableCondition =
                   jsonData['car_and_counterweight_fastening']
                       ['governor_cable_condition'][value];
+            },
+            conditionalBuilder: (selected) {
+              if (selected == 'replace') {
+                return CustomTextField(
+                  id: 'car_conterweight_9a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
             },
           ),
           MultipleSelectionWidget(

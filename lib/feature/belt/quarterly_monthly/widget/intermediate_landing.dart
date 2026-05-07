@@ -446,24 +446,6 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                 return const SizedBox.shrink();
               },
             ),
-            CustomRadioTile(
-              id: 'intermediate_landing_quartmonth_${widget.index}_31',
-              title: 'Condition:',
-              values: const ['OK', 'Missing'],
-              onChangeValue: (value) {
-                // model.intermediatecondition =
-                //   jsonData['steps_step_rollers_bolts'][value];
-              },
-              conditionalBuilder: (selected) {
-                if (selected == 'missing') {
-                  return CustomTextField(
-                    id: 'intermediate_landing_quartmonth_${widget.index}_32',
-                    title: 'How Many',
-                  );
-                }
-                return const SizedBox.shrink();
-              },
-            ),
             CustomTextField(
               id: 'intermediate_landing_quartmonth_${widget.index}_33',
               title: 'Intermediate Landing Comments:',

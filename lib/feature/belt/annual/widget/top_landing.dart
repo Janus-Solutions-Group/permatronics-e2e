@@ -429,22 +429,31 @@ class _TopLandingState extends State<TopLanding> {
             CustomTextField(
                 id: "top_landing_belt_annual_49",
                 title: 'OS-OS Rail Measurement @ Frame Brace Facing Side:'),
-            CustomRadioTile(
-              id: "top_landing_belt_annual_50",
-              title: 'Ladder Rungs:',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {
-                widget.beltModel.topLandingLadderRungs =
-                    jsonData['top_landing_ladderrungs'][value];
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'top_landing_belt_annual_50',
+                title: 'Ladder Rungs:',
+                values: const ['Yes', 'No'],
+              ),
+              onSelectionChanged: (selected) {
+                if (selected.isNotEmpty) {
+                  widget.beltModel.topLandingLadderRungs =
+                      jsonData['top_landing_ladderrungs'][selected.last];
+                }
               },
             ),
-            CustomRadioTile(
-              id: "top_landing_belt_annual_51",
-              title: 'Rung Attachment:',
-              values: const ['Bolted', 'Welded'],
-              onChangeValue: (value) {
-                // beltModel.rung =
-                //     jsonData['top_landing_instructionsign'][value];
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'top_landing_belt_annual_51',
+                title: 'Rung Attachment:',
+                values: const ['Bolted', 'Welded'],
+              ),
+              onSelectionChanged: (selected) {
+                if (selected.isNotEmpty) {
+                  // widget.beltModel.topLandingRungAttachment =
+                  //     jsonData['top_landing_rung_attachment']
+                  //         [selected.last];
+                }
               },
             ),
             CustomRadioTile(
@@ -648,7 +657,7 @@ class _TopLandingState extends State<TopLanding> {
             CustomRadioTile(
               id: "top_landing_belt_annual_71",
               title: 'Rope Guide Type:',
-              values: ['Humphrey'],
+              values: ['Humphrey', "Eyes"],
               onChangeValue: (value) {},
             ),
             CustomTextField(
@@ -729,24 +738,6 @@ class _TopLandingState extends State<TopLanding> {
                       }
                       return const SizedBox.shrink();
                     },
-                  );
-                }
-                return const SizedBox.shrink();
-              },
-            ),
-            CustomRadioTile(
-              id: "top_landing_belt_annual_81",
-              title: 'Attachment Bolts Condition:',
-              values: ['OK', 'Missing'],
-              onChangeValue: (value) {
-                // beltModel.attach =
-                //     jsonData['top_landing_instructionsign'][value];
-              },
-              conditionalBuilder: (selected) {
-                if (selected == 'missing') {
-                  return CustomTextField(
-                    id: "top_landing_belt_annual_82",
-                    title: 'How Many',
                   );
                 }
                 return const SizedBox.shrink();

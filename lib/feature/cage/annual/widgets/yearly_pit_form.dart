@@ -246,6 +246,15 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                 widget.cageModel.conditionGovernorCableTensioner =
                     jsonData['condition_governor_cable_tensioner'][value];
               },
+              conditionalBuilder: (selected) {
+                if (selected == 'replace') {
+                  return CustomTextField(
+                    id: 'pit_20a',
+                    title: 'Why?',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
             MultipleSelectionWidget(
               original: OriginalModel(
@@ -260,6 +269,15 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                 }
                 widget.cageModel.bottomNormalTerminal = res;
               },
+              conditionalBuilder: (selected) {
+                if (selected.contains('replace')) {
+                  return CustomTextField(
+                    id: 'pit_21a',
+                    title: 'Why?',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
             MultipleSelectionWidget(
               original: OriginalModel(
@@ -273,6 +291,15 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                   res += jsonData['bottom_final_terminal'][e] + "\n";
                 }
                 widget.cageModel.bottomFinalTerminal = res;
+              },
+              conditionalBuilder: (selected) {
+                if (selected.contains('replace')) {
+                  return CustomTextField(
+                    id: 'pit_22a',
+                    title: 'Why?',
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
             CustomTextField(
@@ -393,13 +420,18 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               },
             ),
             if (cageInspection.carGuideRailsCondition == "replace")
-              CustomRadioTile(
-                id: 'pit_34',
-                title: "Why:",
-                values: const ["Broken", "Worn", "Bolted", "Welded"],
-                onChangeValue: (value) {
-                  widget.cageModel.carGuideRailsWhy =
-                      jsonData['car_guide_rails_why'][value];
+              MultipleSelectionWidget(
+                original: OriginalModel(
+                  id: 'pit_34',
+                  title: "Why:",
+                  values: const ["Broken", "Worn", "Bolted", "Welded"],
+                ),
+                onSelectionChanged: (val) {
+                  String res = "";
+                  for (var e in val) {
+                    res += jsonData['car_guide_rails_why'][e] + "\n";
+                  }
+                  widget.cageModel.carGuideRailsWhy = res;
                 },
               ),
             CustomTextField(id: 'pit_35', title: "Car Guide Rails DBG"),
@@ -442,6 +474,15 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               onChangeValue: (value) {
                 widget.cageModel.carGuideCondition =
                     jsonData['car_guide_condition'][value];
+              },
+              conditionalBuilder: (selected) {
+                if (selected == 'replace') {
+                  return CustomTextField(
+                    id: 'pit_38a',
+                    title: 'Why?',
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
             CustomRadioTile(
@@ -586,6 +627,15 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               values: const ["OK", "Worn, but OK", "Replace"],
               onChangeValue: (value) {
                 widget.cageModel.cwCondition = jsonData['cw_condition'][value];
+              },
+              conditionalBuilder: (selected) {
+                if (selected == 'replace') {
+                  return CustomTextField(
+                    id: 'pit_48a',
+                    title: 'Why?',
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
             CustomRadioTile(

@@ -198,8 +198,21 @@ class _AnnualCageDriveSupportFormState
                 widget.cageModel.driveSupportRopeGripperCondition =
                     jsonData['drive_support']['rope_gripper_condition'][value];
               },
-              isTextField: true,
-              fieldValue: "other",
+              conditionalBuilder: (selected) {
+                if (selected == 'replace') {
+                  return CustomTextField(
+                    id: 'drive_support_16a',
+                    title: 'Why?',
+                  );
+                }
+                if (selected == 'other') {
+                  return CustomTextField(
+                    id: 'drive_support_16b',
+                    title: 'Specify Other',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
           CustomRadioTile(
             id: 'drive_support_17',
@@ -222,12 +235,17 @@ class _AnnualCageDriveSupportFormState
                 widget.cageModel.driveSupportSheaveBreakCondition =
                     jsonData['drive_support']['sheave_break_condition'][value];
               },
-              isTextField: true,
               conditionalBuilder: (selected) {
+                if (selected == 'replace') {
+                  return CustomTextField(
+                    id: 'drive_support_18a',
+                    title: 'Why?',
+                  );
+                }
                 if (selected == 'other') {
                   return CustomTextField(
-                    id: 'drive_support_10a',
-                    title: 'Reason for other',
+                    id: 'drive_support_18b',
+                    title: 'Specify Other',
                   );
                 }
                 return const SizedBox.shrink();
@@ -285,8 +303,21 @@ class _AnnualCageDriveSupportFormState
                   jsonData['drive_support']['shaft_and_bearing_condition']
                       [value];
             },
-            isTextField: true,
-            fieldValue: "other",
+            conditionalBuilder: (selected) {
+              if (selected == 'replace') {
+                return CustomTextField(
+                  id: 'drive_support_27a',
+                  title: 'Why?',
+                );
+              }
+              if (selected == 'other') {
+                return CustomTextField(
+                  id: 'drive_support_27b',
+                  title: 'Specify Other',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           const Row(
             children: [
@@ -354,6 +385,15 @@ class _AnnualCageDriveSupportFormState
               widget.cageModel.driveSupportMotorCondition =
                   jsonData['drive_support']['motor_condition'][value];
             },
+            conditionalBuilder: (selected) {
+              if (selected == 'replace') {
+                return CustomTextField(
+                  id: 'drive_support_36a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           const CustomTextField(
               id: 'drive_support_37', title: 'Brake Brand Name:'),
@@ -366,6 +406,15 @@ class _AnnualCageDriveSupportFormState
             onChangeValue: (value) {
               widget.cageModel.driveSupportBrakeCondition =
                   jsonData['drive_support']['brake_condition'][value];
+            },
+            conditionalBuilder: (selected) {
+              if (selected == 'replace') {
+                return CustomTextField(
+                  id: 'drive_support_39a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
             },
           ),
           const CustomTextField(

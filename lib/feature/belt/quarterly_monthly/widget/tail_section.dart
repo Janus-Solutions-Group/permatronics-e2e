@@ -64,6 +64,16 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
                 widget.beltModel.tailSectionFootAssemblyLegCondition =
                     jsonData["tail_section_foot_assembly_leg_condition"][value];
               },
+              conditionalBuilder: (selected) {
+                if (selected == 'replace damaged' ||
+                    selected == 'replace worn') {
+                  return CustomTextField(
+                    id: "tail_section_1a",
+                    title: 'Why Replace?',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
             CustomRadioTile(
               title: "Leg Anchors",
@@ -158,6 +168,16 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
                 widget.beltModel.tailSectionFootAssemblyFootShaftCondition =
                     jsonData['tail_section_foot_assembly_foot_shaft_condition']
                         [value];
+              },
+              conditionalBuilder: (selected) {
+                if (selected == 'replace damaged' ||
+                    selected == 'replace worn') {
+                  return CustomTextField(
+                    id: "tail_section_6a",
+                    title: 'Why Replace?',
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
             CustomRadioTile(

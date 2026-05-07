@@ -53,13 +53,25 @@ class _CageLandingFormState extends State<CageLandingForm>
           CustomRadioTile(
             id: 'landing_${widget.index}_cage_monthly_3',
             title: 'Hoistway Door Interlock Condition:',
-            values: const ["OK", "Replace ", "Other"],
-            isTextField: true,
-            fieldValue: "other",
-            fieldLabelTitle: 'Other',
+            values: const ["OK", "Replace", "Other"],
             type: widget.model.hoistwayDoorInterlockDevice,
             onChangeValue: (value) {
               widget.model.hoistwayDoorInterlockDevice = value;
+            },
+            conditionalBuilder: (selected) {
+              if (selected == 'replace') {
+                return CustomTextField(
+                  id: 'landing_${widget.index}_cage_monthly_3a',
+                  title: 'Why?',
+                );
+              }
+              if (selected == 'other') {
+                return CustomTextField(
+                  id: 'landing_${widget.index}_cage_monthly_3b',
+                  title: 'Specify Other',
+                );
+              }
+              return const SizedBox.shrink();
             },
           ),
           CustomRadioTile(
@@ -71,9 +83,15 @@ class _CageLandingFormState extends State<CageLandingForm>
               widget.model.hoistwayDoorElectricContactCondition = value;
             },
             conditionalBuilder: (selected) {
-              if (selected == 'other') {
+              if (selected == 'replace') {
                 return CustomTextField(
                   id: 'landing_${widget.index}_cage_monthly_4a',
+                  title: 'Why?',
+                );
+              }
+              if (selected == 'other') {
+                return CustomTextField(
+                  id: 'landing_${widget.index}_cage_monthly_4b',
                   title: 'Specify Other',
                 );
               }

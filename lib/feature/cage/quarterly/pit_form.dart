@@ -170,6 +170,15 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
                 widget.cageModel.conditionGovernorCableTensioner =
                     jsonData['condition_governor_cable_tensioner'][value];
               },
+              conditionalBuilder: (selected) {
+                if (selected == 'replace') {
+                  return CustomTextField(
+                    id: 'pit_7a',
+                    title: 'Why?',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
             MultipleSelectionWidget(
               original: OriginalModel(
@@ -190,6 +199,15 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
               onFieldChange: (value) {
                 widget.cageModel.bottomNormalTerminal = value;
               },
+              conditionalBuilder: (selected) {
+                if (selected.contains('replace')) {
+                  return CustomTextField(
+                    id: 'pit_8a',
+                    title: 'Why?',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
 
             MultipleSelectionWidget(
@@ -208,6 +226,15 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
               fieldLabelTitle: 'Specify Issue',
               onFieldChange: (value) {
                 widget.cageModel.bottomFinalTerminal = value;
+              },
+              conditionalBuilder: (selected) {
+                if (selected.contains('replace')) {
+                  return CustomTextField(
+                    id: 'pit_9a',
+                    title: 'Why?',
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
 
@@ -344,6 +371,15 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
                 widget.cageModel.carGuideCondition =
                     jsonData['car_guide_condition'][value];
               },
+              conditionalBuilder: (selected) {
+                if (selected == 'replace') {
+                  return CustomTextField(
+                    id: 'pit_17a',
+                    title: 'Why?',
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
             // CustomRadioTile(
             //   id: 'pit_18',
@@ -373,6 +409,15 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
               values: const ["OK", "Worn, but OK", "Replace"],
               onChangeValue: (value) {
                 widget.cageModel.cwCondition = jsonData['cw_condition'][value];
+              },
+              conditionalBuilder: (selected) {
+                if (selected == 'replace') {
+                  return CustomTextField(
+                    id: 'pit_19a',
+                    title: 'Why?',
+                  );
+                }
+                return const SizedBox.shrink();
               },
             ),
             CustomRadioTile(

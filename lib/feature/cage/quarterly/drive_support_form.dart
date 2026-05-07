@@ -54,6 +54,15 @@ class DriveSupportForm extends StatelessWidget {
               }
               cageModel.driveSupportTopNormalTerminal = res;
             },
+            conditionalBuilder: (selected) {
+              if (selected.contains('replace')) {
+                return CustomTextField(
+                  id: 'drive_support_form_2a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           // CustomRadioTile(
           //   id: 'drive_support_form_3',
@@ -77,6 +86,15 @@ class DriveSupportForm extends StatelessWidget {
                     jsonData['drive_support']['top_final_terminal'][e] + "\n";
               }
               cageModel.driveSupportTopFinalTerminal = res;
+            },
+            conditionalBuilder: (selected) {
+              if (selected.contains('replace')) {
+                return CustomTextField(
+                  id: 'drive_support_form_3a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
             },
           ),
           CustomRadioTile(
@@ -187,13 +205,24 @@ class DriveSupportForm extends StatelessWidget {
               cageModel.driveSupportRopeGripperCondition = res;
             },
             conditionalBuilder: (selected) {
-              if (selected.contains('other')) {
-                return CustomTextField(
-                  id: 'drive_support_form_10a',
-                  title: 'Specify Other',
-                );
-              }
-              return const SizedBox.shrink();
+              final showWhy = selected.contains('replace');
+              final showOther = selected.contains('other');
+              if (!showWhy && !showOther) return const SizedBox.shrink();
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (showWhy)
+                    CustomTextField(
+                      id: 'drive_support_form_10a',
+                      title: 'Why?',
+                    ),
+                  if (showOther)
+                    CustomTextField(
+                      id: 'drive_support_form_10b',
+                      title: 'Specify Other',
+                    ),
+                ],
+              );
             },
           ),
           MultipleSelectionWidget(
@@ -246,13 +275,24 @@ class DriveSupportForm extends StatelessWidget {
                   );
             },
             conditionalBuilder: (selected) {
-              if (selected.contains('other')) {
-                return CustomTextField(
-                  id: 'drive_support_form_12a',
-                  title: 'Specify Other',
-                );
-              }
-              return const SizedBox.shrink();
+              final showWhy = selected.contains('replace');
+              final showOther = selected.contains('other');
+              if (!showWhy && !showOther) return const SizedBox.shrink();
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (showWhy)
+                    CustomTextField(
+                      id: 'drive_support_form_12a',
+                      title: 'Why?',
+                    ),
+                  if (showOther)
+                    CustomTextField(
+                      id: 'drive_support_form_12b',
+                      title: 'Specify Other',
+                    ),
+                ],
+              );
             },
           ),
           CustomRadioTile(
@@ -291,13 +331,24 @@ class DriveSupportForm extends StatelessWidget {
               cageModel.driveSupportSheaveBreakCondition = res;
             },
             conditionalBuilder: (selected) {
-              if (selected.contains('other')) {
-                return CustomTextField(
-                  id: 'drive_support_form_14a',
-                  title: 'Specify Other',
-                );
-              }
-              return const SizedBox.shrink();
+              final showWhy = selected.contains('replace');
+              final showOther = selected.contains('other');
+              if (!showWhy && !showOther) return const SizedBox.shrink();
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (showWhy)
+                    CustomTextField(
+                      id: 'drive_support_form_14a',
+                      title: 'Why?',
+                    ),
+                  if (showOther)
+                    CustomTextField(
+                      id: 'drive_support_form_14b',
+                      title: 'Specify Other',
+                    ),
+                ],
+              );
             },
           ),
           Row(
@@ -403,6 +454,15 @@ class DriveSupportForm extends StatelessWidget {
               cageModel.driveSupportMotorCondition =
                   jsonData['drive_support']['motor_condition'][value];
             },
+            conditionalBuilder: (selected) {
+              if (selected == 'replace') {
+                return CustomTextField(
+                  id: 'drive_support_form_19a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
           CustomRadioTile(
             id: 'drive_support_form_20',
@@ -411,6 +471,15 @@ class DriveSupportForm extends StatelessWidget {
             onChangeValue: (value) {
               cageModel.driveSupportBrakeCondition =
                   jsonData['drive_support']['brake_condition'][value];
+            },
+            conditionalBuilder: (selected) {
+              if (selected == 'replace') {
+                return CustomTextField(
+                  id: 'drive_support_form_20a',
+                  title: 'Why?',
+                );
+              }
+              return const SizedBox.shrink();
             },
           ),
           CustomRadioTile(

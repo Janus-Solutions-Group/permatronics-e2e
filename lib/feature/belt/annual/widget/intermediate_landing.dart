@@ -159,12 +159,23 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
             CustomTextField(
                 id: 'landing_${widget.index}_belt_annual_12b',
                 title: '"Downside":'),
-            CustomRadioTile(
-              id: 'landing_${widget.index}_belt_annual_13',
-              title: 'Guard Rail Material Used:',
-              values: const ['Angle', 'Square Tubing', 'Round Tubing', 'Wood'],
-              onChangeValue: (value) {
-                // beltModel.guard = value;
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'landing_${widget.index}_belt_annual_13',
+                title: 'Guard Rail Material Used:',
+                values: const [
+                  'Angle',
+                  'Square Tubing',
+                  'Round Tubing',
+                  'Wood',
+                ],
+              ),
+              onSelectionChanged: (selected) {
+                if (selected.isNotEmpty) {
+                  // widget.model.intermediateLandingGuardRailMaterialUsed =
+                  //     jsonData['intermediate_landing_guardrailmaterialused']
+                  //         [selected.last];
+                }
               },
             ),
             CustomRadioTile(
@@ -420,21 +431,32 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                 return Column(children: widgets);
               },
             ),
-            CustomRadioTile(
-              id: 'landing_${widget.index}_belt_annual_35',
-              title: 'Ladder Rungs:',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {
-                widget.model.intermediateLandingLadderRungs =
-                    jsonData['intermediate_landing_ladderrungs'][value];
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'landing_${widget.index}_belt_annual_35',
+                title: 'Ladder Rungs:',
+                values: const ['Yes', 'No'],
+              ),
+              onSelectionChanged: (selected) {
+                if (selected.isNotEmpty) {
+                  widget.model.intermediateLandingLadderRungs =
+                      jsonData['intermediate_landing_ladderrungs']
+                          [selected.last];
+                }
               },
             ),
-            CustomRadioTile(
-              id: 'landing_${widget.index}_belt_annual_36',
-              title: 'Rung Attachment:',
-              values: const ['Bolted', 'Welded'],
-              onChangeValue: (value) {
-                // beltModel.rung = value;
+            MultipleSelectionWidget(
+              original: OriginalModel(
+                id: 'landing_${widget.index}_belt_annual_36',
+                title: 'Rung Attachment:',
+                values: const ['Bolted', 'Welded'],
+              ),
+              onSelectionChanged: (selected) {
+                if (selected.isNotEmpty) {
+                  // widget.model.intermediateLandingRungAttachment =
+                  //     jsonData['intermediate_landing_rungattachment']
+                  //         [selected.last];
+                }
               },
             ),
             CustomRadioTile(

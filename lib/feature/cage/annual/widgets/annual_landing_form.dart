@@ -88,20 +88,25 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
           CustomRadioTile(
             id: 'landing_${widget.index}_cage_annual_6',
             title: 'Hoistway Door Interlock Condition:',
-            values: const ["OK", "Replace ", "Other"],
+            values: const ["OK", "Replace", "Other"],
             type: widget.model.hoistwayDoorInterlockCondition,
-            isTextField: true,
+            onChangeValue: (value) {
+              widget.model.hoistwayDoorInterlockCondition = value;
+            },
             conditionalBuilder: (selected) {
-              if (selected == 'other') {
+              if (selected == 'replace') {
                 return CustomTextField(
                   id: 'landing_${widget.index}_cage_annual_6a',
+                  title: 'Why?',
+                );
+              }
+              if (selected == 'other') {
+                return CustomTextField(
+                  id: 'landing_${widget.index}_cage_annual_6b',
                   title: 'Specify Other',
                 );
               }
               return const SizedBox.shrink();
-            },
-            onChangeValue: (value) {
-              widget.model.hoistwayDoorInterlockCondition = value;
             },
           ),
           CustomTextField(
@@ -141,22 +146,34 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
               values: const ['OK', 'Replace', 'Other'],
             ),
             onSelectionChanged: (selected) {
-              // Store selection (single or multi – adjust as needed)
               widget.model.hoistwayDoorElectricContactCondition =
                   selected.join(', ');
             },
             conditionalBuilder: (selected) {
-              if (selected.contains('other')) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 16.0, top: 8),
-                  child: CustomTextField(
-                    id: 'landing_${widget.index}_cage_annual_9a',
-                    title: 'Specify Other',
-                    onChanged: (value) {},
-                  ),
-                );
-              }
-              return const SizedBox.shrink();
+              final showWhy = selected.contains('replace');
+              final showOther = selected.contains('other');
+              if (!showWhy && !showOther) return const SizedBox.shrink();
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (showWhy)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0, top: 8),
+                      child: CustomTextField(
+                        id: 'landing_${widget.index}_cage_annual_9a',
+                        title: 'Why?',
+                      ),
+                    ),
+                  if (showOther)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0, top: 8),
+                      child: CustomTextField(
+                        id: 'landing_${widget.index}_cage_annual_9b',
+                        title: 'Specify Other',
+                      ),
+                    ),
+                ],
+              );
             },
           ),
 
