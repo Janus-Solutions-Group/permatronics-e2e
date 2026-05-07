@@ -305,6 +305,12 @@ class _AnnualLandingFormState extends State<AnnualLandingForm> {
             },
           ),
 
+          CustomRadioTile(
+            id: 'landing_${widget.index}_cage_annual_19a',
+            title: 'Is there a visual and audible alerting system:',
+            values: const ['Yes', 'No'],
+            onChangeValue: (value) {},
+          ),
           CustomTextField(
             id: 'landing_${widget.index}_cage_annual_20',
             title: "Landing Comments",

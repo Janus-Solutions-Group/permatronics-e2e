@@ -105,6 +105,12 @@ class _BottomLandingState extends State<BottomLanding> {
                   //     jsonData['bottom_landing_red_warning_light'][value];
                 },
               ),
+            CustomRadioTile(
+              id: 'bottom_landing_5a',
+              title: 'Is there a visual and audible alerting system:',
+              values: const ['Yes', 'No'],
+              onChangeValue: (value) {},
+            ),
             CustomTextField(
               id: "bottom_landing_6",
               title: 'Bottom Landing Comments:',

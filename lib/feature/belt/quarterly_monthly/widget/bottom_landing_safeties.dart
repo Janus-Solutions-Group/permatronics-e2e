@@ -212,6 +212,12 @@ class _BottomLandingSafetiesState extends State<BottomLandingSafeties> {
                   ),
                 ],
               ),
+            CustomRadioTile(
+              id: 'bottom_landing_safeties_12',
+              title: 'Is there a visual and audible alerting system:',
+              values: const ['Yes', 'No'],
+              onChangeValue: (value) {},
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

@@ -140,6 +140,12 @@ class _CageLandingFormState extends State<CageLandingForm>
               return const SizedBox.shrink();
             },
           ),
+          CustomRadioTile(
+            id: 'landing_${widget.index}_cage_monthly_6b',
+            title: 'Is there a visual and audible alerting system:',
+            values: const ['Yes', 'No'],
+            onChangeValue: (value) {},
+          ),
           CustomTextField(
             id: 'landing_${widget.index}_cage_monthly_7',
             title: "Landing Comments",

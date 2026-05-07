@@ -446,6 +446,12 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                 return const SizedBox.shrink();
               },
             ),
+            CustomRadioTile(
+              id: 'intermediate_landing_qt_${widget.index}_30a',
+              title: 'Is there a visual and audible alerting system:',
+              values: const ['Yes', 'No'],
+              onChangeValue: (value) {},
+            ),
             CustomTextField(
               id: 'intermediate_landing_quartmonth_${widget.index}_33',
               title: 'Intermediate Landing Comments:',
