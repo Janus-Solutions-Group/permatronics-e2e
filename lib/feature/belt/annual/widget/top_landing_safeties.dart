@@ -248,7 +248,7 @@ class _TopLandingSafetiesState extends State<TopLandingSafeties> {
                     },
                     conditionalBuilder: (selected) {
                       if (selected == 'no') {
-                        return CustomTextField(
+                        return const CustomTextField(
                           id: "top_landing_safeties_15a",
                           title: 'Specify',
                         );

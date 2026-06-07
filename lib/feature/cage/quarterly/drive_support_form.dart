@@ -56,7 +56,7 @@ class DriveSupportForm extends StatelessWidget {
             },
             conditionalBuilder: (selected) {
               if (selected.contains('replace')) {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'drive_support_form_2a',
                   title: 'Why?',
                 );
@@ -89,7 +89,7 @@ class DriveSupportForm extends StatelessWidget {
             },
             conditionalBuilder: (selected) {
               if (selected.contains('replace')) {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'drive_support_form_3a',
                   title: 'Why?',
                 );
@@ -142,7 +142,7 @@ class DriveSupportForm extends StatelessWidget {
             },
             conditionalBuilder: (selected) {
               if (selected.contains('replace')) {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'drive_support_form_6a',
                   title: 'Why?',
                 );
@@ -212,12 +212,12 @@ class DriveSupportForm extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (showWhy)
-                    CustomTextField(
+                    const CustomTextField(
                       id: 'drive_support_form_10a',
                       title: 'Why?',
                     ),
                   if (showOther)
-                    CustomTextField(
+                    const CustomTextField(
                       id: 'drive_support_form_10b',
                       title: 'Specify Other',
                     ),
@@ -282,12 +282,12 @@ class DriveSupportForm extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (showWhy)
-                    CustomTextField(
+                    const CustomTextField(
                       id: 'drive_support_form_12a',
                       title: 'Why?',
                     ),
                   if (showOther)
-                    CustomTextField(
+                    const CustomTextField(
                       id: 'drive_support_form_12b',
                       title: 'Specify Other',
                     ),
@@ -338,12 +338,12 @@ class DriveSupportForm extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (showWhy)
-                    CustomTextField(
+                    const CustomTextField(
                       id: 'drive_support_form_14a',
                       title: 'Why?',
                     ),
                   if (showOther)
-                    CustomTextField(
+                    const CustomTextField(
                       id: 'drive_support_form_14b',
                       title: 'Specify Other',
                     ),
@@ -351,7 +351,7 @@ class DriveSupportForm extends StatelessWidget {
               );
             },
           ),
-          Row(
+          const Row(
             children: [
               Expanded(
                 child: CustomTextField(
@@ -393,12 +393,12 @@ class DriveSupportForm extends StatelessWidget {
             },
             conditionalBuilder: (selected) {
               if (selected.contains('replace')) {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'drive_support_form_17a',
                   title: 'Reason:',
                 );
               } else if (selected.contains('other')) {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'drive_support_form_17a',
                   title: 'Specify Other:',
                 );
@@ -435,15 +435,24 @@ class DriveSupportForm extends StatelessWidget {
               cageModel.driveSupportGearboxCondition = value;
             },
             conditionalBuilder: (selected) {
-              if (selected.contains('other')) {
-                return CustomTextField(
-                  id: 'drive_support_form_18a',
-                  title: 'Specify Other:',
-                  onChanged: (value) {
-                  },
-                );
-              }
-              return const SizedBox.shrink();
+              final showWhy = selected.contains('replace');
+              final showOther = selected.contains('other');
+              if (!showWhy && !showOther) return const SizedBox.shrink();
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (showWhy)
+                    const CustomTextField(
+                      id: 'drive_support_form_18a',
+                      title: 'Why?',
+                    ),
+                  if (showOther)
+                    const CustomTextField(
+                      id: 'drive_support_form_18b',
+                      title: 'Specify Other:',
+                    ),
+                ],
+              );
             },
           ),
           CustomRadioTile(
@@ -456,7 +465,7 @@ class DriveSupportForm extends StatelessWidget {
             },
             conditionalBuilder: (selected) {
               if (selected == 'replace') {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'drive_support_form_19a',
                   title: 'Why?',
                 );
@@ -474,7 +483,7 @@ class DriveSupportForm extends StatelessWidget {
             },
             conditionalBuilder: (selected) {
               if (selected == 'replace') {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'drive_support_form_20a',
                   title: 'Why?',
                 );
@@ -493,7 +502,7 @@ class DriveSupportForm extends StatelessWidget {
             isTextField: true,
             conditionalBuilder: (selected) {
               if (selected == 'other') {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'drive_support_20b',
                   title: 'Other',
                 );

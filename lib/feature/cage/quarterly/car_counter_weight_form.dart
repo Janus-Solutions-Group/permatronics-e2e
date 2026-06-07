@@ -50,7 +50,7 @@ class CarCounterWeightForm extends StatelessWidget {
             },
             conditionalBuilder: (selected) {
               if (selected == 'replace') {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'car_counterweight_3a',
                   title: 'Why?',
                 );
@@ -79,7 +79,7 @@ class CarCounterWeightForm extends StatelessWidget {
             },
             conditionalBuilder: (selected) {
               if (selected == 'replace') {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'car_counterweight_5a',
                   title: 'Why?',
                 );

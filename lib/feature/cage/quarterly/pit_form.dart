@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:manlift_app/data/models/original_model.dart';
 import 'package:manlift_app/feature/cage/model/cage_model.dart';
 import 'package:manlift_app/feature/cage/quarterly/cage_quaterly.dart';
@@ -84,7 +83,7 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
                 },
                 conditionalBuilder: (selected) {
                   if (selected == 'relocate') {
-                    return CustomTextField(
+                    return const CustomTextField(
                       id: "pit_3a",
                       title: 'Reason for Relocation',
                     );
@@ -172,7 +171,7 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'replace') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: 'pit_7a',
                     title: 'Why?',
                   );
@@ -201,7 +200,7 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
               },
               conditionalBuilder: (selected) {
                 if (selected.contains('replace')) {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: 'pit_8a',
                     title: 'Why?',
                   );
@@ -229,7 +228,7 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
               },
               conditionalBuilder: (selected) {
                 if (selected.contains('replace')) {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: 'pit_9a',
                     title: 'Why?',
                   );
@@ -256,7 +255,7 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'replace') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "pit_11a",
                     title: 'Reason for Replacement',
                   );
@@ -307,7 +306,7 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
               },
               conditionalBuilder: (selected) {
                 if (selected.contains('replace')) {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "pit_14a",
                     title: 'Reason for replacement',
                   );
@@ -373,7 +372,7 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'replace') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: 'pit_17a',
                     title: 'Why?',
                   );
@@ -412,7 +411,7 @@ class _PitInspectionFormState extends State<PitInspectionForm> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'replace') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: 'pit_19a',
                     title: 'Why?',
                   );

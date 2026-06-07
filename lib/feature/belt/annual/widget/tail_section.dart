@@ -48,7 +48,7 @@ class _TailSectionState extends State<TailSection> {
             },
             conditionalBuilder: (selected) {
               if (selected == 'replace damaged' || selected == 'replace worn') {
-                return CustomTextField(
+                return const CustomTextField(
                   id: "tail_section_1a",
                   title: 'Why Replace?',
                 );
@@ -190,7 +190,7 @@ class _TailSectionState extends State<TailSection> {
             },
             conditionalBuilder: (selected) {
               if (selected == 'replace damaged' || selected == 'replace worn') {
-                return CustomTextField(
+                return const CustomTextField(
                   id: "tail_section_11a",
                   title: 'Why Replace?',
                 );

@@ -62,7 +62,7 @@ class TopLanding extends StatelessWidget {
               ),
               onSelectionChanged: (val) {
                 if (val.isEmpty) return;
-                final selected = val.last;
+                // final selected = val.last;
                 // If you have a JSON mapping, use it here:
                 // beltModel.topLandingTopFloorGetOffSign =
                 //     jsonData['top_landing_top_floor_get_off_sign'][selected];
@@ -85,7 +85,7 @@ class TopLanding extends StatelessWidget {
               ),
               onSelectionChanged: (val) {
                 if (val.isEmpty) return;
-                final selected = val.last;
+                // final selected = val.last;
                 // If you have a JSON mapping for this field, use it here:
                 // beltModel.topLandingRedWarningLight = jsonData['top_landing_red_warning_light'][selected];
               },
@@ -108,7 +108,7 @@ class TopLanding extends StatelessWidget {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'yes') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: 'top_landing_8',
                     title: 'Description',
                   );
@@ -140,7 +140,7 @@ class TopLanding extends StatelessWidget {
                         onChangeValue: (value) {},
                         conditionalBuilder: (selected) {
                           if (selected == 'yes') {
-                            return CustomTextField(
+                            return const CustomTextField(
                               id: 'top_landing_10b',
                               title: 'How Many:',
                             );
@@ -173,7 +173,7 @@ class TopLanding extends StatelessWidget {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'yes') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: 'top_landing_13',
                     title: 'Length',
                   );
@@ -199,11 +199,11 @@ class TopLanding extends StatelessWidget {
                 return const SizedBox.shrink();
               },
             ),
-            CustomTextField(
+            const CustomTextField(
               id: 'top_landing_15',
               title: 'Toeboard Height:',
             ),
-            CustomTextField(
+            const CustomTextField(
               id: 'top_landing_16',
               title: 'Control Rope Diameter',
             ),
@@ -225,7 +225,7 @@ class TopLanding extends StatelessWidget {
                     jsonData['top_landing_conditionofropeguides'][value];
               },
             ),
-            CustomTextField(
+            const CustomTextField(
               id: 'top_landing_19',
               title: 'Control Rope Fasteners',
             ),
@@ -289,7 +289,7 @@ class TopLanding extends StatelessWidget {
               ),
               onSelectionChanged: (val) {
                 if (val.isEmpty) return;
-                final selected = val.last; // single-selection behavior
+                // final selected = val.last; // single-selection behavior
                 // If you have a JSON mapping for this field:
                 // beltModel.topLandingGuideRailCondition = jsonData['top_landing_guide_rail_condition'][selected];
               },
@@ -323,7 +323,7 @@ class TopLanding extends StatelessWidget {
               conditionalBuilder: (selected) {
                 debugPrint('Selected value: $selected');
                 if (selected == 'needs_additional') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "top_landing_28a",
                     title: 'Add Additional',
                   );
@@ -372,7 +372,7 @@ class TopLanding extends StatelessWidget {
               values: const ['Yes', 'No'],
               onChangeValue: (value) {},
             ),
-            CustomTextField(
+            const CustomTextField(
               id: 'top_landing_32',
               title: 'Top Landing Comments:',
             ),

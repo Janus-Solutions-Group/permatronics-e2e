@@ -86,6 +86,25 @@ flutter test
 
 PDFs are saved to `/storage/emulated/0/Download/` on Android. The app requires write permission to external storage.
 
+## Email Delivery (AWS SES)
+
+On submit, each form (Cage/Belt × Monthly/Quarterly/Annual) emails the two generated PDFs (inspection + reference) via AWS SES `SendRawEmail`. The implementation lives in `lib/services/aws_ses_service.dart`; SigV4 is computed in-app and the request is sent directly to `https://email.{region}.amazonaws.com/`.
+
+Credentials and recipients are injected at build time via `--dart-define`:
+
+```bash
+flutter build apk --release \
+  --dart-define=AWS_ACCESS_KEY_ID=AKIA... \
+  --dart-define=AWS_SECRET_ACCESS_KEY=... \
+  --dart-define=AWS_REGION=us-east-1 \
+  --dart-define=SES_FROM=reports@permatronic.com \
+  --dart-define=SES_TO=ops@permatronic.com,gordon.butler@permatronic.com
+```
+
+Optional: `--dart-define=AWS_SESSION_TOKEN=...` for temporary credentials.
+
+**Security:** the IAM principal embedded in the binary must be locked down to `ses:SendRawEmail` only, and ideally pinned to the From address via the `ses:FromAddress` condition. Anyone with the APK can extract these values. Sending failures are non-blocking — the PDFs remain on the device under `/Download/` and the user proceeds to the Final page with a snackbar showing the error.
+
 ## Additional Documentation
 
 - `.claude/docs/architectural_patterns.md` — Form architecture, InheritedWidget JSON pattern, dual-model data flow, ID naming convention, PDF generation flow, dynamic landing forms

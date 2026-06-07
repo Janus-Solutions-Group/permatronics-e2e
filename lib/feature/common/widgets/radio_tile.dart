@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:manlift_app/provider/selection_ref_provider.dart';
@@ -106,21 +104,17 @@ class _CustomRadioTileState extends State<CustomRadioTile> {
                   value: formatString(widget.values[index]),
                   groupValue: currentVal,
                   onChanged: (value) async {
-                    if (widget.id != null) {
-                      context.read<SelectionRefProvider>().updateSelection(
-                          widget.id.toString(), widget.title, widget.values[index]);
-                    } else {
-                      log('id is null');
-                    }
+                    context.read<SelectionRefProvider>().updateSelection(
+                        widget.id.toString(),
+                        widget.title,
+                        widget.values[index]);
                     final box = GetStorage();
-                    await box.write(widget.id!, value);
+                    await box.write(widget.id, value);
 
                     setState(() {
                       currentVal = value;
                       widget.onChangeValue(value);
                     });
-
-                    print(currentVal);
                   },
                 ),
                 // CupertinoRadio(value: value, groupValue: groupValue, onChanged: onChanged)

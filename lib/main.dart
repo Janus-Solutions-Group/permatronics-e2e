@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
               foregroundColor: Colors.white,
             ),
           )),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }

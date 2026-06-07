@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:manlift_app/data/models/original_model.dart';
-import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
 import 'package:manlift_app/provider/selection_ref_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';

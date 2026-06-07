@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
-import 'package:manlift_app/feature/Home/pages/homepage.dart';
 import 'package:manlift_app/feature/belt/annual/widget/add_intermediate_landing.dart';
 import 'package:manlift_app/feature/common/widgets/header_form.dart';
 import 'package:manlift_app/feature/common/widgets/image_picking_last.dart';
@@ -14,10 +13,11 @@ import 'package:manlift_app/feature/common/widgets/reference_text.dart';
 import 'package:manlift_app/feature/common/widgets/signature_pad.dart';
 import 'package:manlift_app/feature/final/final_page.dart';
 import 'package:manlift_app/provider/selection_ref_provider.dart';
+import 'package:manlift_app/services/aws_ses_service.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
 import '../../../../data/models/header.dart';
-import '../../../common/widgets/radio_tile.dart';
 import '../../model/belt_inspection_model.dart';
 import '../widget/belting.dart';
 import '../widget/bottom_landing.dart';
@@ -29,7 +29,6 @@ import '../widget/handholds.dart';
 import '../widget/load_test.dart';
 import '../widget/steps.dart';
 import '../widget/tail_section.dart';
-import '../widget/intermediate_landing.dart';
 import '../widget/top_landing.dart';
 import '../widget/top_landing_safeties.dart';
 
@@ -67,7 +66,7 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
     super.initState();
   }
 
-  Future<void> createinspectionPdf() async {
+  Future<({Uint8List bytes, String fileName})> createinspectionPdf() async {
     List<String> list = [];
     beltModel.toMap().forEach((u, v) {
       if (v != null) {
@@ -131,20 +130,22 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
     // final output = await getExternalStorageDirectory();
     final directory = Directory("/storage/emulated/0/Download");
     final path = directory.path;
-    print(path);
 
     await Directory(path).create(recursive: true);
-    final file = File(
-        "$path/belt_annual_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf");
-    await file.writeAsBytes(await pdf.save());
+    final fileName =
+        "belt_annual_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf";
+    final pdfBytes = await pdf.save();
+    final file = File("$path/$fileName");
+    await file.writeAsBytes(pdfBytes);
 
     if (mounted) {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('pdf is created')));
     }
+    return (bytes: pdfBytes, fileName: fileName);
   }
 
-  Future<void> createrefrencePdf() async {
+  Future<({Uint8List bytes, String fileName})> createrefrencePdf() async {
     List<String> headerList = [];
     headerModel.toMap().forEach((u, v) {
       if (v != null) headerList.add(v.toString());
@@ -184,9 +185,6 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
     var tailList = selectionsRef
         .where((a) => a['id']!.split('_').first == "tail")
         .toList();
-    print(selectionsRef
-        .where((a) => a['id']!.split('_').first == "tail")
-        .toList());
     var bottomLandingSafetiesList = selectionsRef
         .where((a) => a['id']!.startsWith('Bottom Landing Safeties'))
         .toList();
@@ -205,9 +203,6 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
         .toList();
     var stepList =
         selectionsRef.where((a) => a['id']!.startsWith("step_belt")).toList();
-
-    var intermediateList =
-        selectionsRef.where((a) => a['id']!.startsWith("landing")).toList();
 
     var topLandingList = selectionsRef
         .where((a) =>
@@ -237,7 +232,6 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
         landingGroups[index]!.add(item);
       }
     }
-    print(landingGroups);
 
     pdf.addPage(
       pw.MultiPage(
@@ -282,18 +276,52 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
 
     final directory = Directory("/storage/emulated/0/Download");
     final path = directory.path;
-    print(path);
 
     await Directory(path).create(recursive: true);
-    final file = File(
-        "$path/belt_annual_ref_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf");
-    await file.writeAsBytes(await pdf.save());
+    final fileName =
+        "belt_annual_ref_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf";
+    final pdfBytes = await pdf.save();
+    final file = File("$path/$fileName");
+    await file.writeAsBytes(pdfBytes);
 
     selectionsRef.clear();
     if (mounted) {
       setState(() {});
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('reference pdf is created')));
+    }
+    return (bytes: pdfBytes, fileName: fileName);
+  }
+
+  Future<EmailDeliveryResult> _emailPdfs(
+    ({Uint8List bytes, String fileName}) inspection,
+    ({Uint8List bytes, String fileName}) reference,
+  ) async {
+    final config = SesConfig.fromEnvironment();
+    if (config == null) {
+      return const EmailDeliveryResult(EmailDeliveryStatus.notConfigured);
+    }
+    try {
+      const inspectionLabel = 'Belt Annual Inspection Report';
+      await SesService(config).sendWithAttachments(
+        subject: 'Permatronics | $inspectionLabel',
+        body: 'Hello Permatronics Admin,\n\n'
+            'This is an automated notification from the inspection management '
+            'system. We have just received a completed inspection submission.\n\n'
+            'Please find attached the $inspectionLabel along with the '
+            'supporting reference documents.',
+        attachments: [
+          SesAttachment(filename: inspection.fileName, bytes: inspection.bytes),
+          SesAttachment(filename: reference.fileName, bytes: reference.bytes),
+        ],
+      );
+      return const EmailDeliveryResult(EmailDeliveryStatus.success);
+    } on SocketException catch (e) {
+      return EmailDeliveryResult(EmailDeliveryStatus.networkFailure, e.message);
+    } on http.ClientException catch (e) {
+      return EmailDeliveryResult(EmailDeliveryStatus.networkFailure, e.message);
+    } catch (e) {
+      return EmailDeliveryResult(EmailDeliveryStatus.serverFailure, e.toString());
     }
   }
 
@@ -382,14 +410,17 @@ class _BeltAnnualPageState extends State<BeltAnnualPage> {
                     ImagePickingWidget(
                       pageController: pageController,
                       onSubmit: () async {
-                        await createinspectionPdf();
-                        await createrefrencePdf();
+                        final inspection = await createinspectionPdf();
+                        final reference = await createrefrencePdf();
+                        final emailResult =
+                            await _emailPdfs(inspection, reference);
                         await GetStorage().erase();
                         if (context.mounted) {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const FinalPage()));
+                                  builder: (context) =>
+                                      FinalPage(emailResult: emailResult)));
                         }
                       },
                     ),

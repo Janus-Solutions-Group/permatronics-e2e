@@ -20,6 +20,8 @@ import 'package:manlift_app/feature/common/widgets/image_picking_last.dart';
 import 'package:manlift_app/feature/common/widgets/reference_text.dart';
 import 'package:manlift_app/feature/common/widgets/signature_pad.dart';
 import 'package:manlift_app/provider/selection_ref_provider.dart';
+import 'package:manlift_app/services/aws_ses_service.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -94,7 +96,7 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
   //   await file.writeAsBytes(await pdf.save());
   // }
 
-  Future<void> createinspectionPdf() async {
+  Future<({Uint8List bytes, String fileName})> createinspectionPdf() async {
     List<String> list = [];
     cageModel.toMap().forEach((u, v) {
       if (v != null) {
@@ -160,22 +162,22 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
     // final output = await getExternalStorageDirectory();
     final directory = Directory("/storage/emulated/0/Download");
     final path = directory.path;
-    print(path);
 
     await Directory(path).create(recursive: true);
     String fileName =
         "cage_annual_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}";
-    DateFormat('dd-MM-YYYY_HH:mm').format(DateTime.now()).toString();
+    final pdfBytes = await pdf.save();
     final file = File("${"$path/$fileName"}.pdf");
-    await file.writeAsBytes(await pdf.save());
+    await file.writeAsBytes(pdfBytes);
 
     if (mounted) {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('pdf is created')));
     }
+    return (bytes: pdfBytes, fileName: '$fileName.pdf');
   }
 
-  Future<void> createrefrencePdf() async {
+  Future<({Uint8List bytes, String fileName})> createrefrencePdf() async {
     List<String> headerList = [];
     headerModel.toMap().forEach((u, v) {
       if (v != null) headerList.add(v.toString());
@@ -213,10 +215,9 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
       return parts1.length.compareTo(parts2.length);
     });
 
-
     var pitList = selectionsRef.where((a) => a['id']!.contains('pit')).toList();
-    var landing =
-        selectionsRef.where((a) => a['id']!.contains('landing')).toList();
+    // var landing =
+    //     selectionsRef.where((a) => a['id']!.contains('landing')).toList();
     var cabList = selectionsRef.where((a) => a['id']!.contains('cab')).toList();
     var carCounterweight =
         selectionsRef.where((a) => a['id']!.contains('car')).toList();
@@ -256,7 +257,6 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
                 headerList.length, (index) => pw.Text(headerList[index])),
             pw.SizedBox(height: 10),
             referenceText(pitList, 'Pit'),
-
             ...landingGroups.entries.map((entry) {
               final index = int.parse(entry.key) + 1;
               final items = entry.value;
@@ -281,15 +281,51 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
     final path = directory.path;
 
     await Directory(path).create(recursive: true);
-    final file = File(
-        "$path/cage_annual_ref_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf");
-    await file.writeAsBytes(await pdf.save());
+    final fileName =
+        "cage_annual_ref_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf";
+    final pdfBytes = await pdf.save();
+    final file = File("$path/$fileName");
+    await file.writeAsBytes(pdfBytes);
 
     selectionsRef.clear();
     if (mounted) {
       setState(() {});
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('pdf is created')));
+    }
+    return (bytes: pdfBytes, fileName: fileName);
+  }
+
+  Future<EmailDeliveryResult> _emailPdfs(
+    ({Uint8List bytes, String fileName}) inspection,
+    ({Uint8List bytes, String fileName}) reference,
+  ) async {
+    final config = SesConfig.fromEnvironment();
+    if (config == null) {
+      return const EmailDeliveryResult(EmailDeliveryStatus.notConfigured);
+    }
+    try {
+      const inspectionLabel = 'Cage Annual Inspection Report';
+      await SesService(config).sendWithAttachments(
+        subject: 'Permatronics | $inspectionLabel',
+        body: 'Hello Permatronics Admin,\n\n'
+            'This is an automated notification from the inspection management '
+            'system. We have just received a completed inspection submission.\n\n'
+            'Please find attached the $inspectionLabel along with the '
+            'supporting reference documents.',
+        attachments: [
+          SesAttachment(filename: inspection.fileName, bytes: inspection.bytes),
+          SesAttachment(filename: reference.fileName, bytes: reference.bytes),
+        ],
+      );
+      return const EmailDeliveryResult(EmailDeliveryStatus.success);
+    } on SocketException catch (e) {
+      return EmailDeliveryResult(EmailDeliveryStatus.networkFailure, e.message);
+    } on http.ClientException catch (e) {
+      return EmailDeliveryResult(EmailDeliveryStatus.networkFailure, e.message);
+    } catch (e) {
+      return EmailDeliveryResult(
+          EmailDeliveryStatus.serverFailure, e.toString());
     }
   }
 
@@ -354,14 +390,16 @@ class _CageAnnualyPageState extends State<CageAnnualyPage> {
               ImagePickingWidget(
                 pageController: pageController,
                 onSubmit: () async {
-                  await createinspectionPdf();
-                  await createrefrencePdf();
+                  final inspection = await createinspectionPdf();
+                  final reference = await createrefrencePdf();
+                  final emailResult = await _emailPdfs(inspection, reference);
                   await GetStorage().erase();
                   if (context.mounted) {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const FinalPage()));
+                            builder: (context) =>
+                                FinalPage(emailResult: emailResult)));
                   }
                 },
               ),

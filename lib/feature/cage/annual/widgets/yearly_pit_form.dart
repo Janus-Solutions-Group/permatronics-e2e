@@ -3,7 +3,6 @@ import 'package:manlift_app/data/models/original_model.dart';
 import 'package:manlift_app/feature/cage/model/cage_model.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
-import 'package:manlift_app/feature/common/widgets/custom_title.dart';
 import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
 import 'package:manlift_app/feature/common/widgets/radio_tile.dart';
@@ -47,8 +46,8 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                     jsonData['bottom_platform'][value];
               },
             ),
-            CustomTextField(id: 'pit_2', title: "Platform Height"),
-            CustomTextField(id: 'pit_3', title: "Platform Comments"),
+            const CustomTextField(id: 'pit_2', title: "Platform Height"),
+            const CustomTextField(id: 'pit_3', title: "Platform Comments"),
             CustomRadioTile(
               id: 'pit_4',
               title: "Pit",
@@ -64,9 +63,9 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomTextField(id: 'pit_5', title: "Depth"),
-                  CustomTextField(id: 'pit_6', title: "Width"),
-                  CustomTextField(id: 'pit_7', title: "Length"),
+                  const CustomTextField(id: 'pit_5', title: "Depth"),
+                  const CustomTextField(id: 'pit_6', title: "Width"),
+                  const CustomTextField(id: 'pit_7', title: "Length"),
                   CustomRadioTile(
                     id: 'pit_8',
                     title: "Clean",
@@ -88,7 +87,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                 String res1 = "";
                 for (var e in val) {
                   res += jsonData['pit_switch'][e] + "\n";
-                  res1 += e + "\n";
+                  res1 += "$e\n";
                 }
                 setState(() {
                   cageInspection.pitSwitch = res1;
@@ -114,7 +113,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                 },
                 conditionalBuilder: (selected) {
                   if (selected == 'relocate') {
-                    return CustomTextField(
+                    return const CustomTextField(
                       id: "pit_10a",
                       title: 'Reason for Relocation',
                     );
@@ -248,7 +247,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'replace') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: 'pit_20a',
                     title: 'Why?',
                   );
@@ -271,7 +270,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               },
               conditionalBuilder: (selected) {
                 if (selected.contains('replace')) {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: 'pit_21a',
                     title: 'Why?',
                   );
@@ -294,7 +293,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               },
               conditionalBuilder: (selected) {
                 if (selected.contains('replace')) {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: 'pit_22a',
                     title: 'Why?',
                   );
@@ -309,9 +308,9 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                 // widget.cageModel.pitComments = value;
               },
             ),
-            CustomTextField(
+            const CustomTextField(
                 id: 'pit_24', title: "Under Car Size, Front/Back measurement"),
-            CustomTextField(
+            const CustomTextField(
                 id: 'pit_25', title: "Under Car Size, Right/Left measurement"),
             CustomRadioTile(
               id: 'pit_26',
@@ -319,7 +318,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               values: const ["Ok", "Replace"],
               conditionalBuilder: (selected) {
                 if (selected == 'replace') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "pit_26a",
                     title: 'Reason for Replacement',
                   );
@@ -358,7 +357,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'replace') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "pit_29a",
                     title: 'Reason for Replacement',
                   );
@@ -406,7 +405,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                 widget.cageModel.carGuideRailsType = res;
               },
             ),
-            CustomTextField(id: 'pit_32', title: "Car Guide Rails Size"),
+            const CustomTextField(id: 'pit_32', title: "Car Guide Rails Size"),
             CustomRadioTile(
               id: 'pit_33',
               title: "Condition:",
@@ -434,7 +433,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                   widget.cageModel.carGuideRailsWhy = res;
                 },
               ),
-            CustomTextField(id: 'pit_35', title: "Car Guide Rails DBG"),
+            const CustomTextField(id: 'pit_35', title: "Car Guide Rails DBG"),
             // CustomRadioTile(
             //   id: 'pit_36',
             //   title: "Car Guide Rail Brackets",
@@ -477,7 +476,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'replace') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: 'pit_38a',
                     title: 'Why?',
                   );
@@ -520,7 +519,6 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                 for (var e in val) {
                   res += jsonData['counterweight_guide_rail_type'][e] + "\n";
                 }
-                print(res);
                 widget.cageModel.counterweightGuideRailType = res;
               },
             ),
@@ -540,7 +538,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               fieldLabelTitle: "Other",
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "pit_43a",
                     title: 'Specify Other Condition',
                   );
@@ -574,7 +572,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
                 widget.cageModel.counterweightGuideRailBrackets = res;
               },
             ),
-            CustomTextField(id: 'pit_45', title: 'CW Dimension'),
+            const CustomTextField(id: 'pit_45', title: 'CW Dimension'),
             // CustomRadioTile(
             //   id: 'pit_46',
             //   title: "CW Material",
@@ -630,7 +628,7 @@ class _YearlyPitInspectionFormState extends State<YearlyPitInspectionForm> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'replace') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: 'pit_48a',
                     title: 'Why?',
                   );

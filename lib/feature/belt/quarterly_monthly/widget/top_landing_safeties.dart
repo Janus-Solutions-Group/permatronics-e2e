@@ -200,7 +200,7 @@ class TopLandingSafeties extends StatelessWidget {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'no') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "top_landing_safeties_14a",
                     title: 'Specify',
                   );
@@ -247,7 +247,7 @@ class TopLandingSafeties extends StatelessWidget {
                     jsonData['hasalertingsystem'][value];
               },
             ),
-            CustomTextField(
+            const CustomTextField(
               id: 'top_landing_safeties_18',
               title: 'Top Safeties Comments:',
             ),

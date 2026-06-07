@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:manlift_app/data/models/original_model.dart';
 import 'package:manlift_app/feature/cage/model/cage_model.dart';
 import 'package:manlift_app/feature/cage/quarterly/cage_quaterly.dart';
-import 'package:manlift_app/feature/cage/quarterly/models/pit_model.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
@@ -88,7 +87,7 @@ class CABForm extends StatelessWidget {
             },
             conditionalBuilder: (selected) {
               if (selected == 'replace') {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'cab_form_4a',
                   title: 'Why?',
                 );
@@ -136,7 +135,7 @@ class CABForm extends StatelessWidget {
             },
             conditionalBuilder: (selected) {
               if (selected == 'replace') {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'cab_form_7a',
                   title: 'Why?',
                 );

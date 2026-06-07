@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:manlift_app/data/models/original_model.dart';
 import 'package:manlift_app/feature/belt/model/belt_inspection_model.dart';
-import 'package:manlift_app/feature/common/widgets/custom_title.dart';
 import 'package:manlift_app/feature/common/widgets/form_header.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/multiple_selection_widget.dart';
@@ -203,11 +202,11 @@ class _BottomLandingState extends State<BottomLanding> {
                         [value];
               },
             ),
-            CustomTextField(
+            const CustomTextField(
                 id: "bottom_landing_annual_13", title: '# of Risers:'),
-            CustomTextField(id: "bottom_landing_annual_14", title: 'Height'),
-            CustomTextField(id: "bottom_landing_annual_15", title: 'Width'),
-            CustomTextField(id: "bottom_landing_annual_16", title: 'Depth'),
+            const CustomTextField(id: "bottom_landing_annual_14", title: 'Height'),
+            const CustomTextField(id: "bottom_landing_annual_15", title: 'Width'),
+            const CustomTextField(id: "bottom_landing_annual_16", title: 'Depth'),
             CustomRadioTile(
               id: "bottom_landing_annual_17",
               title: 'Describe Opening:',
@@ -261,11 +260,11 @@ class _BottomLandingState extends State<BottomLanding> {
                     [value];
               },
             ),
-            CustomTextField(
+            const CustomTextField(
                 id: "bottom_landing_annual_23", title: '# of Risers:'),
-            CustomTextField(id: "bottom_landing_annual_24", title: 'Height'),
-            CustomTextField(id: "bottom_landing_annual_25", title: 'Width'),
-            CustomTextField(id: "bottom_landing_annual_26", title: 'Depth'),
+            const CustomTextField(id: "bottom_landing_annual_24", title: 'Height'),
+            const CustomTextField(id: "bottom_landing_annual_25", title: 'Width'),
+            const CustomTextField(id: "bottom_landing_annual_26", title: 'Depth'),
             CustomRadioTile(
               id: "bottom_landing_annual_27",
               title: 'Describe Opening:',
@@ -339,7 +338,7 @@ class _BottomLandingState extends State<BottomLanding> {
                 },
                 conditionalBuilder: (selected) {
                   if (selected == 'other') {
-                    return CustomTextField(
+                    return const CustomTextField(
                       id: "bottom_landing_annual_33a",
                       title: 'Specify Other',
                     );
@@ -383,7 +382,7 @@ class _BottomLandingState extends State<BottomLanding> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'yes') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: 'bottom_landing_annual_37',
                     title: 'Description',
                   );
@@ -421,7 +420,7 @@ class _BottomLandingState extends State<BottomLanding> {
                         onChangeValue: (value) {},
                         conditionalBuilder: (selected) {
                           if (selected == 'yes') {
-                            return CustomTextField(
+                            return const CustomTextField(
                               id: 'bottom_landing_annual_41',
                               title: 'How Many',
                             );

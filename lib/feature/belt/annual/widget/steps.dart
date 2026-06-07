@@ -90,7 +90,7 @@ class _StepsState extends State<Steps> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "step_belt_annual_5a",
                     title: 'Specify Other',
                   );
@@ -131,7 +131,7 @@ class _StepsState extends State<Steps> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'yes') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: 'step_belt_annual_9',
                     title: 'How Many',
                   );

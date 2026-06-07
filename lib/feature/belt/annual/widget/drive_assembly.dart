@@ -173,7 +173,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
                 if (val.isEmpty) return;
 
                 // radio-style behavior (take latest selection)
-                final selected = val.last;
+                // final selected = val.last;
 
                 // widget.beltModel.driveAssemblyShaftCondition =
                 //     jsonData['drive_assembly_shaftcondition'][selected];
@@ -298,7 +298,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "drive_assembly_annual_21a",
                     title: 'Specify Other Type',
                   );
@@ -327,7 +327,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               values: const ['Reliance', 'Dodge', 'Falk', 'Ehrsam', 'Other'],
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "drive_assembly_annual_23a",
                     title: 'Specify Other',
                   );
@@ -378,7 +378,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "drive_assembly_annual_26a",
                     title: 'Specify Other Type',
                   );
@@ -426,7 +426,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "drive_assembly_annual_30b",
                     title: 'Specify Other',
                   );
@@ -472,10 +472,10 @@ class _DriveAssemblyState extends State<DriveAssembly> {
                     onSelectionChanged: (val) {
                       if (val.isEmpty) return;
 
-                      String result = '';
-                      for (final v in val) {
-                        result += v + '\n';
-                      }
+                      // String result = '';
+                      // for (final v in val) {
+                      //   result += '$v\n';
+                      // }
 
                       // widget.beltModel.driveAssemblySkipReason = result;
                     },
@@ -535,7 +535,7 @@ class _DriveAssemblyState extends State<DriveAssembly> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "drive_assembly_annual_39b",
                     title: 'Specify Other',
                   );

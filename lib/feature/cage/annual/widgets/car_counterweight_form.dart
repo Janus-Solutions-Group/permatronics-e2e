@@ -44,7 +44,7 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
             },
             conditionalBuilder: (selected) {
               if (selected.contains('other')) {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'car_conterweight_1a',
                   title: 'Specify Other',
                 );
@@ -81,7 +81,7 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
             },
             conditionalBuilder: (selected) {
               if (selected.contains('other')) {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'car_conterweight_3a',
                   title: 'Specify Other',
                 );
@@ -129,7 +129,7 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
             },
             conditionalBuilder: (selected) {
               if (selected == 'replace') {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'car_conterweight_7a',
                   title: 'Why?',
                 );
@@ -158,7 +158,7 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
             },
             conditionalBuilder: (selected) {
               if (selected == 'replace') {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'car_conterweight_9a',
                   title: 'Why?',
                 );
@@ -185,7 +185,7 @@ class AnnualCageCarCounterWeightForm extends StatelessWidget {
             },
             conditionalBuilder: (selected) {
               if (selected.contains('other')) {
-                return CustomTextField(
+                return const CustomTextField(
                   id: 'car_conterweight_10a',
                   title: 'Specify Other',
                 );

@@ -180,7 +180,7 @@ class DriveAssembly extends StatelessWidget {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "drive_assembly_8a",
                     title: 'Specify Other Type',
                   );
@@ -214,7 +214,7 @@ class DriveAssembly extends StatelessWidget {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "drive_assembly_10a",
                     title: 'Specify Other Type',
                   );
@@ -248,7 +248,7 @@ class DriveAssembly extends StatelessWidget {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "drive_assembly_12a",
                     title: 'Specify Other Type',
                   );
@@ -275,7 +275,7 @@ class DriveAssembly extends StatelessWidget {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "drive_assembly_13a",
                     title: 'Specify Other',
                   );
@@ -311,10 +311,10 @@ class DriveAssembly extends StatelessWidget {
                     onSelectionChanged: (val) {
                       if (val.isEmpty) return;
 
-                      String result = '';
-                      for (final v in val) {
-                        result += v + '\n';
-                      }
+                      // String result = '';
+                      // for (final v in val) {
+                      //   result += '$v\n';
+                      // }
 
                       // widget.beltModel.driveAssemblySkipReason = result;
                     },
@@ -374,7 +374,7 @@ class DriveAssembly extends StatelessWidget {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "drive_assembly_20a",
                     title: 'Specify Other',
                   );
@@ -382,7 +382,7 @@ class DriveAssembly extends StatelessWidget {
                 return const SizedBox.shrink();
               },
             ),
-            CustomTextField(
+            const CustomTextField(
               id: 'drive_assembly_21',
               title: 'Drive Comments:',
             ),

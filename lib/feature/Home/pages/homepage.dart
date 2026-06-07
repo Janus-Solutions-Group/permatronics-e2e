@@ -11,7 +11,7 @@ import 'package:manlift_app/util/navigate.dart';
 // import 'package:pdf/widgets.dart' as pw;
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();

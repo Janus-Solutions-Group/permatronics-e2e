@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 import 'dart:ui' as ui;
 
@@ -7,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
-import 'package:manlift_app/feature/Home/pages/homepage.dart';
 import 'package:manlift_app/feature/cage/model/cage_model.dart';
 import 'package:manlift_app/feature/cage/quarterly/add_landing_form.dart';
 import 'package:manlift_app/feature/cage/quarterly/cab_form.dart';
@@ -20,13 +18,14 @@ import 'package:manlift_app/feature/common/widgets/reference_text.dart';
 import 'package:manlift_app/feature/common/widgets/signature_pad.dart';
 import 'package:manlift_app/feature/final/final_page.dart';
 import 'package:manlift_app/provider/selection_ref_provider.dart';
+import 'package:manlift_app/services/aws_ses_service.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:provider/provider.dart';
 
 import '../../../data/models/header.dart';
-import '../../common/widgets/radio_tile.dart';
 
 class CageQuaterlyPage extends StatefulWidget {
   const CageQuaterlyPage({super.key, required this.title});
@@ -59,7 +58,7 @@ class _CageQuaterlyPageState extends State<CageQuaterlyPage> {
     super.initState();
   }
 
-  Future<void> createinspectionPdf() async {
+  Future<({Uint8List bytes, String fileName})> createinspectionPdf() async {
     List<String> list = [];
     cageModel.toMap().forEach((u, v) {
       if (v != null) {
@@ -115,7 +114,7 @@ class _CageQuaterlyPageState extends State<CageQuaterlyPage> {
                 pw.SizedBox(height: 20),
                 pw.Text("Respectfully Submitted,"),
                 pw.Text("Perma Tronic Elevator, Inc."),
-                pw.Text("VP\GM"),
+                pw.Text("VPGM"),
                 pw.Text("gordon.butler@permatronic.com"),
               ],
             )
@@ -124,22 +123,22 @@ class _CageQuaterlyPageState extends State<CageQuaterlyPage> {
     // final output = await getExternalStorageDirectory();
     final directory = Directory("/storage/emulated/0/Download");
     final path = directory.path;
-    print(path);
 
     await Directory(path).create(recursive: true);
     String fileName =
         "${widget.title.replaceAll(' ', '_')}_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}";
-    DateFormat('dd-MM-YYYY_HH:mm').format(DateTime.now()).toString();
+    final pdfBytes = await pdf.save();
     final file = File("${"$path/$fileName"}.pdf");
-    await file.writeAsBytes(await pdf.save());
+    await file.writeAsBytes(pdfBytes);
 
     if (mounted) {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('pdf is created')));
     }
+    return (bytes: pdfBytes, fileName: '$fileName.pdf');
   }
 
-  Future<void> createrefrencePdf() async {
+  Future<({Uint8List bytes, String fileName})> createrefrencePdf() async {
     List<String> headerList = [];
     headerModel.toMap().forEach((u, v) {
       if (v != null) headerList.add(v.toString());
@@ -177,12 +176,11 @@ class _CageQuaterlyPageState extends State<CageQuaterlyPage> {
       return parts1.length.compareTo(parts2.length);
     });
 
-
     var pitList =
         selectionsRef.where((a) => a['id']!.split('_').first == "pit").toList();
-    var landing = selectionsRef
-        .where((a) => a['id']!.split('_').first == "landing")
-        .toList();
+    // var landing = selectionsRef
+    //     .where((a) => a['id']!.split('_').first == "landing")
+    //     .toList();
     var cabList =
         selectionsRef.where((a) => a['id']!.split('_').first == "cab").toList();
     var carCounterweight =
@@ -241,15 +239,51 @@ class _CageQuaterlyPageState extends State<CageQuaterlyPage> {
     final path = directory.path;
 
     await Directory(path).create(recursive: true);
-    final file = File(
-        "$path/cage_${widget.title.toLowerCase()}_ref_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf");
-    await file.writeAsBytes(await pdf.save());
+    final fileName =
+        "cage_${widget.title.toLowerCase()}_ref_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now())}.pdf";
+    final pdfBytes = await pdf.save();
+    final file = File("$path/$fileName");
+    await file.writeAsBytes(pdfBytes);
 
     selectionsRef.clear();
     if (mounted) {
       setState(() {});
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('pdf is created')));
+    }
+    return (bytes: pdfBytes, fileName: fileName);
+  }
+
+  Future<EmailDeliveryResult> _emailPdfs(
+    ({Uint8List bytes, String fileName}) inspection,
+    ({Uint8List bytes, String fileName}) reference,
+  ) async {
+    final config = SesConfig.fromEnvironment();
+    if (config == null) {
+      return const EmailDeliveryResult(EmailDeliveryStatus.notConfigured);
+    }
+    try {
+      final inspectionLabel = 'Cage ${widget.title} Inspection Report';
+      await SesService(config).sendWithAttachments(
+        subject: 'Permatronics | $inspectionLabel',
+        body: 'Hello Permatronics Admin,\n\n'
+            'This is an automated notification from the inspection management '
+            'system. We have just received a completed inspection submission.\n\n'
+            'Please find attached the $inspectionLabel along with the '
+            'supporting reference documents.',
+        attachments: [
+          SesAttachment(filename: inspection.fileName, bytes: inspection.bytes),
+          SesAttachment(filename: reference.fileName, bytes: reference.bytes),
+        ],
+      );
+      return const EmailDeliveryResult(EmailDeliveryStatus.success);
+    } on SocketException catch (e) {
+      return EmailDeliveryResult(EmailDeliveryStatus.networkFailure, e.message);
+    } on http.ClientException catch (e) {
+      return EmailDeliveryResult(EmailDeliveryStatus.networkFailure, e.message);
+    } catch (e) {
+      return EmailDeliveryResult(
+          EmailDeliveryStatus.serverFailure, e.toString());
     }
   }
 
@@ -307,14 +341,16 @@ class _CageQuaterlyPageState extends State<CageQuaterlyPage> {
               ImagePickingWidget(
                 pageController: pageController,
                 onSubmit: () async {
-                  await createinspectionPdf();
-                  await createrefrencePdf();
+                  final inspection = await createinspectionPdf();
+                  final reference = await createrefrencePdf();
+                  final emailResult = await _emailPdfs(inspection, reference);
                   await GetStorage().erase();
                   if (context.mounted) {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const FinalPage()));
+                            builder: (context) =>
+                                FinalPage(emailResult: emailResult)));
                   }
                 },
               ),

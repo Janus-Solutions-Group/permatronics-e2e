@@ -67,7 +67,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
               conditionalBuilder: (selected) {
                 if (selected == 'replace damaged' ||
                     selected == 'replace worn') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "tail_section_1a",
                     title: 'Why Replace?',
                   );
@@ -172,7 +172,7 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
               conditionalBuilder: (selected) {
                 if (selected == 'replace damaged' ||
                     selected == 'replace worn') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "tail_section_6a",
                     title: 'Why Replace?',
                   );
@@ -334,7 +334,6 @@ class _TailSectionFootAssemblyState extends State<TailSectionFootAssembly>
                 id: "tail_section_18",
                 values: const ["OK", "Replace Damaged", "Replace Worn"],
                 onChangeValue: (value) {
-                  //TODO - MISING IN JSON
                   // widget.beltModel
                   //     .yokeasse = jsonData[
                   //         'tail_section_foot_assembly_foot_pulley_condition']

@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:manlift_app/feature/Home/pages/homepage.dart';
+import 'package:manlift_app/services/aws_ses_service.dart';
 
 class FinalPage extends StatelessWidget {
-  const FinalPage({super.key});
+  const FinalPage({super.key, this.emailResult});
+
+  final EmailDeliveryResult? emailResult;
 
   @override
   Widget build(BuildContext context) {
+    final result = emailResult;
+    final isSuccess = result?.isSuccess ?? true;
+    final icon = isSuccess ? Icons.check_circle_outline : Icons.warning_amber_rounded;
+    final iconColor = isSuccess ? Colors.green : Colors.orange;
+    final message = result?.userMessage ??
+        'Your inspection report has been created and saved in the internal storage.';
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -18,27 +28,19 @@ class FinalPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.check_circle_outline,
-              color: Colors.green,
-              size: 80,
-            ),
+            Icon(icon, color: iconColor, size: 80),
             const SizedBox(height: 20),
-            const Text(
-              'Your inspection report has been created and saved in the internal storage.',
+            Text(
+              message,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-              ),
+              style: const TextStyle(fontSize: 18, color: Colors.black),
             ),
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                // Handle the 'Continue' button action here
                 Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
+                    MaterialPageRoute(builder: (context) => const HomePage()),
                     (route) => false);
               },
               style: ElevatedButton.styleFrom(

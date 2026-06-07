@@ -52,7 +52,7 @@ class _HandholdsState extends State<Handholds> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "handholds_annual_2a",
                     title: 'Specify Other',
                   );
@@ -107,7 +107,7 @@ class _HandholdsState extends State<Handholds> {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'other') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "handholds_annual_7a",
                     title: 'Specify Other',
                   );

@@ -21,7 +21,7 @@ class AnnualCageElectricalControlForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FormHeaderTitle(title: 'Electrical Control Panel'),
+          const FormHeaderTitle(title: 'Electrical Control Panel'),
           CustomRadioTile(
             id: 'electrical_control_1',
             title: 'NEMA',

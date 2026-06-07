@@ -37,7 +37,7 @@ class LoadTest extends StatelessWidget {
               },
               conditionalBuilder: (selected) {
                 if (selected == 'fail') {
-                  return CustomTextField(
+                  return const CustomTextField(
                     id: "load_test_annual_1a",
                     title: 'If Fail, Reason:',
                   );
