@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:manlift_app/feature/Home/pages/homepage.dart';
+import 'package:manlift_app/feature/admin/pages/admin_home_page.dart';
+import 'package:manlift_app/provider/auth_provider.dart';
 import 'package:manlift_app/services/aws_ses_service.dart';
+import 'package:provider/provider.dart';
 
 class FinalPage extends StatelessWidget {
   const FinalPage({super.key, this.emailResult});
@@ -38,9 +41,12 @@ class FinalPage extends StatelessWidget {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
+                final isAdmin = context.read<AuthProvider>().isAdmin;
                 Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            isAdmin ? const AdminHomePage() : const HomePage()),
                     (route) => false);
               },
               style: ElevatedButton.styleFrom(

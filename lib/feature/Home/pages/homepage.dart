@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:manlift_app/feature/belt/pages/belt.page.dart';
 import 'package:manlift_app/feature/cage/pages/cage.page.dart';
+import 'package:manlift_app/provider/auth_provider.dart';
 import 'package:manlift_app/util/navigate.dart';
+import 'package:provider/provider.dart';
 
 // import 'package:open_file/open_file.dart';
 // import 'package:path_provider/path_provider.dart';
@@ -36,6 +38,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Manlift Form'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Log out',
+            onPressed: () => context.read<AuthProvider>().signOut(),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),

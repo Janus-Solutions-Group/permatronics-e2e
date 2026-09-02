@@ -1,12 +1,15 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:manlift_app/data/models/customer.dart';
 import 'package:manlift_app/data/models/header.dart';
 import 'package:manlift_app/data/models/new_units.dart';
 import 'package:manlift_app/feature/common/widgets/custom_textfield.dart';
 import 'package:manlift_app/feature/common/widgets/custom_title.dart';
 import 'package:manlift_app/feature/common/widgets/page_navigation_button.dart';
+import 'package:manlift_app/provider/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 class HeaderForm extends StatefulWidget {
   const HeaderForm(
@@ -31,6 +34,24 @@ class _HeaderFormState extends State<HeaderForm>
     super.initState();
     getLocalCustomers();
     getLocalUnits();
+    _prefillInspector();
+  }
+
+  /// Prefills "Inspector(s):" with the logged-in user's name, unless the
+  /// operator already has an in-progress value persisted for this field
+  /// (e.g. resumed a form) — in which case that value wins.
+  void _prefillInspector() {
+    final stored = GetStorage().read('header11');
+    if (stored != null && stored.toString().trim().isNotEmpty) {
+      fieldControllers[13].text = stored.toString();
+      widget.headerModel.inspector = stored.toString();
+      return;
+    }
+    final name = context.read<AuthProvider>().profile?.name;
+    if (name != null && name.trim().isNotEmpty) {
+      fieldControllers[13].text = name;
+      widget.headerModel.inspector = name;
+    }
   }
 
   Future<List<CustomerDetail>> getLocalCustomers() async {
@@ -271,6 +292,7 @@ class _HeaderFormState extends State<HeaderForm>
               ),
               CustomTextField(
                 id: "header11",
+                header: true,
                 title: "Inspector(s):",
                 controller: fieldControllers[13],
                 onChanged: (val) {

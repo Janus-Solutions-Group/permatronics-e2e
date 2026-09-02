@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "622730500928",
+    "project_id": "permatronics",
+    "storage_bucket": "permatronics.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622730500928:android:cb2ca4ffb6ba534aaeb8a5",
+        "android_client_info": {
+          "package_name": "com.example.manlift_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk0tUXRCniHbok4w2x8WCxF6scHM8AVOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

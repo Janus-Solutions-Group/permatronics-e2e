@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/employees/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/employees/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    match /employees/{uid} {
+      allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
+      // self-create covers: operator signup, and admin-email self-heal on first login
+      allow create: if request.auth != null && (request.auth.uid == uid || isAdmin());
+      // operators may not change their own role/status; only admins may
+      allow update: if isAdmin() ||
+        (request.auth != null && request.auth.uid == uid &&
+         request.resource.data.role == resource.data.role &&
+         request.resource.data.status == resource.data.status);
+      allow delete: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

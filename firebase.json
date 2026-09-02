@@ -1,0 +1,7 @@
+{
+  "flutter": {"platforms":{"android":{"default":{"projectId":"permatronics","appId":"1:622730500928:android:cb2ca4ffb6ba534aaeb8a5","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"permatronics","configurations":{"android":"1:622730500928:android:cb2ca4ffb6ba534aaeb8a5","ios":"1:622730500928:ios:94322847719e6a74aeb8a5","macos":"1:622730500928:ios:94322847719e6a74aeb8a5","web":"1:622730500928:web:7e16c84c7652a0baaeb8a5","windows":"1:622730500928:web:150e39caca1f8c2baeb8a5"}}}}},
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
+}
