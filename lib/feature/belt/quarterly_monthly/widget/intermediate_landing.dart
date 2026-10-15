@@ -168,32 +168,6 @@ class _IntermediateLandingState extends State<IntermediateLanding> {
                 return const SizedBox.shrink();
               },
             ),
-            CustomRadioTile(
-              id: 'intermediate_landing_quartmonth_${widget.index}_7a',
-              title: 'Toolbar:',
-              values: const ['Yes', 'No'],
-              onChangeValue: (value) {},
-              conditionalBuilder: (selected) {
-                if (selected == 'yes') {
-                  return CustomRadioTile(
-                    id: 'intermediate_landing_quartmonth_${widget.index}_7b',
-                    title: 'Add\'l Toolbar Required:',
-                    values: const ['Yes', 'No'],
-                    onChangeValue: (value) {},
-                    conditionalBuilder: (selected) {
-                      if (selected == 'yes') {
-                        return CustomTextField(
-                          id: 'intermediate_landing_quartmonth_${widget.index}_7c',
-                          title: 'Length',
-                        );
-                      }
-                      return const SizedBox.shrink();
-                    },
-                  );
-                }
-                return const SizedBox.shrink();
-              },
-            ),
             MultipleSelectionWidget(
               original: OriginalModel(
                 id: 'intermediate_landing_quartmonth_${widget.index}_10',

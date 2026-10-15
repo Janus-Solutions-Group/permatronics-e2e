@@ -158,22 +158,20 @@ class _TailSectionState extends State<TailSection> {
               },
             ),
           ],
-          if (beltVariable.tailSectionFootAssemblyBottomBearings == 'no') ...[
-            CustomTextField(
-              id: "tail_section_9",
-              title: 'Foot Shaft Diameter',
-              onChanged: (val) {
-                widget.beltModel.tailSectionFootAssemblyFootShaftDiameter = val;
-              },
-            ),
-            CustomTextField(
-              id: "tail_section_10",
-              title: 'Foot Shaft Length',
-              onChanged: (val) {
-                widget.beltModel.tailSectionFootAssemblyFootShaftLength = val;
-              },
-            ),
-          ],
+          CustomTextField(
+            id: "tail_section_9",
+            title: 'Foot Shaft Diameter',
+            onChanged: (val) {
+              widget.beltModel.tailSectionFootAssemblyFootShaftDiameter = val;
+            },
+          ),
+          CustomTextField(
+            id: "tail_section_10",
+            title: 'Foot Shaft Length',
+            onChanged: (val) {
+              widget.beltModel.tailSectionFootAssemblyFootShaftLength = val;
+            },
+          ),
           CustomRadioTile(
             id: "tail_section_11",
             title: "Foot Shaft Condition",
