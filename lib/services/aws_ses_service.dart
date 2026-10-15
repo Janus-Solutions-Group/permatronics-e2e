@@ -2,19 +2,13 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 
-// Credentials and recipients are injected at build time via --dart-define:
-//   --dart-define=AWS_ACCESS_KEY_ID=...
-//   --dart-define=AWS_SECRET_ACCESS_KEY=...
-//   --dart-define=AWS_SESSION_TOKEN=...    (optional, for temporary creds)
-//   --dart-define=AWS_REGION=us-east-1
-//   --dart-define=SES_FROM=reports@permatronic.com
-//   --dart-define=SES_TO=ops@permatronic.com,gordon.butler@permatronic.com
-//
-// SECURITY: Anyone with the built APK/IPA can extract these values. The IAM
-// principal used here MUST be restricted to ses:SendRawEmail and (ideally)
-// pinned to the SES_FROM address via the ses:FromAddress condition key.
+// Temporary SES credentials, region, sender and recipients are fetched at
+// runtime from the AWS Lambda in aws/ses_credentials_lambda.py. The app
+// authenticates to it with the signed-in user's Firebase ID token. No
+// --dart-define flags are needed: just `flutter build apk`.
 
 class SesAttachment {
   SesAttachment({
@@ -45,38 +39,31 @@ class SesConfig {
   final String from;
   final List<String> toList;
 
-  static const _accessKey =
-      String.fromEnvironment('AWS_ACCESS_KEY_ID', defaultValue: '');
-  static const _secretKey =
-      String.fromEnvironment('AWS_SECRET_ACCESS_KEY', defaultValue: '');
-  static const _sessionToken =
-      String.fromEnvironment('AWS_SESSION_TOKEN', defaultValue: '');
-  static const _region =
-      String.fromEnvironment('AWS_REGION', defaultValue: '');
-  static const _from = String.fromEnvironment('SES_FROM', defaultValue: '');
-  static const _to = String.fromEnvironment('SES_TO', defaultValue: '');
+  // TODO: paste your Lambda Function URL here (not a secret; the Firebase
+  // ID token is what authenticates the caller).
+  static const _credentialsUrl =
+      'https://gsig2szrmbgqnlfqn66napzlbq0fqdhh.lambda-url.us-west-1.on.aws/';
 
-  static SesConfig? fromEnvironment() {
-    if (_accessKey.isEmpty ||
-        _secretKey.isEmpty ||
-        _region.isEmpty ||
-        _from.isEmpty ||
-        _to.isEmpty) {
-      return null;
+  /// Fetches short-lived credentials from the Lambda. Returns null when the
+  /// no user is signed in.
+  static Future<SesConfig?> fetch() async {
+    final idToken = await FirebaseAuth.instance.currentUser?.getIdToken();
+    if (idToken == null) return null;
+    final resp = await http.post(
+      Uri.parse(_credentialsUrl),
+      headers: {'Authorization': 'Bearer $idToken'},
+    );
+    if (resp.statusCode < 200 || resp.statusCode >= 300) {
+      throw SesException(statusCode: resp.statusCode, body: resp.body);
     }
-    final recipients = _to
-        .split(',')
-        .map((e) => e.trim())
-        .where((e) => e.isNotEmpty)
-        .toList();
-    if (recipients.isEmpty) return null;
+    final j = jsonDecode(resp.body) as Map<String, dynamic>;
     return SesConfig(
-      accessKeyId: _accessKey,
-      secretAccessKey: _secretKey,
-      sessionToken: _sessionToken.isEmpty ? null : _sessionToken,
-      region: _region,
-      from: _from,
-      toList: recipients,
+      accessKeyId: j['accessKeyId'] as String,
+      secretAccessKey: j['secretAccessKey'] as String,
+      sessionToken: j['sessionToken'] as String,
+      region: j['region'] as String,
+      from: j['from'] as String,
+      toList: (j['to'] as List).cast<String>(),
     );
   }
 }

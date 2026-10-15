@@ -302,7 +302,17 @@ class _BeltQuaterlyPageState extends State<BeltQuaterlyPage> {
     ({Uint8List bytes, String fileName}) inspection,
     ({Uint8List bytes, String fileName}) reference,
   ) async {
-    final config = SesConfig.fromEnvironment();
+    final SesConfig? config;
+    try {
+      config = await SesConfig.fetch();
+    } on SocketException catch (e) {
+      return EmailDeliveryResult(EmailDeliveryStatus.networkFailure, e.message);
+    } on http.ClientException catch (e) {
+      return EmailDeliveryResult(EmailDeliveryStatus.networkFailure, e.message);
+    } catch (e) {
+      return EmailDeliveryResult(
+          EmailDeliveryStatus.serverFailure, e.toString());
+    }
     if (config == null) {
       return const EmailDeliveryResult(EmailDeliveryStatus.notConfigured);
     }
